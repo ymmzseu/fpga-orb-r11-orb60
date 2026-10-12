@@ -31,9 +31,9 @@ static bool run_case(int index) {
         && counters.input_read_bytes==uint32_t(valid ? (p.width*p.height+7)/8*8 : 0)
         && counters.blur_write_bytes==counters.input_read_bytes
         && counters.resize_write_bytes==uint32_t((dw*dh+7)/8*8)
-        && counters.image_pairs==uint32_t(valid ? (p.width+1)/2*p.height : 0)
-        && counters.blur_pairs==counters.image_pairs && counters.resize_pairs==uint32_t((dw+1)/2*dh)
-        && counters.flags==uint32_t(valid ? 2|(test.level<7 ? 1 : 0) : 0)
+        && counters.image_pairs==uint32_t(valid ? (p.width+orb60::kLayerPpc-1)/orb60::kLayerPpc*p.height : 0)
+        && counters.blur_pairs==counters.image_pairs && counters.resize_pairs==uint32_t((orb60::kLayerPpc==4?(p.width+3)/4:(dw+1)/2)*dh)
+        && counters.flags==uint32_t(valid ? orb60::kLayerPpc|(test.level<7 ? 1 : 0) : 0)
         && counters.reserved[0]==0 && counters.reserved[1]==0 && counters.reserved[2]==0
         && (valid ? counters.dataflow_cycles>=1 && counters.dataflow_cycles<4000000 : counters.dataflow_cycles==0);
     const bool fast_ok=status==reference.status && std::memcmp(summary_words,&reference,64)==0

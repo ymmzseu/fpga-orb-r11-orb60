@@ -1,0 +1,17 @@
+{
+  "state": "SUCCEEDED",
+  "kernel": "descriptor",
+  "hls_job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_013229_descriptor_d3f49663",
+  "started_utc": "2026-10-12T16:52:30.314548+00:00",
+  "scope": "Isolated IP random AXI/reset/direct done barrier; common DDR address space, no DDR PHY or two-core contention",
+  "result": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_015229_datapath_axi_e33c74db\\descriptor\\result.json",
+  "runtime": {
+    "version": "3.12.12 (main, Feb 12 2026, 00:40:26) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "D:\\pld\\.venv\\Scripts\\python.exe",
+    "base_prefix": "C:\\Users\\18718\\AppData\\Roaming\\uv\\python\\cpython-3.12.12-windows-x86_64-none",
+    "loaded_dll": "C:\\Users\\18718\\AppData\\Roaming\\uv\\python\\cpython-3.12.12-windows-x86_64-none\\python312.dll",
+    "expected_dll": "C:\\Users\\18718\\AppData\\Roaming\\uv\\python\\cpython-3.12.12-windows-x86_64-none\\python312.dll",
+    "repaired_stdio": []
+  },
+  "finished_utc": "2026-10-12T16:54:11.425966+00:00"
+}

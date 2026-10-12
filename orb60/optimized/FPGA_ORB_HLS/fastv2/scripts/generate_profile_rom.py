@@ -340,6 +340,60 @@ static const AxisInfo kYRunInfo[{len(y_info)}] = {{
 '''
 
 
+def generate_quad_headers() -> tuple[str, str]:
+    offsets, ends, records = [], [], []
+    for w,h,budget in zip(WIDTHS,HEIGHTS,BUDGETS):
+        g=profile_geometry(w,h,budget)
+        xs=axis_info(w,g[0],g[2],g[4],g[6],g[7])
+        values=[sum((xs[x+i] if x+i<w else 0)<<(30*i) for i in range(4)) for x in range(0,w,4)]
+        e,v=consecutive_runs(values);offsets.append(len(records));ends.extend(e);records.extend(v)
+    geometry='''#pragma once
+// Generated exact four-lane geometry runs; end positions count source quads.
+#include "geometry_runs.hpp"
+namespace fastv2_quad_rom {
+using fastv2_segment::AxisInfo;
+using fastv2_segment::RunEnd;
+'''
+    geometry+=f'static const int kXOffsets[8] = {{{", ".join(map(str,offsets))}}};\n'
+    geometry+=f'static const RunEnd kXEnds[{len(ends)}] = {{\n{format_array(ends,str,16)}\n}};\n'
+    geometry+=f'static const AxisInfo kXInfo[4][{len(records)}] = {{\n'
+    for lane in range(4):
+        geometry+='{\n'+format_array([(r>>(lane*30))&((1<<30)-1) for r in records],lambda v:f'UINT32_C(0x{v:08x})',6)+'\n},\n'
+    geometry+='};\n}\n'
+    offsets,entries=[],[]
+    for level in range(7):
+        sw,dw=WIDTHS[level],WIDTHS[level+1];offsets.append(len(entries));target=0
+        for x in range(0,sw,4):
+            packed=0;n=0
+            while target<dw:
+                a,b,weight=resize_axis(target,sw,dw)
+                if b>min(x+3,sw-1):break
+                position=a-(x-4)
+                assert n<4 and 0<=position<7 and b==a+1 and 0<=weight<2048
+                packed|=(position|(weight<<3))<<(14*n)
+                n+=1;target+=1
+            entries.append(packed|(n<<56))
+            assert n>0, 'Fixed downscale emits one nonempty variable-width packet per source quad'
+        assert target==dw
+    emit='''#pragma once
+// Generated exact 4PPC emission: four relative 3-bit indices/11-bit weights,
+// plus a 3-bit count. No runtime coordinate division or output feedback ROM.
+#include <cstdint>
+#if defined(__SYNTHESIS__) || defined(FASTV2_HLS_CSIM)
+#include <ap_int.h>
+#endif
+namespace fastv2_quad_rom {
+#if defined(__SYNTHESIS__) || defined(FASTV2_HLS_CSIM)
+typedef ap_uint<59> ResizeQuadEmit;
+#else
+typedef uint64_t ResizeQuadEmit;
+#endif
+'''
+    emit+=f'static const int kResizeOffsets[7] = {{{", ".join(map(str,offsets))}}};\n'
+    emit+=f'static const ResizeQuadEmit kResizeEmit[{len(entries)}] = {{\n{format_array(entries,lambda v:f"UINT64_C(0x{v:015x})",4)}\n}};\n}}\n'
+    return geometry,emit
+
+
 def main() -> None:
     """Write the generated header next to the public fastv2 interface."""
     script_path = Path(__file__).resolve()
@@ -351,6 +405,9 @@ def main() -> None:
     emit_path.write_text(generate_resize_emit_header(), encoding='utf-8', newline='\n')
     segment_path = script_path.parent.parent / 'next/include/geometry_runs.hpp'
     segment_path.write_text(generate_segment_header(), encoding='utf-8', newline='\n')
+    quad_geometry,quad_resize=generate_quad_headers()
+    (script_path.parent.parent/'next/include/geometry4.hpp').write_text(quad_geometry,encoding='utf-8',newline='\n')
+    (script_path.parent.parent/'next/include/layer4_axis_rom.hpp').write_text(quad_resize,encoding='utf-8',newline='\n')
     print(f"generated {output_path}")
 
 

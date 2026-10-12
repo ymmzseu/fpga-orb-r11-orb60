@@ -1,0 +1,208 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2'
+================================================================
+* Date:           Tue Oct 13 02:33:04 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.755 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max    | min | max |                      Type                      |
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |        4|        4|  40.000 ns|  40.000 ns|    3|    3|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_11_2  |        2|        2|         2|          1|          1|     2|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    141|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|    134|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    134|    186|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |add_ln11_fu_288_p2              |         +|   0|  0|   3|           2|           1|
+    |ap_block_pp0_stage0_01001_grp1  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln11_fu_282_p2             |      icmp|   0|  0|   4|           2|           3|
+    |icmp_ln16_fu_294_p2             |      icmp|   0|  0|   3|           2|           1|
+    |head_10_fu_478_p3               |    select|   0|  0|   8|           1|           8|
+    |head_11_fu_471_p3               |    select|   0|  0|   8|           1|           8|
+    |head_12_fu_464_p3               |    select|   0|  0|   8|           1|           8|
+    |head_13_fu_457_p3               |    select|   0|  0|   8|           1|           8|
+    |head_14_fu_450_p3               |    select|   0|  0|   8|           1|           8|
+    |head_15_fu_443_p3               |    select|   0|  0|   8|           1|           8|
+    |head_8_fu_492_p3                |    select|   0|  0|   8|           1|           8|
+    |head_9_fu_485_p3                |    select|   0|  0|   8|           1|           8|
+    |tail_10_fu_422_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_11_fu_415_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_12_fu_408_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_13_fu_401_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_14_fu_394_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_15_fu_387_p3               |    select|   0|  0|   8|           1|           8|
+    |tail_8_fu_436_p3                |    select|   0|  0|   8|           1|           8|
+    |tail_9_fu_429_p3                |    select|   0|  0|   8|           1|           8|
+    |ap_enable_pp0                   |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |Total                           |          |   0|  0| 141|          24|         136|
+    +--------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_q_1     |   9|          2|    2|          4|
+    |gaussian_raw_blk_n       |   9|          2|    1|          2|
+    |q_fu_88                  |   9|          2|    2|          4|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|    7|         14|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |head_1_fu_96             |  8|   0|    8|          0|
+    |head_2_fu_100            |  8|   0|    8|          0|
+    |head_3_fu_104            |  8|   0|    8|          0|
+    |head_4_fu_108            |  8|   0|    8|          0|
+    |head_5_fu_112            |  8|   0|    8|          0|
+    |head_6_fu_116            |  8|   0|    8|          0|
+    |head_7_fu_120            |  8|   0|    8|          0|
+    |head_fu_92               |  8|   0|    8|          0|
+    |icmp_ln16_reg_765        |  1|   0|    1|          0|
+    |q_fu_88                  |  2|   0|    2|          0|
+    |tail_1_fu_128            |  8|   0|    8|          0|
+    |tail_2_fu_132            |  8|   0|    8|          0|
+    |tail_3_fu_136            |  8|   0|    8|          0|
+    |tail_4_fu_140            |  8|   0|    8|          0|
+    |tail_5_fu_144            |  8|   0|    8|          0|
+    |tail_6_fu_148            |  8|   0|    8|          0|
+    |tail_7_fu_152            |  8|   0|    8|          0|
+    |tail_fu_124              |  8|   0|    8|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    |134|   0|  134|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian4_horizontal_Pipeline_VITIS_LOOP_11_2|  return value|
+|gaussian_raw_dout            |   in|   32|     ap_fifo|                                                        gaussian_raw|       pointer|
+|gaussian_raw_empty_n         |   in|    1|     ap_fifo|                                                        gaussian_raw|       pointer|
+|gaussian_raw_read            |  out|    1|     ap_fifo|                                                        gaussian_raw|       pointer|
+|gaussian_raw_num_data_valid  |   in|    7|     ap_fifo|                                                        gaussian_raw|       pointer|
+|gaussian_raw_fifo_cap        |   in|    7|     ap_fifo|                                                        gaussian_raw|       pointer|
+|tail_7_out                   |  out|    8|      ap_vld|                                                          tail_7_out|       pointer|
+|tail_7_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_7_out|       pointer|
+|tail_6_out                   |  out|    8|      ap_vld|                                                          tail_6_out|       pointer|
+|tail_6_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_6_out|       pointer|
+|tail_5_out                   |  out|    8|      ap_vld|                                                          tail_5_out|       pointer|
+|tail_5_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_5_out|       pointer|
+|tail_4_out                   |  out|    8|      ap_vld|                                                          tail_4_out|       pointer|
+|tail_4_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_4_out|       pointer|
+|tail_3_out                   |  out|    8|      ap_vld|                                                          tail_3_out|       pointer|
+|tail_3_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_3_out|       pointer|
+|tail_2_out                   |  out|    8|      ap_vld|                                                          tail_2_out|       pointer|
+|tail_2_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_2_out|       pointer|
+|tail_1_out                   |  out|    8|      ap_vld|                                                          tail_1_out|       pointer|
+|tail_1_out_ap_vld            |  out|    1|      ap_vld|                                                          tail_1_out|       pointer|
+|tail_out                     |  out|    8|      ap_vld|                                                            tail_out|       pointer|
+|tail_out_ap_vld              |  out|    1|      ap_vld|                                                            tail_out|       pointer|
+|head_7_out                   |  out|    8|      ap_vld|                                                          head_7_out|       pointer|
+|head_7_out_ap_vld            |  out|    1|      ap_vld|                                                          head_7_out|       pointer|
+|head_6_out                   |  out|    8|      ap_vld|                                                          head_6_out|       pointer|
+|head_6_out_ap_vld            |  out|    1|      ap_vld|                                                          head_6_out|       pointer|
+|head_5_out                   |  out|    8|      ap_vld|                                                          head_5_out|       pointer|
+|head_5_out_ap_vld            |  out|    1|      ap_vld|                                                          head_5_out|       pointer|
+|head_4_out                   |  out|    8|      ap_vld|                                                          head_4_out|       pointer|
+|head_4_out_ap_vld            |  out|    1|      ap_vld|                                                          head_4_out|       pointer|
+|head_3_out                   |  out|    8|      ap_vld|                                                          head_3_out|       pointer|
+|head_3_out_ap_vld            |  out|    1|      ap_vld|                                                          head_3_out|       pointer|
+|head_2_out                   |  out|    8|      ap_vld|                                                          head_2_out|       pointer|
+|head_2_out_ap_vld            |  out|    1|      ap_vld|                                                          head_2_out|       pointer|
+|head_1_out                   |  out|    8|      ap_vld|                                                          head_1_out|       pointer|
+|head_1_out_ap_vld            |  out|    1|      ap_vld|                                                          head_1_out|       pointer|
+|head_out                     |  out|    8|      ap_vld|                                                            head_out|       pointer|
+|head_out_ap_vld              |  out|    1|      ap_vld|                                                            head_out|       pointer|
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+

@@ -2,6 +2,7 @@
 #include "Vorb60_frame_top.h"
 #include "verilated.h"
 #include "frame_registers.hpp"
+#include "ddr_time.hpp"
 #include <algorithm>
 #include <array>
 #include <cstdint>
@@ -15,7 +16,7 @@
 
 namespace fs=std::filesystem;
 // This Windows runtime requires the legacy time callback at link time.
-// Supply it explicitly; model timeprecision is 1 ps, with a 100 MHz clock.
+// Supply it explicitly; timeprecision is1ps, clock comes from accepted HLS.
 uint64_t native_time_ps=0;
 double sc_time_stamp() { return static_cast<double>(native_time_ps); }
 fs::path diagnostic_directory;
@@ -47,6 +48,11 @@ bool inside(unsigned address,unsigned size,const std::vector<Range>& ranges) {
 }
 struct Burst { unsigned address,left,size,id; uint64_t eligible; };
 struct Response { unsigned id; uint64_t eligible; };
+constexpr unsigned AXI_METRIC_COUNT=16;
+constexpr const char* AXI_METRIC_NAMES[AXI_METRIC_COUNT]={
+    "accepted_ar","accepted_aw","accepted_r","accepted_w","accepted_b",
+    "ar_blocked_cycles","aw_blocked_cycles","r_blocked_cycles","w_blocked_cycles","b_blocked_cycles",
+    "read_pending_cycles","write_pending_cycles","read_outstanding_cycle_sum","write_outstanding_cycle_sum","idle_cycles","read_wait_for_data_cycles"};
 struct Port {
     std::deque<Burst> reads,writes;
     std::deque<Response> responses;
@@ -57,6 +63,8 @@ struct Port {
     std::vector<Range> read_ranges,write_ranges;
     std::array<uint64_t,6> ar_hold{},aw_hold{},w_hold{};
     bool ar_stalled=false,aw_stalled=false,w_stalled=false;
+    std::array<uint64_t,AXI_METRIC_COUNT> activity{};
+    unsigned read_highwater=0,write_highwater=0;
 };
 struct LiteSample {
     bool aw,w,b,ar,r;
@@ -82,10 +90,18 @@ public:
     std::array<unsigned,PROFILE_FIFO_COUNT> fifo_highwater{};
 #endif
     unsigned beat_budget,stall_percent,state,round_robin=0;
+    unsigned read_delay_min,read_delay_max;
+    DdrTimeBudget service_time;
+    // Service counts read payload preparation and accepted W beats. R channel
+    // handshakes are separately counted and may lag payload preparation.
+    std::array<uint64_t,4> ddr_activity{}; // used cycles, idle cycles, R beats, W beats
+    std::array<uint64_t,4> hp_service_beats{};
     static constexpr unsigned hp[8]={0,3,1,2,0,1,3,2};
 
-    Simulation(unsigned beats,unsigned stalls,unsigned seed):beat_budget(beats),stall_percent(stalls),state(seed) {
+    Simulation(unsigned beats,unsigned stalls,unsigned seed,unsigned read_min=0,unsigned read_max=5):
+        beat_budget(beats),stall_percent(stalls),state(seed),read_delay_min(read_min),read_delay_max(read_max),service_time(CLOCK_PERIOD_PS,beats) {
         require(beats>=1 && beats<=4 && stalls<=90,"Invalid memory model configuration");
+        require(read_min<=read_max && read_max<=10000,"Invalid initial read delay");
         dut.clk=0;dut.rst_n=0;
         for(unsigned c=0;c<2;++c) {
             dut.c_AWVALID[c]=dut.c_WVALID[c]=dut.c_ARVALID[c]=0;
@@ -98,8 +114,8 @@ public:
             dut.m_BID[i]=dut.m_BRESP[i]=0;
         }
         for(unsigned i=0;i<10;++i) {
-            native_time_ps+=5000;dut.clk=0;dut.eval();
-            native_time_ps+=5000;dut.clk=1;dut.eval();
+            native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=0;dut.eval();
+            native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();
         }
         dut.clk=0;dut.rst_n=1;dut.eval();
         for(unsigned i=0;i<10;++i) tick();
@@ -129,7 +145,7 @@ public:
     }
     void tick() {
         require(cycles<60000000,"Frame simulation watchdog");
-        native_time_ps+=5000;
+        native_time_ps+=CLOCK_PERIOD_PS/2;
         dut.clk=0;
         for(unsigned i=0;i<8;++i) {
             auto& p=ports[i];
@@ -150,9 +166,13 @@ public:
             eligible[2*i+1]=!p.writes.empty() && bool(dut.m_WVALID[i]);
         }
         unsigned used=0,last=round_robin;
+        // Preserve the original100MHz arbitration and PRNG sequence exactly.
+        if(CLOCK_PERIOD_PS!=10000) service_time.advance();
         for(unsigned n=0;n<16 && used<beat_budget;++n) {
             unsigned k=(round_robin+n)%16,i=k/2;
+            if(CLOCK_PERIOD_PS!=10000 && !service_time.available(hp[i])) continue;
             if(!eligible[k] || used_hp[hp[i]] || !allow()) continue;
+            if(CLOCK_PERIOD_PS!=10000) service_time.consume(hp[i]);
             used_hp[hp[i]]=true;granted[k]=true;++used;last=(k+1)%16;
             auto& p=ports[i];
             if(k&1) dut.m_WREADY[i]=1;
@@ -165,6 +185,10 @@ public:
             }
         }
         round_robin=last;
+        ++ddr_activity[used?0:1];
+        for(unsigned k=0;k<16;++k) if(granted[k]) {
+            ++ddr_activity[(k&1)?3:2];++hp_service_beats[hp[k/2]];
+        }
         for(unsigned k=0;k<16;++k) if(eligible[k] && !granted[k]) ++ports[k/2].contention;
         dut.eval();
         struct Sample { bool ar,aw,w,r,b; unsigned ra,rl,rs,rb,ri,wa,wl,ws,wb,wi,strb; bool last; uint64_t data; };
@@ -179,6 +203,16 @@ public:
                 dut.m_ARADDR[i],dut.m_ARLEN[i],dut.m_ARSIZE[i],dut.m_ARBURST[i],dut.m_ARID[i],
                 dut.m_AWADDR[i],dut.m_AWLEN[i],dut.m_AWSIZE[i],dut.m_AWBURST[i],dut.m_AWID[i],
                 dut.m_WSTRB[i],bool(dut.m_WLAST[i]),dut.m_WDATA[i]};
+            const auto& s=edge[i];
+            const uint64_t counts[AXI_METRIC_COUNT]={uint64_t(s.ar),uint64_t(s.aw),uint64_t(s.r),uint64_t(s.w),uint64_t(s.b),
+                uint64_t(dut.m_ARVALID[i]&&!dut.m_ARREADY[i]),uint64_t(dut.m_AWVALID[i]&&!dut.m_AWREADY[i]),
+                uint64_t(dut.m_RVALID[i]&&!dut.m_RREADY[i]),uint64_t(dut.m_WVALID[i]&&!dut.m_WREADY[i]),
+                uint64_t(dut.m_BVALID[i]&&!dut.m_BREADY[i]),uint64_t(!p.reads.empty()),
+                uint64_t(!p.writes.empty()||!p.responses.empty()),p.reads.size(),p.writes.size()+p.responses.size(),
+                uint64_t(p.reads.empty()&&!p.rvalid&&p.writes.empty()&&p.responses.empty()&&
+                         !dut.m_ARVALID[i]&&!dut.m_AWVALID[i]&&!dut.m_WVALID[i]&&!dut.m_RVALID[i]&&!dut.m_BVALID[i]),
+                uint64_t(!p.reads.empty()&&!dut.m_RVALID[i])};
+            for(unsigned m=0;m<AXI_METRIC_COUNT;++m) p.activity[m]+=counts[m];
         }
         for(unsigned c=0;c<2;++c) lite[c]={bool(dut.c_AWVALID[c]&&dut.c_AWREADY[c]),bool(dut.c_WVALID[c]&&dut.c_WREADY[c]),
             bool(dut.c_BVALID[c]&&dut.c_BREADY[c]),bool(dut.c_ARVALID[c]&&dut.c_ARREADY[c]),
@@ -195,7 +229,7 @@ public:
             fifo_highwater[f]=std::max(fifo_highwater[f],unsigned(fifo_level[f]));
         }
 #endif
-        native_time_ps+=5000;dut.clk=1;dut.eval();++cycles;
+        native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();++cycles;
         if(active[0] && !done[0] && active[1] && !done[1]) ++overlap;
         for(unsigned i=0;i<8;++i) {
             auto& p=ports[i];const auto& s=edge[i];
@@ -219,17 +253,21 @@ public:
                 }
                 b.address+=1u<<b.size;
                 if(--b.left==0) {
-                    p.responses.push_back({b.id,cycles+2+random()%30});p.writes.pop_front();
+                    p.responses.push_back({b.id,cycles+service_time.reference_cycles(2+random()%30)});p.writes.pop_front();
                 }
             }
             if(s.ar) {
                 boundary(s.ra,s.rl,s.rs,s.rb,i,false);
-                p.reads.push_back({s.ra,s.rl+1,s.rs,s.ri,cycles+random()%6});++p.read_bursts;
+                p.reads.push_back({s.ra,s.rl+1,s.rs,s.ri,
+                    cycles+service_time.reference_cycles(read_delay_min+random()%(read_delay_max-read_delay_min+1))});++p.read_bursts;
             }
             if(s.aw) {
                 boundary(s.wa,s.wl,s.ws,s.wb,i,true);
                 p.writes.push_back({s.wa,s.wl+1,s.ws,s.wi,cycles});++p.write_bursts;
             }
+            p.read_highwater=std::max(p.read_highwater,unsigned(p.reads.size()));
+            p.write_highwater=std::max(p.write_highwater,unsigned(p.writes.size()+p.responses.size()));
+            require(p.reads.size()<=8 && p.writes.size()+p.responses.size()<=8,"DDR outstanding capacity exceeded");
         }
         for(unsigned c=0;c<2;++c) if(active[c] && !done[c] && dut.done[c]) {
             require(idle(c),"Actual ap_done precedes last AXI response on core "+std::to_string(c));
@@ -312,10 +350,17 @@ public:
     }
 };
 
-struct LayerResult { uint64_t image_cycles=0,descriptor_cycles=0; unsigned count=0,offset=0; };
+struct LayerResult { uint64_t image_cycles=0,descriptor_cycles=0,image_axi_bytes=0,descriptor_axi_bytes=0; unsigned count=0,offset=0; };
+struct PortResult {
+    std::array<uint64_t,AXI_METRIC_COUNT> activity{};
+    uint64_t read_bytes=0,write_bytes=0;
+    unsigned read_highwater=0,write_highwater=0;
+};
 struct FrameResult {
     unsigned frame=0,selected=0;uint64_t cycles=0,overlap_cycles=0,read_bytes=0,write_bytes=0,contention=0;
     std::array<LayerResult,8> layers{};
+    std::array<PortResult,8> axi{};
+    std::array<uint64_t,4> ddr_activity{},hp_service_beats{};
 #ifdef ORB60_NATIVE_PROFILE
     std::array<uint64_t,PROFILE_COUNT> profile_cycles{};
     std::array<unsigned,PROFILE_FIFO_COUNT> fifo_highwater{};
@@ -330,6 +375,13 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
     sim.put(FEATURES,Bytes(FRAME_BYTES,0xc3));
     sim.put(RAW[0],load(images/("f"+std::to_string(number)+"_l0_input.bin")));
     auto old=sim.counts();uint64_t old_overlap=sim.overlap,begin=sim.cycles;
+    std::array<PortResult,8> old_axi{};
+    for(unsigned p=0;p<8;++p) {
+        old_axi[p].activity=sim.ports[p].activity;
+        old_axi[p].read_bytes=sim.ports[p].read_bytes;old_axi[p].write_bytes=sim.ports[p].write_bytes;
+        sim.ports[p].read_highwater=sim.ports[p].write_highwater=0;
+    }
+    const auto old_ddr=sim.ddr_activity,old_hp=sim.hp_service_beats;
 #ifdef ORB60_NATIVE_PROFILE
     const auto old_profile=sim.profile_cycles;
     sim.fifo_highwater.fill(0);
@@ -379,8 +431,10 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
         unsigned count=sim.word(summary_addr(l)+12);
         require(count==EXPECT_COUNT[number*8+l],"Feature count mismatch");
         auto s=sim.stats(layer_stats(l));unsigned resize=l<7?rounded(pixels(l+1)):0;
-        std::array<unsigned,16> expected={0x00600001,0,l,WIDTH[l],HEIGHT[l],rounded(pixels(l)),rounded(pixels(l)),resize,
-            (WIDTH[l]+1)/2*HEIGHT[l],(WIDTH[l]+1)/2*HEIGHT[l],l<7?(WIDTH[l+1]+1)/2*HEIGHT[l+1]:0,s[11],l<7?3u:2u,0,0,0};
+        const unsigned groups=(WIDTH[l]+LAYER_PPC-1)/LAYER_PPC*HEIGHT[l];
+        const unsigned resized_groups=l<7?(LAYER_PPC==4?(WIDTH[l]+3)/4:(WIDTH[l+1]+1)/2)*HEIGHT[l+1]:0;
+        std::array<unsigned,16> expected={LAYER_VERSION,0,l,WIDTH[l],HEIGHT[l],rounded(pixels(l)),rounded(pixels(l)),resize,
+            groups,groups,resized_groups,s[11],LAYER_PPC|(l<7?1u:0u),0,0,0};
         require(s==expected && s[11]>0 && s[11]<=sim.finished[0]-sim.started[0],"Layer counters/metadata");
         auto now=sim.counts();
         require(now[0]-image_counts[0]==s[5] && now[1]-image_counts[1]==count*16+128 &&
@@ -388,6 +442,7 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
         sim.accept_stats(layer_stats(l));
         result.layers[l].count=count;result.layers[l].offset=result.selected;result.selected+=count;
         result.layers[l].image_cycles=sim.finished[0]-sim.started[0];
+        for(unsigned p=0;p<4;++p) result.layers[l].image_axi_bytes+=now[p]-image_counts[p];
         std::cout<<"IMAGE_DONE frame="<<number<<" level="<<l<<" count="<<count<<" cycles="<<result.layers[l].image_cycles<<std::endl;
     };
     auto launch_descriptor=[&](unsigned l) {
@@ -422,6 +477,7 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
         require(now[4]-descriptor_counts[4]==s[6] && now[5]-descriptor_counts[5]==s[7] &&
                 now[6]-descriptor_counts[6]==s[8] && now[7]-descriptor_counts[7]==s[9]+64,"Descriptor AXI byte counts");
         sim.accept_stats(desc_stats(l));result.layers[l].descriptor_cycles=sim.finished[1]-sim.started[1];
+        for(unsigned p=4;p<8;++p) result.layers[l].descriptor_axi_bytes+=now[p]-descriptor_counts[p];
         std::cout<<"DESCRIPTOR_DONE frame="<<number<<" level="<<l<<" cycles="<<result.layers[l].descriptor_cycles<<std::endl;
     };
     // Strict adjacent-level overlap, with three raw and two blur owned slots.
@@ -441,6 +497,18 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
     }
     require(sim.idle(0)&&sim.idle(1),"Frame completion has outstanding responses");
     result.cycles=sim.cycles-begin;result.overlap_cycles=sim.overlap-old_overlap;
+    for(unsigned p=0;p<8;++p) {
+        auto& r=result.axi[p];const auto& port=sim.ports[p];
+        for(unsigned m=0;m<AXI_METRIC_COUNT;++m) r.activity[m]=port.activity[m]-old_axi[p].activity[m];
+        r.read_bytes=port.read_bytes-old_axi[p].read_bytes;r.write_bytes=port.write_bytes-old_axi[p].write_bytes;
+        r.read_highwater=port.read_highwater;r.write_highwater=port.write_highwater;
+        require(r.activity[0]<=r.activity[2],"AXI read beat/request counters");
+        require(r.activity[1]==r.activity[4],"Frame has missing write response count");
+    }
+    for(unsigned q=0;q<4;++q) {
+        result.ddr_activity[q]=sim.ddr_activity[q]-old_ddr[q];
+        result.hp_service_beats[q]=sim.hp_service_beats[q]-old_hp[q];
+    }
 #ifdef ORB60_NATIVE_PROFILE
     for(unsigned p=0;p<PROFILE_COUNT;++p) result.profile_cycles[p]=sim.profile_cycles[p]-old_profile[p];
     result.fifo_highwater=sim.fifo_highwater;
@@ -464,15 +532,22 @@ int main(int argc,char** argv) {
         Verilated::commandArgs(argc,argv);
         if(argc==2 && std::string(argv[1])=="--link-smoke") {
             Simulation sim(2,0,6001);
-            require(native_time_ps==200000 && sim.idle(0) && sim.idle(1),"Native clock/reset startup");
+            require(native_time_ps==20*CLOCK_PERIOD_PS && sim.idle(0) && sim.idle(1),"Native clock/reset startup");
             sim.dut.final();std::cout<<"NATIVE_LINK_RESET_PASS"<<std::endl;return 0;
         }
-        require(argc==7 || (argc==8 && std::string(argv[7])=="--first-layer"),
-                "Usage: native images descriptors result budget stall_percent seed [--first-layer]");
+        bool first_layer=false;unsigned read_min=0,read_max=5;
+        for(int a=7;a<argc;++a) {
+            const std::string option=argv[a];
+            if(option=="--first-layer") first_layer=true;
+            else if(option=="--read-delay" && a+2<argc) {
+                read_min=unsigned(std::stoul(argv[++a]));read_max=unsigned(std::stoul(argv[++a]));
+            } else throw std::runtime_error("Unknown or incomplete option: "+option);
+        }
+        require(argc>=7,"Usage: native images descriptors result budget stall_percent seed [--first-layer] [--read-delay min max]");
         diagnostic_directory=fs::path(argv[3]).parent_path();
         unsigned budget=unsigned(std::stoul(argv[4])),stalls=unsigned(std::stoul(argv[5])),seed=unsigned(std::stoul(argv[6]));
-        Simulation sim(budget,stalls,seed);
-        if(argc==8) {
+        Simulation sim(budget,stalls,seed,read_min,read_max);
+        if(first_layer) {
             frame(sim,0,argv[1],argv[2],true);sim.dut.final();
             std::cout<<"NATIVE_LAYER0_DIAGNOSTIC_PASS"<<std::endl;return 0;
         }
@@ -486,7 +561,12 @@ int main(int argc,char** argv) {
         }
         std::ofstream out(argv[3]);require(bool(out),"Cannot create result");
         out<<"{\"status\":\"PASS\",\"ddr_beats_per_cycle\":"<<budget<<",\"random_stall_percent\":"<<stalls
-           <<",\"seed\":"<<seed<<",\"hp_shared_service_limit\":1,\"read_initial_delay_cycles\":[0,5],\"write_response_delay_cycles\":[2,31],\"frames\":[";
+           <<",\"seed\":"<<seed<<",\"hp_shared_service_limit\":1,\"hp_mapping\":[0,3,1,2,0,1,3,2],\"read_initial_delay_cycles\":["<<read_min<<','<<read_max
+           <<"],\"write_response_delay_cycles\":[2,31],\"clock_period_ps\":"<<CLOCK_PERIOD_PS
+           <<",\"ddr_capacity_bytes_per_second\":"<<uint64_t(budget)*800000000
+           <<",\"hp_capacity_bytes_per_second\":800000000,\"axi_metric_version\":2"
+           <<",\"read_initial_delay_ns\":["<<read_min*10<<','<<read_max*10
+           <<"],\"write_response_delay_ns\":[20,310],\"frames\":[";
         for(unsigned i=0;i<3;++i) {
             auto f=frames[i];if(i) out<<',';
             out<<"{\"frame\":"<<i<<",\"selected\":"<<f.selected<<",\"cycles\":"<<f.cycles
@@ -495,7 +575,19 @@ int main(int argc,char** argv) {
             for(unsigned l=0;l<8;++l) {
                 auto r=f.layers[l];if(l) out<<',';
                 out<<"{\"level\":"<<l<<",\"count\":"<<r.count<<",\"offset\":"<<r.offset<<",\"image_cycles\":"<<r.image_cycles
-                   <<",\"descriptor_cycles\":"<<r.descriptor_cycles<<'}';
+                   <<",\"descriptor_cycles\":"<<r.descriptor_cycles<<",\"image_axi_bytes\":"<<r.image_axi_bytes
+                   <<",\"descriptor_axi_bytes\":"<<r.descriptor_axi_bytes<<'}';
+            }
+            out<<"],\"ddr_service\":{\"used_cycles\":"<<f.ddr_activity[0]<<",\"idle_cycles\":"<<f.ddr_activity[1]
+               <<",\"read_beats\":"<<f.ddr_activity[2]<<",\"write_beats\":"<<f.ddr_activity[3]<<",\"hp_service_beats\":[";
+            for(unsigned q=0;q<4;++q) {if(q) out<<',';out<<f.hp_service_beats[q];}
+            out<<"]},\"axi_ports\":[";
+            for(unsigned p=0;p<8;++p) {
+                const auto& r=f.axi[p];if(p) out<<',';
+                out<<"{\"port\":"<<p<<",\"hp\":"<<Simulation::hp[p]<<",\"read_bytes\":"<<r.read_bytes
+                   <<",\"write_bytes\":"<<r.write_bytes<<",\"read_outstanding_max\":"<<r.read_highwater<<",\"write_outstanding_max\":"<<r.write_highwater;
+                for(unsigned m=0;m<AXI_METRIC_COUNT;++m) out<<",\""<<AXI_METRIC_NAMES[m]<<"\":"<<r.activity[m];
+                out<<'}';
             }
             out<<"]";
 #ifdef ORB60_NATIVE_PROFILE

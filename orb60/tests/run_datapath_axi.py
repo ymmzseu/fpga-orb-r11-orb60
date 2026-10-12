@@ -41,6 +41,9 @@ def run(args):
         result=output/'result.json'
         config=dict(kernel=args.kernel,vectors=str(vectors),offsets=control_offsets(job,args.kernel,top),
                     cases=cases,result=str(result),reset_case=args.reset_case)
+        config['clock_period_ps']=int(state['PeriodNs']*1000)
+        assert config['clock_period_ps'] in (8000,10000)
+        if args.kernel=='layer2':config['layer_ppc']=state.get('LayerPpc',2)
         config_path=output/'config.json';config_path.write_text(json.dumps(config,indent=2))
         modelsim=Path(os.environ['FPGA_MODELSIM_BIN'])
         os.environ['MGLS_LICENSE_FILE']=os.environ['FPGA_MODELSIM_LICENSE']

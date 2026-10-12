@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "old_frame": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_025631_native_frame_0dcccb9f",
+  "new_frame": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_030945_native_frame_bac72e5f",
+  "frames": 12,
+  "cycles_bytes_selection_all_identical": true,
+  "correction": "V1 read_pending_cycles omitted cycles with RVALID. V2 includes every outstanding read; wait-for-data retained separately. Historical conditional means are invalid; raw evidence preserved.",
+  "raw_historical_evidence_unchanged": true
+}

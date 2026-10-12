@@ -1,0 +1,177 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_serialize_front4_quads_Pipeline_MergeQuads'
+================================================================
+* Date:           Tue Oct 13 02:32:45 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  10.00 ns|  10.943 ns|     2.70 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |              |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name  |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- MergeQuads  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     55|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      0|     17|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     80|    -|
+|Register         |        -|    -|    272|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    272|    152|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+----------------------+---------+----+---+----+-----+
+    |          Instance         |        Module        | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------------+----------------------+---------+----+---+----+-----+
+    |sparsemux_9_2_64_1_1_U443  |sparsemux_9_2_64_1_1  |        0|   0|  0|  17|    0|
+    +---------------------------+----------------------+---------+----+---+----+-----+
+    |Total                      |                      |        0|   0|  0|  17|    0|
+    +---------------------------+----------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |ap_block_state1_pp0_stage0_iter0  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_337                  |       and|   0|  0|   1|           1|           1|
+    |remaining_5_fu_316_p2             |       and|   0|  0|   8|           8|           8|
+    |icmp_ln159_fu_154_p2              |      icmp|   0|  0|   8|           8|           1|
+    |icmp_ln168_fu_238_p2              |      icmp|   0|  0|   8|           8|           1|
+    |icmp_ln169_fu_270_p2              |      icmp|   0|  0|   3|           2|           1|
+    |ap_block_pp0_stage0_01001         |        or|   0|  0|   1|           1|           1|
+    |ap_predicate_op59_write_state2    |        or|   0|  0|   1|           1|           1|
+    |lane_fu_284_p3                    |    select|   0|  0|   2|           1|           1|
+    |select_ln169_1_fu_252_p3          |    select|   0|  0|   3|           1|           1|
+    |select_ln169_fu_276_p3            |    select|   0|  0|   2|           1|           2|
+    |shl_ln170_fu_296_p2               |       shl|   0|  0|   9|           1|           4|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln170_fu_306_p2               |       xor|   0|  0|   5|           5|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|  55|          41|          28|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |ap_phi_mux_remaining_1_phi_fu_129_p4  |  13|          3|    8|         24|
+    |ap_phi_mux_remaining_3_phi_fu_138_p4  |  13|          3|    8|         24|
+    |ap_sig_allocacmp_remaining_4          |   9|          2|    8|         16|
+    |candidate_quads_blk_n                 |   9|          2|    1|          2|
+    |candidates_blk_n                      |   9|          2|    1|          2|
+    |remaining_fu_86                       |   9|          2|    8|         16|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 |  80|         18|   36|         88|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |icmp_ln159_reg_395       |   1|   0|    1|          0|
+    |icmp_ln168_reg_403       |   1|   0|    1|          0|
+    |lane_reg_407             |   2|   0|    2|          0|
+    |remaining_fu_86          |   8|   0|    8|          0|
+    |tmp_9_reg_399            |   1|   0|    1|          0|
+    |words_2_fu_94            |  64|   0|   64|          0|
+    |words_3_fu_98            |  64|   0|   64|          0|
+    |words_4_fu_102           |  64|   0|   64|          0|
+    |words_fu_90              |  64|   0|   64|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    | 272|   0|  272|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|            RTL Ports           | Dir | Bits|  Protocol  |                          Source Object                          |    C Type    |
++--------------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|ap_clk                          |   in|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|ap_rst                          |   in|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|ap_start                        |   in|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|ap_done                         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|ap_idle                         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|ap_ready                        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)serialize_front4_quads_Pipeline_MergeQuads|  return value|
+|candidate_quads_dout            |   in|  264|     ap_fifo|                                                  candidate_quads|       pointer|
+|candidate_quads_empty_n         |   in|    1|     ap_fifo|                                                  candidate_quads|       pointer|
+|candidate_quads_read            |  out|    1|     ap_fifo|                                                  candidate_quads|       pointer|
+|candidate_quads_num_data_valid  |   in|    7|     ap_fifo|                                                  candidate_quads|       pointer|
+|candidate_quads_fifo_cap        |   in|    7|     ap_fifo|                                                  candidate_quads|       pointer|
+|candidates_din                  |  out|   64|     ap_fifo|                                                       candidates|       pointer|
+|candidates_full_n               |   in|    1|     ap_fifo|                                                       candidates|       pointer|
+|candidates_write                |  out|    1|     ap_fifo|                                                       candidates|       pointer|
+|candidates_num_data_valid       |   in|   32|     ap_fifo|                                                       candidates|       pointer|
+|candidates_fifo_cap             |   in|   32|     ap_fifo|                                                       candidates|       pointer|
+|p_out                           |  out|   64|      ap_vld|                                                            p_out|       pointer|
+|p_out_ap_vld                    |  out|    1|      ap_vld|                                                            p_out|       pointer|
++--------------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+

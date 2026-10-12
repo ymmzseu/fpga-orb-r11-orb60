@@ -1,61 +1,66 @@
-> 开发分支 `codex/orb60-4ppc`：第一阶段八 bank 筛选、分段几何表、锦标赛选点、跨点描述子流水已实现，27 项主机测试及 38 个独立向量事务通过。新 HLS、随机 AXI、整帧周期和 routed 时序尚待验收；以下表格与 bitstream 均属于冻结的旧 100 MHz 基线。具体见 [第一阶段状态](orb60/docs/ARCHITECTURE_STAGE1_ZH.md)。默认分支 `main` 保存已通过版本。
+# R11 ORB：4PPC／100MHz整合优化
 
-# FPGA ORB R11 / ORB60：源码、100 MHz bitstream 与路由报告
+开发分支`codex/orb60-4ppc`当前交付**通过完整电脑门禁的4PPC／100MHz版本**。固定960×720、8层、xc7z015clg485-2、Vivado/Vitis HLS2024.2；像素、点排序、方向和256bit BRIEF保持逐字节一致。PS、ELF/XSA与板测暂缓；原R11三核ELF不配对本两核bitstream。
 
-本仓库保存 R11 的独立 ORB60 开发版本：**960×720、8 层金字塔、2PPC 图像引擎、精确 A32 PL 描述子**，器件 `xc7z015clg485-2`，工具链 Vivado / Vitis HLS 2024.2。像素、选点顺序、方向和 256-bit BRIEF 保持原算法逐字节一致。
+默认分支`main`与[原100MHz产物](orb60/artifacts/100mhz/)保留原发布版。本文数据属于新的整合版本，不混用历史报告。
 
-当前通过的硬件版本为 **100 MHz**。实际 125 MHz 对照仍有 setup 违例；4PPC、8 bank 筛选器及描述子跨点流水属于下一阶段开发计划，尚未作为通过版本交付。PS 固件暂未迁移，新 bitstream 与旧 R11 三核 ELF 不配对。
+- [本版源码](orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/)、[逐核冻结输入](orb60/frozen/integrated4_100mhz/)。
+- [新100MHz bitstream](orb60/artifacts/integrated4_100mhz/orb60_100mhz.bit)、[源码／RTL／帧／检查点配对](orb60/artifacts/integrated4_100mhz/joint_validation.json)。
+- [完整时序](orb60/evidence/integrated4_100mhz/route/post_route_timing.rpt)、[资源](orb60/evidence/integrated4_100mhz/route/post_route_utilization.rpt)、[分层资源](orb60/evidence/integrated4_100mhz/route/post_route_hierarchy.rpt)、[200端点／50高扇出诊断](orb60/evidence/integrated4_100mhz/route/post_route_diagnostics/)。
+- [12帧周期／AXI／FIFO统计](orb60/evidence/integrated4_100mhz/native/performance.json)、[精确HLS门禁](orb60/evidence/integrated4_100mhz/hls/)、[随机AXI／复位](orb60/evidence/integrated4_100mhz/protocol/)、[四候选长背压单元](orb60/evidence/integrated4_100mhz/merge4/)。
+- [优化结果与当前瓶颈](orb60/docs/INTEGRATED4_IO_RESULTS_ZH.md)、[第一版4PPC对照](orb60/docs/INTEGRATED4_RESULTS_ZH.md)、[计划](orb60/docs/NEXT_OPTIMIZATION_PLAN_ZH.md)。
 
-## 源码与 bitstream
+## 完整路由结果
 
-- [ORB60 源码](orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/)、[完整架构与复现说明](orb60/README_ZH.md)。
-- [100 MHz bitstream](orb60/artifacts/100mhz/orb60_100mhz.bit)、[产物与检查点来源](orb60/artifacts/100mhz/artifact_manifest.json)。
-- [100 MHz 冻结编译输入](orb60/frozen/100mhz/)，作为 bitstream 两个 HLS 核的配对源码依据。
-- [构建和验证入口](orb60/scripts/)、[独立 golden 与 RTL 测试](orb60/tests/)、[AMD IP 顶层](orb60/vivado/)。
+| 资源／时序 | 本版4PPC／100MHz |
+|---|---:|
+| LUT | 35347／46200，76.51% |
+| FF | 32979／92400，35.69% |
+| BRAM tile | 74／95，77.89% |
+| DSP | 44／160，27.50% |
+| Slice | **11405／11550，98.74%** |
+| 控制集 | 1104 |
+| WNS／TNS | **+0.188ns／0** |
+| WHS／THS | **+0.044ns／0** |
 
-Bitstream SHA256：`a80fe3fdff930a3266b2d8701a9dfbc36319010e56744ba0d20245eda7c1303d`。
+Setup/hold、约束覆盖、路由及严格DRC检查通过。最差路径是复位寄存器到BRAM FIFO复位，主要为布线延迟。WNS满足硬门槛，略低于争取的+0.2ns；Slice接近容量上限。新增双块搬运并未减少总Slice，其价值来自实测整帧收益。
 
-## 当前完整顶层资源与时序
+## 整帧RTL性能
 
-以下包含两个 HLS 核及 PS7 / AXI / 时钟 / 复位基础设施，来自 **完整 routed top**。
+实际两核RTL共享DDR模型；HP上限800MB/s，聚合预算800／1600MB/s，初始读资格延迟0~50ns／400~600ns，写响应20~310ns。逐字节golden、DDR守卫区、4KB边界、三raw／两blur槽、追加顺序与最终ap_done响应屏障均通过。
 
-| 项目 | 100 MHz 已通过版本 | 125 MHz 最终失败对照 |
-|---|---:|---:|
-| LUT | 27,033 / 46,200，58.51% | 27,826，60.23% |
-| FF | 27,169 / 92,400，29.40% | 29,048，31.44% |
-| BRAM tile | 68 / 95，71.58% | 68 / 95，71.58% |
-| DSP | 40 / 160，25.00% | 40 / 160，25.00% |
-| Slice | 9,633 / 11,550，83.40% | 10,091，87.37% |
-| Setup WNS / TNS | **+0.238 ns / 0** | **−0.034 ns / −0.187 ns** |
-| Hold WHS / THS | +0.035 ns / 0 | +0.050 ns / 0 |
-| Setup 失败端点 | 0 | 10 |
+| DDR模型 | 普通图280点 | 压力图942点 | 空图 |
+|---|---:|---:|---:|
+| 1600MB/s、无随机停顿、低延迟 | 8.32935ms／120.06FPS | 9.09975ms／109.89FPS | 8.18185ms |
+| 800MB/s、27%随机停顿、低延迟 | 10.69234ms／93.52FPS | **12.59037ms／79.43FPS** | 9.96998ms |
+| 1600MB/s、无随机停顿、高延迟 | 8.32430ms／120.13FPS | 9.05809ms／110.40FPS | 8.18601ms |
+| 800MB/s、27%随机停顿、高延迟 | 10.50938ms／95.15FPS | 12.40847ms／80.59FPS | 9.78945ms |
 
-100 MHz 最差路径在 FAST lane1：13 级逻辑，数据延迟 9.522 ns，其中逻辑 3.990 ns、布线 5.532 ns。50,347 个可路由网络全部布通，无路由错误、无未覆盖时序检查，DRC 无 Error / Critical Warning；原厂 Warning 保留在报告中。
+四组模型最大耗时12.59037ms，达到14ms工程目标。它们是三种输入、12帧仿真结果，尚不能证明板上P99/max≤16.67ms或持续60FPS。首读较慢的用例偶尔略快是PRNG事件节奏差异，不能推断DDR延迟越高越好。
 
-- [100 MHz 时序摘要](orb60/evidence/100mhz/route/post_route_timing.rpt)、[最差 setup 路径](orb60/evidence/100mhz/route/post_route_setup_paths.rpt)、[hold 路径](orb60/evidence/100mhz/route/post_route_hold_paths.rpt)。
-- [资源利用率](orb60/evidence/100mhz/route/post_route_utilization.rpt)、[分层资源](orb60/evidence/100mhz/route/post_route_hierarchy.rpt)、[拥塞](orb60/evidence/100mhz/route/post_route_congestion.rpt)、[DRC](orb60/evidence/100mhz/route/post_route_drc.rpt)。
-- [125 MHz 对照说明](orb60/docs/125MHZ_COMPARISON_ZH.md)、[最终完整报告](orb60/evidence/125mhz/20261012_174304_physopt_125mhz_17bedb6f/reports/)。
+## 复现与校验
 
-125 MHz 从实际 8 ns HLS 重建起步，完整路由 WNS −0.341 ns，经两轮有界物理优化改善到 −0.034 ns，仍未签核。
+Bit SHA256：`46c36be6a8758926f576fe6761434adddbf646ab2ed745709b1c0513b101abe2`。
 
-## 整帧 RTL 仿真性能
+```powershell
+# 只读校验整个分发包
+pwsh -NoProfile -File tools/verify_integrated4.ps1
 
-真实生成 RTL 在原生 Verilator 中访问同一 DDR 模型。只注入每帧第 0 层输入，描述子使用实际上游输出，并检查三 raw / 两 blur 槽所有权、整帧特征追加、4 KB 边界和最终 AXI 写响应。
+# 新建本项目CPython3.12.12环境；不要复制旧venv
+uv venv .venv --python 3.12.12
+uv pip install --python .venv/Scripts/python.exe -r requirements.txt
 
-| 输入 | 两组 64-bit DDR 服务 / 拍 | 一组服务 / 拍 + 27% 随机停顿 |
-|---|---:|---:|
-| 普通图片，280 点 | 11.37272 ms / 87.93 FPS | 12.71175 ms / 78.67 FPS |
-| 压力图片，942 点 | 13.28620 ms / 75.27 FPS | 15.81607 ms / 63.23 FPS |
-| 空图，0 点 | 11.20667 ms / 89.23 FPS | 12.04355 ms / 83.03 FPS |
+# 导入独立图像golden，从原constants.hpp重算全部方向／描述子
+pwsh -NoProfile -File orb60/scripts/reproduce_integrated4.ps1 -Mode Inputs
 
-[逐层周期与流量](orb60/evidence/100mhz/native/performance.json)记录了上述 6 帧、48 次图像核调用、48 次描述子调用和 2,444 条精确特征。图像核 21 个、描述子 38 个 C/RTL 事务通过；定向随机 AXI gate 及整帧独立审计证据均保留在 [evidence/100mhz](orb60/evidence/100mhz/)。
+# 源码重建全部电脑门禁及配对bit；耗时较长
+pwsh -NoProfile -File orb60/scripts/reproduce_integrated4.ps1 -Mode All
+```
 
-这些是所列 DDR 服务条件下的实际 RTL 周期结果，**尚未上板测量**。真实 DDR 带宽、PS 缓存可见性、视频变化输入的 P99 / 最大耗时和持续 60 FPS 仍需板级验收。报告中的 scope 字段描述报告生成时的门禁进度；累计状态以本说明和各后续 gate 记录为准。
+Inputs入口已在分发目录的新venv通过。各硬件门禁已逐项通过；本轮没有重复执行All串联完整重建。安装路径通过`scripts/project_env.ps1`和忽略的`scripts/local_env.ps1`配置；需要Vivado/Vitis HLS2024.2、ModelSim许可证、MinGW/CMake/Ninja及Verilator。
 
-## 复现、历史版本与许可
+图像核开关：`LayerPpc4, FastStaged, LayerIoOverlap, LayerBramFifos`；描述子：`DescriptorWidthMode2, DescriptorPrefetch8, DescriptorPatch32`；HLS目标10ns。默认编译参数仍保留旧2PPC行为，必须使用明确开关。外部寄存器映射不变，4PPC统计版本为0x00600003，legacy pairs字段按quad／可变像素包解释。
 
-运行 `pwsh -NoProfile -File tools/verify_orb60.ps1` 可只读核对分发文件及 bitstream 哈希；这不是重新综合或板级测试。源码仓库保留外部测试素材的哈希清单，完整复现需还原 [外部输入](orb60/docs/EXTERNAL_FIXTURES.json)，具体环境和命令见 [ORB60 说明](orb60/README_ZH.md)。
+新125MHz对照已从8ns HLS重新生成并通过C/RTL；其完整路由和归一化DDR测试正在进行，尚未作为可用硬件版本交付。旧125MHz−0.034ns属于历史设计，不能代替本次结果。
 
-原始 R11 源码和冻结 PS 输入保留在根目录 `FPGA_ORB_HLS/`、`FPGA_ORB_SHARED_v1.0/`、`frozen/`，其 Vivado 2018.3、旧 bit / ELF 和历史板测数据见 [R11 历史说明](docs/R11_ARCHIVE_README.md)。它们与本次 ORB60 版本分开验收。
-
-保留各文件的 GPL-3.0-or-later / BSD 来源及原许可证：[参考 LICENSE](orb60/optimized/FPGA_ORB_SHARED_v1.0/LICENSE)、[NOTICE](orb60/optimized/FPGA_ORB_SHARED_v1.0/NOTICE.md)。发布源码或 bitstream 不授权自动 JTAG 或非易失编程。
+原R11历史输入及许可见[历史说明](docs/R11_ARCHIVE_README.md)、[GPL/BSD许可与来源](orb60/optimized/FPGA_ORB_SHARED_v1.0/NOTICE.md)。发布不包含任何JTAG或非易失编程操作。

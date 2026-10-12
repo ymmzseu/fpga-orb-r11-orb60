@@ -1,0 +1,244 @@
+{
+  "scope": "Exact independent golden/Csim/RTL and HLS estimates; no routed/board result",
+  "descriptor": {
+    "job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_013229_descriptor_d3f49663",
+    "resources_hls_estimate": {
+      "BRAM_18K": 27,
+      "DSP": 9,
+      "FF": 13982,
+      "LUT": 16847,
+      "URAM": 0
+    },
+    "timing_hls_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "12.077"
+    },
+    "cosim_latency_cycles": {
+      "min": 77,
+      "avg": 24595,
+      "max": 158976
+    },
+    "pipelined_loops": {
+      "LoadDescriptorPoints": {
+        "II": 2,
+        "depth": 4
+      },
+      "IssueRawPatchRows": {
+        "II": 1,
+        "depth": 11
+      },
+      "IssueBlurPatchRows": {
+        "II": 1,
+        "depth": 11
+      },
+      "ReceiveRawRowWords": {
+        "II": 1,
+        "depth": 3
+      },
+      "ReceiveBlurRowWords": {
+        "II": 1,
+        "depth": 3
+      },
+      "RawRowAlignment": {
+        "II": 1,
+        "depth": 1
+      },
+      "MomentCenterRow": {
+        "II": 1,
+        "depth": 6
+      },
+      "MomentSymmetricPairs": {
+        "II": 1,
+        "depth": 7
+      },
+      "CordicIterations": {
+        "II": 1,
+        "depth": 3
+      },
+      "QuantizeSearch": {
+        "II": 1,
+        "depth": 2
+      },
+      "BlurRowAlignment": {
+        "II": 1,
+        "depth": 1
+      },
+      "BriefBits": {
+        "II": 1,
+        "depth": 6
+      },
+      "WriteDescriptorRecords": {
+        "II": 8,
+        "depth": 16
+      },
+      "CountDescriptorCycles": {
+        "II": 1,
+        "depth": 2
+      },
+      "Loop 1": {
+        "II": 1,
+        "depth": 3
+      }
+    },
+    "axi_data_widths": {
+      "GMEM0": 64,
+      "GMEM1": 64,
+      "GMEM2": 64,
+      "GMEM3": 64
+    }
+  },
+  "transactions": 38,
+  "a32_bins": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "frame_counts": [
+    280,
+    942,
+    0
+  ],
+  "required_loops": {
+    "MomentCenterRow": [
+      {
+        "module": "p_anonymous_namespace_compute_patch_moments_Pipeline_MomentCenterRow",
+        "label": "MomentCenterRow",
+        "II": 1
+      }
+    ],
+    "MomentSymmetricPairs": [
+      {
+        "module": "p_anonymous_namespace_compute_patch_moments_Pipeline_MomentSymmetricPairs",
+        "label": "MomentSymmetricPairs",
+        "II": 1
+      }
+    ],
+    "BriefBits": [
+      {
+        "module": "p_anonymous_namespace_brief_patch_Pipeline_BriefBits",
+        "label": "BriefBits",
+        "II": 1
+      }
+    ],
+    "CountDescriptorCycles": [
+      {
+        "module": "p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles",
+        "label": "CountDescriptorCycles",
+        "II": 1
+      }
+    ]
+  },
+  "all_loops": [
+    {
+      "module": "fastv2_descriptor_hls_Pipeline_1",
+      "label": "Loop1",
+      "II": 1
+    },
+    {
+      "module": "fastv2_descriptor_hls_Pipeline_2",
+      "label": "Loop1",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment",
+      "label": "BlurRowAlignment",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_brief_patch_Pipeline_BriefBits",
+      "label": "BriefBits",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_compute_patch_moments_Pipeline_MomentCenterRow",
+      "label": "MomentCenterRow",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_compute_patch_moments_Pipeline_MomentSymmetricPairs",
+      "label": "MomentSymmetricPairs",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_compute_patch_moments_Pipeline_RawRowAlignment",
+      "label": "RawRowAlignment",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles",
+      "label": "CountDescriptorCycles",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_issue_blur_requests_Pipeline_IssueBlurPatchRows",
+      "label": "IssueBlurPatchRows",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_issue_raw_requests_Pipeline_IssueRawPatchRows",
+      "label": "IssueRawPatchRows",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_load_blur_Pipeline_ReceiveBlurRowWords",
+      "label": "ReceiveBlurRowWords",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_load_points_Pipeline_LoadDescriptorPoints",
+      "label": "LoadDescriptorPoints",
+      "II": 2
+    },
+    {
+      "module": "p_anonymous_namespace_load_raw_Pipeline_ReceiveRawRowWords",
+      "label": "ReceiveRawRowWords",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_precise_angle_Pipeline_CordicIterations",
+      "label": "CordicIterations",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_quantize_angle_Pipeline_QuantizeSearch",
+      "label": "QuantizeSearch",
+      "II": 1
+    },
+    {
+      "module": "p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords",
+      "label": "WriteDescriptorRecords",
+      "II": 8
+    }
+  ],
+  "pipeline_gate_pass": true,
+  "axi_all_64": true
+}

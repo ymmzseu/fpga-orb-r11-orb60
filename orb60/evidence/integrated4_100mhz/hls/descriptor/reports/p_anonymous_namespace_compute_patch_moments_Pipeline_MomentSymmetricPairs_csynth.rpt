@@ -1,0 +1,197 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_compute_patch_moments_Pipeline_MomentSymmetricPairs'
+================================================================
+* Date:           Tue Oct 13 01:33:12 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.071 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max   | min | max |                      Type                      |
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |        5|      262|  50.000 ns|  2.620 us|    1|  256|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |                        |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip  |          |
+        |        Loop Name       |   min   |   max   |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +------------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |- MomentSymmetricPairs  |        3|      260|         7|          1|          1|  0 ~ 255|       yes|
+        +------------------------+---------+---------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    1|      -|      -|    -|
+|Expression       |        -|    -|      0|    304|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     63|    -|
+|Register         |        -|    -|    278|     64|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    1|    278|    431|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|   ~0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    +------------------------------------------+-------------------------------------+---------------------+
+    |                 Instance                 |                Module               |      Expression     |
+    +------------------------------------------+-------------------------------------+---------------------+
+    |ama_addmuladd_8ns_8ns_6s_21s_21_4_1_U115  |ama_addmuladd_8ns_8ns_6s_21s_21_4_1  |  (i0 + i1) * i2 + i3|
+    +------------------------------------------+-------------------------------------+---------------------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+----+---+----+------------+------------+
+    |add_ln239_1_fu_243_p2   |         +|   0|  0|   9|           9|           9|
+    |add_ln239_2_fu_299_p2   |         +|   0|  0|   8|           8|           8|
+    |add_ln239_3_fu_305_p2   |         +|   0|  0|   8|           8|           8|
+    |add_ln239_fu_238_p2     |         +|   0|  0|   9|           9|           8|
+    |add_ln280_fu_199_p2     |         +|   0|  0|   6|           6|           4|
+    |byte_1_fu_258_p2        |         +|   0|  0|   9|           9|           9|
+    |byte_fu_219_p2          |         +|   0|  0|   9|           9|           9|
+    |u_2_fu_205_p2           |         +|   0|  0|   6|           6|           1|
+    |vertical_2_fu_390_p2    |         +|   0|  0|  32|          32|          32|
+    |newFirst_fu_384_p2      |         -|   0|  0|  32|          32|          32|
+    |icmp_ln278_fu_193_p2    |      icmp|   0|  0|   6|           6|           6|
+    |lshr_ln239_1_fu_352_p2  |      lshr|   0|  0|  84|          32|          32|
+    |lshr_ln239_fu_331_p2    |      lshr|   0|  0|  84|          32|          32|
+    |ap_enable_pp0           |       xor|   0|  0|   2|           1|           2|
+    +------------------------+----------+----+---+----+------------+------------+
+    |Total                   |          |   0|  0| 304|         199|         192|
+    +------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------+----+-----------+-----+-----------+
+    |               Name              | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                      |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter4          |   9|          2|    1|          2|
+    |ap_sig_allocacmp_m10_3_out_load  |   9|          2|   21|         42|
+    |ap_sig_allocacmp_u_1             |   9|          2|    6|         12|
+    |m10_3_out_o                      |   9|          2|   21|         42|
+    |u_fu_88                          |   9|          2|    6|         12|
+    |vertical_fu_84                   |   9|          2|   32|         64|
+    +---------------------------------+----+-----------+-----+-----------+
+    |Total                            |  63|         14|   88|        176|
+    +---------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+----+----+-----+-----------+
+    |                Name               | FF | LUT| Bits| Const Bits|
+    +-----------------------------------+----+----+-----+-----------+
+    |add_ln280_reg_465                  |   6|   0|    6|          0|
+    |ap_CS_fsm                          |   1|   0|    1|          0|
+    |ap_done_reg                        |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter6            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter5_reg   |   1|   0|    1|          0|
+    |icmp_ln278_reg_461                 |   1|   0|    1|          0|
+    |minus_reg_496                      |   8|   0|    8|          0|
+    |p_cast3_cast_reg_446               |   8|   0|    9|          1|
+    |plus_reg_490                       |   8|   0|    8|          0|
+    |tmp_cast_cast_reg_451              |   8|   0|    9|          1|
+    |trunc_ln239_2_reg_485              |   2|   0|    2|          0|
+    |trunc_ln239_reg_475                |   2|   0|    2|          0|
+    |trunc_ln278_reg_502                |  21|   0|   21|          0|
+    |trunc_ln278_reg_502_pp0_iter4_reg  |  21|   0|   21|          0|
+    |u_1_reg_456                        |   6|   0|    6|          0|
+    |u_fu_88                            |   6|   0|    6|          0|
+    |vertical_fu_84                     |  32|   0|   32|          0|
+    |zext_ln278_cast_reg_441            |   8|   0|    9|          1|
+    |icmp_ln278_reg_461                 |  64|  32|    1|          0|
+    |u_1_reg_456                        |  64|  32|    6|          0|
+    +-----------------------------------+----+----+-----+-----------+
+    |Total                              | 278|  64|  160|          3|
+    +-----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |                               Source Object                              |    C Type    |
++---------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|raw_empty_n          |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|raw_read             |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_MomentSymmetricPairs|  return value|
+|sext_ln278           |   in|    5|     ap_none|                                                                sext_ln278|        scalar|
+|zext_ln278_1         |   in|    5|     ap_none|                                                              zext_ln278_1|        scalar|
+|tmp_cast             |   in|    8|     ap_none|                                                                  tmp_cast|        scalar|
+|p_cast3              |   in|    8|     ap_none|                                                                   p_cast3|        scalar|
+|raw_address0         |  out|    9|    mem_fifo|                                                                       raw|         array|
+|raw_ce0              |  out|    1|    mem_fifo|                                                                       raw|         array|
+|raw_q0               |   in|   32|    mem_fifo|                                                                       raw|         array|
+|raw_address1         |  out|    9|    mem_fifo|                                                                       raw|         array|
+|raw_ce1              |  out|    1|    mem_fifo|                                                                       raw|         array|
+|raw_q1               |   in|   32|    mem_fifo|                                                                       raw|         array|
+|zext_ln278           |   in|    8|     ap_none|                                                                zext_ln278|        scalar|
+|p_cast4              |   in|    4|     ap_none|                                                                   p_cast4|        scalar|
+|vertical_out         |  out|   21|      ap_vld|                                                              vertical_out|       pointer|
+|vertical_out_ap_vld  |  out|    1|      ap_vld|                                                              vertical_out|       pointer|
+|m10_3_out_i          |   in|   21|     ap_ovld|                                                                 m10_3_out|       pointer|
+|m10_3_out_o          |  out|   21|     ap_ovld|                                                                 m10_3_out|       pointer|
+|m10_3_out_o_ap_vld   |  out|    1|     ap_ovld|                                                                 m10_3_out|       pointer|
++---------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+

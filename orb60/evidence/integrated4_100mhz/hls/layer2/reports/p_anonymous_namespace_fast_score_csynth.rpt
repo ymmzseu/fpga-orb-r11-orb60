@@ -1,0 +1,184 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_fast_score'
+================================================================
+* Date:           Tue Oct 13 02:32:40 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.250 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        8|        8|  80.000 ns|  80.000 ns|    1|    1|      yes|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                                                       |                                            |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |                        Instance                       |                   Module                   |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_p_anonymous_namespace_fast_differences_fu_168      |p_anonymous_namespace_fast_differences      |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_206  |p_anonymous_namespace_fast_arc_minimum_1_s  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_226  |p_anonymous_namespace_fast_arc_minimum_1_s  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_246  |p_anonymous_namespace_fast_arc_minimum_3_s  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_266  |p_anonymous_namespace_fast_arc_minimum_3_s  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_fast_arc_response_fu_286     |p_anonymous_namespace_fast_arc_response     |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_maximum_stage_16_s_fu_322    |p_anonymous_namespace_maximum_stage_16_s    |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_maximum_stage_8_s_fu_342     |p_anonymous_namespace_maximum_stage_8_s     |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_maximum_stage_4_s_fu_354     |p_anonymous_namespace_maximum_stage_4_s     |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_p_anonymous_namespace_maximum_stage_2_s_fu_362     |p_anonymous_namespace_maximum_stage_2_s     |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        +-------------------------------------------------------+--------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     27|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|   1011|   3200|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      -|      -|    -|
+|Register         |        -|    -|     18|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|   1029|   3227|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|      1|      6|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |                        Instance                       |                   Module                   | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_206  |p_anonymous_namespace_fast_arc_minimum_1_s  |        0|   0|  146|  578|    0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_226  |p_anonymous_namespace_fast_arc_minimum_1_s  |        0|   0|  146|  578|    0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_246  |p_anonymous_namespace_fast_arc_minimum_3_s  |        0|   0|  146|  578|    0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_266  |p_anonymous_namespace_fast_arc_minimum_3_s  |        0|   0|  146|  578|    0|
+    |grp_p_anonymous_namespace_fast_arc_response_fu_286     |p_anonymous_namespace_fast_arc_response     |        0|   0|  146|  290|    0|
+    |grp_p_anonymous_namespace_fast_differences_fu_168      |p_anonymous_namespace_fast_differences      |        0|   0|  138|  290|    0|
+    |grp_p_anonymous_namespace_maximum_stage_16_s_fu_322    |p_anonymous_namespace_maximum_stage_16_s    |        0|   0|   74|  162|    0|
+    |grp_p_anonymous_namespace_maximum_stage_2_s_fu_362     |p_anonymous_namespace_maximum_stage_2_s     |        0|   0|   11|   22|    0|
+    |grp_p_anonymous_namespace_maximum_stage_4_s_fu_354     |p_anonymous_namespace_maximum_stage_4_s     |        0|   0|   20|   42|    0|
+    |grp_p_anonymous_namespace_maximum_stage_8_s_fu_342     |p_anonymous_namespace_maximum_stage_8_s     |        0|   0|   38|   82|    0|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                  |                                            |        0|   0| 1011| 3200|    0|
+    +-------------------------------------------------------+--------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln192_fu_1008_p2  |         +|   0|  0|   8|           8|           2|
+    |icmp_ln192_fu_998_p2  |      icmp|   0|  0|   9|           9|           1|
+    |ap_return             |    select|   0|  0|   8|           1|           8|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  27|          19|          13|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +--------------------------------------------------------------------+---+----+-----+-----------+
+    |                                Name                                | FF| LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                                                           |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter6                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter7                                             |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter8                                             |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_206_ap_start_reg  |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_1_s_fu_226_ap_start_reg  |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_246_ap_start_reg  |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_fast_arc_minimum_3_s_fu_266_ap_start_reg  |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_fast_arc_response_fu_286_ap_start_reg     |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_maximum_stage_16_s_fu_322_ap_start_reg    |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_maximum_stage_2_s_fu_362_ap_start_reg     |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_maximum_stage_4_s_fu_354_ap_start_reg     |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_maximum_stage_8_s_fu_342_ap_start_reg     |  1|   0|    1|          0|
+    +--------------------------------------------------------------------+---+----+-----+-----------+
+    |Total                                                               | 18|   0|   18|          0|
+    +--------------------------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------+-----+-----+------------+---------------------------------+--------------+
+|   RTL Ports   | Dir | Bits|  Protocol  |          Source Object          |    C Type    |
++---------------+-----+-----+------------+---------------------------------+--------------+
+|ap_clk         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_rst         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_start       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_done        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_idle        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_ready       |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_ce          |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|ap_return      |  out|    8|  ap_ctrl_hs|  (anonymous namespace)fast_score|  return value|
+|center         |   in|    8|     ap_none|                           center|        scalar|
+|ring_0_val1    |   in|    8|     ap_none|                      ring_0_val1|        scalar|
+|ring_1_val2    |   in|    8|     ap_none|                      ring_1_val2|        scalar|
+|ring_2_val3    |   in|    8|     ap_none|                      ring_2_val3|        scalar|
+|ring_3_val4    |   in|    8|     ap_none|                      ring_3_val4|        scalar|
+|ring_4_val5    |   in|    8|     ap_none|                      ring_4_val5|        scalar|
+|ring_5_val6    |   in|    8|     ap_none|                      ring_5_val6|        scalar|
+|ring_6_val7    |   in|    8|     ap_none|                      ring_6_val7|        scalar|
+|ring_7_val8    |   in|    8|     ap_none|                      ring_7_val8|        scalar|
+|ring_8_val9    |   in|    8|     ap_none|                      ring_8_val9|        scalar|
+|ring_9_val10   |   in|    8|     ap_none|                     ring_9_val10|        scalar|
+|ring_10_val11  |   in|    8|     ap_none|                    ring_10_val11|        scalar|
+|ring_11_val12  |   in|    8|     ap_none|                    ring_11_val12|        scalar|
+|ring_12_val13  |   in|    8|     ap_none|                    ring_12_val13|        scalar|
+|ring_13_val14  |   in|    8|     ap_none|                    ring_13_val14|        scalar|
+|ring_14_val15  |   in|    8|     ap_none|                    ring_14_val15|        scalar|
+|ring_15_val16  |   in|    8|     ap_none|                    ring_15_val16|        scalar|
++---------------+-----+-----+------------+---------------------------------+--------------+
+

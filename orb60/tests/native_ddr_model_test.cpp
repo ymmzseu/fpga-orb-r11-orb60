@@ -54,6 +54,49 @@ int main() {
         try { sim.boundary(0x1000,0,3,1,0,false); } catch(const std::runtime_error&) { rejected=true; }
         require(rejected,"Out-of-owned-range read accepted");
         require(sim.ports[0].read_bytes==8 && sim.ports[4].read_bytes==8 && sim.ports[7].write_bytes==4,"Model byte counters");
+        require(sim.ports[0].activity[0]==1 && sim.ports[0].activity[2]==1 && sim.ports[0].read_highwater==1,
+                "Model real outstanding/read handshake counters");
+        require(sim.ports[0].activity[12]==sim.ports[0].activity[10] &&
+                sim.ports[0].activity[10]>sim.ports[0].activity[15],
+                "Pending-read mean must include stalled valid R, not only waiting-for-data cycles");
+        require(sim.ports[7].activity[1]==1 && sim.ports[7].activity[3]==1 && sim.ports[7].activity[4]==1 &&
+                sim.ports[7].activity[9]>0 && sim.ports[7].write_highwater==1,"Model delayed B counters");
+        require(sim.ddr_activity[2]==2 && sim.ddr_activity[3]==1 && sim.hp_service_beats[0]==2 &&
+                sim.hp_service_beats[2]==1,"Model HP/DDR effective service counters");
+        // Fixed extremes establish the configured 400/600 ns minimum before
+        // arbitration, independently of the pseudo-random delay distribution.
+        for(unsigned delay: {40u,60u}) {
+            Simulation slow(1,0,6011,delay,delay);
+            slow.put(0x4000,pattern);slow.ports[0].read_ranges={{0x4000,0x4080}};
+            slow.dut.m_ARADDR[0]=0x4000;slow.dut.m_ARLEN[0]=0;slow.dut.m_ARSIZE[0]=3;
+            slow.dut.m_ARBURST[0]=1;slow.dut.m_ARVALID[0]=1;slow.dut.m_RREADY[0]=0;
+            slow.tick();require(slow.dut.m_ARREADY[0],"Fixed delay AR acceptance");
+            const auto accepted_cycle=slow.cycles;slow.dut.m_ARVALID[0]=0;
+            const unsigned wait=slow.service_time.reference_cycles(delay);
+            for(unsigned t=0;t<wait;++t) {slow.tick();require(!slow.ports[0].rvalid,"R before configured first-read delay");}
+            for(unsigned t=0;!slow.ports[0].rvalid;++t) {require(t<3,"Quantized first R timeout");slow.tick();}
+            require(slow.cycles>=accepted_cycle+wait+1 && slow.cycles<=accepted_cycle+wait+2,"Configured first R service");
+            require(slow.ports[0].reads.size()==1 && slow.ports[0].read_highwater==1,"RVALID double counted outstanding");
+            slow.dut.m_RREADY[0]=1;slow.tick();require(slow.idle(0),"Fixed delay response completion");
+        }
+        // Saturated contenders prove identical bytes/s at both accelerator clocks.
+        for(unsigned period: {10000u,8000u}) for(unsigned beats: {1u,2u}) {
+            DdrTimeBudget time(period,beats);unsigned served=0;
+            std::array<unsigned,4> hp_count{};
+            for(unsigned tick=0;tick<10000;++tick) {
+                time.advance();unsigned used=0;
+                for(unsigned port=0;port<4 && used<beats;++port) if(time.available(port)) {
+                    time.consume(port);++served;++hp_count[port];++used;
+                }
+                require(served<=uint64_t(tick+1)*period*beats/10000,"Aggregate bytes/s exceeds reference rate");
+            }
+            require(served==uint64_t(10000)*period*beats/10000,"Normalized DDR saturation rate");
+            for(auto count:hp_count) require(count<=uint64_t(10000)*period/10000,"HP bytes/s exceeds reference rate");
+            for(unsigned delay: {0u,5u,40u,60u,31u}) {
+                const auto actual=uint64_t(time.reference_cycles(delay))*period;
+                require(actual>=delay*10000 && actual<delay*10000+period,"Response-ns clock quantization");
+            }
+        }
         std::cout<<"NATIVE_DDR_MODEL_PASS"<<std::endl;return 0;
     } catch(const std::exception& error) { std::cerr<<error.what()<<std::endl;return 1; }
 }

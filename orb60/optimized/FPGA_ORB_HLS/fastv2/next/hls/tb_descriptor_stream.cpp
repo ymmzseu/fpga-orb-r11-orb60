@@ -23,7 +23,7 @@ int main(int argc,char** argv) {
             int32_t control[12]={};if(!meta.read(reinterpret_cast<char*>(control),48)) throw std::runtime_error("missing controls");
             std::string index=std::to_string(i);if(i<10)index="0"+index;
             const auto prefix=directory+"/d"+index;
-            const auto raw=binary<uint64_t>(prefix+"_raw.bin",86400),blur=binary<uint64_t>(prefix+"_blur.bin",86400);
+            auto raw=binary<uint64_t>(prefix+"_raw.bin",86400),blur=binary<uint64_t>(prefix+"_blur.bin",86400);
             const auto points=binary<uint64_t>(prefix+"_points.bin",512),expected=binary<uint64_t>(prefix+"_features.bin",8000);
             if(control[10]) std::fill(features.begin(),features.end(),UINT64_C(0xc3c3c3c3c3c3c3c3));
             const auto raw_before=raw,blur_before=blur,points_before=points;uint64_t stats[8]={};

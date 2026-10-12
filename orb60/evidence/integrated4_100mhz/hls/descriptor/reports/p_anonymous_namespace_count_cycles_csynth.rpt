@@ -1,0 +1,161 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_count_cycles'
+================================================================
+* Date:           Tue Oct 13 01:33:17 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.797 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |                                                                             |                                                                   |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+        |                                   Instance                                  |                               Module                              |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+        +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |grp_p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles_fu_57  |p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles  |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      1|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|    167|    321|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     35|    -|
+|Register         |        -|    -|      5|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    172|    357|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |                                   Instance                                  |                               Module                              | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles_fu_57  |p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles  |        0|   0|  167|  321|    0|
+    +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                                        |                                                                   |        0|   0|  167|  321|    0|
+    +-----------------------------------------------------------------------------+-------------------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  17|          4|    1|          4|
+    |ap_done           |   9|          2|    1|          2|
+    |completion_blk_n  |   9|          2|    1|          2|
+    +------------------+----+-----------+-----+-----------+
+    |Total             |  35|          8|    3|          8|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------------------------+---+----+-----+-----------+
+    |                                           Name                                           | FF| LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                                                                                 |  3|   0|    3|          0|
+    |ap_done_reg                                                                               |  1|   0|    1|          0|
+    |grp_p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles_fu_57_ap_start_reg  |  1|   0|    1|          0|
+    +------------------------------------------------------------------------------------------+---+----+-----+-----------+
+    |Total                                                                                     |  5|   0|    5|          0|
+    +------------------------------------------------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+-----------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |           Source Object           |    C Type    |
++-----------------------------+-----+-----+------------+-----------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_continue                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles|  return value|
+|raw_done_dout                |   in|   32|     ap_fifo|                           raw_done|       pointer|
+|raw_done_empty_n             |   in|    1|     ap_fifo|                           raw_done|       pointer|
+|raw_done_read                |  out|    1|     ap_fifo|                           raw_done|       pointer|
+|raw_done_num_data_valid      |   in|    3|     ap_fifo|                           raw_done|       pointer|
+|raw_done_fifo_cap            |   in|    3|     ap_fifo|                           raw_done|       pointer|
+|blur_done_dout               |   in|   32|     ap_fifo|                          blur_done|       pointer|
+|blur_done_empty_n            |   in|    1|     ap_fifo|                          blur_done|       pointer|
+|blur_done_read               |  out|    1|     ap_fifo|                          blur_done|       pointer|
+|blur_done_num_data_valid     |   in|    3|     ap_fifo|                          blur_done|       pointer|
+|blur_done_fifo_cap           |   in|    3|     ap_fifo|                          blur_done|       pointer|
+|write_done_dout              |   in|   32|     ap_fifo|                         write_done|       pointer|
+|write_done_empty_n           |   in|    1|     ap_fifo|                         write_done|       pointer|
+|write_done_read              |  out|    1|     ap_fifo|                         write_done|       pointer|
+|write_done_num_data_valid    |   in|    3|     ap_fifo|                         write_done|       pointer|
+|write_done_fifo_cap          |   in|    3|     ap_fifo|                         write_done|       pointer|
+|compute_done_dout            |   in|   32|     ap_fifo|                       compute_done|       pointer|
+|compute_done_empty_n         |   in|    1|     ap_fifo|                       compute_done|       pointer|
+|compute_done_read            |  out|    1|     ap_fifo|                       compute_done|       pointer|
+|compute_done_num_data_valid  |   in|    3|     ap_fifo|                       compute_done|       pointer|
+|compute_done_fifo_cap        |   in|    3|     ap_fifo|                       compute_done|       pointer|
+|completion_din               |  out|  160|     ap_fifo|                         completion|       pointer|
+|completion_full_n            |   in|    1|     ap_fifo|                         completion|       pointer|
+|completion_write             |  out|    1|     ap_fifo|                         completion|       pointer|
++-----------------------------+-----+-----+------------+-----------------------------------+--------------+
+

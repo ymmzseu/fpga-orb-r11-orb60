@@ -1,19 +1,48 @@
 /* GPL-3.0-or-later: fixed-point R11 backend, with overlapped DDR patch loading. */
 #include "descriptor.hpp"
 #include "descriptor_rom.hpp"
+#include "descriptor_widths.hpp"
 #include "next_stream.hpp"
 #include "next_block_stream.hpp"
 #include <cassert>
 #include <cstring>
 
 namespace {
-typedef uint64_t RawBlock[158]; // 31 rows x5 words + point(2) + status(1).
-typedef uint64_t BlurBlock[222]; // 37 rows x6 words; clipped rows never sampled.
+#if ORB60_DESCRIPTOR_PATCH32
+typedef uint32_t PatchWord;
+constexpr int kPatchShift=2,kRawStride=10,kBlurStride=12,kRawMetadata=5;
+#else
+typedef uint64_t PatchWord;
+constexpr int kPatchShift=3,kRawStride=5,kBlurStride=6,kRawMetadata=3;
+#endif
+constexpr int kRawPayload=31*kRawStride;
+typedef PatchWord RawBlock[kRawPayload+kRawMetadata];
+typedef PatchWord BlurBlock[37*kBlurStride];
 struct PointToken {uint64_t xy,score_tile;};
 struct FeaturePacket {uint64_t words[8];bool valid;};
-struct MomentPacket {PointToken point;int32_t m10,m01;int status;};
+struct MomentPacket {PointToken point;MomentValue m10,m01;int status;};
 struct AnglePacket {MomentPacket moment;int bin;};
 struct Completion {uint32_t raw_bytes,blur_bytes,completed,cycles;int status;};
+
+void store_raw_metadata(RawBlock& block,const PointToken& point,bool valid) {
+#pragma HLS INLINE
+#if ORB60_DESCRIPTOR_PATCH32
+    block[kRawPayload]=uint32_t(point.xy);block[kRawPayload+1]=uint32_t(point.xy>>32);
+    block[kRawPayload+2]=uint32_t(point.score_tile);block[kRawPayload+3]=uint32_t(point.score_tile>>32);
+    block[kRawPayload+4]=valid?0:2;
+#else
+    block[kRawPayload]=point.xy;block[kRawPayload+1]=point.score_tile;block[kRawPayload+2]=valid?0:2;
+#endif
+}
+PointToken raw_point(const RawBlock& block) {
+#pragma HLS INLINE
+#if ORB60_DESCRIPTOR_PATCH32
+    return {uint64_t(block[kRawPayload])|(uint64_t(block[kRawPayload+1])<<32),
+        uint64_t(block[kRawPayload+2])|(uint64_t(block[kRawPayload+3])<<32)};
+#else
+    return {block[kRawPayload],block[kRawPayload+1]};
+#endif
+}
 
 uint64_t fields(uint32_t a,uint32_t b) {
 #pragma HLS INLINE
@@ -28,21 +57,27 @@ bool valid_point(const PointToken& p,int width,int height) {
     const int x=signed32(uint32_t(p.xy)),y=signed32(uint32_t(p.xy>>32));
     return x>=0 && x<width-32 && y>=0 && y<height-32;
 }
-int64_t shift_floor(int64_t value,int amount) {
+CordicValue shift_floor(CordicValue value,int amount) {
 #pragma HLS INLINE
+#if ORB60_DESCRIPTOR_WIDTH_MODE == 2 && (defined(__SYNTHESIS__) || defined(FASTV2_HLS_CSIM))
+    // ap_int right shift is arithmetic, including floor for negative values.
+    return value>>amount;
+#else
     return value>=0 ? int64_t(uint64_t(value)>>amount) : -INT64_C(1)-int64_t(uint64_t(-(value+1))>>amount);
+#endif
 }
 uint32_t precise_angle(int32_t m10,int32_t m01) {
 #pragma HLS INLINE off
     if(!m10 && !m01) return 0;
     if(!m01) return m10<0 ? 180u*65536u : 0;
     if(!m10) return m01<0 ? 270u*65536u : 90u*65536u;
-    int64_t x=int64_t(m10)*(INT64_C(1)<<20),y=int64_t(m01)*(INT64_C(1)<<20),z=0;
+    CordicValue x=int64_t(m10)*(INT64_C(1)<<20),y=int64_t(m01)*(INT64_C(1)<<20);
+    CordicAngle z=0;
     if(x<0) {x=-x;y=-y;z=INT64_C(180)<<24;}
 CordicIterations:
     for(int k=0;k<32 && y!=0;++k) {
 #pragma HLS PIPELINE II=1
-        const int64_t old=x;
+        const CordicValue old=x;
         if(y>0) {x+=shift_floor(y,k);y-=shift_floor(old,k);z+=orb60_descriptor_rom::kCordic[k];}
         else {x-=shift_floor(y,k);y+=shift_floor(old,k);z-=orb60_descriptor_rom::kCordic[k];}
     }
@@ -80,7 +115,50 @@ LoadDescriptorPoints:
     }
 }
 
-void load_raw(const uint64_t* image,hls::stream<PointToken>& points,
+#if ORB60_DESCRIPTOR_PREFETCH
+// Point metadata precedes its requests. The independent receivers can start
+// immediately, so a full adapter request queue cannot deadlock the issuer.
+// Exactly one actor issues requests and one actor reads each AXI bundle.
+void issue_raw_requests(DescriptorReadPort image,hls::stream<PointToken>& points,
+    hls::stream<PointToken>& metadata,int count,int width,int height) {
+#pragma HLS INLINE off
+    for(int i=0;i<count;++i) {
+        const PointToken point=points.read();metadata.write(point);
+        if(valid_point(point,width,height)) {
+            const int x=signed32(uint32_t(point.xy))+1,y=signed32(uint32_t(point.xy>>32))+1;
+IssueRawPatchRows:
+            for(int row=0;row<31;++row) {
+#pragma HLS PIPELINE II=1
+                const int address=(y+row)*width+x;
+                const int words=((address&7)+31+7)>>3;
+                image.read_request(address>>3,words);
+            }
+        }
+    }
+}
+void issue_blur_requests(DescriptorReadPort image,hls::stream<PointToken>& points,
+    hls::stream<PointToken>& metadata,int count,int width,int height) {
+#pragma HLS INLINE off
+    for(int i=0;i<count;++i) {
+        const PointToken point=points.read();metadata.write(point);
+        if(valid_point(point,width,height)) {
+            const int cx=signed32(uint32_t(point.xy))+16,cy=signed32(uint32_t(point.xy>>32))+16;
+            const int x=cx<18 ? 0 : cx-18,last=cx+18>=width ? width-1 : cx+18;
+IssueBlurPatchRows:
+            for(int row=0;row<37;++row) {
+#pragma HLS PIPELINE II=1
+                const int y=cy-18+row;
+                if(y>=0 && y<height) {
+                    const int address=y*width+x,words=((address&7)+(last-x+1)+7)>>3;
+                    image.read_request(address>>3,words);
+                }
+            }
+        }
+    }
+}
+#endif
+
+void load_raw(DescriptorReadPort image,hls::stream<PointToken>& points,
     hls::stream_of_blocks<RawBlock>& blocks,int count,int width,int height,
     hls::stream<uint32_t>& done) {
 #pragma HLS INLINE off
@@ -89,21 +167,35 @@ void load_raw(const uint64_t* image,hls::stream<PointToken>& points,
         const PointToken point=points.read();
         hls::write_lock<RawBlock> lock(blocks);RawBlock& block=lock;
         const bool valid=valid_point(point,width,height);
-        block[155]=point.xy;block[156]=point.score_tile;block[157]=valid ? 0 : 2;
+        store_raw_metadata(block,point,valid);
         if(valid) {
             const int x=signed32(uint32_t(point.xy))+1,y=signed32(uint32_t(point.xy>>32))+1;
 LoadRawPatchRows:
             for(int row=0;row<31;++row) {
                 const int address=(y+row)*width+x;
                 const int words=((address&7)+31+7)>>3;
-                std::memcpy(block+row*5,image+(address>>3),words*8);
+#if ORB60_DESCRIPTOR_PREFETCH
+ReceiveRawRowWords:
+                for(int word=0;word<words;++word) {
+#pragma HLS PIPELINE II=1
+                    const uint64_t incoming=image.read();
+#if ORB60_DESCRIPTOR_PATCH32
+                    block[row*kRawStride+2*word]=uint32_t(incoming);
+                    block[row*kRawStride+2*word+1]=uint32_t(incoming>>32);
+#else
+                    block[row*kRawStride+word]=incoming;
+#endif
+                }
+#else
+                std::memcpy(block+row*kRawStride,image+(address>>3),words*8);
+#endif
                 bytes+=words*8;
             }
         }
     }
     done.write(bytes);
 }
-void load_blur(const uint64_t* image,hls::stream<PointToken>& points,
+void load_blur(DescriptorReadPort image,hls::stream<PointToken>& points,
     hls::stream_of_blocks<BlurBlock>& blocks,int count,int width,int height,
     hls::stream<uint32_t>& done) {
 #pragma HLS INLINE off
@@ -119,7 +211,21 @@ LoadBlurPatchRows:
                 const int y=cy-18+row;
                 if(y>=0 && y<height) {
                     const int address=y*width+x,words=((address&7)+(last-x+1)+7)>>3;
-                    std::memcpy(block+row*6,image+(address>>3),words*8);
+#if ORB60_DESCRIPTOR_PREFETCH
+ReceiveBlurRowWords:
+                    for(int word=0;word<words;++word) {
+#pragma HLS PIPELINE II=1
+                        const uint64_t incoming=image.read();
+#if ORB60_DESCRIPTOR_PATCH32
+                        block[row*kBlurStride+2*word]=uint32_t(incoming);
+                        block[row*kBlurStride+2*word+1]=uint32_t(incoming>>32);
+#else
+                        block[row*kBlurStride+word]=incoming;
+#endif
+                    }
+#else
+                    std::memcpy(block+row*kBlurStride,image+(address>>3),words*8);
+#endif
                     bytes+=words*8;
                 }
             }
@@ -130,12 +236,12 @@ LoadBlurPatchRows:
 uint8_t raw_pixel(const RawBlock& block,const uint8_t align[31],int row,int col) {
 #pragma HLS INLINE
     const int byte=int(align[row])+col;
-    return uint8_t(block[row*5+(byte>>3)]>>((byte&7)*8));
+    return uint8_t(block[row*kRawStride+(byte>>kPatchShift)]>>((byte&((1<<kPatchShift)-1))*8));
 }
 uint8_t blur_pixel(const BlurBlock& block,const uint8_t align[37],int row,int col) {
 #pragma HLS INLINE
     const int byte=int(align[row])+col;
-    return uint8_t(block[row*6+(byte>>3)]>>((byte&7)*8));
+    return uint8_t(block[row*kBlurStride+(byte>>kPatchShift)]>>((byte&((1<<kPatchShift)-1))*8));
 }
 int signed6(uint32_t value) {
 #pragma HLS INLINE
@@ -159,7 +265,7 @@ RawRowAlignment:
 #pragma HLS PIPELINE II=1
         raw_align[row]=uint8_t(((cy-15+row)*width+cx-15)&7);
     }
-    int32_t m10=0,m01=0;
+    MomentValue m10=0,m01=0;
 MomentCenterRow:
     for(int u=-15;u<=15;++u) {
 #pragma HLS PIPELINE II=1
@@ -184,8 +290,8 @@ void compute_moments(hls::stream_of_blocks<RawBlock>& raw,int count,int width,
 #pragma HLS INLINE off
     for (int i=0;i<count;++i) {
         hls::read_lock<RawBlock> lock(raw);RawBlock& patch=lock;
-        MomentPacket packet={};packet.point.xy=patch[155];packet.point.score_tile=patch[156];
-        packet.status=patch[157] ? -2 : 0;
+        MomentPacket packet={};packet.point=raw_point(patch);
+        packet.status=patch[kRawPayload+kRawMetadata-1] ? -2 : 0;
         if (!packet.status) compute_patch_moments(patch,width,packet);
         output.write(packet);
         // Only this actor owns the raw patch; BRIEF never holds its lock.
@@ -291,7 +397,7 @@ CountDescriptorCycles:
     }
     result.write(c);
 }
-void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t* points,
+void descriptor_dataflow(DescriptorReadPort raw,DescriptorReadPort blur,const uint64_t* points,
     uint64_t* features,int width,int height,int count,int level,int offset,hls::stream<Completion>& result) {
 #pragma HLS INLINE off
     hls::stream<PointToken> raw_points,blur_points;
@@ -302,6 +408,13 @@ void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t
     hls::stream<AnglePacket> angles;
     hls::stream<uint32_t> raw_done,blur_done,write_done;
     hls::stream<int> compute_done;
+#if ORB60_DESCRIPTOR_PREFETCH
+    hls::stream<PointToken> raw_metadata,blur_metadata;
+#pragma HLS STREAM variable=raw_metadata depth=2
+#pragma HLS STREAM variable=blur_metadata depth=2
+#pragma HLS AGGREGATE variable=raw_metadata compact=bit
+#pragma HLS AGGREGATE variable=blur_metadata compact=bit
+#endif
 #pragma HLS STREAM variable=raw_points depth=4
 #pragma HLS STREAM variable=blur_points depth=4
 #pragma HLS STREAM variable=records depth=2
@@ -320,8 +433,15 @@ void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t
 #pragma HLS BIND_STORAGE variable=blur_blocks type=ram_t2p impl=bram
 #pragma HLS DATAFLOW
     load_points(points,count,raw_points,blur_points);
+#if ORB60_DESCRIPTOR_PREFETCH
+    issue_raw_requests(raw,raw_points,raw_metadata,count,width,height);
+    issue_blur_requests(blur,blur_points,blur_metadata,count,width,height);
+    load_raw(raw,raw_metadata,raw_blocks,count,width,height,raw_done);
+    load_blur(blur,blur_metadata,blur_blocks,count,width,height,blur_done);
+#else
     load_raw(raw,raw_points,raw_blocks,count,width,height,raw_done);
     load_blur(blur,blur_points,blur_blocks,count,width,height,blur_done);
+#endif
     compute_moments(raw_blocks,count,width,moments);
     compute_angles(moments,count,angles);
     compute_brief(blur_blocks,angles,count,width,height,level,records,compute_done);
@@ -330,6 +450,9 @@ void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t
 #ifndef __SYNTHESIS__
     assert(raw_points.empty() && blur_points.empty() && raw_blocks.empty() && blur_blocks.empty() && records.empty() && moments.empty() && angles.empty());
     assert(raw_done.empty() && blur_done.empty() && write_done.empty() && compute_done.empty());
+#if ORB60_DESCRIPTOR_PREFETCH
+    assert(raw_metadata.empty() && blur_metadata.empty());
+#endif
 #endif
 }
 void write_stats(uint64_t* output,const orb60::DescriptorStats& s) {
@@ -342,11 +465,24 @@ void write_stats(uint64_t* output,const orb60::DescriptorStats& s) {
 }
 }
 
-extern "C" int fastv2_descriptor_hls(const uint64_t* raw,const uint64_t* blurred,
+extern "C" int fastv2_descriptor_hls(DescriptorReadPort raw,DescriptorReadPort blurred,
     const uint64_t* points,uint64_t* features,uint64_t* stats,int width,int height,
     int count,int level,int frame_offset,int capacity) {
+#if ORB60_DESCRIPTOR_PREFETCH
+#if ORB60_DESCRIPTOR_PREFETCH == 2
+#pragma HLS INTERFACE m_axi port=raw offset=slave bundle=gmem0 depth=86400 max_read_burst_length=16 num_read_outstanding=2
+#pragma HLS INTERFACE m_axi port=blurred offset=slave bundle=gmem1 depth=86400 max_read_burst_length=16 num_read_outstanding=2
+#elif ORB60_DESCRIPTOR_PREFETCH == 4
+#pragma HLS INTERFACE m_axi port=raw offset=slave bundle=gmem0 depth=86400 max_read_burst_length=16 num_read_outstanding=4
+#pragma HLS INTERFACE m_axi port=blurred offset=slave bundle=gmem1 depth=86400 max_read_burst_length=16 num_read_outstanding=4
+#else
+#pragma HLS INTERFACE m_axi port=raw offset=slave bundle=gmem0 depth=86400 max_read_burst_length=16 num_read_outstanding=8
+#pragma HLS INTERFACE m_axi port=blurred offset=slave bundle=gmem1 depth=86400 max_read_burst_length=16 num_read_outstanding=8
+#endif
+#else
 #pragma HLS INTERFACE m_axi port=raw offset=slave bundle=gmem0 depth=86400 max_read_burst_length=16 num_read_outstanding=2 max_widen_bitwidth=64
 #pragma HLS INTERFACE m_axi port=blurred offset=slave bundle=gmem1 depth=86400 max_read_burst_length=16 num_read_outstanding=2 max_widen_bitwidth=64
+#endif
 #pragma HLS INTERFACE m_axi port=points offset=slave bundle=gmem2 depth=512 max_read_burst_length=16 num_read_outstanding=2 max_widen_bitwidth=64
 #pragma HLS INTERFACE m_axi port=features offset=slave bundle=gmem3 depth=8000 max_write_burst_length=16 num_write_outstanding=2 max_widen_bitwidth=64
 #pragma HLS INTERFACE m_axi port=stats offset=slave bundle=gmem3 depth=8 max_write_burst_length=16 num_write_outstanding=2 max_widen_bitwidth=64

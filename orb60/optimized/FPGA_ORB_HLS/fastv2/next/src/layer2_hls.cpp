@@ -2,6 +2,7 @@
 #define ORB60_FRONT2_TOP 1
 #include "fastv2_hls.cpp"
 #include "layer2.hpp"
+#include "next_block_stream.hpp"
 #include "layer2_axis_rom.hpp"
 
 namespace {
@@ -39,6 +40,9 @@ CountLayerCycles:
     completion.write((uint64_t(cycles)<<32)|uint64_t(fast_status));
 }
 
+#if ORB60_LAYER_PPC == 4
+#include "layer4_dataflow.hpp"
+#else
 void layer2_dataflow(const uint64_t* image, uint64_t* blurred, uint64_t* resized,
     uint64_t* selected, uint64_t* result, const fastv2_profile::Profile& p,
     int level, int high, int low, int dual, int capacity, int dw, int dh,
@@ -90,6 +94,7 @@ void layer2_dataflow(const uint64_t* image, uint64_t* blurred, uint64_t* resized
 #endif
 }
 
+#endif
 void write_layer2_stats(uint64_t* destination, const orb60::LayerStats& s) {
 #pragma HLS INLINE
     uint64_t words[8];
@@ -139,7 +144,11 @@ extern "C" int fastv2_layer2_hls(const uint64_t* image, uint64_t* blurred,
     const int dh=level<7 ? fastv2_profile::kProfiles[level+1].height : 0;
     hls::stream<uint64_t> completion;
 #pragma HLS STREAM variable=completion depth=2
+#if ORB60_LAYER_PPC == 4
+    layer4_dataflow(image,blurred,resized,selected,result,p,level,high_threshold,
+#else
     layer2_dataflow(image,blurred,resized,selected,result,p,level,high_threshold,
+#endif
         low_threshold,dual_threshold,selected_capacity,dw,dh,completion);
     const uint64_t outcome=completion.read();
     const int status=uint8_t(outcome)==fastv2::kSelectedCapacityExceeded
@@ -148,14 +157,38 @@ extern "C" int fastv2_layer2_hls(const uint64_t* image, uint64_t* blurred,
     counters.input_read_bytes=uint32_t((p.width*p.height+7)/8*8);
     counters.blur_write_bytes=counters.input_read_bytes;
     counters.resize_write_bytes=uint32_t((dw*dh+7)/8*8);
-    counters.image_pairs=uint32_t((p.width+1)/2*p.height); counters.blur_pairs=counters.image_pairs;
-    counters.resize_pairs=uint32_t((dw+1)/2*dh); counters.dataflow_cycles=uint32_t(outcome>>32);
-    counters.flags=uint32_t(2|(level<7 ? 1 : 0));
+    counters.image_pairs=uint32_t((p.width+orb60::kLayerPpc-1)/orb60::kLayerPpc*p.height); counters.blur_pairs=counters.image_pairs;
+    // 4PPC Resize emits one variable-width packet per source quad on active rows.
+    counters.resize_pairs=uint32_t((orb60::kLayerPpc==4?(p.width+3)/4:(dw+1)/2)*dh);
+    counters.dataflow_cycles=uint32_t(outcome>>32);
+    counters.flags=uint32_t(orb60::kLayerPpc|(level<7 ? 1 : 0));
     write_layer2_stats(stats,counters);
     return status;
 }
 
 #if !defined(__SYNTHESIS__) && !defined(FASTV2_HLS_CSIM)
+#if ORB60_LAYER_PPC == 4
+extern "C" int next_test_layer4_merge(const uint64_t* values,const uint8_t* masks,int count,uint64_t* output) {
+    hls::stream<CandidateQuad> packets;hls::stream<uint64_t> tokens;int expected=0;
+    for(int i=0;i<count;++i) {
+        CandidateQuad packet={};packet.mask=masks[i]&15;
+        for(int lane=0;lane<4;++lane) {packet.words[lane]=values[4*i+lane];expected+=(packet.mask>>lane)&1;}
+        packets.write(packet);
+    }
+    CandidateQuad end={};end.words[0]=(UINT64_C(1)<<63)|uint64_t(unsigned(expected));packets.write(end);
+    serialize_front4_quads(packets,tokens);int completed=0;
+    for(;;) {const uint64_t token=tokens.read();if(token>>63) {assert(int(uint32_t(token))==completed);break;}output[completed++]=token;}
+    assert(completed==expected && packets.empty() && tokens.empty());return completed;
+}
+extern "C" void next_test_layer4_gaussian(const uint64_t* image,uint64_t* destination,int width,int height) {
+    hls::stream<uint64_t> words,horizontal,packed;hls::stream<uint32_t> raw;hls::stream<PixelQuad> blurred;
+    hls::stream<uint8_t> done;
+    read_front2_words(image,words,width*height);unpack_front4_words(words,raw,width,height);
+    gaussian4_horizontal(raw,horizontal,width,height);gaussian4_vertical(horizontal,blurred,width,height);
+    layer_pack_quads<0>(blurred,packed,width,height);layer_write_words<0>(packed,destination,width*height,done);
+    assert(done.read()==1 && words.empty() && raw.empty() && horizontal.empty() && blurred.empty() && packed.empty());
+}
+#endif
 /** Standalone arithmetic checks also detect any producer/consumer token mismatch. */
 extern "C" int next_test_layer2_image(const uint64_t* image, uint64_t* destination,
     int level, int resize) {

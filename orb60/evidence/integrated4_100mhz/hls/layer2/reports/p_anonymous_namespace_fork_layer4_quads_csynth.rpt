@@ -1,0 +1,215 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_fork_layer4_quads'
+================================================================
+* Date:           Tue Oct 13 02:32:37 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.802 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |   max  |   Type  |
+    +---------+---------+----------+----------+-------+--------+---------+
+    |    13471|   172804|  0.135 ms|  1.728 ms|  13471|  172804|       no|
+    +---------+---------+----------+----------+-------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+        |                                                                                            |                                                                                 |  Latency (cycles) |  Latency (absolute) |    Interval    |                    Pipeline                    |
+        |                                          Instance                                          |                                      Module                                     |   min   |   max   |    min   |    max   |  min  |   max  |                      Type                      |
+        +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+        |grp_p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads_fu_126  |p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads  |    13469|   172802|  0.135 ms|  1.728 ms|  13468|  172801|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     11|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    0|     21|    175|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    107|    -|
+|Register         |        -|    -|     42|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     63|    293|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |                                          Instance                                          |                                      Module                                     | BRAM_18K| DSP| FF | LUT | URAM|
+    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |mul_10ns_8ns_18_1_1_U95                                                                     |mul_10ns_8ns_18_1_1                                                              |        0|   0|   0|   63|    0|
+    |grp_p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads_fu_126  |p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads  |        0|   0|  21|  112|    0|
+    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |Total                                                                                       |                                                                                 |        0|   0|  21|  175|    0|
+    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------+----------+----+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+----+---+----+------------+------------+
+    |add_ln11_fu_139_p2  |         +|   0|  0|  10|          10|           2|
+    |ap_block_state1     |        or|   0|  0|   1|           1|           1|
+    +--------------------+----------+----+---+----+------------+------------+
+    |Total               |          |   0|  0|  11|          11|           3|
+    +--------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm               |  17|          4|    1|          4|
+    |ap_done                 |   9|          2|    1|          2|
+    |height_blk_n            |   9|          2|    1|          2|
+    |p_height_val_c14_blk_n  |   9|          2|    1|          2|
+    |p_height_val_c15_blk_n  |   9|          2|    1|          2|
+    |p_height_val_c_blk_n    |   9|          2|    1|          2|
+    |p_width_val_c8_blk_n    |   9|          2|    1|          2|
+    |p_width_val_c9_blk_n    |   9|          2|    1|          2|
+    |p_width_val_c_blk_n     |   9|          2|    1|          2|
+    |real_start              |   9|          2|    1|          2|
+    |width_blk_n             |   9|          2|    1|          2|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   | 107|         24|   11|         24|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                                   Name                                                  | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                                |   3|   0|    3|          0|
+    |ap_done_reg                                                                                              |   1|   0|    1|          0|
+    |bound_reg_208                                                                                            |  18|   0|   18|          0|
+    |grp_p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads_fu_126_ap_start_reg  |   1|   0|    1|          0|
+    |height_8_reg_198                                                                                         |  10|   0|   10|          0|
+    |start_once_reg                                                                                           |   1|   0|    1|          0|
+    |tmp_reg_203                                                                                              |   8|   0|    8|          0|
+    +---------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                                    |  42|   0|   42|          0|
+    +---------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------+-----+-----+------------+----------------------------------------+--------------+
+|            RTL Ports            | Dir | Bits|  Protocol  |              Source Object             |    C Type    |
++---------------------------------+-----+-----+------------+----------------------------------------+--------------+
+|ap_clk                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_rst                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_start                         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|start_full_n                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_done                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_continue                      |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_idle                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|ap_ready                         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|start_out                        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|start_write                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads|  return value|
+|quads_dout                       |   in|   32|     ap_fifo|                                   quads|       pointer|
+|quads_empty_n                    |   in|    1|     ap_fifo|                                   quads|       pointer|
+|quads_read                       |  out|    1|     ap_fifo|                                   quads|       pointer|
+|quads_num_data_valid             |   in|    7|     ap_fifo|                                   quads|       pointer|
+|quads_fifo_cap                   |   in|    7|     ap_fifo|                                   quads|       pointer|
+|fast_raw_din                     |  out|   32|     ap_fifo|                                fast_raw|       pointer|
+|fast_raw_full_n                  |   in|    1|     ap_fifo|                                fast_raw|       pointer|
+|fast_raw_write                   |  out|    1|     ap_fifo|                                fast_raw|       pointer|
+|fast_raw_num_data_valid          |   in|   32|     ap_fifo|                                fast_raw|       pointer|
+|fast_raw_fifo_cap                |   in|   32|     ap_fifo|                                fast_raw|       pointer|
+|gaussian_raw_din                 |  out|   32|     ap_fifo|                            gaussian_raw|       pointer|
+|gaussian_raw_full_n              |   in|    1|     ap_fifo|                            gaussian_raw|       pointer|
+|gaussian_raw_write               |  out|    1|     ap_fifo|                            gaussian_raw|       pointer|
+|gaussian_raw_num_data_valid      |   in|   32|     ap_fifo|                            gaussian_raw|       pointer|
+|gaussian_raw_fifo_cap            |   in|   32|     ap_fifo|                            gaussian_raw|       pointer|
+|resize_raw_din                   |  out|   32|     ap_fifo|                              resize_raw|       pointer|
+|resize_raw_full_n                |   in|    1|     ap_fifo|                              resize_raw|       pointer|
+|resize_raw_write                 |  out|    1|     ap_fifo|                              resize_raw|       pointer|
+|resize_raw_num_data_valid        |   in|   32|     ap_fifo|                              resize_raw|       pointer|
+|resize_raw_fifo_cap              |   in|   32|     ap_fifo|                              resize_raw|       pointer|
+|width_dout                       |   in|   10|     ap_fifo|                                   width|       pointer|
+|width_empty_n                    |   in|    1|     ap_fifo|                                   width|       pointer|
+|width_read                       |  out|    1|     ap_fifo|                                   width|       pointer|
+|width_num_data_valid             |   in|    3|     ap_fifo|                                   width|       pointer|
+|width_fifo_cap                   |   in|    3|     ap_fifo|                                   width|       pointer|
+|height_dout                      |   in|   10|     ap_fifo|                                  height|       pointer|
+|height_empty_n                   |   in|    1|     ap_fifo|                                  height|       pointer|
+|height_read                      |  out|    1|     ap_fifo|                                  height|       pointer|
+|height_num_data_valid            |   in|    3|     ap_fifo|                                  height|       pointer|
+|height_fifo_cap                  |   in|    3|     ap_fifo|                                  height|       pointer|
+|p_width_val_c_din                |  out|   10|     ap_fifo|                           p_width_val_c|       pointer|
+|p_width_val_c_full_n             |   in|    1|     ap_fifo|                           p_width_val_c|       pointer|
+|p_width_val_c_write              |  out|    1|     ap_fifo|                           p_width_val_c|       pointer|
+|p_width_val_c_num_data_valid     |   in|    3|     ap_fifo|                           p_width_val_c|       pointer|
+|p_width_val_c_fifo_cap           |   in|    3|     ap_fifo|                           p_width_val_c|       pointer|
+|p_width_val_c8_din               |  out|   10|     ap_fifo|                          p_width_val_c8|       pointer|
+|p_width_val_c8_full_n            |   in|    1|     ap_fifo|                          p_width_val_c8|       pointer|
+|p_width_val_c8_write             |  out|    1|     ap_fifo|                          p_width_val_c8|       pointer|
+|p_width_val_c8_num_data_valid    |   in|    3|     ap_fifo|                          p_width_val_c8|       pointer|
+|p_width_val_c8_fifo_cap          |   in|    3|     ap_fifo|                          p_width_val_c8|       pointer|
+|p_width_val_c9_din               |  out|   10|     ap_fifo|                          p_width_val_c9|       pointer|
+|p_width_val_c9_full_n            |   in|    1|     ap_fifo|                          p_width_val_c9|       pointer|
+|p_width_val_c9_write             |  out|    1|     ap_fifo|                          p_width_val_c9|       pointer|
+|p_width_val_c9_num_data_valid    |   in|    3|     ap_fifo|                          p_width_val_c9|       pointer|
+|p_width_val_c9_fifo_cap          |   in|    3|     ap_fifo|                          p_width_val_c9|       pointer|
+|p_height_val_c_din               |  out|   10|     ap_fifo|                          p_height_val_c|       pointer|
+|p_height_val_c_full_n            |   in|    1|     ap_fifo|                          p_height_val_c|       pointer|
+|p_height_val_c_write             |  out|    1|     ap_fifo|                          p_height_val_c|       pointer|
+|p_height_val_c_num_data_valid    |   in|    3|     ap_fifo|                          p_height_val_c|       pointer|
+|p_height_val_c_fifo_cap          |   in|    3|     ap_fifo|                          p_height_val_c|       pointer|
+|p_height_val_c14_din             |  out|   10|     ap_fifo|                        p_height_val_c14|       pointer|
+|p_height_val_c14_full_n          |   in|    1|     ap_fifo|                        p_height_val_c14|       pointer|
+|p_height_val_c14_write           |  out|    1|     ap_fifo|                        p_height_val_c14|       pointer|
+|p_height_val_c14_num_data_valid  |   in|    3|     ap_fifo|                        p_height_val_c14|       pointer|
+|p_height_val_c14_fifo_cap        |   in|    3|     ap_fifo|                        p_height_val_c14|       pointer|
+|p_height_val_c15_din             |  out|   10|     ap_fifo|                        p_height_val_c15|       pointer|
+|p_height_val_c15_full_n          |   in|    1|     ap_fifo|                        p_height_val_c15|       pointer|
+|p_height_val_c15_write           |  out|    1|     ap_fifo|                        p_height_val_c15|       pointer|
+|p_height_val_c15_num_data_valid  |   in|    3|     ap_fifo|                        p_height_val_c15|       pointer|
+|p_height_val_c15_fifo_cap        |   in|    3|     ap_fifo|                        p_height_val_c15|       pointer|
++---------------------------------+-----+-----+------------+----------------------------------------+--------------+
+

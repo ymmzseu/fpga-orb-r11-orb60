@@ -74,7 +74,8 @@ async def exact_datapath_random_axi_and_reset(dut):
         data=(vectors/'cases.bin').read_bytes()
         controls=[struct.unpack_from('<12i',data,16+48*i) for i in range(len(vector_info['cases']))]
     dut.ap_rst_n.value=0
-    cocotb.start_soon(Clock(dut.ap_clk,10,unit='ns').start())
+    period_ps=config.get('clock_period_ps',10000)
+    cocotb.start_soon(Clock(dut.ap_clk,period_ps,unit='ps').start())
     memory=bytearray(b'\xa5'*MEMORY_BYTES)
     rams=[];monitors=[]
     for i in range(4):
@@ -134,7 +135,7 @@ async def exact_datapath_random_axi_and_reset(dut):
         start_ps=int(get_sim_time(unit='ps'))
         await configure(control,kernel,case,config['offsets'],args if kernel=='descriptor' else ())
         poll_wait_cycles=0
-        while (int(get_sim_time(unit='ps'))-start_ps)//10000<4_000_000:
+        while (int(get_sim_time(unit='ps'))-start_ps)//period_ps<4_000_000:
             await ClockCycles(dut.ap_clk,200)
             poll_wait_cycles+=200
             if await control.read(0)&2:break
@@ -147,7 +148,7 @@ async def exact_datapath_random_axi_and_reset(dut):
         s=struct.unpack('<16I',rams[0].read(STATS,64))
         # Include configuration, polling and status-read handshakes in elapsed
         # clocks. Summing ClockCycles alone undercounts these synchronous waits.
-        elapsed_cycles=(int(get_sim_time(unit='ps'))-start_ps)//10000
+        elapsed_cycles=(int(get_sim_time(unit='ps'))-start_ps)//period_ps
         progress=dict(status='RUNNING',kernel=kernel,completed_cases=result,current_case=index,
                       stats=s,elapsed_cycles=elapsed_cycles,poll_wait_cycles=poll_wait_cycles)
         Path(config['result']).write_text(json.dumps(progress,indent=2)+'\n')
@@ -167,9 +168,12 @@ async def exact_datapath_random_axi_and_reset(dut):
             raw_bytes=(width*height+7)//8*8
             nw,nh=(WIDTHS[level+1],HEIGHTS[level+1]) if valid and level<7 else (0,0)
             next_bytes=(nw*nh+7)//8*8
-            assert s[:11]==(0x600001,case['status'],level,width,height,raw_bytes,raw_bytes,next_bytes,
-                            (width+1)//2*height,(width+1)//2*height,(nw+1)//2*nh)
-            assert s[12:]==((2|(1 if level<7 else 0)) if valid else 0,0,0,0)
+            ppc=config.get('layer_ppc',2);assert ppc in (2,4)
+            version=0x600003 if ppc==4 else 0x600001
+            resize_groups=((width+3)//4 if ppc==4 else (nw+1)//2)*nh
+            assert s[:11]==(version,case['status'],level,width,height,raw_bytes,raw_bytes,next_bytes,
+                            (width+ppc-1)//ppc*height,(width+ppc-1)//ppc*height,resize_groups)
+            assert s[12:]==((ppc|(1 if level<7 else 0)) if valid else 0,0,0,0)
             assert (0<s[11]<=elapsed_cycles) if valid else (s[11]==0), \
                 f'Counter exceeds actual elapsed clocks case={index} counter={s[11]} elapsed={elapsed_cycles}'
             expected_reads=(raw_bytes,0,0,0)

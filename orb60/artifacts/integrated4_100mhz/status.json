@@ -1,0 +1,9 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "ProcessId": 31560,
+  "StartedUtc": "2026-10-12T18:16:19.8612059Z",
+  "Scope": "Immutable passed4PPC100MHz computer candidate bit only; no PS/board programming",
+  "BitSha256": "46C36BE6A8758926F576FE6761434ADDDBF646AB2ED745709B1C0513B101ABE2",
+  "FinishedUtc": "2026-10-12T18:17:44.6497974Z"
+}

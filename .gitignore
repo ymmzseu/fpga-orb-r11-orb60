@@ -19,3 +19,4 @@ FPGA_ORB_SHARED_v1.0/vectors/
 scripts/local_env.ps1
 !orb60/artifacts/100mhz/*.bit
 !orb60/artifacts/100mhz/*.xsa
+!orb60/artifacts/integrated4_100mhz/*.bit

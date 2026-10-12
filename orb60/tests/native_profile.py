@@ -8,7 +8,7 @@ import re
 
 def bind_profile(rtl_by_core):
     probes, fifos, assignments = [], [], []
-    is_dataflow = lambda name: re.search(r'(?:_dataflow|_reduce_banked_grid)(?:_\d+)?$', name) is not None
+    is_dataflow = lambda name: re.search(r'(?:_dataflow|_reduce_banked_grid)(?:_\d+(?:_s)?)?$', name) is not None
 
     def probe(core, name, expression):
         index = len(probes)
@@ -58,10 +58,10 @@ def bind_profile(rtl_by_core):
                 blocked_read = probe(core, base+'.read_blocked', f'{read} && !{empty}')
                 fifos.append(dict(name=base, core=core, depth=int(depth), push=push, pop=pop,
                                   write_blocked=blocked_write, read_blocked=blocked_read))
-    assert probes and len(probes) <= 256, f'Missing or excessive actual RTL profile probes: {len(probes)}'
+    assert probes and len(probes) <= 512, f'Missing or excessive actual RTL profile probes: {len(probes)}'
     names = [x['name'] for x in probes]
     assert len(names) == len(set(names)), 'Ambiguous profile hierarchy'
-    for index in range(len(probes), 256):
+    for index in range(len(probes), 512):
         assignments.append(f'assign profile_bits[{index}]=1\'b0;\n')
     header = '#define ORB60_NATIVE_PROFILE 1\n'
     header += f'constexpr unsigned PROFILE_COUNT={len(probes)},PROFILE_FIFO_COUNT={len(fifos)};\n'

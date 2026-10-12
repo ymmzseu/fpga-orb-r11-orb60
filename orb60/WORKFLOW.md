@@ -587,6 +587,16 @@ pwsh via PATH, retains the same unmodified hash gate, and permits only the
 declared uncommitted publication overlay into a new output job. No HLS/RTL,
 clock, resource/timing post-check or frozen input is changed by this repair.
 
+Comparison publication recovery
+20261012_180704_100mhz_with_125comparison_80aa0462 completed ZIP_READY.
+All564 published file hashes,778 ZIP payload entries/CRC, complete original
+frozen input manifests and unchanged100 MHz bit SHA passed. ZIP7137629 bytes,
+SHA256355b292480d43fc6984532bcbb25b55a6fb68019ab6a7601202841f391b4146d.
+Local branch commit783516e0a4b279f10356ae95f4a780749f3f3176 contains concluded
+failed125 MHz reports,8 ns HLS evidence and bounded reproduction scripts.
+No further GitHub push was attempted; prior403/authorized ZIP fallback applies.
+Only100 MHz is accepted; PS/ELF and board performance remain deferred.
+
 PS firmware integration remains deferred by the user's latest instruction.
 The installed Vitis2024.2 tree contains the HLS-only marker and no discovered
 Cortex-A9 GCC toolchain; Vivado2024.2 has xsct-trim and standalone BSP sources,
@@ -602,3 +612,173 @@ Then the shared-read 2PPC layer engine, exact PL orientation/BRIEF, buffer
 ownership/frame aggregation, integrated DDR contention/native-Verilator gates,
 and final routed release. Physical P99/max <=16.67 ms and sustained 60 FPS remain
 separate board acceptance gates.
+
+User-authorized independent GitHub publication completed at
+https://github.com/ymmzseu/fpga-orb-r11-orb60 (private, main). Commit
+152059a5d24a53a84d1b6d3e3b469f2a0f5ae735 and annotated tag
+orb60-100mhz-20261012 preserve the accepted source/bit/report snapshot.
+All771 Git blobs match the remote tree; the downloaded100MHz bit SHA256
+remains a80fe3fdff930a3266b2d8701a9dfbc36319010e56744ba0d20245eda7c1303d.
+565 ORB60 and199 historical source hash checks pass. Legacy Git checkout
+line-ending conversion was restored to manifest bytes in the new clone,
+with attributes preserving those bytes. No new CAD or board result is inferred.
+
+Architecture stage1 authored implementation: eight independent HLS score banks
+with real recurrence, LUTRAM payloads,256-leaf exact tournament, generator-owned
+lossless paired-X/single-Y run tables, and separate moment/angle/BRIEF actors.
+Custom HLS is selected for these changes; AMD infrastructure remains retained.
+27host tests and38independent Python-vector/native descriptor cases pass.
+The native harness now binds actor busy/FIFO real-handshake occupancy probes
+without editing RTL or control registers. New HLS/AXI/frame/route acceptance
+and4PPC implementation remain pending. See docs/ARCHITECTURE_STAGE1_ZH.md
+and scripts/architecture_stage1.ps1. No new FPS/WNS/resource claim is made.
+
+Architecture stage1 job20261012_202829_architecture_stage1_ceed5a35 completed
+SUCCEEDED/HLS_GATES_COMPLETE:27host,38native descriptor,21layer/38descriptor
+co-sim exact; eight score banksII=1, three descriptor stages and64-bit interfaces
+verified. HLS-only estimates are recorded in docs/ARCHITECTURE_STAGE1_HLS_RESULTS_ZH.md;
+new frame/route acceptance remains pending. The user's updated optimization plan
+requires read-only200unique-endpoint/50physical-net/control-set baseline diagnostics,
+then candidate randomAXI, expanded native shared-DDR profiling including40-60cycle
+first-read latency, and complete route before larger architecture changes.
+scripts/architecture_protocol.ps1 sequences diagnostics and isolated protocol gates;
+long jobs launch/end according to the user's preference, without repeated polling.
+
+Diagnostic recovery20261012_213518_architecture_protocol_525e560e failed at
+report export: Vivado12-1365 rejects report_timing -of_objects together with
+-max_paths. The authored script now selects200paths/nworst1 in get_timing_paths
+and exports precisely that collection without repeated selection flags. The
+strict200section/unique-endpoint Python checks remain; no HLS/RTL/checkpoint,
+constraints or acceptance gate is changed. Original failure logs are retained.
+
+Job20261012_213756_architecture_protocol_07011afd completed diagnostic export
+and randomizedAXI at2026-10-12T12:44:31Z. Its protocol child675d818f passed
+descriptor6/layer3transactions plus reset and final-response barrier checks.
+Diagnostic source-path fanout aggregation was found to include the clock despite
+-path_type full; the revised parser bounds actual source/destination resource
+rows, including inverted pin annotations, without changing the original raw
+report/checkpoint. New200-path/50-net independent summary reports FAST datafanout25,
+selection cones184; original clockfanout29163 is not a data-path result.
+Native harness adds actual AXI/outstanding/service counters and four DDR profiles
+(original two preserved, plus corresponding40-60cycle first-read eligibility).
+New actual-RTL wrapper lint and DDR pin-stub checks passed in native preflight
+af0b0e33; full multi-frame regression and candidate routed results remain pending.
+
+Native job e694713b completed SUCCEEDED/COMPLETE at2026-10-12T13:07:41Z:
+12frames exact across original two DDR profiles and both40-60cycle-delay variants.
+Ordinary/pressure:11.36729/13.23842ms (2beat,0stall),12.71047/15.81061ms
+(1beat,27stall); high-delay pressure28.90985/30.83617ms. Original pressure
+latency reductions are only0.360%/0.035%; HLS descriptor6.2% max reduction is
+not a frame claim. High-delay patch ports max outstanding2, with poor service
+utilization; actual cross-row issuer/receiver prefetch is now a higher priority.
+See docs/ARCHITECTURE_STAGE1_FRAME_RESULTS_ZH.md and comparison221738_stage1_frame.
+Native FIFO blocked pins can already be HLS-prequalified; zero observations do
+not prove no backpressure. Preserve waits/occupancy/busy interpretation limits.
+Complete100MHz route now accepts an explicitly hash-matched FrameJob and optional
+extended200-path/50-net/control-set diagnostics. Aggregate TNS/THS/failing endpoint
+metrics are parsed strictly from the design timing table and retained. No new
+routed result/bitstream or board result exists at this point.
+
+Route ae11f62c actually completed100MHz CAD/hard gates: WNS+.270/WHS+.040,
+TNS/THS0,56445/56445nets routed,0route errors,0unclocked/unconstrained endpoints,
+no seriousDRC. Root job retained FAILED due a diagnostics parser self-feedback
+clock-pin ambiguity, not a design failure. Recovery225220_stage1_route_diagnostics_recovery
+strictly revalidated immutable source/IP/tool/report/checkpoint evidence and the
+200endpoint/50net diagnostics without rerouting or relabeling the original failure.
+Actual routed resources30529LUT,29693FF,67BRAM,55DSP,10534Slice91.2%,1075controlsets.
+Selection/tournament module6053LUT/16DSP vs3229/0 previously; generated tree memories
+auto-bank3 with constant-multiply address mapping. New bounded custom-HLS parity
+bank2 candidate explicitly partitions tree[512] and retains true dependencies and
+II<=2; eight score banks/image2PPC/interfaces/algorithm remain unchanged. It has no
+inherited route/frame result. scripts/tournament_banking.ps1 freezes and tests it.
+Stage1 resource/frame tradeoff is not selected as a new release; descriptor real
+cross-row prefetch remains a performance priority before further4PPC integration.
+
+Two-bank HLS job5e01aac7 and wrapper7dbd9503 completed exact21co-sim, eight
+score banksII1 and actual2treebanks/BuildII2. Relative HLS estimates:-2784LUT,
+-2302FF,-5BRAM18,-6DSP; max356045cycles unchanged. User updated plan with a
+code-only Slice专项, then explicitly requested fewer repeated baseline tests and
+more directional optimization experiments. Accordingly, retain prior baseline
+evidence and perform early100MHz two-bank full-route resource/timing evidence,
+plus two independent descriptor exact-CSim/synthesis width probes, deferring
+candidate protocol/frame/final-release gates. No failed check is weakened.
+Width modes0(default original),1(moment21),2(moment21+CORDICxy43/z34) are build
+parameters only, checked against a full integer range proof and identical source
+snapshots. Use NoExport for fast synthesis probes. See docs/SLICE_DIRECTION_PROBES_ZH.md.
+There is no new width RTL/frame/routed/board claim. Current HLS/RTL freezes remain
+unchanged; only authored C++/types and build scripts are modified for new probes.
+
+2026-10-13 direction probes completed: two-bank full route1cac1aa7 passed
+WNS+.316/WHS+.046,TNS/THS0 and complete hard gates/extended diagnostics.
+Actual top28902LUT/28748FF/64.5BRAM/39DSP/10239Slice88.65%,1058controlsets:
+versus auto3bank -1627LUT/-945FF/-2.5BRAM/-16DSP/-295Slice/-17controlsets.
+Still606moreSlice than original release; FAST lane1 remains worst13levels9.408ns.
+Width probes73f38f26/5bdc19d5 each passed38exactCSim/II1/AXI/FIFO gates.
+Mode2 estimate -1171LUT/-127FF/+2DSP,BRAMunchanged; co-sim/route pending.
+Selected width2 original frozen probe is regenerated using explicit SourceProbe,
+which does not confer prior co-sim acceptance; then paired with accepted2bank IP
+for directional100MHz full route. No new frame/bitstream/board claim.
+
+Performance work advances independently to custom-HLS cross-row manual burst
+prefetch2/4/8. Separate request issuers and patch receivers retain block depth2,
+exact patch bytes/point checks/error drain and unchanged MMIO requirements.
+Initial host ownership model passed38independent exactcases; no credit/backpressure
+claim. Run candidate-only CSim/synthesis/co-sim/IP matrix and inspect actual
+actors/II/adapter config/registers; subsequent randomizedAXI/native frame must
+measure real outstanding and high-delay pressure gain. Default prefetch0/width0
+preserves existing loader/types. See docs/DESCRIPTOR_PREFETCH_EXPERIMENT_ZH.md.
+Do not rerun retained baseline or publish directional candidates as releases.
+
+User2026-10-13 requests an integrated major-hotspot optimization and fast4PPC
+entry, then explicitly authorizes autonomous long-job continuation while asleep.
+The earlier launch/end/no-poll preference is superseded for this run. No PS/board
+authorization is added. No subagents were requested.
+
+Integrated4 job7b296a51 passed fresh21layer/38descriptor C/RTL, trueII1, randomAXI
+e33c74db, exact12nativeframes0e71ced4, fullroute6ff9e071 and production-source
+serializer17legal-mask randomAXIS/reset2b4786a8. Device015/100MHz, statsversion
+0x600003 identifies4PPC while externaltop/regmap/record algorithms remain exact.
+Actual34671LUT/32558FF/71.5BRAM/44DSP/11391Slice98.62%,1089controlsets,
+WNS+.579/WHS+.010,TNS/THS0. High-delay limited-DDR942points14.78215ms67.65fps
+modeled vsold30.83617ms; normal9.98718/12.66252ms in originalDDRprofiles.
+Computer gates do not prove board/representative-videoP99. Passed-checkpoint bit
+hash640fdfe6be0698120cbaa9bee73e2f97e12f736505b417817fa41a0b5d08cee4 retained.
+Source/RTL/frame/IP hashes paired in bit/joint_validation.json; no PS/programming.
+See docs/INTEGRATED4_RESULTS_ZH.md for direction decisions and exact evidence.
+
+Next consolidated candidate653984f3 keeps the accepted backend d3f49663 and
+serializer behavior, adds two-credit image block DATAFLOW for DDR read/emit and
+collect/write, plus BRAM binding for primary intermediateFIFOs. This follows
+measured full source/blur FIFOs and only159freeSlices; no globalCE/reset rewrite.
+Host21 exact pass, newHLS91b49663 is frozen/running; no inheritednewroute/frame.
+Simulation profile capacity512 and nesteddataflow discovery support newactors
+without adding productionMMIO. Revalidate newtiming/resources/pressure latency;
+retain previouspassed4PPC if this tradeoff has no benefit or fails.
+
+2026-10-13 integratedIO653984f3 now passes new21exactlayer C/RTL/II gates,
+newrandomAXI548e2c95 with explicitly verified identical d3f descriptor reuse,
+fullroute2c712921, sameproduction serializer2b4786a8, and12nativeframesbac72e5f.
+Actual35347LUT/32979FF/74BRAM/44DSP/11405Slice98.74%,1104controlsets;
+WNS+.188/WHS+.044,TNS/THS0 and extended200paths/50nets strictpass.
+This is a performance improvement, not resource savings: original4PPC11391Slice
+increases14. Worst path now reset-to-BRAM reset326loads,8.581ns routing.
+Worst modeled942point frame12.59037ms79.43fps, allmatching12frames faster;
+engineering14ms pass and board/P99/PS still unverified. Selected100MHz bitSHA
+46c36be6a8758926f576fe6761434adddbf646ab2ed745709b1c0513b101abe2.
+
+Native metricV1 pending counter omitted RVALID cycles, making conditional means
+invalid. Raw historical evidence remains unchanged. MetricV2 separately counts
+all outstanding-read cycles and waits without RVALID;12frame stat-only replay
+matches original0dcccb9f cycles,traffic,selected,alllayer records exactly.
+Counter consistency and100/125MHz DDR time normalization pass pin-model tests.
+Norm keeps HP800MB/s, aggregate800/1600MB/s, initial/read andB delays in ns;
+100MHz scheduler/PRNG stays exact,125MHz quantizes10ns service epochs and delay
+ceil to8ns edges. Cross-frequency stochastic events are not identical traces.
+
+Source/report/fixture package prepared in publication clone. Fresh3.12.12venv
+and reproduce_integrated4 Inputs pass independent38case/32bin golden from
+originalconstants.hpp. All hardware gates were independently run; do not claim
+the new All orchestration was rerun. Main/historical100MHz artifacts preserved.
+125MHz comparisona5b3269c regenerates2/4PPC+backend at8ns; allHLS21/38pass,
+actual125MHz route/native gates running. Route2 first failed only for carrier
+key mismatch, preserved under route2_startup_failure; fixedandfreshroute running.

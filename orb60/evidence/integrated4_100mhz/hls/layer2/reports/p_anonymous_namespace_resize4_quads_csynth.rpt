@@ -1,0 +1,230 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_resize4_quads'
+================================================================
+* Date:           Tue Oct 13 02:33:13 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.087 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |   max  |   Type  |
+    +---------+---------+----------+----------+-------+--------+---------+
+    |    13471|   180722|  0.135 ms|  1.807 ms|  13471|  180722|       no|
+    +---------+---------+----------+----------+-------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+        |                                                                                              |                                                                                   |  Latency (cycles) |  Latency (absolute) |    Interval    |                    Pipeline                    |
+        |                                           Instance                                           |                                       Module                                      |   min   |   max   |    min   |    max   |  min  |   max  |                      Type                      |
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+        |grp_p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads_fu_179                     |p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads                     |       74|      247|  0.740 us|  2.470 us|     68|     241|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads_fu_200  |p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads  |    13469|   172802|  0.135 ms|  1.728 ms|  13468|  172801|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+---------+----------+----------+-------+--------+------------------------------------------------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_136_2  |    15678|   180720|  78 ~ 251|          -|          -|  201 ~ 720|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    201|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        8|   24|    802|   1296|    -|
+|Memory           |        6|    -|     22|      4|    -|
+|Multiplexer      |        -|    -|      0|    118|    -|
+|Register         |        -|    -|    229|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |       14|   24|   1053|   1619|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        7|   15|      1|      3|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+-----+------+-----+
+    |                                           Instance                                           |                                       Module                                      | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+-----+------+-----+
+    |mul_10ns_8ns_18_1_1_U1267                                                                     |mul_10ns_8ns_18_1_1                                                                |        0|   0|    0|    63|    0|
+    |grp_p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads_fu_179                     |p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads                     |        8|  24|  781|  1149|    0|
+    |grp_p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads_fu_200  |p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads  |        0|   0|   21|    84|    0|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+-----+------+-----+
+    |Total                                                                                         |                                                                                   |        8|  24|  802|  1296|    0|
+    +----------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +--------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |                         Memory                         |                                      Module                                      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |fastv2_profile_kResizeYAxis_U                           |p_anonymous_namespace_resize4_quads_fastv2_profile_kResizeYAxis_ROM_AUTO_1R       |        6|   0|   0|    0|  2595|   21|     1|        54495|
+    |fastv2_profile_kResizeYOffsets_U                        |p_anonymous_namespace_resize4_quads_fastv2_profile_kResizeYOffsets_ROM_AUTO_1R    |        0|  12|   2|    0|     7|   12|     1|           84|
+    |p_anonymous_namespace_fastv2_quad_rom_kResizeOffsets_U  |p_anonymous_namespace_resize4_quads_p_anonymous_namespace_fastv2_quad_rom_kReDeQ  |        0|  10|   2|    0|     7|   10|     1|           70|
+    +--------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total                                                   |                                                                                  |        6|  22|   4|    0|  2609|   43|     3|        54649|
+    +--------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |add_ln138_fu_275_p2              |         +|   0|  0|  12|          12|          12|
+    |add_ln140_fu_317_p2              |         +|   0|  0|  11|          11|           1|
+    |add_ln169_fu_346_p2              |         +|   0|  0|  32|          32|           1|
+    |empty_fu_233_p2                  |         +|   0|  0|  10|          10|           2|
+    |y_4_fu_257_p2                    |         +|   0|  0|  10|          10|           1|
+    |sub19_i_fu_339_p2                |         -|   0|  0|  13|          13|          12|
+    |active_fu_334_p2                 |       and|   0|  0|   1|           1|           1|
+    |ap_block_state3_on_subcall_done  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln124_fu_217_p2             |      icmp|   0|  0|   4|           3|           2|
+    |icmp_ln136_fu_252_p2             |      icmp|   0|  0|  10|          10|          10|
+    |icmp_ln137_fu_270_p2             |      icmp|   0|  0|  32|          32|          32|
+    |icmp_ln140_fu_324_p2             |      icmp|   0|  0|  11|          11|          11|
+    |ap_block_state1                  |        or|   0|  0|   1|           1|           1|
+    |destination_y_1_fu_351_p3        |    select|   0|  0|  32|           1|          32|
+    |vertical_fu_290_p3               |    select|   0|  0|  21|           1|          21|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0| 201|         149|         140|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------+----+-----------+-----+-----------+
+    |           Name           | LUT| Input Size| Bits| Total Bits|
+    +--------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                 |  33|          8|    1|          8|
+    |ap_done                   |   9|          2|    1|          2|
+    |destination_height_blk_n  |   9|          2|    1|          2|
+    |destination_y_fu_100      |   9|          2|   32|         64|
+    |dh_c_blk_n                |   9|          2|    1|          2|
+    |height_blk_n              |   9|          2|    1|          2|
+    |level_blk_n               |   9|          2|    1|          2|
+    |resize_raw_read           |  13|          3|    1|          3|
+    |width_blk_n               |   9|          2|    1|          2|
+    |y_fu_104                  |   9|          2|   10|         20|
+    +--------------------------+----+-----------+-----+-----------+
+    |Total                     | 118|         27|   50|        107|
+    +--------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                                    Name                                                   | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |add_ln140_reg_496                                                                                          |  11|   0|   11|          0|
+    |ap_CS_fsm                                                                                                  |   7|   0|    7|          0|
+    |ap_done_reg                                                                                                |   1|   0|    1|          0|
+    |bound_reg_511                                                                                              |  18|   0|   18|          0|
+    |destination_height_1_reg_394                                                                               |  10|   0|   10|          0|
+    |destination_height_cast_reg_410                                                                            |  10|   0|   32|         22|
+    |destination_y_fu_100                                                                                       |  32|   0|   32|          0|
+    |destination_y_load_reg_468                                                                                 |  32|   0|   32|          0|
+    |fastv2_profile_kResizeYOffsets_load_reg_448                                                                |  12|   0|   12|          0|
+    |grp_p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads_fu_179_ap_start_reg                     |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads_fu_200_ap_start_reg  |   1|   0|    1|          0|
+    |height_2_reg_399                                                                                           |  10|   0|   10|          0|
+    |icmp_ln124_reg_415                                                                                         |   1|   0|    1|          0|
+    |icmp_ln137_reg_473                                                                                         |   1|   0|    1|          0|
+    |icmp_ln140_reg_501                                                                                         |   1|   0|    1|          0|
+    |p_anonymous_namespace_fastv2_quad_rom_kResizeOffsets_load_reg_453                                          |  10|   0|   10|          0|
+    |sub19_i_reg_506                                                                                            |  12|   0|   12|          0|
+    |tmp_s_reg_443                                                                                              |   8|   0|    8|          0|
+    |trunc_ln137_reg_485                                                                                        |  10|   0|   10|          0|
+    |width_2_reg_405                                                                                            |  10|   0|   10|          0|
+    |wy_reg_490                                                                                                 |  11|   0|   11|          0|
+    |y_3_reg_458                                                                                                |  10|   0|   10|          0|
+    |y_fu_104                                                                                                   |  10|   0|   10|          0|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                                      | 229|   0|  251|         22|
+    +-----------------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------+-----+-----+------------+------------------------------------+--------------+
+|             RTL Ports             | Dir | Bits|  Protocol  |            Source Object           |    C Type    |
++-----------------------------------+-----+-----+------------+------------------------------------+--------------+
+|ap_clk                             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_rst                             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_start                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_done                            |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_continue                        |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_idle                            |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|ap_ready                           |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads|  return value|
+|resize_raw_dout                    |   in|   32|     ap_fifo|                          resize_raw|       pointer|
+|resize_raw_empty_n                 |   in|    1|     ap_fifo|                          resize_raw|       pointer|
+|resize_raw_read                    |  out|    1|     ap_fifo|                          resize_raw|       pointer|
+|resize_raw_num_data_valid          |   in|    7|     ap_fifo|                          resize_raw|       pointer|
+|resize_raw_fifo_cap                |   in|    7|     ap_fifo|                          resize_raw|       pointer|
+|resize_quads_din                   |  out|   40|     ap_fifo|                        resize_quads|       pointer|
+|resize_quads_full_n                |   in|    1|     ap_fifo|                        resize_quads|       pointer|
+|resize_quads_write                 |  out|    1|     ap_fifo|                        resize_quads|       pointer|
+|resize_quads_num_data_valid        |   in|   32|     ap_fifo|                        resize_quads|       pointer|
+|resize_quads_fifo_cap              |   in|   32|     ap_fifo|                        resize_quads|       pointer|
+|level_dout                         |   in|    3|     ap_fifo|                               level|       pointer|
+|level_empty_n                      |   in|    1|     ap_fifo|                               level|       pointer|
+|level_read                         |  out|    1|     ap_fifo|                               level|       pointer|
+|level_num_data_valid               |   in|    4|     ap_fifo|                               level|       pointer|
+|level_fifo_cap                     |   in|    4|     ap_fifo|                               level|       pointer|
+|width_dout                         |   in|   10|     ap_fifo|                               width|       pointer|
+|width_empty_n                      |   in|    1|     ap_fifo|                               width|       pointer|
+|width_read                         |  out|    1|     ap_fifo|                               width|       pointer|
+|width_num_data_valid               |   in|    3|     ap_fifo|                               width|       pointer|
+|width_fifo_cap                     |   in|    3|     ap_fifo|                               width|       pointer|
+|height_dout                        |   in|   10|     ap_fifo|                              height|       pointer|
+|height_empty_n                     |   in|    1|     ap_fifo|                              height|       pointer|
+|height_read                        |  out|    1|     ap_fifo|                              height|       pointer|
+|height_num_data_valid              |   in|    3|     ap_fifo|                              height|       pointer|
+|height_fifo_cap                    |   in|    3|     ap_fifo|                              height|       pointer|
+|destination_height_dout            |   in|   10|     ap_fifo|                  destination_height|       pointer|
+|destination_height_empty_n         |   in|    1|     ap_fifo|                  destination_height|       pointer|
+|destination_height_read            |  out|    1|     ap_fifo|                  destination_height|       pointer|
+|destination_height_num_data_valid  |   in|    4|     ap_fifo|                  destination_height|       pointer|
+|destination_height_fifo_cap        |   in|    4|     ap_fifo|                  destination_height|       pointer|
+|dh_c_din                           |  out|   10|     ap_fifo|                                dh_c|       pointer|
+|dh_c_full_n                        |   in|    1|     ap_fifo|                                dh_c|       pointer|
+|dh_c_write                         |  out|    1|     ap_fifo|                                dh_c|       pointer|
+|dh_c_num_data_valid                |   in|    3|     ap_fifo|                                dh_c|       pointer|
+|dh_c_fifo_cap                      |   in|    3|     ap_fifo|                                dh_c|       pointer|
++-----------------------------------+-----+-----+------------+------------------------------------+--------------+
+

@@ -16,7 +16,7 @@ def check(scratch, tests, output):
     header+='void eval() {} void final() {}\n};\n'
     (stub/'Vorb60_frame_top.h').write_text(header)
     (stub/'verilated.h').write_text('struct Verilated { static void commandArgs(int,char**) {} };\n')
-    for name in ('native_frame.cpp','native_ddr_model_test.cpp'):
+    for name in ('native_frame.cpp','ddr_time.hpp','native_ddr_model_test.cpp'):
         shutil.copyfile(tests/name,stub/name)
     shutil.copyfile(scratch/'frame_registers.hpp',stub/'frame_registers.hpp')
     compiler=shutil.which('g++');assert compiler

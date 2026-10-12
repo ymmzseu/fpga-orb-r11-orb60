@@ -3,6 +3,15 @@ set next [file join $job inputs FPGA_ORB_HLS fastv2 next]
 set fast [file join $next ..]
 set ref [file join $job inputs FPGA_ORB_SHARED_v1.0]
 set flags "-std=c++14 -DFASTV2_HLS_CSIM -I[file join $fast include] -I[file join $next include] -I[file join $next hls] -I[file join $job inputs] -I$ref"
+if {[info exists ::env(ORB60_DESCRIPTOR_WIDTH_MODE)]} {
+    append flags " -DORB60_DESCRIPTOR_WIDTH_MODE=$::env(ORB60_DESCRIPTOR_WIDTH_MODE)"
+}
+if {[info exists ::env(ORB60_DESCRIPTOR_PREFETCH)]} {
+    append flags " -DORB60_DESCRIPTOR_PREFETCH=$::env(ORB60_DESCRIPTOR_PREFETCH)"
+}
+foreach macro {ORB60_DESCRIPTOR_PATCH32 ORB60_LAYER_PPC ORB60_FAST_STAGED ORB60_LAYER_IO_OVERLAP ORB60_LAYER_BRAM_FIFOS} {
+    if {[info exists ::env($macro)]} {append flags " -D$macro=$::env($macro)"}
+}
 file mkdir [file join $job projects]
 cd [file join $job projects]
 set selection $::env(ORB60_HLS_KERNEL)
@@ -27,6 +36,7 @@ if {[catch {
         set_part xc7z015clg485-2
         create_clock -period $::env(ORB60_HLS_PERIOD) -name default
         config_interface -m_axi_addr64=false
+        if {$kernel eq "merge4"} {config_rtl -reset_level low}
         if {$kernel eq "descriptor"} {
             csim_design -clean -O -argv [file join $job descriptor_vectors]
         } else {csim_design -clean}
@@ -40,7 +50,9 @@ if {[catch {
                 set f [open $path r]; set report [read $f]; close $f
                 if {![regexp {\|[ \t]*Verilog[ \t]*\|[ \t]*Pass[ \t]*\|} $report]} {error "Missing Verilog Pass for $kernel"}
             }
-            export_design -format ip_catalog -rtl verilog
+            if {![info exists ::env(ORB60_HLS_NO_EXPORT)] || !$::env(ORB60_HLS_NO_EXPORT)} {
+                export_design -format ip_catalog -rtl verilog
+            }
         }
         close_project
         puts "ORB60_STAGE_DONE kernel=$kernel"

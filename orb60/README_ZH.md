@@ -1,3 +1,5 @@
+本开发分支当前通过版本为4PPC／100MHz，见[新结果](docs/INTEGRATED4_IO_RESULTS_ZH.md)与仓库根README。以下原说明保留历史2PPC内容。
+
 # ORB60：100 MHz 2PPC + 精确 PL 描述子开发版本
 
 本目录在原 R11 源码之外增加独立的 2024.2 开发实现。固定目标是

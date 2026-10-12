@@ -99,5 +99,7 @@ close $clock_proof
 if {!$clock_match} {error "No routed clock matches requested $frequency MHz"}
 source [file join $inputs timing_checks.tcl]
 source [file join $inputs route_reports.tcl]
-orb60_report_routed $output $part $frequency fastv2_layer2_hls 1 "2PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending"
+set ppc 2
+if {[info exists ::env(ORB60_ORB_TIMING_PPC)]} {set ppc $::env(ORB60_ORB_TIMING_PPC)}
+orb60_report_routed $output $part $frequency fastv2_layer2_hls 1 "${ppc}PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending"
 exit 0

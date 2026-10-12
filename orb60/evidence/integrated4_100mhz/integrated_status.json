@@ -1,0 +1,20 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPUTER_GATES_COMPLETE",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\comparison\\20261013_023028_integrated4_io_653984f3",
+  "LayerPpc": 4,
+  "FastStaged": true,
+  "LayerIoOverlap": true,
+  "LayerBramFifos": true,
+  "DescriptorHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_013229_descriptor_d3f49663",
+  "BenchmarkJob": "D:/pld/orb60/build/optimized/benchmark/20261012_122652_layer2_benchmark_56a61151",
+  "BaselineFrameJob": "D:/pld/orb60/build/optimized/gates/20261013_015701_native_frame_0e71ced4",
+  "PreviousIntegratedJob": "D:/pld/orb60/build/optimized/comparison/20261013_013144_integrated4_7b296a51",
+  "StartedUtc": "2026-10-12T17:30:28.537905Z",
+  "Scope": "Exact4PPC100MHz HLS/protocol/native/fullroute gates; corrected stat-only replay; PS/board/P99 unverified",
+  "LayerHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_023037_layer2_91b49663",
+  "RouteJob": "D:\\pld\\orb60\\build\\optimized\\timing\\20261013_025359_orb_100mhz_2c712921",
+  "FrameJob": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_030945_native_frame_bac72e5f",
+  "OriginalFrameJob": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_025631_native_frame_0dcccb9f",
+  "MergeAxisJob": "D:/pld/orb60/build/optimized/gates/20261013_021957_merge4_axis_2b4786a8"
+}

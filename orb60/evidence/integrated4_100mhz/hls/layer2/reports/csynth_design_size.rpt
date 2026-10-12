@@ -1,0 +1,143 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Total Instructions per Compilation Phase
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Phase         | Step                        | Instructions | Description                                                                            |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Compile/Link  |                             |  9,967       | After all functions are compiled and linked into a single design                       |
+|               |                             |              |                                                                                        |
+| Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
+|               | (1) unroll                  | 19,935       | user unroll pragmas are applied                                                        |
+|               | (2) simplification          | 13,614       | simplification of applied user unroll pragmas                                          |
+|               | (3) inline                  | 13,498       | user inline pragmas are applied                                                        |
+|               | (4) simplification          | 13,395       | simplification of applied user inline pragmas                                          |
+|               |                             |              |                                                                                        |
+| Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
+|               | (1) array partition         | 17,929       | user array partition pragmas are applied                                               |
+|               | (2) simplification          |  9,770       | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  |  9,774       | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           |  9,853       | apply array reshape pragmas                                                            |
+|               | (5) access patterns         |  9,702       | array access pattern optmizations                                                      |
+|               |                             |              |                                                                                        |
+| Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
+|               | (1) loop simplification     |  9,058       | loop and instruction simplification                                                    |
+|               | (2) parallelization         |  9,118       | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) array partition         |  8,596       | arrays are partitioned to meet performance targets                                     |
+|               | (4) simplification          |  8,594       | simplification of design after performance transformations                             |
+|               |                             |              |                                                                                        |
+| HW Transforms |                             |              | After hardware transfomations                                                          |
+|               | (1) lowering                |  8,705       | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           |  9,021       | high level synthesis optimizations                                                     |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+
+* Instructions per Function for each Compilation Phase
++--------------------------------------+------------------------+-----------------+-----------------+----------------+----------------+----------------+
+| Function                             | Location               | Compile/Link    | Unroll/Inline   | Array/Struct   | Performance    | HW Transforms  |
++--------------------------------------+------------------------+-----------------+-----------------+----------------+----------------+----------------+
+| + fastv2_layer2_hls                  | layer2_hls.cpp:109     | 9,967           | 13,395          | 9,702          | 8,594          | 9,021          |
+|    clear_result                      | fastv2_hls.cpp:199     |   33            |                 |                |                |                |
+|  + write_summary                     | fastv2_hls.cpp:422     |  106            |                 |                |                |                |
+|     field_pair                       | fastv2_hls.cpp:417     |   40 (8 calls)  |                 |                |                |                |
+|  + write_layer2_stats                | layer2_hls.cpp:98      |  218 (2 calls)  |                 |                |                |                |
+|     field_pair                       | fastv2_hls.cpp:417     |   80 (16 calls) |                 |                |                |                |
+|  + layer4_dataflow                   | layer4_dataflow.hpp:20 | 9,413           | 13,125          | 9,436          | 8,390          | 8,797          |
+|   + layer4_read_dataflow             | layer4_io.hpp:26       |  151            |    68           |   70           |   67           |   82           |
+|      load_layer_blocks               | layer4_io.hpp:4        |   64            |    33           |   35           |   34           |   40           |
+|      emit_layer_blocks               | layer4_io.hpp:13       |   71            |    28           |   28           |   26           |   32           |
+|     unpack_front4_words              | front4_stream.hpp:6    |  104            |    77           |   79           |   75           |   79           |
+|     fork_layer4_quads                | layer4_dataflow.hpp:8  |   53            |    21           |   21           |   19           |   29           |
+|   + scan_front4_quads                | front4_stream.hpp:48   | 4,821           | 10,262          | 5,669          | 4,361          | 4,505          |
+|      find_profile                    | fastv2_hls.cpp:40      |   31            |                 |                |                |                |
+|    + front4_score<0>                 | front4_stream.hpp:31   | 1,000           | 2,269           | 1,011          |  822           |  856           |
+|     + fast_score                     | fastv2_hls.cpp:126     |  907            | 2,197           |  960           |  820           |  852           |
+|        fast_differences              | fast_stages.hpp:2      |   79            |   175           |  130           |  114           |  117           |
+|        fast_arc_minimum<1>           | fast_stages.hpp:15     |  176 (2 calls)  |   790 (2 calls) |  194 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_minimum<3>           | fast_stages.hpp:15     |  176 (2 calls)  |   792 (2 calls) |  226 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_response             | fast_stages.hpp:27     |   42            |   191           |  129           |   49           |   52           |
+|        maximum_stage<16>             | fastv2_hls.cpp:111     |   47            |    96           |   73           |   33           |   36           |
+|        maximum_stage<8>              | fastv2_hls.cpp:111     |   47            |    48           |   37           |   17           |   20           |
+|        maximum_stage<4>              | fastv2_hls.cpp:111     |   47            |    24           |   19           |    9           |   12           |
+|        maximum_stage<2>              | fastv2_hls.cpp:111     |   47            |    11           |    9           |    5           |    8           |
+|    + front4_score<1>                 | front4_stream.hpp:31   | 1,000           | 2,269           | 1,011          |  822           |  856           |
+|     + fast_score                     | fastv2_hls.cpp:126     |  907            | 2,197           |  960           |  820           |  852           |
+|        fast_differences              | fast_stages.hpp:2      |   79            |   175           |  130           |  114           |  117           |
+|        fast_arc_minimum<1>           | fast_stages.hpp:15     |  176 (2 calls)  |   790 (2 calls) |  194 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_minimum<3>           | fast_stages.hpp:15     |  176 (2 calls)  |   792 (2 calls) |  226 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_response             | fast_stages.hpp:27     |   42            |   191           |  129           |   49           |   52           |
+|        maximum_stage<16>             | fastv2_hls.cpp:111     |   47            |    96           |   73           |   33           |   36           |
+|        maximum_stage<8>              | fastv2_hls.cpp:111     |   47            |    48           |   37           |   17           |   20           |
+|        maximum_stage<4>              | fastv2_hls.cpp:111     |   47            |    24           |   19           |    9           |   12           |
+|        maximum_stage<2>              | fastv2_hls.cpp:111     |   47            |    11           |    9           |    5           |    8           |
+|    + front4_score<2>                 | front4_stream.hpp:31   | 1,000           | 2,269           | 1,011          |  822           |  856           |
+|     + fast_score                     | fastv2_hls.cpp:126     |  907            | 2,197           |  960           |  820           |  852           |
+|        fast_differences              | fast_stages.hpp:2      |   79            |   175           |  130           |  114           |  117           |
+|        fast_arc_minimum<1>           | fast_stages.hpp:15     |  176 (2 calls)  |   790 (2 calls) |  194 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_minimum<3>           | fast_stages.hpp:15     |  176 (2 calls)  |   792 (2 calls) |  226 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_response             | fast_stages.hpp:27     |   42            |   191           |  129           |   49           |   52           |
+|        maximum_stage<16>             | fastv2_hls.cpp:111     |   47            |    96           |   73           |   33           |   36           |
+|        maximum_stage<8>              | fastv2_hls.cpp:111     |   47            |    48           |   37           |   17           |   20           |
+|        maximum_stage<4>              | fastv2_hls.cpp:111     |   47            |    24           |   19           |    9           |   12           |
+|        maximum_stage<2>              | fastv2_hls.cpp:111     |   47            |    11           |    9           |    5           |    8           |
+|    + front4_score<3>                 | front4_stream.hpp:31   | 1,000           | 2,269           | 1,011          |  822           |  856           |
+|     + fast_score                     | fastv2_hls.cpp:126     |  907            | 2,197           |  960           |  820           |  852           |
+|        fast_differences              | fast_stages.hpp:2      |   79            |   175           |  130           |  114           |  117           |
+|        fast_arc_minimum<1>           | fast_stages.hpp:15     |  176 (2 calls)  |   790 (2 calls) |  194 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_minimum<3>           | fast_stages.hpp:15     |  176 (2 calls)  |   792 (2 calls) |  226 (2 calls) |  162 (2 calls) |  168 (2 calls) |
+|        fast_arc_response             | fast_stages.hpp:27     |   42            |   191           |  129           |   49           |   52           |
+|        maximum_stage<16>             | fastv2_hls.cpp:111     |   47            |    96           |   73           |   33           |   36           |
+|        maximum_stage<8>              | fastv2_hls.cpp:111     |   47            |    48           |   37           |   17           |   20           |
+|        maximum_stage<4>              | fastv2_hls.cpp:111     |   47            |    24           |   19           |    9           |   12           |
+|        maximum_stage<2>              | fastv2_hls.cpp:111     |   47            |    11           |    9           |    5           |    8           |
+|      pack_point                      | fastv2_hls.cpp:81      |   23            |                 |                |                |                |
+|     serialize_front4_quads           | front4_stream.hpp:152  |  101            |    56           |   66           |   65           |   78           |
+|   + consume_and_select               | fastv2_hls.cpp:438     | 2,561           |   972           | 2,110          | 2,422          | 2,536          |
+|      clear_result                    | fastv2_hls.cpp:199     |   33            |                 |                |                |                |
+|    + reduce_banked_grid              | banked_grid.hpp:108    | 1,395           |   502           | 1,584          | 1,375          | 1,533          |
+|       route_candidate_banks          | banked_grid.hpp:8      |  121            |    43           |   37           |   36           |   75           |
+|       reduce_score_bank<0>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<1>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<2>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<3>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<4>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<5>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<6>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|       reduce_score_bank<7>           | banked_grid.hpp:46     |  131            |    48           |  179           |  153           |  168           |
+|     + collect_bank_winners           | banked_grid.hpp:96     |  165            |    39           |   32           |   32           |   53           |
+|        read_bank_winner              | banked_grid.hpp:82     |  123            |                 |                |                |                |
+|    + write_summary                   | fastv2_hls.cpp:422     |  212 (2 calls)  |                 |                |                |                |
+|       field_pair                     | fastv2_hls.cpp:417     |   80 (16 calls) |                 |                |                |                |
+|      unpack_point                    | fastv2_hls.cpp:94      |   40 (2 calls)  |                 |                |                |                |
+|      field_pair                      | fastv2_hls.cpp:417     |   20 (4 calls)  |                 |                |                |                |
+|    + tournament_winner               | banked_grid.hpp:137    |  394 (2 calls)  |                 |                |                |                |
+|       unpack_point                   | fastv2_hls.cpp:94      |   80 (4 calls)  |                 |                |                |                |
+|     + stronger                       | fastv2_hls.cpp:70      |  160 (4 calls)  |                 |                |                |                |
+|        raster_before                 | fastv2_hls.cpp:59      |   88 (4 calls)  |                 |                |                |                |
+|   + gaussian4_horizontal             | layer4_images.hpp:4    |  325            |   441           |  341           |  321           |  337           |
+|      layer_reflect                   | layer2_images.hpp:11   |   15            |                 |                |                |                |
+|      layer_gaussian_sum<unsigned ... | layer2_images.hpp:3    |   33            |                 |                |                |                |
+|   + gaussian4_vertical               | layer4_images.hpp:67   |  259            |   535           |  431           |  429           |  435           |
+|      layer_reflect                   | layer2_images.hpp:11   |   15            |                 |                |                |                |
+|      layer_gaussian_sum<unsigned ... | layer2_images.hpp:3    |   33            |                 |                |                |                |
+|     layer_pack_quads<0>              | layer4_images.hpp:177  |   76            |    44           |   52           |   50           |   58           |
+|   + layer4_write_dataflow<0>         | layer4_io.hpp:56       |  169            |    69           |   71           |   68           |   86           |
+|      collect_layer_blocks<0>         | layer4_io.hpp:33       |   80            |    28           |   28           |   26           |   32           |
+|      flush_layer_blocks<0>           | layer4_io.hpp:46       |   73            |    34           |   36           |   35           |   44           |
+|   + resize4_quads                    | layer4_images.hpp:121  |  281            |   346           |  283           |  279           |  290           |
+|      layer4_resize_pixel             | layer4_images.hpp:110  |   43            |                 |                |                |                |
+|     layer_pack_quads<1>              | layer4_images.hpp:177  |   76            |    44           |   52           |   50           |   58           |
+|   + layer4_write_dataflow<1>         | layer4_io.hpp:56       |  169            |    69           |   71           |   68           |   86           |
+|      collect_layer_blocks<1>         | layer4_io.hpp:33       |   80            |    28           |   28           |   26           |   32           |
+|      flush_layer_blocks<1>           | layer4_io.hpp:46       |   73            |    34           |   36           |   35           |   44           |
+|     count_layer2_cycles              | layer2_hls.cpp:25      |   82            |    42           |   44           |   42           |   53           |
++--------------------------------------+------------------------+-----------------+-----------------+----------------+----------------+----------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+

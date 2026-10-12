@@ -1,0 +1,22 @@
+{
+  "State": "SUCCEEDED",
+  "Variant": "optimized",
+  "Kernel": "descriptor",
+  "PeriodNs": 10.0,
+  "Cosim": true,
+  "StartedUtc": "2026-10-12T16:32:31.0144001Z",
+  "Part": "xc7z015clg485-2",
+  "Tool": "D:\\Xilinx\\Vitis_HLS\\2024.2\\bin\\vitis_hls.bat",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_013229_descriptor_d3f49663",
+  "SourceJob": "",
+  "DescriptorWidthMode": 2,
+  "NoExport": false,
+  "DescriptorPrefetch": 8,
+  "ProcessId": 40780,
+  "SourceProbe": "",
+  "CsimOnly": false,
+  "LayerPpc": 2,
+  "FastStaged": false,
+  "DescriptorPatch32": true,
+  "FinishedUtc": "2026-10-12T16:35:56.0202241Z"
+}

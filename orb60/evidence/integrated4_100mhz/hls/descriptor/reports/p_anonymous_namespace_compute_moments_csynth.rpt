@@ -1,0 +1,215 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_compute_moments'
+================================================================
+* Date:           Tue Oct 13 01:33:13 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.071 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+---------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |    Interval   | Pipeline|
+    |   min   |   max   |    min    |    max    | min |   max   |   Type  |
+    +---------+---------+-----------+-----------+-----+---------+---------+
+    |        1|  1053953|  10.000 ns|  10.540 ms|    1|  1053953|       no|
+    +---------+---------+-----------+-----------+-----+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+-----------+-----+------+---------+
+        |                                                        |                                             |  Latency (cycles) |  Latency (absolute)  |  Interval  | Pipeline|
+        |                        Instance                        |                    Module                   |   min   |   max   |    min   |    max    | min |  max |   Type  |
+        +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+-----------+-----+------+---------+
+        |grp_p_anonymous_namespace_compute_patch_moments_fu_222  |p_anonymous_namespace_compute_patch_moments  |      255|     4110|  2.550 us|  41.100 us|  255|  4110|       no|
+        +--------------------------------------------------------+---------------------------------------------+---------+---------+----------+-----------+-----+------+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip  |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |- VITIS_LOOP_291_1  |        0|  1053952|  7 ~ 4117|          -|          -|  0 ~ 256|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     56|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        0|    3|    617|    995|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    215|    -|
+|Register         |        -|    -|    250|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    3|    867|   1266|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    1|     ~0|      2|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
+    |                        Instance                        |                    Module                   | BRAM_18K| DSP|  FF | LUT | URAM|
+    +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
+    |grp_p_anonymous_namespace_compute_patch_moments_fu_222  |p_anonymous_namespace_compute_patch_moments  |        0|   3|  617|  995|    0|
+    +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                   |                                             |        0|   3|  617|  995|    0|
+    +--------------------------------------------------------+---------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |i_13_fu_249_p2                   |         +|   0|  0|   9|           9|           1|
+    |ap_block_state2                  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state7_on_subcall_done  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln291_fu_244_p2             |      icmp|   0|  0|   9|           9|           9|
+    |icmp_ln294_fu_259_p2             |      icmp|   0|  0|  32|          32|           1|
+    |ap_block_state1                  |        or|   0|  0|   1|           1|           1|
+    |select_ln296_fu_284_p3           |    select|   0|  0|   3|           1|           3|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0|  56|          54|          17|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  37|          9|    1|          9|
+    |ap_done                    |   9|          2|    1|          2|
+    |count_blk_n                |   9|          2|    1|          2|
+    |count_c6_blk_n             |   9|          2|    1|          2|
+    |i_fu_96                    |   9|          2|    9|         18|
+    |moments_blk_n              |   9|          2|    1|          2|
+    |packet_m01_0_i_reg_200     |   9|          2|   21|         42|
+    |packet_m10_0_i_reg_211     |   9|          2|   21|         42|
+    |raw_blocks_address0        |   9|          2|    9|         18|
+    |raw_blocks_address0_local  |  17|          4|    9|         36|
+    |raw_blocks_address1        |   9|          2|    9|         18|
+    |raw_blocks_address1_local  |  13|          3|    9|         27|
+    |raw_blocks_blk_n           |   9|          2|    1|          2|
+    |raw_blocks_ce0             |   9|          2|    1|          2|
+    |raw_blocks_ce1             |   9|          2|    1|          2|
+    |raw_blocks_read            |  13|          3|    1|          3|
+    |real_start                 |   9|          2|    1|          2|
+    |width_blk_n                |   9|          2|    1|          2|
+    |width_c_blk_n              |   9|          2|    1|          2|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 215|         49|   99|        233|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------------------------------+----+----+-----+-----------+
+    |                                 Name                                | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                            |   8|   0|    8|          0|
+    |ap_done_reg                                                          |   1|   0|    1|          0|
+    |count_2_reg_317                                                      |   9|   0|    9|          0|
+    |empty_reg_371                                                        |   3|   0|    3|          0|
+    |grp_p_anonymous_namespace_compute_patch_moments_fu_222_ap_start_reg  |   1|   0|    1|          0|
+    |i_13_reg_355                                                         |   9|   0|    9|          0|
+    |i_fu_96                                                              |   9|   0|    9|          0|
+    |icmp_ln294_reg_386                                                   |   1|   0|    1|          0|
+    |packet_m01_0_i_reg_200                                               |  21|   0|   21|          0|
+    |packet_m10_0_i_reg_211                                               |  21|   0|   21|          0|
+    |packet_point_xy_reg_391                                              |  35|   0|   35|          0|
+    |raw_blocks_load_1_reg_366                                            |  32|   0|   32|          0|
+    |raw_blocks_load_2_reg_376                                            |  32|   0|   32|          0|
+    |raw_blocks_load_3_reg_381                                            |  32|   0|   32|          0|
+    |raw_blocks_load_reg_360                                              |  32|   0|   32|          0|
+    |start_once_reg                                                       |   1|   0|    1|          0|
+    |width_1_reg_322                                                      |   3|   0|    3|          0|
+    +---------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                | 250|   0|  250|          0|
+    +---------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+--------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |             Source Object            |    C Type    |
++-------------------------+-----+-----+------------+--------------------------------------+--------------+
+|ap_clk                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_rst                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_start                 |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|start_full_n             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_done                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_continue              |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_idle                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|ap_ready                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|start_out                |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|start_write              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|raw_blocks_empty_n       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|raw_blocks_read          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_moments|  return value|
+|raw_blocks_address0      |  out|    9|    mem_fifo|                            raw_blocks|         array|
+|raw_blocks_ce0           |  out|    1|    mem_fifo|                            raw_blocks|         array|
+|raw_blocks_q0            |   in|   32|    mem_fifo|                            raw_blocks|         array|
+|raw_blocks_address1      |  out|    9|    mem_fifo|                            raw_blocks|         array|
+|raw_blocks_ce1           |  out|    1|    mem_fifo|                            raw_blocks|         array|
+|raw_blocks_q1            |   in|   32|    mem_fifo|                            raw_blocks|         array|
+|count_dout               |   in|    9|     ap_fifo|                                 count|       pointer|
+|count_empty_n            |   in|    1|     ap_fifo|                                 count|       pointer|
+|count_read               |  out|    1|     ap_fifo|                                 count|       pointer|
+|count_num_data_valid     |   in|    3|     ap_fifo|                                 count|       pointer|
+|count_fifo_cap           |   in|    3|     ap_fifo|                                 count|       pointer|
+|width_dout               |   in|   32|     ap_fifo|                                 width|       pointer|
+|width_empty_n            |   in|    1|     ap_fifo|                                 width|       pointer|
+|width_read               |  out|    1|     ap_fifo|                                 width|       pointer|
+|width_num_data_valid     |   in|    3|     ap_fifo|                                 width|       pointer|
+|width_fifo_cap           |   in|    3|     ap_fifo|                                 width|       pointer|
+|moments_din              |  out|  202|     ap_fifo|                               moments|       pointer|
+|moments_full_n           |   in|    1|     ap_fifo|                               moments|       pointer|
+|moments_write            |  out|    1|     ap_fifo|                               moments|       pointer|
+|moments_num_data_valid   |   in|    3|     ap_fifo|                               moments|       pointer|
+|moments_fifo_cap         |   in|    3|     ap_fifo|                               moments|       pointer|
+|width_c_din              |  out|   32|     ap_fifo|                               width_c|       pointer|
+|width_c_full_n           |   in|    1|     ap_fifo|                               width_c|       pointer|
+|width_c_write            |  out|    1|     ap_fifo|                               width_c|       pointer|
+|width_c_num_data_valid   |   in|    3|     ap_fifo|                               width_c|       pointer|
+|width_c_fifo_cap         |   in|    3|     ap_fifo|                               width_c|       pointer|
+|count_c6_din             |  out|    9|     ap_fifo|                              count_c6|       pointer|
+|count_c6_full_n          |   in|    1|     ap_fifo|                              count_c6|       pointer|
+|count_c6_write           |  out|    1|     ap_fifo|                              count_c6|       pointer|
+|count_c6_num_data_valid  |   in|    3|     ap_fifo|                              count_c6|       pointer|
+|count_c6_fifo_cap        |   in|    3|     ap_fifo|                              count_c6|       pointer|
++-------------------------+-----+-----+------------+--------------------------------------+--------------+
+

@@ -1,26 +1,54 @@
 [CmdletBinding()]
 param(
     [ValidateSet('baseline','optimized')][string]$Variant='baseline',
-    [ValidateSet('front','front2','layer2','descriptor','resize','gaussian','all')][string]$Kernel='all',
+    [ValidateSet('front','front2','layer2','descriptor','merge4','resize','gaussian','all')][string]$Kernel='all',
     [ValidateRange(5,20)][double]$Period=10,
     [switch]$Cosim,
     [switch]$CsimOnly,
     [string]$DescriptorVectors='',
     [string]$JobFile='',
-    [string]$SourceJob=''
+    [string]$SourceJob='',
+    [string]$SourceProbe='',
+    [ValidateSet(0,1,2)][int]$DescriptorWidthMode=0,
+    [ValidateSet(0,2,4,8)][int]$DescriptorPrefetch=0,
+    [switch]$DescriptorPatch32,
+    [ValidateSet(2,4)][int]$LayerPpc=2,
+    [switch]$FastStaged,
+    [switch]$LayerIoOverlap,
+    [switch]$LayerBramFifos,
+    [switch]$NoExport
 )
 . (Join-Path $PSScriptRoot 'environment.ps1')
 if ($Cosim -and $CsimOnly) { throw 'Choose CsimOnly or Cosim' }
+if($SourceJob -and $SourceProbe) {throw 'Choose an accepted SourceJob or a directional SourceProbe'}
+if($DescriptorWidthMode -ne 0 -and $Kernel -ne 'descriptor') {throw 'Descriptor width experiments require the descriptor kernel'}
+if($DescriptorPrefetch -ne 0 -and $Kernel -ne 'descriptor') {throw 'Descriptor prefetch experiments require the descriptor kernel'}
+if($DescriptorPatch32 -and ($Kernel -ne 'descriptor' -or $Variant -ne 'optimized')) {throw 'Patch32 requires optimized descriptor'}
+if($LayerPpc -eq 4 -and ($Kernel -ne 'layer2' -or $Variant -ne 'optimized')) {throw '4PPC requires the optimized layer top'}
+if($FastStaged -and $Kernel -notin @('front','front2','layer2')) {throw 'FAST stages require a front/layer kernel'}
+if(($LayerIoOverlap -or $LayerBramFifos) -and ($Kernel -ne 'layer2' -or $LayerPpc -ne 4)) {throw 'Image overlap/BRAM FIFO choices require the4PPC layer'}
 $jobName = '{0}_{1}_{2}' -f (Get-Date -Format 'yyyyMMdd_HHmmss'),$Kernel,([guid]::NewGuid().ToString('N').Substring(0,8))
 $job = Join-Path $Orb60Root "build/$Variant/hls/$jobName"
 $inputRoot = Join-Path $job 'inputs'
 New-Item -ItemType Directory -Path $inputRoot -Force | Out-Null
 # Every job compiles a frozen snapshot, including the independent reference.
-if($SourceJob) {
-    $replayRoot=[IO.Path]::GetFullPath($SourceJob)
+if($SourceJob -or $SourceProbe) {
+    $replayRoot=[IO.Path]::GetFullPath($(if($SourceJob) {$SourceJob} else {$SourceProbe}))
     $replayState=Get-Content -LiteralPath (Join-Path $replayRoot 'status.json') -Raw | ConvertFrom-Json
-    if($replayState.State -ne 'SUCCEEDED' -or !$replayState.Cosim -or $replayState.Kernel -ne $Kernel -or
+    if($replayState.State -ne 'SUCCEEDED' -or $replayState.Kernel -ne $Kernel -or
        $replayState.Variant -ne $Variant -or $replayState.Part -ne 'xc7z015clg485-2') {throw 'SourceJob must be a paired accepted HLS snapshot'}
+    if($SourceJob -and !$replayState.Cosim) {throw 'SourceJob requires exact co-sim acceptance'}
+    if($SourceProbe -and ($replayState.Cosim -or !$replayState.NoExport -or $replayState.PeriodNs -ne $Period -or
+       !(Test-Path -LiteralPath (Join-Path $replayRoot "projects/$Kernel/solution1/syn/report/fastv2_${Kernel}_hls_csynth.xml")))) {
+        throw 'SourceProbe must be a successful no-export CSim/synthesis probe at the same clock; all gates run anew'
+    }
+    $replayWidth=if($null -ne $replayState.DescriptorWidthMode) {[int]$replayState.DescriptorWidthMode} else {0}
+    if($replayWidth -ne $DescriptorWidthMode) {throw 'Replay must explicitly preserve the source width mode'}
+    $replayPrefetch=if($null -ne $replayState.DescriptorPrefetch) {[int]$replayState.DescriptorPrefetch} else {0}
+    if($replayPrefetch -ne $DescriptorPrefetch) {throw 'Replay must explicitly preserve the source prefetch mode'}
+    $replayPpc=if($null -ne $replayState.LayerPpc) {[int]$replayState.LayerPpc} else {2}
+    if($replayPpc -ne $LayerPpc -or [bool]$replayState.FastStaged -ne [bool]$FastStaged -or [bool]$replayState.DescriptorPatch32 -ne [bool]$DescriptorPatch32) {throw 'Replay must preserve PPC, FAST staging and patch organization'}
+    if([bool]$replayState.LayerIoOverlap -ne [bool]$LayerIoOverlap -or [bool]$replayState.LayerBramFifos -ne [bool]$LayerBramFifos) {throw 'Replay must preserve image I/O and FIFO choices'}
     foreach($entry in (Get-Content -LiteralPath (Join-Path $replayRoot 'source_manifest.json') -Raw | ConvertFrom-Json)) {
         if((Get-FileHash -LiteralPath (Join-Path $replayRoot ('inputs/'+$entry.Path))).Hash -ne $entry.SHA256) {throw 'Replay source hash changed'}
     }
@@ -50,6 +78,11 @@ $hashes = Get-ChildItem -LiteralPath $inputRoot -Recurse -File | ForEach-Object 
 }
 $hashes | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $job 'source_manifest.json') -Encoding UTF8
 $state = [ordered]@{State='RUNNING';Variant=$Variant;Kernel=$Kernel;PeriodNs=$Period;Cosim=[bool]$Cosim;StartedUtc=[DateTime]::UtcNow.ToString('o');Part='xc7z015clg485-2';Tool=$VitisHlsBat;Job=$job;SourceJob=$SourceJob}
+$state['DescriptorWidthMode']=$DescriptorWidthMode;$state['NoExport']=[bool]$NoExport
+$state['DescriptorPrefetch']=$DescriptorPrefetch;$state['ProcessId']=$PID
+$state['SourceProbe']=$SourceProbe;$state['CsimOnly']=[bool]$CsimOnly
+$state['LayerPpc']=$LayerPpc;$state['FastStaged']=[bool]$FastStaged;$state['DescriptorPatch32']=[bool]$DescriptorPatch32
+$state['LayerIoOverlap']=[bool]$LayerIoOverlap;$state['LayerBramFifos']=[bool]$LayerBramFifos
 $state | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $job 'status.json') -Encoding UTF8
 if($JobFile) {$job | Set-Content -LiteralPath $JobFile -Encoding UTF8}
 $env:ORB60_HLS_JOB=$job.Replace('\','/')
@@ -57,6 +90,12 @@ $env:ORB60_HLS_KERNEL=$Kernel
 $env:ORB60_HLS_PERIOD=$Period.ToString([Globalization.CultureInfo]::InvariantCulture)
 $env:ORB60_HLS_COSIM=[int][bool]$Cosim
 $env:ORB60_HLS_CSIM_ONLY=[int][bool]$CsimOnly
+$env:ORB60_DESCRIPTOR_WIDTH_MODE=$DescriptorWidthMode
+$env:ORB60_DESCRIPTOR_PREFETCH=$DescriptorPrefetch
+$env:ORB60_DESCRIPTOR_PATCH32=[int][bool]$DescriptorPatch32
+$env:ORB60_LAYER_PPC=$LayerPpc;$env:ORB60_FAST_STAGED=[int][bool]$FastStaged
+$env:ORB60_LAYER_IO_OVERLAP=[int][bool]$LayerIoOverlap;$env:ORB60_LAYER_BRAM_FIFOS=[int][bool]$LayerBramFifos
+$env:ORB60_HLS_NO_EXPORT=[int][bool]$NoExport
 Write-Output "ORB60_HLS_JOB=$job"
 Push-Location $job
 try {

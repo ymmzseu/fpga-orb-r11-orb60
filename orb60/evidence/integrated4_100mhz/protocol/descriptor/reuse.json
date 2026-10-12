@@ -1,0 +1,10 @@
+{
+  "scope": "Reused identical completed isolated RTL/random AXI/reset/barrier evidence; no new unit simulation",
+  "kernel": "descriptor",
+  "previous_protocol": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_015229_datapath_axi_e33c74db",
+  "layer_hls_job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_013229_descriptor_d3f49663",
+  "rtl_files": 75,
+  "tests_identical": true,
+  "vectors_hash_checked": true,
+  "rtl_identical": true
+}

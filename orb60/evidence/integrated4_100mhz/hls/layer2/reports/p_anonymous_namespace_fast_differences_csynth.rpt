@@ -1,0 +1,216 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_fast_differences'
+================================================================
+* Date:           Tue Oct 13 02:32:37 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  1.306 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    290|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      -|      -|    -|
+|Register         |        -|    -|    138|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    138|    290|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |sub_ln11_10_fu_308_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_11_fu_323_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_12_fu_338_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_13_fu_353_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_14_fu_368_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_15_fu_383_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_1_fu_173_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_2_fu_188_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_3_fu_203_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_4_fu_218_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_5_fu_233_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_6_fu_248_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_7_fu_263_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_8_fu_278_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_9_fu_293_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln11_fu_158_p2     |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_10_fu_314_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_11_fu_329_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_12_fu_344_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_13_fu_359_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_14_fu_374_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_15_fu_389_p2  |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_1_fu_179_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_2_fu_194_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_3_fu_209_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_4_fu_224_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_5_fu_239_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_6_fu_254_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_7_fu_269_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_8_fu_284_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_9_fu_299_p2   |         -|   0|  0|   9|           9|           9|
+    |sub_ln12_fu_164_p2     |         -|   0|  0|   9|           9|           9|
+    |ap_enable_pp0          |       xor|   0|  0|   2|           1|           2|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0| 290|         289|         290|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +--------------------------+---+----+-----+-----------+
+    |           Name           | FF| LUT| Bits| Const Bits|
+    +--------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                 |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1   |  1|   0|    1|          0|
+    |center_read_reg_667       |  8|   0|    8|          0|
+    |ring_0_val_read_reg_662   |  8|   0|    8|          0|
+    |ring_10_val_read_reg_612  |  8|   0|    8|          0|
+    |ring_11_val_read_reg_607  |  8|   0|    8|          0|
+    |ring_12_val_read_reg_602  |  8|   0|    8|          0|
+    |ring_13_val_read_reg_597  |  8|   0|    8|          0|
+    |ring_14_val_read_reg_592  |  8|   0|    8|          0|
+    |ring_15_val_read_reg_587  |  8|   0|    8|          0|
+    |ring_1_val_read_reg_657   |  8|   0|    8|          0|
+    |ring_2_val_read_reg_652   |  8|   0|    8|          0|
+    |ring_3_val_read_reg_647   |  8|   0|    8|          0|
+    |ring_4_val_read_reg_642   |  8|   0|    8|          0|
+    |ring_5_val_read_reg_637   |  8|   0|    8|          0|
+    |ring_6_val_read_reg_632   |  8|   0|    8|          0|
+    |ring_7_val_read_reg_627   |  8|   0|    8|          0|
+    |ring_8_val_read_reg_622   |  8|   0|    8|          0|
+    |ring_9_val_read_reg_617   |  8|   0|    8|          0|
+    +--------------------------+---+----+-----+-----------+
+    |Total                     |138|   0|  138|          0|
+    +--------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------+-----+-----+------------+---------------------------------------+--------------+
+|   RTL Ports  | Dir | Bits|  Protocol  |             Source Object             |    C Type    |
++--------------+-----+-----+------------+---------------------------------------+--------------+
+|ap_clk        |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_rst        |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_start      |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_done       |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_idle       |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_ready      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_ce         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_0   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_1   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_2   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_3   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_4   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_5   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_6   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_7   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_8   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_9   |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_10  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_11  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_12  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_13  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_14  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_15  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_16  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_17  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_18  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_19  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_20  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_21  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_22  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_23  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_24  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_25  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_26  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_27  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_28  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_29  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_30  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|ap_return_31  |  out|    9|  ap_ctrl_hs|  (anonymous namespace)fast_differences|  return value|
+|center        |   in|    8|     ap_none|                                 center|        scalar|
+|ring_0_val    |   in|    8|     ap_none|                             ring_0_val|        scalar|
+|ring_1_val    |   in|    8|     ap_none|                             ring_1_val|        scalar|
+|ring_2_val    |   in|    8|     ap_none|                             ring_2_val|        scalar|
+|ring_3_val    |   in|    8|     ap_none|                             ring_3_val|        scalar|
+|ring_4_val    |   in|    8|     ap_none|                             ring_4_val|        scalar|
+|ring_5_val    |   in|    8|     ap_none|                             ring_5_val|        scalar|
+|ring_6_val    |   in|    8|     ap_none|                             ring_6_val|        scalar|
+|ring_7_val    |   in|    8|     ap_none|                             ring_7_val|        scalar|
+|ring_8_val    |   in|    8|     ap_none|                             ring_8_val|        scalar|
+|ring_9_val    |   in|    8|     ap_none|                             ring_9_val|        scalar|
+|ring_10_val   |   in|    8|     ap_none|                            ring_10_val|        scalar|
+|ring_11_val   |   in|    8|     ap_none|                            ring_11_val|        scalar|
+|ring_12_val   |   in|    8|     ap_none|                            ring_12_val|        scalar|
+|ring_13_val   |   in|    8|     ap_none|                            ring_13_val|        scalar|
+|ring_14_val   |   in|    8|     ap_none|                            ring_14_val|        scalar|
+|ring_15_val   |   in|    8|     ap_none|                            ring_15_val|        scalar|
++--------------+-----+-----+------------+---------------------------------------+--------------+
+

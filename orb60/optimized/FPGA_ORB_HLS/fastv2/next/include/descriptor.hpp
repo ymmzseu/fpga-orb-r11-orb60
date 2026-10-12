@@ -1,6 +1,7 @@
 /* GPL-3.0-or-later: exact R11 A32 orientation and rotated BRIEF semantics. */
 #pragma once
 #include <cstdint>
+#include "descriptor_memory.hpp"
 namespace orb60 {
 constexpr uint32_t kDescriptorVersion=UINT32_C(0x00600002);
 /** Payload counts include aligned patch words. cycles excludes final stats write.
@@ -18,7 +19,7 @@ static_assert(sizeof(DescriptorStats)==64,"DescriptorStats ABI");
  * -2: invalid point/sample. Preserve records completed before the first bad point;
  * drain all channels after failure. Inputs/output/stats must have disjoint ownership.
  */
-extern "C" int fastv2_descriptor_hls(const uint64_t* raw,const uint64_t* blurred,
+extern "C" int fastv2_descriptor_hls(DescriptorReadPort raw,DescriptorReadPort blurred,
     const uint64_t* points,uint64_t* features,uint64_t* stats,int width,int height,
     int count,int level,int frame_offset,int capacity);
 #if !defined(__SYNTHESIS__) && !defined(FASTV2_HLS_CSIM)

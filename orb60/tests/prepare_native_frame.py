@@ -44,7 +44,7 @@ def prepare(args, scratch):
     desc_info = checked_vectors(args.descriptor / 'descriptor_vectors')
     assert Path(desc_info['source_vectors']).resolve() == images.resolve()
     declarations = ['input wire clk', 'input wire rst_n', 'output wire done [0:1]',
-                    'output wire profile_bits [0:255]']
+                    'output wire profile_bits [0:511]']
     memory = {
         'AWVALID': ('output', 1), 'AWREADY': ('input', 1), 'AWADDR': ('output', 32),
         'AWID': ('output', 1), 'AWLEN': ('output', 8), 'AWSIZE': ('output', 3), 'AWBURST': ('output', 2),
@@ -70,11 +70,21 @@ def prepare(args, scratch):
     manifest = []
     zero_delay_count = 0
     header = '#pragma once\n'
+    period_ps=None
     module_definitions = {}
     for index, kernel in enumerate(('layer2', 'descriptor')):
         job = getattr(args, 'layer' if index == 0 else 'descriptor')
         state = json.loads((job / 'status.json').read_text(encoding='utf-8-sig'))
         assert state['State'] == 'SUCCEEDED' and state['Cosim'] and state['Kernel'] == kernel
+        current_period=int(state['PeriodNs']*1000)
+        assert current_period in (8000,10000) and state['Part']=='xc7z015clg485-2', 'Native harness clock/part mismatch'
+        if period_ps is None:
+            period_ps=current_period
+            header+=f'constexpr unsigned CLOCK_PERIOD_PS={period_ps};\n'
+        else:assert period_ps==current_period,'Both IPs must be regenerated at the same clock'
+        if index==0:
+            ppc=state.get('LayerPpc',2);assert ppc in (2,4)
+            header+=f'constexpr unsigned LAYER_PPC={ppc},LAYER_VERSION=0x{(0x600003 if ppc==4 else 0x600001):x};\n'
         for entry in json.loads((job / 'source_manifest.json').read_text(encoding='utf-8-sig')):
             assert sha(job / 'inputs' / entry['Path']).upper() == entry['SHA256']
         rtl = job / f'projects/{kernel}/solution1/syn/verilog'

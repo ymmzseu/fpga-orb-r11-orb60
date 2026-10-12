@@ -1,0 +1,88 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Total Instructions per Compilation Phase
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Phase         | Step                        | Instructions | Description                                                                            |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Compile/Link  |                             | 3,375        | After all functions are compiled and linked into a single design                       |
+|               |                             |              |                                                                                        |
+| Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
+|               | (1) unroll                  | 1,656        | user unroll pragmas are applied                                                        |
+|               | (2) simplification          | 1,296        | simplification of applied user unroll pragmas                                          |
+|               | (3) inline                  | 1,321        | user inline pragmas are applied                                                        |
+|               | (4) simplification          | 1,306        | simplification of applied user inline pragmas                                          |
+|               |                             |              |                                                                                        |
+| Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
+|               | (1) array partition         | 1,621        | user array partition pragmas are applied                                               |
+|               | (2) simplification          | 1,467        | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  | 1,477        | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           | 1,715        | apply array reshape pragmas                                                            |
+|               | (5) access patterns         | 1,852        | array access pattern optmizations                                                      |
+|               |                             |              |                                                                                        |
+| Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
+|               | (1) loop simplification     | 1,815        | loop and instruction simplification                                                    |
+|               | (2) parallelization         | 1,706        | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) array partition         | 1,726        | arrays are partitioned to meet performance targets                                     |
+|               | (4) simplification          | 1,678        | simplification of design after performance transformations                             |
+|               |                             |              |                                                                                        |
+| HW Transforms |                             |              | After hardware transfomations                                                          |
+|               | (1) lowering                | 1,727        | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           | 1,823        | high level synthesis optimizations                                                     |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+
+* Instructions per Function for each Compilation Phase
++----------------------------+------------------------+-----------------+---------------+--------------+-------------+---------------+
+| Function                   | Location               | Compile/Link    | Unroll/Inline | Array/Struct | Performance | HW Transforms |
++----------------------------+------------------------+-----------------+---------------+--------------+-------------+---------------+
+| + fastv2_descriptor_hls    | descriptor_hls.cpp:468 | 3,375           | 1,306         | 1,852        | 1,678       | 1,823         |
+|  + write_stats             | descriptor_hls.cpp:458 |  172 (2 calls)  |               |              |             |               |
+|     fields                 | descriptor_hls.cpp:47  |   60 (12 calls) |               |              |             |               |
+|  + descriptor_dataflow     | descriptor_hls.cpp:400 | 3,061           | 1,165         | 1,688        | 1,515       | 1,636         |
+|     load_points            | descriptor_hls.cpp:108 |   45            |   35          |   50         |   34        |   33          |
+|   + issue_raw_requests     | descriptor_hls.cpp:122 |  122            |   45          |   61         |   59        |   67          |
+|    + valid_point           | descriptor_hls.cpp:55  |   39            |               |              |             |               |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|      signed32              | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|   + issue_blur_requests    | descriptor_hls.cpp:139 |  144            |   60          |   76         |   73        |   81          |
+|    + valid_point           | descriptor_hls.cpp:55  |   39            |               |              |             |               |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|      signed32              | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|   + load_raw               | descriptor_hls.cpp:161 |  218            |   92          |  100         |   96        |  108          |
+|    + valid_point           | descriptor_hls.cpp:55  |   39            |               |              |             |               |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|      store_raw_metadata    | descriptor_hls.cpp:27  |   27            |               |              |             |               |
+|      signed32              | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|   + load_blur              | descriptor_hls.cpp:198 |  212            |   88          |   96         |   91        |   95          |
+|    + valid_point           | descriptor_hls.cpp:55  |   39            |               |              |             |               |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|      signed32              | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|   + compute_moments        | descriptor_hls.cpp:288 |  401            |  182          |  322         |  278        |  289          |
+|      raw_point             | descriptor_hls.cpp:37  |   21            |               |              |             |               |
+|    + compute_patch_moments | descriptor_hls.cpp:258 |  300            |  114          |  237         |  199        |  211          |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|       raw_pixel            | descriptor_hls.cpp:236 |   48 (3 calls)  |               |              |             |               |
+|   + compute_angles         | descriptor_hls.cpp:301 | 1,096           |  135          |  197         |  193        |  209          |
+|    + precise_angle         | descriptor_hls.cpp:69  | 1,006           |   87          |   89         |   87        |   90          |
+|       shift_floor          | descriptor_hls.cpp:60  |  180 (4 calls)  |               |              |             |               |
+|      quantize_angle        | descriptor_hls.cpp:94  |   23            |   16          |   17         |   16        |   21          |
+|   + compute_brief          | descriptor_hls.cpp:352 |  520            |  344          |  551         |  485        |  491          |
+|    + brief_patch           | descriptor_hls.cpp:311 |  423            |  237          |  389         |  330        |  339          |
+|       signed32             | descriptor_hls.cpp:51  |   18 (2 calls)  |               |              |             |               |
+|       signed6              | descriptor_hls.cpp:246 |   36 (4 calls)  |               |              |             |               |
+|       rotate               | descriptor_hls.cpp:250 |   54 (2 calls)  |               |              |             |               |
+|       blur_pixel           | descriptor_hls.cpp:241 |   32 (2 calls)  |               |              |             |               |
+|       fields               | descriptor_hls.cpp:47  |   25 (5 calls)  |               |              |             |               |
+|     write_features         | descriptor_hls.cpp:370 |   50            |   60          |   94         |   70        |   90          |
+|     count_cycles           | descriptor_hls.cpp:383 |   93            |   65          |   89         |   84        |  117          |
++----------------------------+------------------------+-----------------+---------------+--------------+-------------+---------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+

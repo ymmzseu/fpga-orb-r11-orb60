@@ -1,10 +1,19 @@
 #pragma once
 #include <cstdint>
+#ifndef ORB60_LAYER_PPC
+#define ORB60_LAYER_PPC 2
+#endif
+#if ORB60_LAYER_PPC != 2 && ORB60_LAYER_PPC != 4
+#error "ORB60 layer PPC must be 2 or 4"
+#endif
 
 namespace orb60 {
-constexpr uint32_t kLayerVersion = UINT32_C(0x00600001);
+constexpr int kLayerPpc=ORB60_LAYER_PPC;
+constexpr uint32_t kLayerVersion = ORB60_LAYER_PPC==4 ? UINT32_C(0x00600003) : UINT32_C(0x00600001);
 /** Counters describe this layer; dataflow_cycles excludes final statistics write.
  * AXI byte counts describe issued payload, including final 64-bit padding.
+ * Version 0x600003 counts source/blur quads and variable-width Resize packets in
+ * the legacy *_pairs fields. Resize has one packet per source quad/active row.
  * Host functional execution has no cycle model and produces dataflow_cycles=1.
  */
 struct LayerStats {

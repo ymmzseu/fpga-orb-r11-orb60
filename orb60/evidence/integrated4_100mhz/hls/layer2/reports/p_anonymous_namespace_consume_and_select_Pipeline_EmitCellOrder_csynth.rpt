@@ -1,0 +1,154 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_consume_and_select_Pipeline_EmitCellOrder'
+================================================================
+* Date:           Tue Oct 13 02:32:58 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.848 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |      206|      206|  2.060 us|  2.060 us|  205|  205|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                 |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- EmitCellOrder  |      204|      204|         2|          1|          1|   204|       yes|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     67|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|     44|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     44|    112|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |add_ln492_fu_130_p2       |         +|   0|  0|   8|           8|           1|
+    |output_index_2_fu_234_p2  |         +|   0|  0|  32|          32|           1|
+    |ap_condition_236          |       and|   0|  0|   1|           1|           1|
+    |icmp_ln492_fu_124_p2      |      icmp|   0|  0|   8|           8|           7|
+    |icmp_ln494_1_fu_169_p2    |      icmp|   0|  0|   8|           8|           1|
+    |icmp_ln494_fu_136_p2      |      icmp|   0|  0|   8|           8|           8|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0|  67|          66|          21|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_cell_5  |   9|          2|    8|         16|
+    |cell_fu_58               |   9|          2|    8|         16|
+    |output_index_fu_62       |   9|          2|   32|         64|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|   50|        100|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |cell_fu_58               |   8|   0|    8|          0|
+    |icmp_ln494_reg_263       |   1|   0|    1|          0|
+    |output_index_fu_62       |  32|   0|   32|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  44|   0|   44|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |                          Source Object                         |    C Type    |
++------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+|ap_clk                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|ap_rst                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|ap_start                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|ap_done                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|ap_idle                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|ap_ready                |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_EmitCellOrder|  return value|
+|point_words_1_address0  |  out|    8|   ap_memory|                                                   point_words_1|         array|
+|point_words_1_ce0       |  out|    1|   ap_memory|                                                   point_words_1|         array|
+|point_words_1_we0       |  out|    1|   ap_memory|                                                   point_words_1|         array|
+|point_words_1_d0        |  out|   43|   ap_memory|                                                   point_words_1|         array|
+|point_words_address0    |  out|    8|   ap_memory|                                                     point_words|         array|
+|point_words_ce0         |  out|    1|   ap_memory|                                                     point_words|         array|
+|point_words_we0         |  out|    1|   ap_memory|                                                     point_words|         array|
+|point_words_d0          |  out|   43|   ap_memory|                                                     point_words|         array|
+|cell_count              |   in|    8|     ap_none|                                                      cell_count|        scalar|
+|best_low_address0       |  out|    8|   ap_memory|                                                        best_low|         array|
+|best_low_ce0            |  out|    1|   ap_memory|                                                        best_low|         array|
+|best_low_q0             |   in|   41|   ap_memory|                                                        best_low|         array|
++------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+

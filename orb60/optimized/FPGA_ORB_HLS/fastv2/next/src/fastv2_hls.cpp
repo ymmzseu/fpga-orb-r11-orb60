@@ -120,10 +120,27 @@ void maximum_stage(const ScoreSigned input[N], ScoreSigned output[N / 2]) {
     }
 }
 
+#if ORB60_FAST_STAGED
+#include "fast_stages.hpp"
+#endif
 uint8_t fast_score(uint8_t center, const uint8_t ring[16]) {
 #pragma HLS INLINE off
 #pragma HLS PIPELINE II=1
 #pragma HLS ARRAY_PARTITION variable=ring complete dim=1
+#if ORB60_FAST_STAGED
+    ScoreSigned bright[16],dark[16],bright3[16],dark3[16],bright9[16],dark9[16],response_by_start[16];
+#pragma HLS ARRAY_PARTITION variable=bright complete
+#pragma HLS ARRAY_PARTITION variable=dark complete
+#pragma HLS ARRAY_PARTITION variable=bright3 complete
+#pragma HLS ARRAY_PARTITION variable=dark3 complete
+#pragma HLS ARRAY_PARTITION variable=bright9 complete
+#pragma HLS ARRAY_PARTITION variable=dark9 complete
+#pragma HLS ARRAY_PARTITION variable=response_by_start complete
+    fast_differences(center,ring,bright,dark);
+    fast_arc_minimum<1>(bright,bright3);fast_arc_minimum<1>(dark,dark3);
+    fast_arc_minimum<3>(bright3,bright9);fast_arc_minimum<3>(dark3,dark9);
+    fast_arc_response(bright9,dark9,response_by_start);
+#else
     ScoreSigned difference[16];
     ScoreSigned minimum3[16], maximum3[16], response_by_start[16];
 #pragma HLS ARRAY_PARTITION variable=difference complete dim=1
@@ -161,6 +178,7 @@ uint8_t fast_score(uint8_t center, const uint8_t ring[16]) {
         response_by_start[start] = low > negative_high ? low : negative_high;
     }
 
+#endif
     ScoreSigned tree8[8], tree4[4], tree2[2], tree1[1];
 #pragma HLS ARRAY_PARTITION variable=tree8 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=tree4 complete dim=1
@@ -482,6 +500,10 @@ BuildWinners:
         }
     } else {
         TournamentPoint tree[512];
+        // Child indices have opposite parity. Two true-dual-port banks can
+        // serve both child reads and the one parent write without divide-by-3
+        // address mapping. Preserve real dependencies and the II<=2 gate.
+#pragma HLS ARRAY_PARTITION variable=tree cyclic factor=2 dim=1
 #pragma HLS BIND_STORAGE variable=tree type=ram_t2p impl=bram
     InitializeTournamentLeaves:
         for (int cell=0;cell<256;++cell) {
