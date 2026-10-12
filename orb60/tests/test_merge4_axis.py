@@ -24,7 +24,7 @@ async def quad_masks_random_backpressure_reset(dut):
     assert len(dut.packets_TDATA)==264 and len(dut.tokens_TDATA)==64
     dut.ap_rst_n.value=0;dut.ap_start.value=0;dut.packets_TVALID.value=0
     dut.packets_TDATA.value=0;dut.tokens_TREADY.value=0
-    cocotb.start_soon(Clock(dut.ap_clk,10,unit='ns').start())
+    cocotb.start_soon(Clock(dut.ap_clk,int(os.environ.get('ORB60_MERGE4_CLOCK_PS','10000')),unit='ps').start())
     rng=random.Random(604404)
     async def reset():
         await FallingEdge(dut.ap_clk)

@@ -1,0 +1,146 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_read_front2_words_Pipeline_VITIS_LOOP_12_2'
+================================================================
+* Date:           Tue Oct 13 03:05:34 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.691 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max   | min | max |                      Type                      |
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |        2|       66|  16.000 ns|  0.528 us|    1|   65|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- VITIS_LOOP_12_2  |        0|       64|         2|          1|          1|  0 ~ 64|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     28|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|     10|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     10|     73|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |add_ln12_fu_97_p2          |         +|   0|  0|   7|           7|           1|
+    |ap_block_pp0_stage0_01001  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln12_fu_91_p2         |      icmp|   0|  0|  18|          18|          18|
+    |ap_enable_pp0              |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0|  28|          27|          22|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_9     |   9|          2|    7|         14|
+    |i_fu_48                  |   9|          2|    7|         14|
+    |words_blk_n              |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|   17|         34|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |i_fu_48                  |  7|   0|    7|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    | 10|   0|   10|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |                          Source Object                          |    C Type    |
++----------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)read_front2_words_Pipeline_VITIS_LOOP_12_2|  return value|
+|words_din             |  out|   64|     ap_fifo|                                                            words|       pointer|
+|words_full_n          |   in|    1|     ap_fifo|                                                            words|       pointer|
+|words_write           |  out|    1|     ap_fifo|                                                            words|       pointer|
+|words_num_data_valid  |   in|   32|     ap_fifo|                                                            words|       pointer|
+|words_fifo_cap        |   in|   32|     ap_fifo|                                                            words|       pointer|
+|n                     |   in|   18|     ap_none|                                                                n|        scalar|
+|block_r_address0      |  out|    6|   ap_memory|                                                          block_r|         array|
+|block_r_ce0           |  out|    1|   ap_memory|                                                          block_r|         array|
+|block_r_q0            |   in|   64|   ap_memory|                                                          block_r|         array|
++----------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+

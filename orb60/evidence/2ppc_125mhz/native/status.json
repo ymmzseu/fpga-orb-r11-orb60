@@ -1,0 +1,13 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "ProcessId": 36440,
+  "StartedUtc": "2026-10-12T18:31:29.588810+00:00",
+  "Scope": "Actual two-core RTL, one randomized arbitrated DDR model; host scheduling only, no PS firmware/AMD DDR PHY/board claim",
+  "LayerHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_c9702f6b",
+  "DescriptorHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_descriptor_2730a8cf",
+  "BenchmarkJob": "D:\\pld\\orb60\\build\\optimized\\benchmark\\20261012_122652_layer2_benchmark_56a61151",
+  "ProtocolJob": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_032618_datapath_axi_43b1d9fc",
+  "Scratch": "D:\\pld\\.work\\vivado\\orb60\\nd6a76172",
+  "FinishedUtc": "2026-10-12T18:36:03.020924+00:00"
+}

@@ -1,0 +1,186 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_compute_angles'
+================================================================
+* Date:           Tue Oct 13 03:04:33 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+-----------+------------+
+    |  Clock |  Target | Estimated | Uncertainty|
+    +--------+---------+-----------+------------+
+    |ap_clk  |  8.00 ns|  12.077 ns|     2.16 ns|
+    +--------+---------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                 |                                      |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                     Instance                    |                Module                |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_p_anonymous_namespace_precise_angle_fu_120   |p_anonymous_namespace_precise_angle   |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |grp_p_anonymous_namespace_quantize_angle_fu_128  |p_anonymous_namespace_quantize_angle  |       11|       11|  0.133 us|  0.133 us|   11|   11|       no|
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip  |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+        |- VITIS_LOOP_303_1  |        ?|        ?|         ?|          -|          -|  0 ~ 256|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     53|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        0|    -|    481|   2025|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     97|    -|
+|Register         |        -|    -|    312|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    793|   2175|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|      4|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------+--------------------------------------+---------+----+-----+------+-----+
+    |                     Instance                    |                Module                | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +-------------------------------------------------+--------------------------------------+---------+----+-----+------+-----+
+    |grp_p_anonymous_namespace_precise_angle_fu_120   |p_anonymous_namespace_precise_angle   |        0|   0|  340|  1690|    0|
+    |grp_p_anonymous_namespace_quantize_angle_fu_128  |p_anonymous_namespace_quantize_angle  |        0|   0|  141|   335|    0|
+    +-------------------------------------------------+--------------------------------------+---------+----+-----+------+-----+
+    |Total                                            |                                      |        0|   0|  481|  2025|    0|
+    +-------------------------------------------------+--------------------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |i_16_fu_148_p2                   |         +|   0|  0|   9|           9|           1|
+    |ap_block_state2                  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state5_on_subcall_done  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln303_fu_143_p2             |      icmp|   0|  0|   9|           9|           9|
+    |icmp_ln305_fu_184_p2             |      icmp|   0|  0|  32|          32|           1|
+    |ap_block_state1                  |        or|   0|  0|   1|           1|           1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0|  53|          53|          14|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------------+----+-----------+-----+-----------+
+    |                  Name                 | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------------+----+-----------+-----+-----------+
+    |angles_blk_n                           |   9|          2|    1|          2|
+    |ap_NS_fsm                              |  25|          6|    1|          6|
+    |ap_done                                |   9|          2|    1|          2|
+    |ap_phi_mux_packet_bin_1_phi_fu_113_p4  |   9|          2|    5|         10|
+    |count_blk_n                            |   9|          2|    1|          2|
+    |count_c5_blk_n                         |   9|          2|    1|          2|
+    |i_fu_78                                |   9|          2|    9|         18|
+    |moments_blk_n                          |   9|          2|    1|          2|
+    |packet_bin_1_reg_109                   |   9|          2|    5|         10|
+    +---------------------------------------+----+-----------+-----+-----------+
+    |Total                                  |  97|         22|   25|         54|
+    +---------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------------+-----+----+-----+-----------+
+    |                             Name                             |  FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                                                     |    5|   0|    5|          0|
+    |ap_done_reg                                                   |    1|   0|    1|          0|
+    |count_4_reg_213                                               |    9|   0|    9|          0|
+    |grp_p_anonymous_namespace_precise_angle_fu_120_ap_start_reg   |    1|   0|    1|          0|
+    |grp_p_anonymous_namespace_quantize_angle_fu_128_ap_start_reg  |    1|   0|    1|          0|
+    |i_16_reg_221                                                  |    9|   0|    9|          0|
+    |i_fu_78                                                       |    9|   0|    9|          0|
+    |icmp_ln305_reg_241                                            |    1|   0|    1|          0|
+    |moments_read_reg_226                                          |  202|   0|  202|          0|
+    |packet_bin_1_reg_109                                          |    5|   0|    5|          0|
+    |packet_moment_m01_reg_236                                     |   21|   0|   21|          0|
+    |packet_moment_m10_reg_231                                     |   21|   0|   21|          0|
+    |tmp_s_reg_245                                                 |   27|   0|   27|          0|
+    +--------------------------------------------------------------+-----+----+-----+-----------+
+    |Total                                                         |  312|   0|  312|          0|
+    +--------------------------------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+-------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++-------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_rst                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_start                 |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_done                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_continue              |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_idle                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|ap_ready                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_angles|  return value|
+|moments_dout             |   in|  202|     ap_fifo|                              moments|       pointer|
+|moments_empty_n          |   in|    1|     ap_fifo|                              moments|       pointer|
+|moments_read             |  out|    1|     ap_fifo|                              moments|       pointer|
+|moments_num_data_valid   |   in|    3|     ap_fifo|                              moments|       pointer|
+|moments_fifo_cap         |   in|    3|     ap_fifo|                              moments|       pointer|
+|count_dout               |   in|    9|     ap_fifo|                                count|       pointer|
+|count_empty_n            |   in|    1|     ap_fifo|                                count|       pointer|
+|count_read               |  out|    1|     ap_fifo|                                count|       pointer|
+|count_num_data_valid     |   in|    3|     ap_fifo|                                count|       pointer|
+|count_fifo_cap           |   in|    3|     ap_fifo|                                count|       pointer|
+|angles_din               |  out|  234|     ap_fifo|                               angles|       pointer|
+|angles_full_n            |   in|    1|     ap_fifo|                               angles|       pointer|
+|angles_write             |  out|    1|     ap_fifo|                               angles|       pointer|
+|angles_num_data_valid    |   in|    3|     ap_fifo|                               angles|       pointer|
+|angles_fifo_cap          |   in|    3|     ap_fifo|                               angles|       pointer|
+|count_c5_din             |  out|    9|     ap_fifo|                             count_c5|       pointer|
+|count_c5_full_n          |   in|    1|     ap_fifo|                             count_c5|       pointer|
+|count_c5_write           |  out|    1|     ap_fifo|                             count_c5|       pointer|
+|count_c5_num_data_valid  |   in|    3|     ap_fifo|                             count_c5|       pointer|
+|count_c5_fifo_cap        |   in|    3|     ap_fifo|                             count_c5|       pointer|
++-------------------------+-----+-----+------------+-------------------------------------+--------------+
+

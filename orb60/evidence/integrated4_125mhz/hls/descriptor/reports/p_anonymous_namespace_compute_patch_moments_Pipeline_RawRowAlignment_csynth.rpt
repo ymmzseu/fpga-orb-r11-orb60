@@ -1,0 +1,243 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_compute_patch_moments_Pipeline_RawRowAlignment'
+================================================================
+* Date:           Tue Oct 13 03:04:30 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.834 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |       33|       33|  0.264 us|  0.264 us|   32|   32|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- RawRowAlignment  |       31|       31|         2|          1|          1|    31|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     32|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    0|      0|      9|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     36|    -|
+|Register         |        -|    -|    109|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    109|     77|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------+-----------------+---------+----+---+----+-----+
+    |       Instance      |      Module     | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------+-----------------+---------+----+---+----+-----+
+    |mul_3s_3s_3_1_1_U75  |mul_3s_3s_3_1_1  |        0|   0|  0|   9|    0|
+    +---------------------+-----------------+---------+----+---+----+-----+
+    |Total                |                 |        0|   0|  0|   9|    0|
+    +---------------------+-----------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+----+---+----+------------+------------+
+    |add_ln264_fu_529_p2     |         +|   0|  0|   7|           5|           1|
+    |add_ln266_1_fu_539_p2   |         +|   0|  0|   4|           3|           1|
+    |add_ln266_2_fu_562_p2   |         +|   0|  0|   4|           3|           1|
+    |mul_ln266_fu_551_p0     |         +|   0|  0|   4|           3|           3|
+    |raw_align_30_fu_567_p2  |         +|   0|  0|   4|           3|           3|
+    |icmp_ln264_fu_523_p2    |      icmp|   0|  0|   7|           5|           2|
+    |ap_enable_pp0           |       xor|   0|  0|   2|           1|           2|
+    +------------------------+----------+----+---+----+------------+------------+
+    |Total                   |          |   0|  0|  32|          23|          13|
+    +------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_row_5   |   9|          2|    5|         10|
+    |row_fu_152               |   9|          2|    5|         10|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   12|         24|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |empty_367_fu_156         |  3|   0|    8|          5|
+    |mul_ln266_reg_1060       |  3|   0|    3|          0|
+    |raw_align_10_fu_200      |  3|   0|    8|          5|
+    |raw_align_11_fu_204      |  3|   0|    8|          5|
+    |raw_align_12_fu_208      |  3|   0|    8|          5|
+    |raw_align_13_fu_212      |  3|   0|    8|          5|
+    |raw_align_14_fu_216      |  3|   0|    8|          5|
+    |raw_align_15_fu_220      |  3|   0|    8|          5|
+    |raw_align_16_fu_224      |  3|   0|    8|          5|
+    |raw_align_17_fu_228      |  3|   0|    8|          5|
+    |raw_align_18_fu_232      |  3|   0|    8|          5|
+    |raw_align_19_fu_236      |  3|   0|    8|          5|
+    |raw_align_1_fu_164       |  3|   0|    8|          5|
+    |raw_align_20_fu_240      |  3|   0|    8|          5|
+    |raw_align_21_fu_244      |  3|   0|    8|          5|
+    |raw_align_22_fu_248      |  3|   0|    8|          5|
+    |raw_align_23_fu_252      |  3|   0|    8|          5|
+    |raw_align_24_fu_256      |  3|   0|    8|          5|
+    |raw_align_25_fu_260      |  3|   0|    8|          5|
+    |raw_align_26_fu_264      |  3|   0|    8|          5|
+    |raw_align_27_fu_268      |  3|   0|    8|          5|
+    |raw_align_28_fu_272      |  3|   0|    8|          5|
+    |raw_align_29_fu_276      |  3|   0|    8|          5|
+    |raw_align_2_fu_168       |  3|   0|    8|          5|
+    |raw_align_3_fu_172       |  3|   0|    8|          5|
+    |raw_align_4_fu_176       |  3|   0|    8|          5|
+    |raw_align_5_fu_180       |  3|   0|    8|          5|
+    |raw_align_6_fu_184       |  3|   0|    8|          5|
+    |raw_align_7_fu_188       |  3|   0|    8|          5|
+    |raw_align_8_fu_192       |  3|   0|    8|          5|
+    |raw_align_9_fu_196       |  3|   0|    8|          5|
+    |raw_align_fu_160         |  3|   0|    8|          5|
+    |row_5_reg_1053           |  5|   0|    5|          0|
+    |row_fu_152               |  5|   0|    5|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    |109|   0|  264|        155|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+---------------------------------------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |                            Source Object                            |    C Type    |
++-------------------------+-----+-----+------------+---------------------------------------------------------------------+--------------+
+|ap_clk                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|ap_rst                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|ap_start                 |   in|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|ap_done                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|ap_idle                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|ap_ready                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)compute_patch_moments_Pipeline_RawRowAlignment|  return value|
+|cy                       |   in|    3|     ap_none|                                                                   cy|        scalar|
+|width                    |   in|    3|     ap_none|                                                                width|        scalar|
+|empty                    |   in|    3|     ap_none|                                                                empty|        scalar|
+|raw_align_29_out         |  out|    8|      ap_vld|                                                     raw_align_29_out|       pointer|
+|raw_align_29_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_29_out|       pointer|
+|raw_align_28_out         |  out|    8|      ap_vld|                                                     raw_align_28_out|       pointer|
+|raw_align_28_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_28_out|       pointer|
+|raw_align_27_out         |  out|    8|      ap_vld|                                                     raw_align_27_out|       pointer|
+|raw_align_27_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_27_out|       pointer|
+|raw_align_26_out         |  out|    8|      ap_vld|                                                     raw_align_26_out|       pointer|
+|raw_align_26_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_26_out|       pointer|
+|raw_align_25_out         |  out|    8|      ap_vld|                                                     raw_align_25_out|       pointer|
+|raw_align_25_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_25_out|       pointer|
+|raw_align_24_out         |  out|    8|      ap_vld|                                                     raw_align_24_out|       pointer|
+|raw_align_24_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_24_out|       pointer|
+|raw_align_23_out         |  out|    8|      ap_vld|                                                     raw_align_23_out|       pointer|
+|raw_align_23_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_23_out|       pointer|
+|raw_align_22_out         |  out|    8|      ap_vld|                                                     raw_align_22_out|       pointer|
+|raw_align_22_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_22_out|       pointer|
+|raw_align_21_out         |  out|    8|      ap_vld|                                                     raw_align_21_out|       pointer|
+|raw_align_21_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_21_out|       pointer|
+|raw_align_20_out         |  out|    8|      ap_vld|                                                     raw_align_20_out|       pointer|
+|raw_align_20_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_20_out|       pointer|
+|raw_align_19_out         |  out|    8|      ap_vld|                                                     raw_align_19_out|       pointer|
+|raw_align_19_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_19_out|       pointer|
+|raw_align_18_out         |  out|    8|      ap_vld|                                                     raw_align_18_out|       pointer|
+|raw_align_18_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_18_out|       pointer|
+|raw_align_17_out         |  out|    8|      ap_vld|                                                     raw_align_17_out|       pointer|
+|raw_align_17_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_17_out|       pointer|
+|raw_align_16_out         |  out|    8|      ap_vld|                                                     raw_align_16_out|       pointer|
+|raw_align_16_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_16_out|       pointer|
+|raw_align_15_out         |  out|    8|      ap_vld|                                                     raw_align_15_out|       pointer|
+|raw_align_15_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_15_out|       pointer|
+|raw_align_14_out         |  out|    8|      ap_vld|                                                     raw_align_14_out|       pointer|
+|raw_align_14_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_14_out|       pointer|
+|raw_align_13_out         |  out|    8|      ap_vld|                                                     raw_align_13_out|       pointer|
+|raw_align_13_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_13_out|       pointer|
+|raw_align_12_out         |  out|    8|      ap_vld|                                                     raw_align_12_out|       pointer|
+|raw_align_12_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_12_out|       pointer|
+|raw_align_11_out         |  out|    8|      ap_vld|                                                     raw_align_11_out|       pointer|
+|raw_align_11_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_11_out|       pointer|
+|raw_align_10_out         |  out|    8|      ap_vld|                                                     raw_align_10_out|       pointer|
+|raw_align_10_out_ap_vld  |  out|    1|      ap_vld|                                                     raw_align_10_out|       pointer|
+|raw_align_9_out          |  out|    8|      ap_vld|                                                      raw_align_9_out|       pointer|
+|raw_align_9_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_9_out|       pointer|
+|raw_align_8_out          |  out|    8|      ap_vld|                                                      raw_align_8_out|       pointer|
+|raw_align_8_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_8_out|       pointer|
+|raw_align_7_out          |  out|    8|      ap_vld|                                                      raw_align_7_out|       pointer|
+|raw_align_7_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_7_out|       pointer|
+|raw_align_6_out          |  out|    8|      ap_vld|                                                      raw_align_6_out|       pointer|
+|raw_align_6_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_6_out|       pointer|
+|raw_align_5_out          |  out|    8|      ap_vld|                                                      raw_align_5_out|       pointer|
+|raw_align_5_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_5_out|       pointer|
+|raw_align_4_out          |  out|    8|      ap_vld|                                                      raw_align_4_out|       pointer|
+|raw_align_4_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_4_out|       pointer|
+|raw_align_3_out          |  out|    8|      ap_vld|                                                      raw_align_3_out|       pointer|
+|raw_align_3_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_3_out|       pointer|
+|raw_align_2_out          |  out|    8|      ap_vld|                                                      raw_align_2_out|       pointer|
+|raw_align_2_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_2_out|       pointer|
+|raw_align_1_out          |  out|    8|      ap_vld|                                                      raw_align_1_out|       pointer|
+|raw_align_1_out_ap_vld   |  out|    1|      ap_vld|                                                      raw_align_1_out|       pointer|
+|raw_align_out            |  out|    8|      ap_vld|                                                        raw_align_out|       pointer|
+|raw_align_out_ap_vld     |  out|    1|      ap_vld|                                                        raw_align_out|       pointer|
+|p_out                    |  out|    8|      ap_vld|                                                                p_out|       pointer|
+|p_out_ap_vld             |  out|    1|      ap_vld|                                                                p_out|       pointer|
++-------------------------+-----+-----+------------+---------------------------------------------------------------------+--------------+
+

@@ -1,0 +1,491 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Tue Oct 13 03:44:42 2026
+| Host         : ymmz666 running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 10 -nworst 2 -file D:/pld/.work/vivado/orb60/i6685ae8e/vivado/post_route_hold_paths.rpt
+| Design       : s_wrapper
+| Device       : 7z015-clg485
+| Speed File   : -2  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.015ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.396ns  (logic 0.249ns (62.821%)  route 0.147ns (37.179%))
+  Logic Levels:           2  (CARRY4=1 LUT3=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.219ns
+    Source Clock Delay      (SCD):    0.912ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.583     0.912    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/ap_clk
+    SLICE_X81Y50         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X81Y50         FDRE (Prop_fdre_C_Q)         0.141     1.053 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/Q
+                         net (fo=1, routed)           0.147     1.200    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/mul_loc_c_U/count_reg_318_reg[17][2]
+    SLICE_X80Y49         LUT3 (Prop_lut3_I0_O)        0.045     1.245 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/add_ln48_fu_175_p2_carry_i_2/O
+                         net (fo=1, routed)           0.000     1.245    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/dout[2]
+    SLICE_X80Y49         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.063     1.308 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/add_ln48_fu_175_p2_carry/O[3]
+                         net (fo=1, routed)           0.000     1.308    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/zext_ln48_fu_191_p1[1]
+    SLICE_X80Y49         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.859     1.219    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/ap_clk
+    SLICE_X80Y49         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/C
+                         clock pessimism             -0.031     1.188    
+    SLICE_X80Y49         FDRE (Hold_fdre_C_D)         0.105     1.293    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -1.293    
+                         arrival time                           1.308    
+  -------------------------------------------------------------------
+                         slack                                  0.015    
+
+Slack (MET) :             0.015ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.396ns  (logic 0.249ns (62.821%)  route 0.147ns (37.179%))
+  Logic Levels:           2  (CARRY4=1 LUT3=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.219ns
+    Source Clock Delay      (SCD):    0.912ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.583     0.912    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/ap_clk
+    SLICE_X81Y50         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X81Y50         FDRE (Prop_fdre_C_Q)         0.141     1.053 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/SRL_SIG_reg[1][4]/Q
+                         net (fo=1, routed)           0.147     1.200    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/mul_loc_c_U/count_reg_318_reg[17][2]
+    SLICE_X80Y49         LUT3 (Prop_lut3_I0_O)        0.045     1.245 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/mul_loc_c_U/U_fastv2_layer2_hls_fifo_w20_d2_S_x_ShiftReg/add_ln48_fu_175_p2_carry_i_2/O
+                         net (fo=1, routed)           0.000     1.245    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/dout[2]
+    SLICE_X80Y49         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.063     1.308 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/add_ln48_fu_175_p2_carry/O[3]
+                         net (fo=1, routed)           0.000     1.308    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/zext_ln48_fu_191_p1[1]
+    SLICE_X80Y49         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.859     1.219    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/ap_clk
+    SLICE_X80Y49         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]/C
+                         clock pessimism             -0.031     1.188    
+    SLICE_X80Y49         FDRE (Hold_fdre_C_D)         0.105     1.293    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_layer4_write_dataflow_0_U0/p_anonymous_namespace_flush_layer_blocks_0_U0/count_reg_318_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -1.293    
+                         arrival time                           1.308    
+  -------------------------------------------------------------------
+                         slack                                  0.015    
+
+Slack (MET) :             0.040ns  (arrival time - required time)
+  Source:                 s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.421ns  (logic 0.275ns (65.323%)  route 0.146ns (34.677%))
+  Logic Levels:           2  (CARRY4=1 LUT2=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.193ns
+    Source Clock Delay      (SCD):    0.886ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.557     0.886    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/ap_clk
+    SLICE_X66Y50         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X66Y50         FDRE (Prop_fdre_C_Q)         0.164     1.050 r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/Q
+                         net (fo=2, routed)           0.146     1.196    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/Q[16]
+    SLICE_X67Y49         LUT2 (Prop_lut2_I0_O)        0.045     1.241 r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2_i_2/O
+                         net (fo=1, routed)           0.000     1.241    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2_i_2_n_17
+    SLICE_X67Y49         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.066     1.307 r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2/O[2]
+                         net (fo=1, routed)           0.000     1.307    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/p_0_in[16]
+    SLICE_X67Y49         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.833     1.193    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/ap_clk
+    SLICE_X67Y49         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/C
+                         clock pessimism             -0.031     1.162    
+    SLICE_X67Y49         FDRE (Hold_fdre_C_D)         0.105     1.267    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.267    
+                         arrival time                           1.307    
+  -------------------------------------------------------------------
+                         slack                                  0.040    
+
+Slack (MET) :             0.040ns  (arrival time - required time)
+  Source:                 s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.421ns  (logic 0.275ns (65.323%)  route 0.146ns (34.677%))
+  Logic Levels:           2  (CARRY4=1 LUT2=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.193ns
+    Source Clock Delay      (SCD):    0.886ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.557     0.886    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/ap_clk
+    SLICE_X66Y50         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X66Y50         FDRE (Prop_fdre_C_Q)         0.164     1.050 r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/features_1_reg_139_reg[19]/Q
+                         net (fo=2, routed)           0.146     1.196    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/Q[16]
+    SLICE_X67Y49         LUT2 (Prop_lut2_I0_O)        0.045     1.241 f  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2_i_2/O
+                         net (fo=1, routed)           0.000     1.241    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2_i_2_n_17
+    SLICE_X67Y49         CARRY4 (Prop_carry4_S[2]_O[2])
+                                                      0.066     1.307 r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/add_ln378_1_fu_359_p2_carry__2/O[2]
+                         net (fo=1, routed)           0.000     1.307    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/p_0_in[16]
+    SLICE_X67Y49         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.833     1.193    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/ap_clk
+    SLICE_X67Y49         FDRE                                         r  s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]/C
+                         clock pessimism             -0.031     1.162    
+    SLICE_X67Y49         FDRE (Hold_fdre_C_D)         0.105     1.267    s_i/desc/inst/grp_p_anonymous_namespace_descriptor_dataflow_fu_456/p_anonymous_namespace_write_features_U0/grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83/trunc_ln378_1_reg_472_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.267    
+                         arrival time                           1.307    
+  -------------------------------------------------------------------
+                         slack                                  0.040    
+
+Slack (MET) :             0.043ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/D
+                            (rising edge-triggered cell SRL16E clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.141ns (58.816%)  route 0.099ns (41.184%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.014ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.243ns
+    Source Clock Delay      (SCD):    0.941ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.612     0.941    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X103Y88        FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X103Y88        FDRE (Prop_fdre_C_Q)         0.141     1.082 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/Q
+                         net (fo=1, routed)           0.099     1.180    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179[7]
+    SLICE_X104Y87        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.883     1.243    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X104Y87        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/CLK
+                         clock pessimism             -0.288     0.955    
+    SLICE_X104Y87        SRL16E (Hold_srl16e_CLK_D)
+                                                      0.183     1.138    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6
+  -------------------------------------------------------------------
+                         required time                         -1.138    
+                         arrival time                           1.180    
+  -------------------------------------------------------------------
+                         slack                                  0.043    
+
+Slack (MET) :             0.043ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/D
+                            (rising edge-triggered cell SRL16E clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.141ns (58.816%)  route 0.099ns (41.184%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.014ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.243ns
+    Source Clock Delay      (SCD):    0.941ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.612     0.941    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X103Y88        FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X103Y88        FDRE (Prop_fdre_C_Q)         0.141     1.082 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_reg[7]/Q
+                         net (fo=1, routed)           0.099     1.180    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179[7]
+    SLICE_X104Y87        SRL16E                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.883     1.243    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X104Y87        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6/CLK
+                         clock pessimism             -0.288     0.955    
+    SLICE_X104Y87        SRL16E (Hold_srl16e_CLK_D)
+                                                      0.183     1.138    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/trunc_ln120_7_reg_5179_pp0_iter7_reg_reg[7]_srl6
+  -------------------------------------------------------------------
+                         required time                         -1.138    
+                         arrival time                           1.180    
+  -------------------------------------------------------------------
+                         slack                                  0.043    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/desc/inst/stats_read_reg_807_reg[12]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.364ns  (logic 0.164ns (45.058%)  route 0.200ns (54.942%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.266ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.188ns
+    Source Clock Delay      (SCD):    0.891ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.562     0.891    s_i/desc/inst/control_s_axi_U/ap_clk
+    SLICE_X62Y49         FDRE                                         r  s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y49         FDRE (Prop_fdre_C_Q)         0.164     1.055 r  s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/Q
+                         net (fo=3, routed)           0.200     1.254    s_i/desc/inst/stats[12]
+    SLICE_X62Y50         FDRE                                         r  s_i/desc/inst/stats_read_reg_807_reg[12]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.828     1.188    s_i/desc/inst/ap_clk
+    SLICE_X62Y50         FDRE                                         r  s_i/desc/inst/stats_read_reg_807_reg[12]/C
+                         clock pessimism             -0.031     1.157    
+    SLICE_X62Y50         FDRE (Hold_fdre_C_D)         0.053     1.210    s_i/desc/inst/stats_read_reg_807_reg[12]
+  -------------------------------------------------------------------
+                         required time                         -1.210    
+                         arrival time                           1.254    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/desc/inst/stats_read_reg_807_reg[12]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.364ns  (logic 0.164ns (45.058%)  route 0.200ns (54.942%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.266ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.188ns
+    Source Clock Delay      (SCD):    0.891ns
+    Clock Pessimism Removal (CPR):    0.031ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.562     0.891    s_i/desc/inst/control_s_axi_U/ap_clk
+    SLICE_X62Y49         FDRE                                         r  s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X62Y49         FDRE (Prop_fdre_C_Q)         0.164     1.055 f  s_i/desc/inst/control_s_axi_U/int_stats_reg[12]/Q
+                         net (fo=3, routed)           0.200     1.254    s_i/desc/inst/stats[12]
+    SLICE_X62Y50         FDRE                                         f  s_i/desc/inst/stats_read_reg_807_reg[12]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.828     1.188    s_i/desc/inst/ap_clk
+    SLICE_X62Y50         FDRE                                         r  s_i/desc/inst/stats_read_reg_807_reg[12]/C
+                         clock pessimism             -0.031     1.157    
+    SLICE_X62Y50         FDRE (Hold_fdre_C_D)         0.053     1.210    s_i/desc/inst/stats_read_reg_807_reg[12]
+  -------------------------------------------------------------------
+                         required time                         -1.210    
+                         arrival time                           1.254    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/D
+                            (rising edge-triggered cell SRL16E clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.244ns  (logic 0.141ns (57.816%)  route 0.103ns (42.184%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.016ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.243ns
+    Source Clock Delay      (SCD):    0.939ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.610     0.939    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X98Y89         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X98Y89         FDRE (Prop_fdre_C_Q)         0.141     1.080 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/Q
+                         net (fo=1, routed)           0.103     1.182    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162[7]
+    SLICE_X100Y88        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.883     1.243    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X100Y88        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/CLK
+                         clock pessimism             -0.288     0.955    
+    SLICE_X100Y88        SRL16E (Hold_srl16e_CLK_D)
+                                                      0.183     1.138    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6
+  -------------------------------------------------------------------
+                         required time                         -1.138    
+                         arrival time                           1.182    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/D
+                            (rising edge-triggered cell SRL16E clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.244ns  (logic 0.141ns (57.816%)  route 0.103ns (42.184%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.016ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.243ns
+    Source Clock Delay      (SCD):    0.939ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.610     0.939    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X98Y89         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X98Y89         FDRE (Prop_fdre_C_Q)         0.141     1.080 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_reg[7]/Q
+                         net (fo=1, routed)           0.103     1.182    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162[7]
+    SLICE_X100Y88        SRL16E                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=38964, routed)       0.883     1.243    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/ap_clk
+    SLICE_X100Y88        SRL16E                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6/CLK
+                         clock pessimism             -0.288     0.955    
+    SLICE_X100Y88        SRL16E (Hold_srl16e_CLK_D)
+                                                      0.183     1.138    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_716/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_768/response_3_reg_5162_pp0_iter7_reg_reg[7]_srl6
+  -------------------------------------------------------------------
+                         required time                         -1.138    
+                         arrival time                           1.182    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+
+
+

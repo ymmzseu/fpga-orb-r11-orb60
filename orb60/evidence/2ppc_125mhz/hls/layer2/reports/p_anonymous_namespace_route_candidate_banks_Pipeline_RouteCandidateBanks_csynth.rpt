@@ -1,0 +1,213 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks'
+================================================================
+* Date:           Tue Oct 13 03:05:45 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  3.688 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                       |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |       Loop Name       |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- RouteCandidateBanks  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +-----------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     19|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     99|    -|
+|Register         |        -|    -|     78|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     78|    118|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |             Variable Name             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |ap_block_pp0_stage0_01001_grp1         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp2         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp3         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp4         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp5         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp6         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp7         |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001_grp8         |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp1  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp2  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp3  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp4  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp5  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp6  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp7  |       and|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp8  |       and|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_01001              |        or|   0|  0|   1|           1|           1|
+    |ap_enable_pp0                          |       xor|   0|  0|   2|           1|           2|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                  |          |   0|  0|  19|          18|          19|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |banks_0_blk_n            |   9|          2|    1|          2|
+    |banks_1_blk_n            |   9|          2|    1|          2|
+    |banks_2_blk_n            |   9|          2|    1|          2|
+    |banks_3_blk_n            |   9|          2|    1|          2|
+    |banks_4_blk_n            |   9|          2|    1|          2|
+    |banks_5_blk_n            |   9|          2|    1|          2|
+    |banks_6_blk_n            |   9|          2|    1|          2|
+    |banks_7_blk_n            |   9|          2|    1|          2|
+    |candidates_blk_n         |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  99|         22|   11|         22|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------+----+----+-----+-----------+
+    |                    Name                   | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp1_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp2_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp3_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp4_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp5_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp6_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp7_done_reg  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp8_done_reg  |   1|   0|    1|          0|
+    |ap_done_reg                                |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                    |   1|   0|    1|          0|
+    |token_reg_156                              |  64|   0|   64|          0|
+    |trunc_ln4_reg_171                          |   3|   0|    3|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+    |Total                                      |  78|   0|   78|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+-------------------------------------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                              Source Object                              |    C Type    |
++---------------------------+-----+-----+------------+-------------------------------------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks_Pipeline_RouteCandidateBanks|  return value|
+|candidates_dout            |   in|   64|     ap_fifo|                                                               candidates|       pointer|
+|candidates_empty_n         |   in|    1|     ap_fifo|                                                               candidates|       pointer|
+|candidates_read            |  out|    1|     ap_fifo|                                                               candidates|       pointer|
+|candidates_num_data_valid  |   in|    8|     ap_fifo|                                                               candidates|       pointer|
+|candidates_fifo_cap        |   in|    8|     ap_fifo|                                                               candidates|       pointer|
+|banks_6_din                |  out|   64|     ap_fifo|                                                                  banks_6|       pointer|
+|banks_6_full_n             |   in|    1|     ap_fifo|                                                                  banks_6|       pointer|
+|banks_6_write              |  out|    1|     ap_fifo|                                                                  banks_6|       pointer|
+|banks_6_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_6|       pointer|
+|banks_6_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_6|       pointer|
+|banks_5_din                |  out|   64|     ap_fifo|                                                                  banks_5|       pointer|
+|banks_5_full_n             |   in|    1|     ap_fifo|                                                                  banks_5|       pointer|
+|banks_5_write              |  out|    1|     ap_fifo|                                                                  banks_5|       pointer|
+|banks_5_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_5|       pointer|
+|banks_5_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_5|       pointer|
+|banks_4_din                |  out|   64|     ap_fifo|                                                                  banks_4|       pointer|
+|banks_4_full_n             |   in|    1|     ap_fifo|                                                                  banks_4|       pointer|
+|banks_4_write              |  out|    1|     ap_fifo|                                                                  banks_4|       pointer|
+|banks_4_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_4|       pointer|
+|banks_4_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_4|       pointer|
+|banks_3_din                |  out|   64|     ap_fifo|                                                                  banks_3|       pointer|
+|banks_3_full_n             |   in|    1|     ap_fifo|                                                                  banks_3|       pointer|
+|banks_3_write              |  out|    1|     ap_fifo|                                                                  banks_3|       pointer|
+|banks_3_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_3|       pointer|
+|banks_3_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_3|       pointer|
+|banks_2_din                |  out|   64|     ap_fifo|                                                                  banks_2|       pointer|
+|banks_2_full_n             |   in|    1|     ap_fifo|                                                                  banks_2|       pointer|
+|banks_2_write              |  out|    1|     ap_fifo|                                                                  banks_2|       pointer|
+|banks_2_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_2|       pointer|
+|banks_2_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_2|       pointer|
+|banks_1_din                |  out|   64|     ap_fifo|                                                                  banks_1|       pointer|
+|banks_1_full_n             |   in|    1|     ap_fifo|                                                                  banks_1|       pointer|
+|banks_1_write              |  out|    1|     ap_fifo|                                                                  banks_1|       pointer|
+|banks_1_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_1|       pointer|
+|banks_1_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_1|       pointer|
+|banks_0_din                |  out|   64|     ap_fifo|                                                                  banks_0|       pointer|
+|banks_0_full_n             |   in|    1|     ap_fifo|                                                                  banks_0|       pointer|
+|banks_0_write              |  out|    1|     ap_fifo|                                                                  banks_0|       pointer|
+|banks_0_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_0|       pointer|
+|banks_0_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_0|       pointer|
+|banks_7_din                |  out|   64|     ap_fifo|                                                                  banks_7|       pointer|
+|banks_7_full_n             |   in|    1|     ap_fifo|                                                                  banks_7|       pointer|
+|banks_7_write              |  out|    1|     ap_fifo|                                                                  banks_7|       pointer|
+|banks_7_num_data_valid     |   in|   32|     ap_fifo|                                                                  banks_7|       pointer|
+|banks_7_fifo_cap           |   in|   32|     ap_fifo|                                                                  banks_7|       pointer|
+|token_out                  |  out|   64|      ap_vld|                                                                token_out|       pointer|
+|token_out_ap_vld           |  out|    1|      ap_vld|                                                                token_out|       pointer|
++---------------------------+-----+-----+------------+-------------------------------------------------------------------------+--------------+
+

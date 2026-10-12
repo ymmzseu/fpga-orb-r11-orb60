@@ -1,0 +1,11 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_035221_merge4_axis_95c372f8",
+  "HlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_034933_merge4_4160972e",
+  "ProductionLayer": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027",
+  "ProcessId": 39184,
+  "StartedUtc": "2026-10-12T18:52:21.9479476Z",
+  "Scope": "Isolated production-source quad serializer random AXIS/reset only",
+  "FinishedUtc": "2026-10-12T18:52:28.9725133Z"
+}

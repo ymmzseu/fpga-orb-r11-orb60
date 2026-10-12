@@ -1,0 +1,198 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_gaussian2_horizontal'
+================================================================
+* Date:           Tue Oct 13 03:06:06 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.840 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+        |                                                                                        |                                                                             |  Latency (cycles) |   Latency (absolute)  |  Interval |                    Pipeline                    |
+        |                                        Instance                                        |                                    Module                                   |   min   |   max   |    min    |    max    | min | max |                      Type                      |
+        +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+        |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_VITIS_LOOP_25_2_fu_150          |p_anonymous_namespace_gaussian2_horizontal_Pipeline_VITIS_LOOP_25_2          |        5|        5|  40.000 ns|  40.000 ns|    4|    4|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs_fu_168  |p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs  |        ?|        ?|          ?|          ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_20_1  |        ?|        ?|         ?|          -|          -|  201 ~ 720|        no|
+        +-------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     37|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|    501|    948|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    101|    -|
+|Register         |        -|    -|     61|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    562|   1086|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|      2|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |                                        Instance                                        |                                    Module                                   | BRAM_18K| DSP|  FF | LUT | URAM|
+    +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs_fu_168  |p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs  |        0|   0|  398|  894|    0|
+    |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_VITIS_LOOP_25_2_fu_150          |p_anonymous_namespace_gaussian2_horizontal_Pipeline_VITIS_LOOP_25_2          |        0|   0|  103|   54|    0|
+    +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                                                   |                                                                             |        0|   0|  501|  948|    0|
+    +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |add22_fu_198_p2      |         +|   0|  0|  10|          10|           2|
+    |sub38_fu_204_p2      |         +|   0|  0|   6|           4|           4|
+    |y_6_fu_251_p2        |         +|   0|  0|  10|          10|           1|
+    |icmp_ln20_fu_246_p2  |      icmp|   0|  0|  10|          10|          10|
+    |ap_block_state1      |        or|   0|  0|   1|           1|           1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |Total                |          |   0|  0|  37|          35|          18|
+    +---------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm               |  25|          6|    1|          6|
+    |ap_done                 |   9|          2|    1|          2|
+    |gaussian_raw_read       |  13|          3|    1|          3|
+    |height_blk_n            |   9|          2|    1|          2|
+    |p_height_val_c15_blk_n  |   9|          2|    1|          2|
+    |p_width_val_c9_blk_n    |   9|          2|    1|          2|
+    |real_start              |   9|          2|    1|          2|
+    |width_blk_n             |   9|          2|    1|          2|
+    |y_fu_70                 |   9|          2|   10|         20|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   | 101|         23|   18|         41|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                                 Name                                                | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |add22_reg_423                                                                                        |  10|   0|   10|          0|
+    |ap_CS_fsm                                                                                            |   5|   0|    5|          0|
+    |ap_done_reg                                                                                          |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs_fu_168_ap_start_reg  |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_gaussian2_horizontal_Pipeline_VITIS_LOOP_25_2_fu_150_ap_start_reg          |   1|   0|    1|          0|
+    |height_7_reg_413                                                                                     |  10|   0|   10|          0|
+    |mul_i_reg_433                                                                                        |   3|   0|    4|          1|
+    |start_once_reg                                                                                       |   1|   0|    1|          0|
+    |sub38_reg_428                                                                                        |   4|   0|    4|          0|
+    |trunc_ln20_1_reg_443                                                                                 |   3|   0|    3|          0|
+    |trunc_ln_reg_438                                                                                     |   2|   0|    3|          1|
+    |width_6_reg_418                                                                                      |  10|   0|   10|          0|
+    |y_fu_70                                                                                              |  10|   0|   10|          0|
+    +-----------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                                |  61|   0|   63|          2|
+    +-----------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------+-----+-----+------------+-------------------------------------------+--------------+
+|            RTL Ports            | Dir | Bits|  Protocol  |               Source Object               |    C Type    |
++---------------------------------+-----+-----+------------+-------------------------------------------+--------------+
+|ap_clk                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_rst                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_start                         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|start_full_n                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_done                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_continue                      |   in|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_idle                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|ap_ready                         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|start_out                        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|start_write                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)gaussian2_horizontal|  return value|
+|gaussian_raw_dout                |   in|   16|     ap_fifo|                               gaussian_raw|       pointer|
+|gaussian_raw_empty_n             |   in|    1|     ap_fifo|                               gaussian_raw|       pointer|
+|gaussian_raw_read                |  out|    1|     ap_fifo|                               gaussian_raw|       pointer|
+|gaussian_raw_num_data_valid      |   in|    7|     ap_fifo|                               gaussian_raw|       pointer|
+|gaussian_raw_fifo_cap            |   in|    7|     ap_fifo|                               gaussian_raw|       pointer|
+|horizontal_din                   |  out|   32|     ap_fifo|                                 horizontal|       pointer|
+|horizontal_full_n                |   in|    1|     ap_fifo|                                 horizontal|       pointer|
+|horizontal_write                 |  out|    1|     ap_fifo|                                 horizontal|       pointer|
+|horizontal_num_data_valid        |   in|   32|     ap_fifo|                                 horizontal|       pointer|
+|horizontal_fifo_cap              |   in|   32|     ap_fifo|                                 horizontal|       pointer|
+|width_dout                       |   in|   10|     ap_fifo|                                      width|       pointer|
+|width_empty_n                    |   in|    1|     ap_fifo|                                      width|       pointer|
+|width_read                       |  out|    1|     ap_fifo|                                      width|       pointer|
+|width_num_data_valid             |   in|    3|     ap_fifo|                                      width|       pointer|
+|width_fifo_cap                   |   in|    3|     ap_fifo|                                      width|       pointer|
+|height_dout                      |   in|   10|     ap_fifo|                                     height|       pointer|
+|height_empty_n                   |   in|    1|     ap_fifo|                                     height|       pointer|
+|height_read                      |  out|    1|     ap_fifo|                                     height|       pointer|
+|height_num_data_valid            |   in|    3|     ap_fifo|                                     height|       pointer|
+|height_fifo_cap                  |   in|    3|     ap_fifo|                                     height|       pointer|
+|p_width_val_c9_din               |  out|   10|     ap_fifo|                             p_width_val_c9|       pointer|
+|p_width_val_c9_full_n            |   in|    1|     ap_fifo|                             p_width_val_c9|       pointer|
+|p_width_val_c9_write             |  out|    1|     ap_fifo|                             p_width_val_c9|       pointer|
+|p_width_val_c9_num_data_valid    |   in|    3|     ap_fifo|                             p_width_val_c9|       pointer|
+|p_width_val_c9_fifo_cap          |   in|    3|     ap_fifo|                             p_width_val_c9|       pointer|
+|p_height_val_c15_din             |  out|   10|     ap_fifo|                           p_height_val_c15|       pointer|
+|p_height_val_c15_full_n          |   in|    1|     ap_fifo|                           p_height_val_c15|       pointer|
+|p_height_val_c15_write           |  out|    1|     ap_fifo|                           p_height_val_c15|       pointer|
+|p_height_val_c15_num_data_valid  |   in|    3|     ap_fifo|                           p_height_val_c15|       pointer|
+|p_height_val_c15_fifo_cap        |   in|    3|     ap_fifo|                           p_height_val_c15|       pointer|
++---------------------------------+-----+-----+------------+-------------------------------------------+--------------+
+

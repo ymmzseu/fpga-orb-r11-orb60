@@ -1,12 +1,13 @@
 [CmdletBinding()]
-param([ValidateSet('Inputs','All')][string]$Mode='Inputs')
+param([ValidateSet('Inputs','All')][string]$Mode='Inputs',[ValidateSet(100,125)][int]$FrequencyMHz=100)
 . (Join-Path $PSScriptRoot 'environment.ps1')
 $reproShell=(Get-Command pwsh.exe -ErrorAction Stop).Source
+$reproPeriod=1000.0/$FrequencyMHz
 $reproFixture=Join-Path $Orb60Root 'fixtures/integrated4'
 if(!(Test-Path -LiteralPath (Join-Path $reproFixture 'benchmark/vectors/vectors.json'))) {throw 'Requires the integrated4 source/evidence package fixtures'}
 $reproJob=Join-Path $Orb60Root ('build/optimized/comparison/{0}_reproduce4_{1}' -f (Get-Date -Format 'yyyyMMdd_HHmmss'),([guid]::NewGuid().ToString('N').Substring(0,8)))
 New-Item -ItemType Directory -Path (Join-Path $reproJob 'inputs'),(Join-Path $reproJob 'benchmark') -Force | Out-Null
-$reproState=[ordered]@{State='RUNNING';Stage='INPUTS';Job=$reproJob;LayerPpc=4;FastStaged=$true;LayerIoOverlap=$true;LayerBramFifos=$true;StartedUtc=[DateTime]::UtcNow.ToString('o');ProcessId=$PID;Scope='Independent rebuild from distributed exact sources; no PS or board operation'}
+$reproState=[ordered]@{State='RUNNING';Stage='INPUTS';Job=$reproJob;LayerPpc=4;FrequencyMHz=$FrequencyMHz;FastStaged=$true;LayerIoOverlap=$true;LayerBramFifos=$true;StartedUtc=[DateTime]::UtcNow.ToString('o');ProcessId=$PID;Scope='Independent rebuild from distributed exact sources; no PS or board operation'}
 function Save-Repro {$reproState | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $reproJob 'status.json') -Encoding UTF8}
 function Require-ReproExit([string]$stage) {if($LASTEXITCODE) {throw "Reproduction failed at $stage"}}
 Save-Repro;Write-Output "REPRODUCE4_JOB=$reproJob"
@@ -25,7 +26,7 @@ try {
     Require-ReproExit 'host vectors/tests'
     foreach($kernel in @('layer2','descriptor')) {
         $pointer=Join-Path $reproJob ($kernel+'_hls_job.txt')
-        $reproArgs=@('-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $PSScriptRoot 'hls.ps1'),'-Variant','optimized','-Kernel',$kernel,'-Period','10','-Cosim','-JobFile',$pointer)
+        $reproArgs=@('-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $PSScriptRoot 'hls.ps1'),'-Variant','optimized','-Kernel',$kernel,'-Period',$reproPeriod.ToString([Globalization.CultureInfo]::InvariantCulture),'-Cosim','-JobFile',$pointer)
         if($kernel -eq 'layer2') {$reproArgs+=@('-LayerPpc','4','-FastStaged','-LayerIoOverlap','-LayerBramFifos')}
         else {$reproArgs+=@('-DescriptorWidthMode','2','-DescriptorPrefetch','8','-DescriptorPatch32','-DescriptorVectors',$reproVectors)}
         & $reproShell @reproArgs *> (Join-Path $reproJob ($kernel+'_hls.log'));Require-ReproExit "HLS $kernel"
@@ -35,7 +36,7 @@ try {
         $checker=if($kernel -eq 'layer2') {'compare_layer2.py'} else {'compare_descriptor.py'}
         & $ProjectPython (Join-Path $PSScriptRoot $checker) --job $child --output (Join-Path $accepted 'comparison.json') *> (Join-Path $reproJob ($kernel+'_compare.log'))
         Require-ReproExit "II/interfaces $kernel"
-        $reproAcceptedState=[ordered]@{State='SUCCEEDED';HlsJob=$child;PeriodNs=10;Scope='Fresh exact C/RTL and II/interface gates'}
+        $reproAcceptedState=[ordered]@{State='SUCCEEDED';HlsJob=$child;PeriodNs=$reproPeriod;Scope='Fresh exact C/RTL and II/interface gates'}
         $reproAcceptedState[$(if($kernel -eq 'layer2') {'layer2Job'} else {'DescriptorHlsJob'})]=$child
         $reproAcceptedState | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $accepted 'status.json') -Encoding UTF8
         $reproState[$(if($kernel -eq 'layer2') {'LayerHlsJob'} else {'DescriptorHlsJob'})]=$child
@@ -49,7 +50,7 @@ try {
         Require-ReproExit $phase
     }
     $mergePointer=Join-Path $reproJob 'merge_hls_job.txt'
-    & $reproShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'hls.ps1') -Variant optimized -Kernel merge4 -Cosim -NoExport -JobFile $mergePointer *> (Join-Path $reproJob 'merge_hls.log')
+    & $reproShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'hls.ps1') -Variant optimized -Kernel merge4 -Period $reproPeriod -Cosim -NoExport -JobFile $mergePointer *> (Join-Path $reproJob 'merge_hls.log')
     Require-ReproExit 'serializer exact C/RTL'
     $merge=(Get-Content -LiteralPath $mergePointer -Raw).Trim()
     & $reproShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'merge4_axis_gate.ps1') -HlsJob $merge -ProductionLayer $reproState.LayerHlsJob -JobFile (Join-Path $reproJob 'merge_axis_job.txt')

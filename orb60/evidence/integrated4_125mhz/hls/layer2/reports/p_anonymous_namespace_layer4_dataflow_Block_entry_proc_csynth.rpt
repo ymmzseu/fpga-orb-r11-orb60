@@ -1,0 +1,170 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_layer4_dataflow_Block_entry_proc'
+================================================================
+* Date:           Tue Oct 13 03:05:42 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  3.780 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      1|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    0|      0|    126|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     72|    -|
+|Register         |        -|    -|     43|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     43|    199|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------+----------------------+---------+----+---+----+-----+
+    |         Instance         |        Module        | BRAM_18K| DSP| FF| LUT| URAM|
+    +--------------------------+----------------------+---------+----+---+----+-----+
+    |mul_10ns_10ns_20_1_1_U39  |mul_10ns_10ns_20_1_1  |        0|   0|  0|  63|    0|
+    |mul_10ns_10ns_20_1_1_U40  |mul_10ns_10ns_20_1_1  |        0|   0|  0|  63|    0|
+    +--------------------------+----------------------+---------+----+---+----+-----+
+    |Total                     |                      |        0|   0|  0| 126|    0|
+    +--------------------------+----------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------+----+-----------+-----+-----------+
+    |          Name          | LUT| Input Size| Bits| Total Bits|
+    +------------------------+----+-----------+-----+-----------+
+    |ap_done                 |   9|          2|    1|          2|
+    |ap_return_0             |   9|          2|   20|         40|
+    |ap_return_1             |   9|          2|   20|         40|
+    |dh_c23_blk_n            |   9|          2|    1|          2|
+    |dw_c_blk_n              |   9|          2|    1|          2|
+    |p_height_val_c17_blk_n  |   9|          2|    1|          2|
+    |p_width_val_c11_blk_n   |   9|          2|    1|          2|
+    |real_start              |   9|          2|    1|          2|
+    +------------------------+----+-----------+-----+-----------+
+    |Total                   |  72|         16|   46|         92|
+    +------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------+----+----+-----+-----------+
+    |       Name       | FF | LUT| Bits| Const Bits|
+    +------------------+----+----+-----+-----------+
+    |ap_CS_fsm         |   1|   0|    1|          0|
+    |ap_done_reg       |   1|   0|    1|          0|
+    |ap_return_0_preg  |  20|   0|   20|          0|
+    |ap_return_1_preg  |  20|   0|   20|          0|
+    |start_once_reg    |   1|   0|    1|          0|
+    +------------------+----+----+-----+-----------+
+    |Total             |  43|   0|   43|          0|
+    +------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------+-----+-----+------------+-------------------------------------------------------+--------------+
+|            RTL Ports            | Dir | Bits|  Protocol  |                     Source Object                     |    C Type    |
++---------------------------------+-----+-----+------------+-------------------------------------------------------+--------------+
+|ap_clk                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_rst                           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_start                         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|start_full_n                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_done                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_continue                      |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_idle                          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_ready                         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|start_out                        |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|start_write                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_return_0                      |  out|   20|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|ap_return_1                      |  out|   20|  ap_ctrl_hs|  (anonymous namespace)layer4_dataflow_Block_entry_proc|  return value|
+|p_width_val                      |   in|   10|     ap_none|                                            p_width_val|        scalar|
+|p_height_val                     |   in|   10|     ap_none|                                           p_height_val|        scalar|
+|dw                               |   in|   10|     ap_none|                                                     dw|        scalar|
+|dh                               |   in|   10|     ap_none|                                                     dh|        scalar|
+|p_width_val_c11_din              |  out|   10|     ap_fifo|                                        p_width_val_c11|       pointer|
+|p_width_val_c11_full_n           |   in|    1|     ap_fifo|                                        p_width_val_c11|       pointer|
+|p_width_val_c11_write            |  out|    1|     ap_fifo|                                        p_width_val_c11|       pointer|
+|p_width_val_c11_num_data_valid   |   in|    3|     ap_fifo|                                        p_width_val_c11|       pointer|
+|p_width_val_c11_fifo_cap         |   in|    3|     ap_fifo|                                        p_width_val_c11|       pointer|
+|p_height_val_c17_din             |  out|   10|     ap_fifo|                                       p_height_val_c17|       pointer|
+|p_height_val_c17_full_n          |   in|    1|     ap_fifo|                                       p_height_val_c17|       pointer|
+|p_height_val_c17_write           |  out|    1|     ap_fifo|                                       p_height_val_c17|       pointer|
+|p_height_val_c17_num_data_valid  |   in|    3|     ap_fifo|                                       p_height_val_c17|       pointer|
+|p_height_val_c17_fifo_cap        |   in|    3|     ap_fifo|                                       p_height_val_c17|       pointer|
+|dw_c_din                         |  out|   10|     ap_fifo|                                                   dw_c|       pointer|
+|dw_c_full_n                      |   in|    1|     ap_fifo|                                                   dw_c|       pointer|
+|dw_c_write                       |  out|    1|     ap_fifo|                                                   dw_c|       pointer|
+|dw_c_num_data_valid              |   in|    4|     ap_fifo|                                                   dw_c|       pointer|
+|dw_c_fifo_cap                    |   in|    4|     ap_fifo|                                                   dw_c|       pointer|
+|dh_c23_din                       |  out|   10|     ap_fifo|                                                 dh_c23|       pointer|
+|dh_c23_full_n                    |   in|    1|     ap_fifo|                                                 dh_c23|       pointer|
+|dh_c23_write                     |  out|    1|     ap_fifo|                                                 dh_c23|       pointer|
+|dh_c23_num_data_valid            |   in|    4|     ap_fifo|                                                 dh_c23|       pointer|
+|dh_c23_fifo_cap                  |   in|    4|     ap_fifo|                                                 dh_c23|       pointer|
++---------------------------------+-----+-----+------------+-------------------------------------------------------+--------------+
+

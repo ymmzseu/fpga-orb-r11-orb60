@@ -1,0 +1,467 @@
+{
+  "evidence_scope": "HLS estimates and accepted co-simulation, no routed/board claim",
+  "standalone_front2": {
+    "job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_100430_front2_4334e6e9",
+    "resources_hls_estimate": {
+      "BRAM_18K": 63,
+      "DSP": 0,
+      "FF": 14504,
+      "LUT": 27339,
+      "URAM": 0
+    },
+    "timing_hls_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "8.763"
+    },
+    "cosim_latency_cycles": {
+      "min": 102,
+      "avg": 85460,
+      "max": 355392
+    },
+    "pipelined_loops": {
+      "Loop 1": {
+        "II": 1,
+        "depth": 3
+      },
+      "VITIS_LOOP_12_2": {
+        "II": 1,
+        "depth": 2
+      },
+      "VITIS_LOOP_25_1_UnpackPairs": {
+        "II": 1,
+        "depth": 4
+      },
+      "RasterPairs": {
+        "II": 1,
+        "depth": 10
+      },
+      "MergePairs": {
+        "II": 1,
+        "depth": 3
+      },
+      "InitializeCells": {
+        "II": 1,
+        "depth": 1
+      },
+      "ReduceCandidateTokens": {
+        "II": 1,
+        "depth": 3
+      },
+      "BuildWinners": {
+        "II": 1,
+        "depth": 2
+      },
+      "EmitCellOrder": {
+        "II": 1,
+        "depth": 2
+      },
+      "FindStrongestCell": {
+        "II": 1,
+        "depth": 3
+      }
+    },
+    "axi_data_widths": {
+      "GMEM0": 64,
+      "GMEM1": 64
+    }
+  },
+  "shared_layer2": {
+    "job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027",
+    "resources_hls_estimate": {
+      "BRAM_18K": 135,
+      "DSP": 26,
+      "FF": 34480,
+      "LUT": 52744,
+      "URAM": 0
+    },
+    "timing_hls_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "10.721"
+    },
+    "cosim_latency_cycles": {
+      "min": 105,
+      "avg": 78225,
+      "max": 234609
+    },
+    "pipelined_loops": {
+      "Loop 1": {
+        "II": 1,
+        "depth": 3
+      },
+      "EmitLayerReadWords": {
+        "II": 1,
+        "depth": 2
+      },
+      "VITIS_LOOP_9_1_UnpackQuads": {
+        "II": 1,
+        "depth": 6
+      },
+      "VITIS_LOOP_11_1_ForkLayerQuads": {
+        "II": 1,
+        "depth": 2
+      },
+      "RasterQuads": {
+        "II": 1,
+        "depth": 12
+      },
+      "MergeQuads": {
+        "II": 1,
+        "depth": 2
+      },
+      "RouteCandidateBanks": {
+        "II": 1,
+        "depth": 2
+      },
+      "ReduceCandidateTokens": {
+        "II": 1,
+        "depth": 2
+      },
+      "EmitBankWinners": {
+        "II": 1,
+        "depth": 3
+      },
+      "CollectBankWinners": {
+        "II": 1,
+        "depth": 3
+      },
+      "BuildWinners": {
+        "II": 1,
+        "depth": 3
+      },
+      "EmitCellOrder": {
+        "II": 1,
+        "depth": 3
+      },
+      "InitializeTournamentLeaves": {
+        "II": 1,
+        "depth": 3
+      },
+      "BuildTournament": {
+        "II": 2,
+        "depth": 2
+      },
+      "EmitStrengthOrder": {
+        "II": 26,
+        "depth": 26
+      },
+      "VITIS_LOOP_11_2": {
+        "II": 1,
+        "depth": 2
+      },
+      "HorizontalGaussianQuads": {
+        "II": 1,
+        "depth": 5
+      },
+      "VerticalGaussianQuads": {
+        "II": 1,
+        "depth": 5
+      },
+      "PackLayerQuads": {
+        "II": 1,
+        "depth": 3
+      },
+      "CollectLayerBlocks": {
+        "II": 1,
+        "depth": 2
+      },
+      "ResizeSourceQuads": {
+        "II": 1,
+        "depth": 9
+      },
+      "VITIS_LOOP_125_1_DrainLastLevelQuads": {
+        "II": 1,
+        "depth": 2
+      },
+      "CountLayerCycles": {
+        "II": 1,
+        "depth": 2
+      }
+    },
+    "axi_data_widths": {
+      "GMEM0": 64,
+      "GMEM1": 64,
+      "GMEM2": 64,
+      "GMEM3": 64
+    }
+  },
+  "transactions": 21,
+  "loops": {
+    "UnpackQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_unpack_front4_words_Pipeline_VITIS_LOOP_9_1_UnpackQuads",
+          "label": "VITIS_LOOP_9_1_UnpackQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_unpack_front4_words_Pipeline_VITIS_LOOP_9_1_UnpackQuads_csynth.xml"
+        }
+      ]
+    },
+    "ForkLayerQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads",
+          "label": "VITIS_LOOP_11_1_ForkLayerQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads_csynth.xml"
+        }
+      ]
+    },
+    "RasterQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads",
+          "label": "RasterQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_csynth.xml"
+        }
+      ]
+    },
+    "MergeQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_serialize_front4_quads_Pipeline_MergeQuads",
+          "label": "MergeQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_serialize_front4_quads_Pipeline_MergeQuads_csynth.xml"
+        }
+      ]
+    },
+    "ReduceCandidateTokens": {
+      "expected_instances": 8,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_2_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_2_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_3_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_3_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_4_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_4_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_6_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_6_Pipeline_ReduceCandidateTokens_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_7_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_7_Pipeline_ReduceCandidateTokens_csynth.xml"
+        }
+      ]
+    },
+    "HorizontalGaussianQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_gaussian4_horizontal_Pipeline_HorizontalGaussianQuads",
+          "label": "HorizontalGaussianQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_gaussian4_horizontal_Pipeline_HorizontalGaussianQuads_csynth.xml"
+        }
+      ]
+    },
+    "VerticalGaussianQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_gaussian4_vertical_Pipeline_VerticalGaussianQuads",
+          "label": "VerticalGaussianQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_gaussian4_vertical_Pipeline_VerticalGaussianQuads_csynth.xml"
+        }
+      ]
+    },
+    "ResizeSourceQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads",
+          "label": "ResizeSourceQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_resize4_quads_Pipeline_ResizeSourceQuads_csynth.xml"
+        }
+      ]
+    },
+    "DrainLastLevelQuads": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads",
+          "label": "VITIS_LOOP_125_1_DrainLastLevelQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads_csynth.xml"
+        }
+      ]
+    },
+    "PackLayerQuads": {
+      "expected_instances": 2,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_layer_pack_quads_0_Pipeline_PackLayerQuads",
+          "label": "PackLayerQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_pack_quads_0_Pipeline_PackLayerQuads_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads",
+          "label": "PackLayerQuads",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads_csynth.xml"
+        }
+      ]
+    },
+    "CountLayerCycles": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_count_layer2_cycles_Pipeline_CountLayerCycles",
+          "label": "CountLayerCycles",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_count_layer2_cycles_Pipeline_CountLayerCycles_csynth.xml"
+        }
+      ]
+    },
+    "CollectLayerBlocks": {
+      "expected_instances": 2,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_collect_layer_blocks_0_Pipeline_CollectLayerBlocks",
+          "label": "CollectLayerBlocks",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_collect_layer_blocks_0_Pipeline_CollectLayerBlocks_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_collect_layer_blocks_1_Pipeline_CollectLayerBlocks",
+          "label": "CollectLayerBlocks",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_collect_layer_blocks_1_Pipeline_CollectLayerBlocks_csynth.xml"
+        }
+      ]
+    },
+    "EmitLayerReadWords": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_emit_layer_blocks_Pipeline_EmitLayerReadWords",
+          "label": "EmitLayerReadWords",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_emit_layer_blocks_Pipeline_EmitLayerReadWords_csynth.xml"
+        }
+      ]
+    },
+    "RouteCandidateBanks": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks",
+          "label": "RouteCandidateBanks",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks_csynth.xml"
+        }
+      ]
+    },
+    "CollectBankWinners": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_collect_bank_winners",
+          "label": "CollectBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_collect_bank_winners_csynth.xml"
+        }
+      ]
+    },
+    "EmitBankWinners": {
+      "expected_instances": 8,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_0_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_0_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_1_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_1_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_2_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_2_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_3_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_3_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_4_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_4_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_5_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_5_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_6_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_6_Pipeline_EmitBankWinners_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_reduce_score_bank_7_Pipeline_EmitBankWinners",
+          "label": "EmitBankWinners",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_reduce_score_bank_7_Pipeline_EmitBankWinners_csynth.xml"
+        }
+      ]
+    }
+  },
+  "pixel_parallelism": 4,
+  "fast_staged": true,
+  "throughput_gate_pass": true,
+  "axi_all_64": true,
+  "axi_addr32": true
+}

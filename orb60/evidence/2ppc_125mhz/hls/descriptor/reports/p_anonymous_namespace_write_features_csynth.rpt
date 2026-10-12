@@ -1,0 +1,215 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_write_features'
+================================================================
+* Date:           Tue Oct 13 03:04:35 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.840 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    | min |  max |   Type  |
+    +---------+---------+-----------+-----------+-----+------+---------+
+    |        5|     2060|  40.000 ns|  16.480 us|    5|  2060|       no|
+    +---------+---------+-----------+-----------+-----+------+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+---------+-----------+-----------+-----+------+------------------------------------------------+
+        |                                                                                |                                                                      |  Latency (cycles) |   Latency (absolute)  |  Interval  |                    Pipeline                    |
+        |                                    Instance                                    |                                Module                                |   min   |   max   |    min    |    max    | min |  max |                      Type                      |
+        +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+---------+-----------+-----------+-----+------+------------------------------------------------+
+        |grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83  |p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords  |        2|     2057|  16.000 ns|  16.456 us|    1|  2056|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+---------+-----------+-----------+-----+------+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      1|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|    664|    296|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     66|    -|
+|Register         |        -|    -|     73|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    737|    363|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |                                    Instance                                    |                                Module                                | BRAM_18K| DSP|  FF | LUT | URAM|
+    +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83  |p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords  |        0|   0|  664|  296|    0|
+    +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                                           |                                                                      |        0|   0|  664|  296|    0|
+    +--------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  21|          5|    1|          5|
+    |ap_done           |   9|          2|    1|          2|
+    |count_blk_n       |   9|          2|    1|          2|
+    |features_blk_n    |   9|          2|    1|          2|
+    |offset_blk_n      |   9|          2|    1|          2|
+    |write_done_blk_n  |   9|          2|    1|          2|
+    +------------------+----+-----------+-----+-----------+
+    |Total             |  66|         15|    6|         15|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                             Name                                            | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                    |   4|   0|    4|          0|
+    |ap_done_reg                                                                                  |   1|   0|    1|          0|
+    |count_1_reg_134                                                                              |   9|   0|    9|          0|
+    |features_1_reg_139                                                                           |  32|   0|   32|          0|
+    |grp_p_anonymous_namespace_write_features_Pipeline_WriteDescriptorRecords_fu_83_ap_start_reg  |   1|   0|    1|          0|
+    |offset_1_reg_129                                                                             |  26|   0|   26|          0|
+    +---------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                        |  73|   0|   73|          0|
+    +---------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+-------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++---------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_continue                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)write_features|  return value|
+|records_dout               |   in|  513|     ap_fifo|                              records|       pointer|
+|records_empty_n            |   in|    1|     ap_fifo|                              records|       pointer|
+|records_read               |  out|    1|     ap_fifo|                              records|       pointer|
+|records_num_data_valid     |   in|    3|     ap_fifo|                              records|       pointer|
+|records_fifo_cap           |   in|    3|     ap_fifo|                              records|       pointer|
+|m_axi_gmem3_0_AWVALID      |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWREADY      |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWADDR       |  out|   32|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWID         |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWLEN        |  out|   32|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWSIZE       |  out|    3|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWBURST      |  out|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWLOCK       |  out|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWCACHE      |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWPROT       |  out|    3|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWQOS        |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWREGION     |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_AWUSER       |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WVALID       |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WREADY       |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WDATA        |  out|   64|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WSTRB        |  out|    8|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WLAST        |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WID          |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_WUSER        |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARVALID      |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARREADY      |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARADDR       |  out|   32|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARID         |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARLEN        |  out|   32|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARSIZE       |  out|    3|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARBURST      |  out|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARLOCK       |  out|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARCACHE      |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARPROT       |  out|    3|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARQOS        |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARREGION     |  out|    4|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_ARUSER       |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RVALID       |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RREADY       |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RDATA        |   in|   64|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RLAST        |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RID          |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RFIFONUM     |   in|    9|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RUSER        |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_RRESP        |   in|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_BVALID       |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_BREADY       |  out|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_BRESP        |   in|    2|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_BID          |   in|    1|       m_axi|                                gmem3|       pointer|
+|m_axi_gmem3_0_BUSER        |   in|    1|       m_axi|                                gmem3|       pointer|
+|features_dout              |   in|   32|     ap_fifo|                             features|       pointer|
+|features_empty_n           |   in|    1|     ap_fifo|                             features|       pointer|
+|features_read              |  out|    1|     ap_fifo|                             features|       pointer|
+|features_num_data_valid    |   in|    4|     ap_fifo|                             features|       pointer|
+|features_fifo_cap          |   in|    4|     ap_fifo|                             features|       pointer|
+|count_dout                 |   in|    9|     ap_fifo|                                count|       pointer|
+|count_empty_n              |   in|    1|     ap_fifo|                                count|       pointer|
+|count_read                 |  out|    1|     ap_fifo|                                count|       pointer|
+|count_num_data_valid       |   in|    3|     ap_fifo|                                count|       pointer|
+|count_fifo_cap             |   in|    3|     ap_fifo|                                count|       pointer|
+|offset_dout                |   in|   26|     ap_fifo|                               offset|       pointer|
+|offset_empty_n             |   in|    1|     ap_fifo|                               offset|       pointer|
+|offset_read                |  out|    1|     ap_fifo|                               offset|       pointer|
+|offset_num_data_valid      |   in|    4|     ap_fifo|                               offset|       pointer|
+|offset_fifo_cap            |   in|    4|     ap_fifo|                               offset|       pointer|
+|write_done_din             |  out|   32|     ap_fifo|                           write_done|       pointer|
+|write_done_full_n          |   in|    1|     ap_fifo|                           write_done|       pointer|
+|write_done_write           |  out|    1|     ap_fifo|                           write_done|       pointer|
+|write_done_num_data_valid  |   in|    3|     ap_fifo|                           write_done|       pointer|
+|write_done_fifo_cap        |   in|    3|     ap_fifo|                           write_done|       pointer|
++---------------------------+-----+-----+------------+-------------------------------------+--------------+
+

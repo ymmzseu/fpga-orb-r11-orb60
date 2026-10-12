@@ -2,6 +2,10 @@
 set checkpoint [file normalize $::env(ORB60_BIT_CHECKPOINT)]
 set output [file normalize $::env(ORB60_BIT_OUTPUT)]
 set checks [file normalize $::env(ORB60_BIT_TIMING_CHECKS)]
+set frequency 100
+if {[info exists ::env(ORB60_BIT_FREQUENCY)]} {set frequency $::env(ORB60_BIT_FREQUENCY)}
+if {$frequency ni {100 125}} {error "Unsupported accepted clock"}
+set period [expr {1000.0/$frequency}]
 file mkdir $output
 set started [clock milliseconds]
 open_checkpoint $checkpoint
@@ -10,7 +14,7 @@ set setup [get_timing_paths -delay_type max -max_paths 1]
 set hold [get_timing_paths -delay_type min -max_paths 1]
 if {[llength $setup]==0 || [llength $hold]==0} {error "Missing actual timing"}
 if {[get_property SLACK $setup]<0 || [get_property SLACK $hold]<0} {error "Accepted checkpoint timing no longer passes"}
-if {abs([get_property REQUIREMENT $setup]-10.0)>0.000001} {error "Checkpoint is not the 100 MHz primary"}
+if {abs([get_property REQUIREMENT $setup]-$period)>0.000001} {error "Checkpoint clock differs from the accepted release"}
 check_timing -verbose -file [file join $output bit_check_timing.rpt]
 source $checks
 set f [open [file join $output bit_check_timing.rpt] r];set text [read $f];close $f
@@ -31,9 +35,10 @@ foreach violation [get_drc_violations -quiet] {
     if {[get_property SEVERITY $violation] in {Error {Critical Warning}}} {error "Bitstream DRC failure: $violation"}
 }
 # Preserve checkpoint configuration. Do not change algorithm, clocks or DRC severity.
-write_bitstream -force [file join $output orb60_100mhz.bit]
+write_bitstream -force [file join $output orb60_${frequency}mhz.bit]
 set f [open [file join $output bit_metrics.tsv] w]
 puts $f "part\t[get_property PART [current_design]]"
+puts $f "frequency_mhz\t$frequency"
 puts $f "wns_ns\t[get_property SLACK $setup]"
 puts $f "whs_ns\t[get_property SLACK $hold]"
 puts $f "elapsed_ms\t[expr {[clock milliseconds]-$started}]"

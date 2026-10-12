@@ -14,6 +14,7 @@ import re
 import subprocess
 from urllib.error import HTTPError
 from urllib.request import Request,urlopen
+import time
 
 def run(a):
     repo=a.repo.resolve();output=a.output.resolve();output.mkdir(parents=True,exist_ok=True)
@@ -34,11 +35,15 @@ def run(a):
             'Authorization':'Bearer '+secret,'Accept':'application/vnd.github+json',
             'Content-Type':'application/json','User-Agent':'ORB60-source-publication',
             'X-GitHub-Api-Version':'2022-11-28'})
-        try:
-            with urlopen(request,timeout=30) as response:return json.load(response)
-        except HTTPError as error:
-            # Status only: avoid printing response/request headers containing auth.
-            raise RuntimeError(f'GitHub API {method} {path}: HTTP{error.code}') from None
+        for attempt in range(3):
+            try:
+                with urlopen(request,timeout=30) as response:return json.load(response)
+            except HTTPError as error:
+                if error.code in (502,503,504) and attempt<2:
+                    time.sleep(1+attempt*2);continue
+                # Status only: never print request headers containing auth.
+                detail=error.read().decode('utf-8',errors='replace')[:1800]
+                raise RuntimeError(f'GitHub API {method} {path}: HTTP{error.code} {detail}') from None
     ref='/git/ref/heads/'+branch
     assert api('GET',ref)['object']['sha']==parent,'Remote branch changed; preserve its new work'
     prior=api('GET','/git/commits/'+parent)
@@ -58,6 +63,26 @@ def run(a):
         LocalCommit=commit,Parent=parent,Files=len(new),ChangedFiles=len(changes),UniqueNewBlobs=len(blobs),Uploaded=0)
     def save(): (output/'github_api_status.json').write_text(json.dumps(state,indent=2)+'\n')
     save();print(f'GITHUB_API_BLOBS total={len(blobs)} changed_paths={len(changes)}',flush=True)
+    if a.resume_tree:
+        # Completed blobs are content-addressed. A tree referencing all SHAs
+        # proves availability without uploading them again after a transient502.
+        try:
+            repaired=set()
+            for attempt in range(65):
+                try:
+                    remote_tree=api('POST','/git/trees',dict(base_tree=prior['tree']['sha'],tree=changes))
+                    assert remote_tree['sha']==tree_sha
+                    break
+                except RuntimeError as error:
+                    missing=re.search(r'tree\.sha ([0-9a-f]{40}) is not a valid blob',str(error))
+                    if not missing or missing[1] not in blobs or missing[1] in repaired or attempt==64:raise
+                    digest=missing[1];content=git('cat-file','blob',digest)
+                    assert api('POST','/git/blobs',dict(content=base64.b64encode(content).decode(),encoding='base64'))['sha']==digest
+                    repaired.add(digest);state['RecoveredMissingBlobs']=len(repaired);save()
+                    print(f'GITHUB_API_REPAIRED_MISSING {len(repaired)}',flush=True)
+            state['TreeRecovered']=True;blobs={};save()
+        except BaseException as error:
+            state.update(State='FAILED',Stage='TREE_RECOVERY',Error=str(error));save();raise
     def upload(item):
         digest,path=item;content=git('cat-file','blob',digest)
         assert hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest()==digest
@@ -90,4 +115,5 @@ def run(a):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--repo',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--resume-tree',action='store_true')
     run(p.parse_args())

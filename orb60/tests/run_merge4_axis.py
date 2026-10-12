@@ -28,6 +28,8 @@ def run(a):
     os.environ['PATH']=os.environ['FPGA_MODELSIM_BIN']+os.pathsep+os.environ['PATH']
     sys.path.insert(0,str(Path(__file__).resolve().parent))
     os.environ['ORB60_MERGE4_RESULT']=str(a.output/'result.json');configure(a.output/'runtime')
+    period_ps=int(state['PeriodNs']*1000);assert period_ps in (8000,10000)
+    os.environ['ORB60_MERGE4_CLOCK_PS']=str(period_ps)
     runner=get_runner('questa');runner.build(hdl_toplevel='fastv2_merge4_hls',sources=sorted(scratch.glob('*.v')),build_dir=scratch,always=True)
     results=runner.test(hdl_toplevel='fastv2_merge4_hls',test_module='test_merge4_axis',build_dir=scratch)
     total,failed=get_results(results);assert total and not failed

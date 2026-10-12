@@ -1,0 +1,174 @@
+<profile>
+
+<ReportVersion>
+<Version>2024.2</Version>
+</ReportVersion>
+
+<UserAssignments>
+<unit>ns</unit>
+<ProductFamily>zynq</ProductFamily>
+<Part>xc7z015-clg485-2</Part>
+<TopModelName>p_anonymous_namespace_maximum_stage_2_s</TopModelName>
+<TargetClockPeriod>8.00</TargetClockPeriod>
+<ClockUncertainty>2.16</ClockUncertainty>
+<TargetInitiationInterval>1</TargetInitiationInterval>
+<FlowTarget>vivado</FlowTarget>
+</UserAssignments>
+
+<PerformanceEstimates>
+<PipelineType>yes</PipelineType>
+<SummaryOfTimingAnalysis>
+<unit>ns</unit>
+<EstimatedClockPeriod>2.162</EstimatedClockPeriod>
+</SummaryOfTimingAnalysis>
+<SummaryOfOverallLatency>
+<unit>clock cycles</unit>
+<Best-caseLatency>1</Best-caseLatency>
+<Average-caseLatency>1</Average-caseLatency>
+<Worst-caseLatency>1</Worst-caseLatency>
+<Best-caseRealTimeLatency>8.000 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>8.000 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>8.000 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>1</PipelineInitiationInterval>
+<PipelineDepth>2</PipelineDepth>
+<Interval-min>1</Interval-min>
+<Interval-max>1</Interval-max>
+</SummaryOfOverallLatency>
+<SummaryOfViolations>
+<IssueType>-</IssueType>
+<ViolationType>-</ViolationType>
+<SourceLocation>../inputs/FPGA_ORB_HLS/fastv2/next/src/fastv2_hls.cpp:111</SourceLocation>
+</SummaryOfViolations>
+</PerformanceEstimates>
+
+<AreaEstimates>
+<Resources>
+<FF>11</FF>
+<LUT>22</LUT>
+<BRAM_18K>0</BRAM_18K>
+<DSP>0</DSP>
+<URAM>0</URAM>
+</Resources>
+<AvailableResources>
+<BRAM_18K>190</BRAM_18K>
+<DSP>160</DSP>
+<FF>92400</FF>
+<LUT>46200</LUT>
+<URAM>0</URAM>
+</AvailableResources>
+</AreaEstimates>
+
+<InterfaceSummary>
+<RtlPorts>
+<name>ap_clk</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_rst</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_start</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_done</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_idle</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_ready</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_ce</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_return</name>
+<Object>(anonymous namespace)maximum_stage&lt;2&gt;</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>9</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>input_0_0_0_0_0_val</name>
+<Object>input_0_0_0_0_0_val</Object>
+<Type>scalar</Type>
+<Scope></Scope>
+<IOProtocol>ap_none</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>9</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>input_1_0_0_0_0_val</name>
+<Object>input_1_0_0_0_0_val</Object>
+<Type>scalar</Type>
+<Scope></Scope>
+<IOProtocol>ap_none</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>9</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+</InterfaceSummary>
+
+</profile>

@@ -1,0 +1,146 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_maximum_stage_8_s'
+================================================================
+* Date:           Tue Oct 13 03:05:39 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  2.162 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        1|        1|  8.000 ns|  8.000 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     82|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      -|      -|    -|
+|Register         |        -|    -|     38|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     38|     82|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |icmp_ln119_1_fu_102_p2    |      icmp|   0|  0|   9|           9|           9|
+    |icmp_ln119_2_fu_122_p2    |      icmp|   0|  0|   9|           9|           9|
+    |icmp_ln119_3_fu_142_p2    |      icmp|   0|  0|   9|           9|           9|
+    |icmp_ln119_fu_82_p2       |      icmp|   0|  0|   9|           9|           9|
+    |select_ln119_1_fu_114_p3  |    select|   0|  0|   9|           1|           9|
+    |select_ln119_2_fu_134_p3  |    select|   0|  0|   9|           1|           9|
+    |select_ln119_3_fu_154_p3  |    select|   0|  0|   9|           1|           9|
+    |select_ln119_fu_94_p3     |    select|   0|  0|   9|           1|           9|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    |xor_ln119_1_fu_108_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln119_2_fu_128_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln119_3_fu_148_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln119_fu_88_p2        |       xor|   0|  0|   2|           1|           2|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0|  82|          45|          82|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |select_ln119_1_reg_187   |  9|   0|    9|          0|
+    |select_ln119_2_reg_192   |  9|   0|    9|          0|
+    |select_ln119_3_reg_197   |  9|   0|    9|          0|
+    |select_ln119_reg_182     |  9|   0|    9|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    | 38|   0|   38|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+---------------------------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |             Source Object             |    C Type    |
++---------------------+-----+-----+------------+---------------------------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_ce                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_return_0          |  out|    9|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_return_1          |  out|    9|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_return_2          |  out|    9|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|ap_return_3          |  out|    9|  ap_ctrl_hs|  (anonymous namespace)maximum_stage<8>|  return value|
+|input_0_0_0_0_0_val  |   in|    9|     ap_none|                    input_0_0_0_0_0_val|        scalar|
+|input_1_0_0_0_0_val  |   in|    9|     ap_none|                    input_1_0_0_0_0_val|        scalar|
+|input_2_0_0_0_0_val  |   in|    9|     ap_none|                    input_2_0_0_0_0_val|        scalar|
+|input_3_0_0_0_0_val  |   in|    9|     ap_none|                    input_3_0_0_0_0_val|        scalar|
+|input_4_0_0_0_0_val  |   in|    9|     ap_none|                    input_4_0_0_0_0_val|        scalar|
+|input_5_0_0_0_0_val  |   in|    9|     ap_none|                    input_5_0_0_0_0_val|        scalar|
+|input_6_0_0_0_0_val  |   in|    9|     ap_none|                    input_6_0_0_0_0_val|        scalar|
+|input_7_0_0_0_0_val  |   in|    9|     ap_none|                    input_7_0_0_0_0_val|        scalar|
++---------------------+-----+-----+------------+---------------------------------------+--------------+
+

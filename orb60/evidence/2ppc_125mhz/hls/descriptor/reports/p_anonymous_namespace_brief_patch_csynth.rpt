@@ -1,0 +1,197 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_brief_patch'
+================================================================
+* Date:           Tue Oct 13 03:04:34 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.764 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      306|      306|  2.448 us|  2.448 us|  306|  306|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------------------------------------+-------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |                                                                        |                                                             |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+        |                                Instance                                |                            Module                           |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+        +------------------------------------------------------------------------+-------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |grp_p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment_fu_320  |p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment  |       39|       39|  0.312 us|  0.312 us|   38|   38|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        |grp_p_anonymous_namespace_brief_patch_Pipeline_BriefBits_fu_366         |p_anonymous_namespace_brief_patch_Pipeline_BriefBits         |      263|      263|  2.104 us|  2.104 us|  257|  257|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +------------------------------------------------------------------------+-------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    246|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        3|    0|    954|   1921|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    106|    -|
+|Register         |        -|    -|    668|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        3|    0|   1622|   2273|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        1|    0|      1|      4|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------------------------+-------------------------------------------------------------+---------+----+-----+------+-----+
+    |                                Instance                                |                            Module                           | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +------------------------------------------------------------------------+-------------------------------------------------------------+---------+----+-----+------+-----+
+    |grp_p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment_fu_320  |p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment  |        0|   0|  192|   135|    0|
+    |grp_p_anonymous_namespace_brief_patch_Pipeline_BriefBits_fu_366         |p_anonymous_namespace_brief_patch_Pipeline_BriefBits         |        3|   0|  762|  1786|    0|
+    +------------------------------------------------------------------------+-------------------------------------------------------------+---------+----+-----+------+-----+
+    |Total                                                                   |                                                             |        3|   0|  954|  1921|    0|
+    +------------------------------------------------------------------------+-------------------------------------------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |add_ln320_fu_462_p2    |         +|   0|  0|  11|          11|           3|
+    |add_ln345_fu_750_p2    |         +|   0|  0|  32|          32|          32|
+    |cx_fu_440_p2           |         +|   0|  0|  32|          32|           5|
+    |cy_fu_641_p2           |         +|   0|  0|  32|          32|           5|
+    |sub20_fu_481_p2        |         +|   0|  0|  32|          32|           3|
+    |sub_ln345_1_fu_739_p2  |         -|   0|  0|  32|          32|          32|
+    |sub_ln345_fu_728_p2    |         -|   0|  0|  32|          32|          32|
+    |icmp_ln320_fu_456_p2   |      icmp|   0|  0|  32|          32|           5|
+    |bx_fu_468_p3           |    select|   0|  0|  11|           1|           1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0| 246|         236|         118|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------+----+-----------+-----+-----------+
+    |     Name    | LUT| Input Size| Bits| Total Bits|
+    +-------------+----+-----------+-----+-----------+
+    |ap_NS_fsm    |  25|          6|    1|          6|
+    |ap_return_0  |   9|          2|    1|          2|
+    |ap_return_1  |   9|          2|   64|        128|
+    |ap_return_2  |   9|          2|   35|         70|
+    |ap_return_3  |   9|          2|   64|        128|
+    |ap_return_4  |   9|          2|   64|        128|
+    |ap_return_5  |   9|          2|   64|        128|
+    |ap_return_6  |   9|          2|   64|        128|
+    |ap_return_7  |   9|          2|   64|        128|
+    |ap_return_8  |   9|          2|   64|        128|
+    +-------------+----+-----------+-----+-----------+
+    |Total        | 106|         24|  485|        974|
+    +-------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                         Name                                        | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                            |   5|   0|    5|          0|
+    |ap_return_0_preg                                                                     |   1|   0|    1|          0|
+    |ap_return_1_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_2_preg                                                                     |  35|   0|   64|         29|
+    |ap_return_3_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_4_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_5_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_6_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_7_preg                                                                     |  64|   0|   64|          0|
+    |ap_return_8_preg                                                                     |  64|   0|   64|          0|
+    |bx_reg_1153                                                                          |  11|   0|   11|          0|
+    |cx_reg_1142                                                                          |  32|   0|   32|          0|
+    |cy_reg_1293                                                                          |  32|   0|   32|          0|
+    |empty_378_reg_1177                                                                   |   3|   0|    3|          0|
+    |empty_reg_1137                                                                       |   3|   0|    3|          0|
+    |grp_p_anonymous_namespace_brief_patch_Pipeline_BlurRowAlignment_fu_320_ap_start_reg  |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_brief_patch_Pipeline_BriefBits_fu_366_ap_start_reg         |   1|   0|    1|          0|
+    |quarter_assign_reg_1299                                                              |  29|   0|   29|          0|
+    |sub20_reg_1163                                                                       |  32|   0|   32|          0|
+    |trunc_ln314_1_reg_1148                                                               |  32|   0|   32|          0|
+    |trunc_ln320_reg_1158                                                                 |   3|   0|    3|          0|
+    +-------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                | 668|   0|  697|         29|
+    +-------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------+-----+-----+------------+-----------------------------------+--------------+
+|             RTL Ports             | Dir | Bits|  Protocol  |           Source Object           |    C Type    |
++-----------------------------------+-----+-----+------------+-----------------------------------+--------------+
+|ap_clk                             |   in|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_rst                             |   in|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_start                           |   in|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_done                            |  out|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_idle                            |  out|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_ready                           |  out|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|blur_empty_n                       |   in|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|blur_read                          |  out|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_0                        |  out|    1|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_1                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_2                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_3                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_4                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_5                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_6                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_7                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|ap_return_8                        |  out|   64|  ap_ctrl_hs|   (anonymous namespace)brief_patch|  return value|
+|blur_address0                      |  out|    9|    mem_fifo|                               blur|         array|
+|blur_ce0                           |  out|    1|    mem_fifo|                               blur|         array|
+|blur_q0                            |   in|   32|    mem_fifo|                               blur|         array|
+|blur_address1                      |  out|    9|    mem_fifo|                               blur|         array|
+|blur_ce1                           |  out|    1|    mem_fifo|                               blur|         array|
+|blur_q1                            |   in|   32|    mem_fifo|                               blur|         array|
+|angle_moment_point_xy_val          |   in|   64|     ap_none|          angle_moment_point_xy_val|        scalar|
+|angle_moment_point_score_tile_val  |   in|   32|     ap_none|  angle_moment_point_score_tile_val|        scalar|
+|angle_moment_m10_val               |   in|   21|     ap_none|               angle_moment_m10_val|        scalar|
+|angle_moment_m01_val               |   in|   21|     ap_none|               angle_moment_m01_val|        scalar|
+|angle_bin_val                      |   in|   32|     ap_none|                      angle_bin_val|        scalar|
+|width                              |   in|   32|     ap_none|                              width|        scalar|
+|height                             |   in|   32|     ap_none|                             height|        scalar|
+|level                              |   in|    3|     ap_none|                              level|        scalar|
++-----------------------------------+-----+-----+------------+-----------------------------------+--------------+
+

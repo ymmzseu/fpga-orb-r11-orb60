@@ -1,0 +1,23 @@
+scope	2PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending
+part	xc7z015clg485-2
+frequency_mhz	125
+front_top	fastv2_layer2_hls
+wns_ns	0.155
+whs_ns	0.038
+summary_wns_ns	0.155
+tns_ns	0.000
+setup_failed_endpoints	0
+setup_total_endpoints	87395
+summary_whs_ns	0.038
+ths_ns	0.000
+hold_failed_endpoints	0
+hold_total_endpoints	87395
+wpws_ns	2.870
+tpws_ns	0.000
+pulse_failed_endpoints	0
+pulse_total_endpoints	34865
+setup_DATAPATH_DELAY	7.480
+setup_LOGIC_LEVELS	6
+setup_STARTPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+setup_ENDPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+setup_REQUIREMENT	8.000

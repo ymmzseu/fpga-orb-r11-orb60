@@ -1,0 +1,9 @@
+{
+  "State": "FAILED",
+  "Stage": "Route2",
+  "ProcessId": 28872,
+  "StartedUtc": "2026-10-12T18:26:17.5747309Z",
+  "Scope": "Fresh8ns HLS and bounded125MHz routed comparison; no inherited frame or board performance",
+  "Error": "Fresh125MHz complete routed comparison failed; retain actual timing evidence",
+  "FinishedUtc": "2026-10-12T18:26:19.3210975Z"
+}

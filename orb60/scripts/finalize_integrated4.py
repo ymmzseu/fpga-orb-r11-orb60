@@ -28,8 +28,10 @@ def run(job):
         frames=12,cycles_bytes_selection_all_identical=True,
         correction='V1 read_pending_cycles omitted cycles with RVALID. V2 includes every outstanding read; wait-for-data retained separately. Historical conditional means are invalid; raw evidence preserved.',
         raw_historical_evidence_unchanged=True),indent=2)+'\n')
+    prior=read(Path(state['PreviousIntegratedJob'])/'status.json')
+    assert read(Path(prior['MergeAxisJob'])/'status.json')['State']=='SUCCEEDED'
     state.update(State='SUCCEEDED',Stage='COMPUTER_GATES_COMPLETE',RouteJob=route['RouteJob'],FrameJob=str(frame),
-        OriginalFrameJob=original['FrameJob'],MergeAxisJob='D:/pld/orb60/build/optimized/gates/20261013_021957_merge4_axis_2b4786a8',
+        OriginalFrameJob=original['FrameJob'],MergeAxisJob=prior['MergeAxisJob'],
         Scope='Exact4PPC100MHz HLS/protocol/native/fullroute gates; corrected stat-only replay; PS/board/P99 unverified')
     (job/'status.json').write_text(json.dumps(state,indent=2)+'\n')
     print('INTEGRATED4_COMPLETE max_ms',max(x['milliseconds'] for r in new['runs'] for x in r['frames']))

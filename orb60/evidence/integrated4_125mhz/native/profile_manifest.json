@@ -1,0 +1,1542 @@
+{
+  "probes": [
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.entry_proc28_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.entry_proc28_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_dataflow_Block_entry_proc_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_dataflow_Block_entry_proc_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.ap_channel_done_mul16_loc_channel && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_ap_ready && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.ap_channel_done_mul16_loc_channel && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_ap_ready && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.ap_channel_done_mul_loc_c5_channel && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0_ap_ready && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.ap_channel_done_mul_loc_c5_channel && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0_ap_ready && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0_words_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0_words_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0_words_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0_words_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0_quads_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_quads_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_unpack_front4_words_U0_quads_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_quads_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_fast_raw_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0_fast_raw_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_fast_raw_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0_fast_raw_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_gaussian_raw_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0_gaussian_raw_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_gaussian_raw_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0_gaussian_raw_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_resize_raw_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0_resize_raw_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_fork_layer4_quads_U0_resize_raw_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0_resize_raw_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0_candidate_quads_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0_candidate_quads_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_scan_front4_quads_U0_candidate_quads_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0_candidate_quads_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0_candidates_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0_candidates_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_serialize_front4_quads_U0_candidates_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0_candidates_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0_fast_done_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_fast_done_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0_fast_done_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_fast_done_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0_horizontal_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0_horizontal_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_horizontal_U0_horizontal_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0_horizontal_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0_blur_quads_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0_blur_quads_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_gaussian4_vertical_U0_blur_quads_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0_blur_quads_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0_blur_words_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0_blur_words_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_0_U0_blur_words_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0_blur_words_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0_blur_done_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_blur_done_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0_blur_done_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_blur_done_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0_resize_quads_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0_resize_quads_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_resize4_quads_U0_resize_quads_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0_resize_quads_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0_resize_words_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_resize_words_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer_pack_quads_1_U0_resize_words_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_resize_words_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_resize_done_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_resize_done_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0_resize_done_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_count_layer2_cycles_U0_resize_done_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.entry_proc_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.entry_proc_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.p_anonymous_namespace_collect_layer_blocks_1_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.p_anonymous_namespace_collect_layer_blocks_1_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.p_anonymous_namespace_flush_layer_blocks_1_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_1_U0.p_anonymous_namespace_flush_layer_blocks_1_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.entry_proc26_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.entry_proc26_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.p_anonymous_namespace_collect_layer_blocks_0_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.p_anonymous_namespace_collect_layer_blocks_0_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.p_anonymous_namespace_flush_layer_blocks_0_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_write_dataflow_0_U0.p_anonymous_namespace_flush_layer_blocks_0_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_0_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0_banks_0_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_0_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0_banks_0_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_1_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0_banks_1_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_1_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0_banks_1_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_2_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0_banks_2_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_2_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0_banks_2_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_3_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0_banks_3_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_3_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0_banks_3_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_4_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0_banks_4_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_4_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0_banks_4_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_5_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0_banks_5_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_5_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0_banks_5_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_6_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0_banks_6_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_6_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0_banks_6_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_7_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0_banks_7_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_route_candidate_banks_U0_banks_7_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0_banks_7_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0_winners_0_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_0_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_0_U0_winners_0_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_0_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0_winners_1_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_1_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_1_U0_winners_1_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_1_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0_winners_2_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_2_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_2_U0_winners_2_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_2_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0_winners_3_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_3_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_3_U0_winners_3_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_3_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0_winners_4_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_4_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_4_U0_winners_4_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_4_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0_winners_5_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_5_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_5_U0_winners_5_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_5_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0_winners_6_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_6_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_6_U0_winners_6_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_6_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0_winners_7_write && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_7_read && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_reduce_score_bank_7_U0_winners_7_write && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.p_anonymous_namespace_collect_bank_winners_U0_winners_7_read && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.entry_proc27_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.entry_proc27_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_load_layer_blocks_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_load_layer_blocks_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_emit_layer_blocks_U0.busy",
+      "expression": "!core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_emit_layer_blocks_U0_ap_idle"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_U.push",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.entry_proc27_U0_ap_done && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_U.pop",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_load_layer_blocks_U0_ap_ready && core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_empty_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_U.write_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.entry_proc27_U0_ap_done && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_full_n"
+    },
+    {
+      "core": 0,
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_U.read_blocked",
+      "expression": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.p_anonymous_namespace_load_layer_blocks_U0_ap_ready && !core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.entry_proc_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.entry_proc_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_moments_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_moments_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0.busy",
+      "expression": "!core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_ap_idle"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0_raw_points_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0_raw_points_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0_raw_points_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0_raw_points_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0_blur_points_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0_blur_points_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_points_U0_blur_points_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0_blur_points_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0_raw_metadata_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0_raw_metadata_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_raw_requests_U0_raw_metadata_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0_raw_metadata_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0_blur_metadata_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0_blur_metadata_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_issue_blur_requests_U0_blur_metadata_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0_blur_metadata_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0_raw_done_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_raw_done_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_raw_U0_raw_done_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_raw_done_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0_blur_done_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_blur_done_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_load_blur_U0_blur_done_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_blur_done_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_moments_U0_moments_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0_moments_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_moments_U0_moments_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0_moments_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0_angles_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_angles_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_angles_U0_angles_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_angles_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_records_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0_records_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_records_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0_records_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_compute_done_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_compute_done_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_compute_brief_U0_compute_done_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_compute_done_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_U.push",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0_write_done_write && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_U.pop",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_write_done_read && core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_empty_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_U.write_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_write_features_U0_write_done_write && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_full_n"
+    },
+    {
+      "core": 1,
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_U.read_blocked",
+      "expression": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.p_anonymous_namespace_count_cycles_U0_write_done_read && !core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_empty_n"
+    }
+  ],
+  "fifos": [
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul16_loc_channel_U",
+      "core": 0,
+      "depth": 7,
+      "push": 16,
+      "pop": 17,
+      "write_blocked": 18,
+      "read_blocked": 19
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.mul_loc_c5_channel_U",
+      "core": 0,
+      "depth": 2,
+      "push": 20,
+      "pop": 21,
+      "write_blocked": 22,
+      "read_blocked": 23
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.words_U",
+      "core": 0,
+      "depth": 128,
+      "push": 24,
+      "pop": 25,
+      "write_blocked": 26,
+      "read_blocked": 27
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.quads_U",
+      "core": 0,
+      "depth": 64,
+      "push": 28,
+      "pop": 29,
+      "write_blocked": 30,
+      "read_blocked": 31
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_raw_U",
+      "core": 0,
+      "depth": 64,
+      "push": 32,
+      "pop": 33,
+      "write_blocked": 34,
+      "read_blocked": 35
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.gaussian_raw_U",
+      "core": 0,
+      "depth": 64,
+      "push": 36,
+      "pop": 37,
+      "write_blocked": 38,
+      "read_blocked": 39
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_raw_U",
+      "core": 0,
+      "depth": 64,
+      "push": 40,
+      "pop": 41,
+      "write_blocked": 42,
+      "read_blocked": 43
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidate_quads_U",
+      "core": 0,
+      "depth": 64,
+      "push": 44,
+      "pop": 45,
+      "write_blocked": 46,
+      "read_blocked": 47
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.candidates_U",
+      "core": 0,
+      "depth": 128,
+      "push": 48,
+      "pop": 49,
+      "write_blocked": 50,
+      "read_blocked": 51
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.fast_done_U",
+      "core": 0,
+      "depth": 2,
+      "push": 52,
+      "pop": 53,
+      "write_blocked": 54,
+      "read_blocked": 55
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.horizontal_U",
+      "core": 0,
+      "depth": 64,
+      "push": 56,
+      "pop": 57,
+      "write_blocked": 58,
+      "read_blocked": 59
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_quads_U",
+      "core": 0,
+      "depth": 64,
+      "push": 60,
+      "pop": 61,
+      "write_blocked": 62,
+      "read_blocked": 63
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_words_U",
+      "core": 0,
+      "depth": 64,
+      "push": 64,
+      "pop": 65,
+      "write_blocked": 66,
+      "read_blocked": 67
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.blur_done_U",
+      "core": 0,
+      "depth": 2,
+      "push": 68,
+      "pop": 69,
+      "write_blocked": 70,
+      "read_blocked": 71
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_quads_U",
+      "core": 0,
+      "depth": 64,
+      "push": 72,
+      "pop": 73,
+      "write_blocked": 74,
+      "read_blocked": 75
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_words_U",
+      "core": 0,
+      "depth": 64,
+      "push": 76,
+      "pop": 77,
+      "write_blocked": 78,
+      "read_blocked": 79
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.resize_done_U",
+      "core": 0,
+      "depth": 2,
+      "push": 80,
+      "pop": 81,
+      "write_blocked": 82,
+      "read_blocked": 83
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_U",
+      "core": 0,
+      "depth": 8,
+      "push": 100,
+      "pop": 101,
+      "write_blocked": 102,
+      "read_blocked": 103
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_1_U",
+      "core": 0,
+      "depth": 8,
+      "push": 104,
+      "pop": 105,
+      "write_blocked": 106,
+      "read_blocked": 107
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_2_U",
+      "core": 0,
+      "depth": 8,
+      "push": 108,
+      "pop": 109,
+      "write_blocked": 110,
+      "read_blocked": 111
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_3_U",
+      "core": 0,
+      "depth": 8,
+      "push": 112,
+      "pop": 113,
+      "write_blocked": 114,
+      "read_blocked": 115
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_4_U",
+      "core": 0,
+      "depth": 8,
+      "push": 116,
+      "pop": 117,
+      "write_blocked": 118,
+      "read_blocked": 119
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_5_U",
+      "core": 0,
+      "depth": 8,
+      "push": 120,
+      "pop": 121,
+      "write_blocked": 122,
+      "read_blocked": 123
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_6_U",
+      "core": 0,
+      "depth": 8,
+      "push": 124,
+      "pop": 125,
+      "write_blocked": 126,
+      "read_blocked": 127
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.banks_7_U",
+      "core": 0,
+      "depth": 8,
+      "push": 128,
+      "pop": 129,
+      "write_blocked": 130,
+      "read_blocked": 131
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_U",
+      "core": 0,
+      "depth": 2,
+      "push": 132,
+      "pop": 133,
+      "write_blocked": 134,
+      "read_blocked": 135
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_1_U",
+      "core": 0,
+      "depth": 2,
+      "push": 136,
+      "pop": 137,
+      "write_blocked": 138,
+      "read_blocked": 139
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_2_U",
+      "core": 0,
+      "depth": 2,
+      "push": 140,
+      "pop": 141,
+      "write_blocked": 142,
+      "read_blocked": 143
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_3_U",
+      "core": 0,
+      "depth": 2,
+      "push": 144,
+      "pop": 145,
+      "write_blocked": 146,
+      "read_blocked": 147
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_4_U",
+      "core": 0,
+      "depth": 2,
+      "push": 148,
+      "pop": 149,
+      "write_blocked": 150,
+      "read_blocked": 151
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_5_U",
+      "core": 0,
+      "depth": 2,
+      "push": 152,
+      "pop": 153,
+      "write_blocked": 154,
+      "read_blocked": 155
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_6_U",
+      "core": 0,
+      "depth": 2,
+      "push": 156,
+      "pop": 157,
+      "write_blocked": 158,
+      "read_blocked": 159
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_consume_and_select_U0.grp_p_anonymous_namespace_reduce_banked_grid_fu_465.winners_7_U",
+      "core": 0,
+      "depth": 2,
+      "push": 160,
+      "pop": 161,
+      "write_blocked": 162,
+      "read_blocked": 163
+    },
+    {
+      "name": "core0.grp_p_anonymous_namespace_layer4_dataflow_fu_716.p_anonymous_namespace_layer4_read_dataflow_U0.mul_loc_tmp_U",
+      "core": 0,
+      "depth": 2,
+      "push": 167,
+      "pop": 168,
+      "write_blocked": 169,
+      "read_blocked": 170
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_points_U",
+      "core": 1,
+      "depth": 4,
+      "push": 182,
+      "pop": 183,
+      "write_blocked": 184,
+      "read_blocked": 185
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_points_U",
+      "core": 1,
+      "depth": 4,
+      "push": 186,
+      "pop": 187,
+      "write_blocked": 188,
+      "read_blocked": 189
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_metadata_U",
+      "core": 1,
+      "depth": 2,
+      "push": 190,
+      "pop": 191,
+      "write_blocked": 192,
+      "read_blocked": 193
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_metadata_U",
+      "core": 1,
+      "depth": 2,
+      "push": 194,
+      "pop": 195,
+      "write_blocked": 196,
+      "read_blocked": 197
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.raw_done_U",
+      "core": 1,
+      "depth": 2,
+      "push": 198,
+      "pop": 199,
+      "write_blocked": 200,
+      "read_blocked": 201
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.blur_done_U",
+      "core": 1,
+      "depth": 2,
+      "push": 202,
+      "pop": 203,
+      "write_blocked": 204,
+      "read_blocked": 205
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.moments_U",
+      "core": 1,
+      "depth": 2,
+      "push": 206,
+      "pop": 207,
+      "write_blocked": 208,
+      "read_blocked": 209
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.angles_U",
+      "core": 1,
+      "depth": 2,
+      "push": 210,
+      "pop": 211,
+      "write_blocked": 212,
+      "read_blocked": 213
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.records_U",
+      "core": 1,
+      "depth": 2,
+      "push": 214,
+      "pop": 215,
+      "write_blocked": 216,
+      "read_blocked": 217
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.compute_done_U",
+      "core": 1,
+      "depth": 2,
+      "push": 218,
+      "pop": 219,
+      "write_blocked": 220,
+      "read_blocked": 221
+    },
+    {
+      "name": "core1.grp_p_anonymous_namespace_descriptor_dataflow_fu_456.write_done_U",
+      "core": 1,
+      "depth": 2,
+      "push": 222,
+      "pop": 223,
+      "write_blocked": 224,
+      "read_blocked": 225
+    }
+  ],
+  "scope": "Simulation-only: busy includes stalls; FIFO blocked requests and occupancy use actual handshakes"
+}

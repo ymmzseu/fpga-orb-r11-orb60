@@ -4,6 +4,8 @@ param([Parameter(Mandatory=$true)][string]$Job,[ValidateSet('Route','Frame')][st
 $integratedShell=(Get-Command pwsh.exe -ErrorAction Stop).Source
 $integratedJob=[IO.Path]::GetFullPath($Job)
 $integratedRootState=Get-Content -LiteralPath (Join-Path $integratedJob 'status.json') -Raw | ConvertFrom-Json
+$integratedFrequency=if($integratedRootState.FrequencyMHz) {[int]$integratedRootState.FrequencyMHz} else {100}
+if($integratedFrequency -notin @(100,125)) {throw 'Unsupported integrated clock'}
 if($integratedRootState.Stage -ne 'JOINT_VERIFY' -or $integratedRootState.LayerPpc -ne 4) {throw 'Requires integrated4 accepted exact HLS/II pair'}
 $integratedLayer=(Get-Content -LiteralPath (Join-Path $integratedJob 'layer_hls_job.txt') -Raw).Trim()
 $integratedDescriptor=(Get-Content -LiteralPath (Join-Path $integratedJob 'descriptor_hls_job.txt') -Raw).Trim()
@@ -13,7 +15,7 @@ function Save-IntegratedMode {$integratedModeState | ConvertTo-Json -Depth 6 | S
 Save-IntegratedMode;Write-Output "INTEGRATED4_${Mode}_PID=$PID JOB=$integratedJob"
 try {
     if($Mode -eq 'Route') {
-        & $integratedShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'orb_timing.ps1') -AcceptedLayer (Join-Path $integratedJob 'accepted_layer') -AcceptedDescriptor (Join-Path $integratedJob 'accepted_descriptor') -FrequencyMHz 100 -Jobs 4 -ExtendedDiagnostics -JobFile (Join-Path $integratedJob 'route_job.txt') *> (Join-Path $integratedJob 'route.log')
+        & $integratedShell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'orb_timing.ps1') -AcceptedLayer (Join-Path $integratedJob 'accepted_layer') -AcceptedDescriptor (Join-Path $integratedJob 'accepted_descriptor') -FrequencyMHz $integratedFrequency -Jobs 4 -ExtendedDiagnostics -JobFile (Join-Path $integratedJob 'route_job.txt') *> (Join-Path $integratedJob 'route.log')
         if($LASTEXITCODE) {throw 'Integrated4 full route failed; retain original child reports'}
         $child=(Get-Content -LiteralPath (Join-Path $integratedJob 'route_job.txt') -Raw).Trim()
         $proof=Get-Content -LiteralPath (Join-Path $child 'status.json') -Raw | ConvertFrom-Json

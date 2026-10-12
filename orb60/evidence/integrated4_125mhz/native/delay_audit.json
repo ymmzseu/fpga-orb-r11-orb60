@@ -1,0 +1,4 @@
+{
+  "zero_delay_count": 1100,
+  "policy": "--no-timing allowed only for vendor zero-delay initialization; explicit reset before transactions"
+}

@@ -1,0 +1,10 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "ProcessId": 34624,
+  "FrequencyMHz": 125,
+  "StartedUtc": "2026-10-12T18:53:55.6105112Z",
+  "Scope": "Immutable passed4PPC125MHz computer candidate bit only; no PS/board programming",
+  "BitSha256": "B892D2302049CE48077E82EADA0BDD331EB40DC8B708B3605FD1B33F4A5D1FEF",
+  "FinishedUtc": "2026-10-12T18:55:09.6671751Z"
+}

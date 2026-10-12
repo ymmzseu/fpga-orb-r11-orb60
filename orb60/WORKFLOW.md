@@ -782,3 +782,23 @@ the new All orchestration was rerun. Main/historical100MHz artifacts preserved.
 125MHz comparisona5b3269c regenerates2/4PPC+backend at8ns; allHLS21/38pass,
 actual125MHz route/native gates running. Route2 first failed only for carrier
 key mismatch, preserved under route2_startup_failure; fixedandfreshroute running.
+
+Frequency a5b3269c COMPLETE: fresh8ns2PPC c9702f6b,4PPC f2546027,
+descriptor2730a8cf exact21/38/II gates; randomAXI, reset/barrier, normalizedDDR
+12nativeframes each d6a76172/543fa67f; fresh8ns17mask merger+randomAXIS pass.
+125MHz fullroute2 4d17f0b7:28567LUT/31929FF/60.5BRAM/38DSP/10328Slice89.42%,
+1102controlsets,WNS+.155/WHS+.038. Route4 6685ae8e:35551LUT/36122FF/74BRAM/
+44DSP/11437Slice99.02%,1127controlsets,WNS+.167/WHS+.015. Bothstrictallgates
+and extended200/50 pass,TNS/THS0. Newworst125 path tournamentBRAM feedback,
+4PPC7levels3.267nslogic4.200nsrouting98loads. No further7ns probe this milestone.
+Worstmodel2PPC12513.554ms;4PPC12512.063064ms82.90fps,4.19%fasterthan4PPC100
+worst12.59037. Select4PPC125fastestcomputer candidate,retain4PPC100 pairedbit.
+125bitSHA b892d2302049ce48077e82eada0bdd331eb40dc8b708b3605fd1b33f4a5d1fef.
+Source/regdefinitions/pair checked independently across clocks; noPS/board gates.
+
+Git publication first100MHz commitc0ccd7111f173bbb34d72d70cbb9c5d990302804
+remotelyverified throughGitDataAPI aftergithub.com transportfailed and transient
+oneblobHTTP502. TreeSHA/commitSHA exact; one missingblob recovered, oldbranch
+parentlease checked, mainunchanged. Preserve originalfailed upload evidence.
+100MHz ZIP23.7MB/1759files SHA c77b85c0ecbbef24c753565eba7d2f48ed9c9cc5641361c4bb79689309364245.
+Final125comparison/bit append andcombinedpackage publication pending.

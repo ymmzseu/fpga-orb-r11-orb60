@@ -1,0 +1,1337 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Tue Oct 13 03:41:39 2026
+| Host         : ymmz666 running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 20 -nworst 3 -file D:/pld/.work/vivado/orb60/i4d17f0b7/vivado/post_route_setup_paths.rpt
+| Design       : s_wrapper
+| Device       : 7z015-clg485
+| Speed File   : -2  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.155ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.480ns  (logic 3.094ns (41.364%)  route 4.386ns (58.636%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.825     8.750    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.855 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0/O
+                         net (fo=2, routed)           0.563     9.418    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.523 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_33/O
+                         net (fo=1, routed)           0.694    10.218    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[26]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[8])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.218    
+  -------------------------------------------------------------------
+                         slack                                  0.155    
+
+Slack (MET) :             0.155ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.480ns  (logic 3.094ns (41.364%)  route 4.386ns (58.636%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.825     8.750    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.855 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0/O
+                         net (fo=2, routed)           0.563     9.418    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.523 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_33/O
+                         net (fo=1, routed)           0.694    10.218    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[26]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[8])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.218    
+  -------------------------------------------------------------------
+                         slack                                  0.155    
+
+Slack (MET) :             0.155ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.480ns  (logic 3.094ns (41.364%)  route 4.386ns (58.636%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.825     8.750    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.855 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0/O
+                         net (fo=2, routed)           0.563     9.418    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_149__0_n_0
+    SLICE_X72Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.523 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_33/O
+                         net (fo=1, routed)           0.694    10.218    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[26]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[8])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.218    
+  -------------------------------------------------------------------
+                         slack                                  0.155    
+
+Slack (MET) :             0.175ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.457ns  (logic 2.966ns (39.773%)  route 4.491ns (60.227%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.029ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.740ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.663     2.740    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ap_clk
+    RAMB18_X2Y41         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y41         RAMB18E1 (Prop_ramb18e1_CLKBWRCLK_DOBDO[0])
+                                                      2.125     4.865 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/DOBDO[0]
+                         net (fo=14, routed)          1.124     5.988    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/q0[18]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I0_O)        0.105     6.093 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_2/O
+                         net (fo=1, routed)           0.000     6.093    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[2]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     6.409 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.239    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.344 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.812    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.917 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.897     8.814    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I1_O)        0.105     8.919 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0/O
+                         net (fo=2, routed)           0.529     9.448    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I3_O)        0.105     9.553 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_17/O
+                         net (fo=1, routed)           0.644    10.197    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[8]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                         clock pessimism              0.249    10.711    
+                         clock uncertainty           -0.125    10.586    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.372    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.372    
+                         arrival time                         -10.197    
+  -------------------------------------------------------------------
+                         slack                                  0.175    
+
+Slack (MET) :             0.175ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.457ns  (logic 2.966ns (39.773%)  route 4.491ns (60.227%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.029ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.740ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.663     2.740    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ap_clk
+    RAMB18_X2Y41         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y41         RAMB18E1 (Prop_ramb18e1_CLKBWRCLK_DOBDO[0])
+                                                      2.125     4.865 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/DOBDO[0]
+                         net (fo=14, routed)          1.124     5.988    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/q0[18]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I0_O)        0.105     6.093 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_2/O
+                         net (fo=1, routed)           0.000     6.093    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[2]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     6.409 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.239    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.344 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.812    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.917 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.897     8.814    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I1_O)        0.105     8.919 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0/O
+                         net (fo=2, routed)           0.529     9.448    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I3_O)        0.105     9.553 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_17/O
+                         net (fo=1, routed)           0.644    10.197    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[8]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                         clock pessimism              0.249    10.711    
+                         clock uncertainty           -0.125    10.586    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.372    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.372    
+                         arrival time                         -10.197    
+  -------------------------------------------------------------------
+                         slack                                  0.175    
+
+Slack (MET) :             0.175ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.457ns  (logic 2.966ns (39.773%)  route 4.491ns (60.227%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.029ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.740ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.663     2.740    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ap_clk
+    RAMB18_X2Y41         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y41         RAMB18E1 (Prop_ramb18e1_CLKBWRCLK_DOBDO[0])
+                                                      2.125     4.865 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_0/DOBDO[0]
+                         net (fo=14, routed)          1.124     5.988    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/q0[18]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I0_O)        0.105     6.093 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_2/O
+                         net (fo=1, routed)           0.000     6.093    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[2]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316     6.409 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.239    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.344 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.812    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.917 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.897     8.814    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I1_O)        0.105     8.919 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0/O
+                         net (fo=2, routed)           0.529     9.448    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_101__0_n_0
+    SLICE_X76Y100        LUT6 (Prop_lut6_I3_O)        0.105     9.553 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_17/O
+                         net (fo=1, routed)           0.644    10.197    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[8]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                         clock pessimism              0.249    10.711    
+                         clock uncertainty           -0.125    10.586    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.372    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.372    
+                         arrival time                         -10.197    
+  -------------------------------------------------------------------
+                         slack                                  0.175    
+
+Slack (MET) :             0.285ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.352ns  (logic 3.094ns (42.084%)  route 4.258ns (57.916%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.830     8.755    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.860 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0/O
+                         net (fo=2, routed)           0.483     9.343    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.448 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_5/O
+                         net (fo=1, routed)           0.642    10.090    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[44]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.090    
+  -------------------------------------------------------------------
+                         slack                                  0.285    
+
+Slack (MET) :             0.285ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.352ns  (logic 3.094ns (42.084%)  route 4.258ns (57.916%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.830     8.755    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.860 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0/O
+                         net (fo=2, routed)           0.483     9.343    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.448 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_5/O
+                         net (fo=1, routed)           0.642    10.090    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[44]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.090    
+  -------------------------------------------------------------------
+                         slack                                  0.285    
+
+Slack (MET) :             0.285ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.352ns  (logic 3.094ns (42.084%)  route 4.258ns (57.916%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.830     8.755    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I1_O)        0.105     8.860 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0/O
+                         net (fo=2, routed)           0.483     9.343    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_27__0_n_0
+    SLICE_X74Y101        LUT6 (Prop_lut6_I3_O)        0.105     9.448 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_5/O
+                         net (fo=1, routed)           0.642    10.090    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[44]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[8]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[8])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.090    
+  -------------------------------------------------------------------
+                         slack                                  0.285    
+
+Slack (MET) :             0.319ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.316ns  (logic 3.094ns (42.292%)  route 4.222ns (57.708%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.821     8.747    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I1_O)        0.105     8.852 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0/O
+                         net (fo=2, routed)           0.529     9.381    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I3_O)        0.105     9.486 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_38/O
+                         net (fo=1, routed)           0.568    10.053    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[21]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[3])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.053    
+  -------------------------------------------------------------------
+                         slack                                  0.319    
+
+Slack (MET) :             0.319ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.316ns  (logic 3.094ns (42.292%)  route 4.222ns (57.708%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.821     8.747    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I1_O)        0.105     8.852 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0/O
+                         net (fo=2, routed)           0.529     9.381    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I3_O)        0.105     9.486 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_38/O
+                         net (fo=1, routed)           0.568    10.053    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[21]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[3])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.053    
+  -------------------------------------------------------------------
+                         slack                                  0.319    
+
+Slack (MET) :             0.319ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.316ns  (logic 3.094ns (42.292%)  route 4.222ns (57.708%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.821     8.747    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I1_O)        0.105     8.852 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0/O
+                         net (fo=2, routed)           0.529     9.381    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_164__0_n_0
+    SLICE_X74Y102        LUT6 (Prop_lut6_I3_O)        0.105     9.486 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_38/O
+                         net (fo=1, routed)           0.568    10.053    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[21]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[3])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.053    
+  -------------------------------------------------------------------
+                         slack                                  0.319    
+
+Slack (MET) :             0.336ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.301ns  (logic 3.094ns (42.380%)  route 4.207ns (57.620%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.854     8.779    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I2_O)        0.105     8.884 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0/O
+                         net (fo=2, routed)           0.321     9.205    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I5_O)        0.105     9.310 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_11/O
+                         net (fo=1, routed)           0.728    10.038    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[38]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[2])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.038    
+  -------------------------------------------------------------------
+                         slack                                  0.336    
+
+Slack (MET) :             0.336ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.301ns  (logic 3.094ns (42.380%)  route 4.207ns (57.620%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.854     8.779    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I2_O)        0.105     8.884 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0/O
+                         net (fo=2, routed)           0.321     9.205    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I5_O)        0.105     9.310 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_11/O
+                         net (fo=1, routed)           0.728    10.038    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[38]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[2])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.038    
+  -------------------------------------------------------------------
+                         slack                                  0.336    
+
+Slack (MET) :             0.336ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.301ns  (logic 3.094ns (42.380%)  route 4.207ns (57.620%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.462ns = ( 10.462 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.252ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.854     8.779    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I2_O)        0.105     8.884 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0/O
+                         net (fo=2, routed)           0.321     9.205    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_46__0_n_0
+    SLICE_X77Y100        LUT6 (Prop_lut6_I5_O)        0.105     9.310 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_11/O
+                         net (fo=1, routed)           0.728    10.038    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[38]
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/DIADI[2]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.487    10.462    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y43         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.252    10.714    
+                         clock uncertainty           -0.125    10.589    
+    RAMB18_X2Y43         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[2])
+                                                     -0.214    10.375    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.375    
+                         arrival time                         -10.038    
+  -------------------------------------------------------------------
+                         slack                                  0.336    
+
+Slack (MET) :             0.344ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.291ns  (logic 3.094ns (42.437%)  route 4.197ns (57.563%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.772     8.698    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I1_O)        0.105     8.803 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0/O
+                         net (fo=2, routed)           0.322     9.125    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I3_O)        0.105     9.230 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_41/O
+                         net (fo=1, routed)           0.799    10.028    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[18]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[0])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.028    
+  -------------------------------------------------------------------
+                         slack                                  0.344    
+
+Slack (MET) :             0.344ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.291ns  (logic 3.094ns (42.437%)  route 4.197ns (57.563%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.772     8.698    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I1_O)        0.105     8.803 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0/O
+                         net (fo=2, routed)           0.322     9.125    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I3_O)        0.105     9.230 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_41/O
+                         net (fo=1, routed)           0.799    10.028    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[18]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[0])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.028    
+  -------------------------------------------------------------------
+                         slack                                  0.344    
+
+Slack (MET) :             0.344ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.291ns  (logic 3.094ns (42.437%)  route 4.197ns (57.563%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.772     8.698    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I1_O)        0.105     8.803 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0/O
+                         net (fo=2, routed)           0.322     9.125    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_173__0_n_0
+    SLICE_X73Y99         LUT6 (Prop_lut6_I3_O)        0.105     9.230 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_41/O
+                         net (fo=1, routed)           0.799    10.028    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/tree_d0[18]
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DIBDI[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKBWRCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y42         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_DIBDI[0])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.028    
+  -------------------------------------------------------------------
+                         slack                                  0.344    
+
+Slack (MET) :             0.353ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/DIADI[4]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.282ns  (logic 3.094ns (42.486%)  route 4.188ns (57.514%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.664     8.590    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X72Y100        LUT6 (Prop_lut6_I1_O)        0.105     8.695 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_39__0/O
+                         net (fo=2, routed)           0.546     9.241    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_39__0_n_0
+    SLICE_X72Y100        LUT6 (Prop_lut6_I3_O)        0.105     9.346 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_9__0/O
+                         net (fo=1, routed)           0.674    10.020    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1_1[40]
+    RAMB18_X2Y40         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/DIADI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ap_clk
+    RAMB18_X2Y40         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y40         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[4])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.020    
+  -------------------------------------------------------------------
+                         slack                                  0.353    
+
+Slack (MET) :             0.353ns  (required time - arrival time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/DIADI[4]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_fpga_0  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (clk_fpga_0 rise@8.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        7.282ns  (logic 3.094ns (42.486%)  route 4.188ns (57.514%))
+  Logic Levels:           6  (CARRY4=1 LUT3=1 LUT6=4)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.463ns = ( 10.463 - 8.000 ) 
+    Source Clock Delay      (SCD):    2.738ns
+    Clock Pessimism Removal (CPR):    0.249ns
+  Clock Uncertainty:      0.125ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.240ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.992     0.992    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.085     1.077 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.661     2.738    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ap_clk
+    RAMB18_X2Y42         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB18_X2Y42         RAMB18E1 (Prop_ramb18e1_CLKARDCLK_DOADO[15])
+                                                      2.125     4.863 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0/DOADO[15]
+                         net (fo=12, routed)          1.006     5.869    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln146_6_reg_2535_reg[0][15]
+    SLICE_X78Y105        LUT6 (Prop_lut6_I1_O)        0.105     5.974 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/icmp_ln61_1_fu_224_p2_carry_i_3/O
+                         net (fo=1, routed)           0.000     5.974    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/ram_reg_0_i_307[1]
+    SLICE_X78Y105        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     6.418 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament_fu_499/icmp_ln61_1_fu_224_p2_carry/CO[3]
+                         net (fo=2, routed)           0.830     7.247    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_1[0]
+    SLICE_X77Y106        LUT3 (Prop_lut3_I1_O)        0.105     7.352 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301/O
+                         net (fo=1, routed)           0.468     7.820    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_301_n_0
+    SLICE_X77Y105        LUT6 (Prop_lut6_I0_O)        0.105     7.925 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0/O
+                         net (fo=98, routed)          0.664     8.590    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_0_i_215__0_n_0
+    SLICE_X72Y100        LUT6 (Prop_lut6_I1_O)        0.105     8.695 f  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_39__0/O
+                         net (fo=2, routed)           0.546     9.241    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_39__0_n_0
+    SLICE_X72Y100        LUT6 (Prop_lut6_I3_O)        0.105     9.346 r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_U/ram_reg_1_i_9__0/O
+                         net (fo=1, routed)           0.674    10.020    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1_1[40]
+    RAMB18_X2Y40         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/DIADI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      8.000     8.000 r  
+    PS7_X0Y0             PS7                          0.000     8.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.899     8.899    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.077     8.976 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=34873, routed)       1.488    10.463    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ap_clk
+    RAMB18_X2Y40         RAMB18E1                                     r  s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1/CLKARDCLK
+                         clock pessimism              0.249    10.712    
+                         clock uncertainty           -0.125    10.587    
+    RAMB18_X2Y40         RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[4])
+                                                     -0.214    10.373    s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_712/p_anonymous_namespace_consume_and_select_U0/tree_1_U/ram_reg_1
+  -------------------------------------------------------------------
+                         required time                         10.373    
+                         arrival time                         -10.020    
+  -------------------------------------------------------------------
+                         slack                                  0.353    
+
+
+
+

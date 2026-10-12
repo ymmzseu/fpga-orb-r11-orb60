@@ -1,0 +1,220 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_collect_bank_winners'
+================================================================
+* Date:           Tue Oct 13 03:05:57 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.077 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |      211|      211|  1.688 us|  1.688 us|  209|  209|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                      |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |       Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- CollectBankWinners  |      209|      209|         3|          1|          1|   208|       yes|
+        +----------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     46|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    145|    -|
+|Register         |        -|    -|    163|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    163|    191|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |             Variable Name             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln100_fu_176_p2                    |         +|   0|  0|   8|           8|           1|
+    |ap_condition_286                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_370                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_373                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_376                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_379                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_382                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_385                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_388                       |       and|   0|  0|   1|           1|           1|
+    |ap_condition_391                       |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op26_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op28_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op30_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op32_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op34_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op36_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op38_read_state2          |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op40_read_state2          |       and|   0|  0|   1|           1|           1|
+    |icmp_ln100_fu_170_p2                   |      icmp|   0|  0|   8|           8|           7|
+    |icmp_ln104_fu_200_p2                   |      icmp|   0|  0|   8|           8|           7|
+    |ap_block_pp0_stage0_11001              |        or|   0|  0|   1|           1|           1|
+    |ap_block_pp0_stage0_11001_grp0         |        or|   0|  0|   1|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1_grp1  |        or|   0|  0|   1|           1|           1|
+    |ap_enable_pp0                          |       xor|   0|  0|   2|           1|           2|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                  |          |   0|  0|  46|          45|          37|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------------+----+-----------+-----+-----------+
+    |                  Name                 | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                            |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1                |   9|          2|    1|          2|
+    |ap_phi_reg_pp0_iter2_phi_ln85_reg_141  |  37|          9|   64|        576|
+    |ap_sig_allocacmp_cell_5                |   9|          2|    8|         16|
+    |cell_fu_72                             |   9|          2|    8|         16|
+    |winners_0_blk_n                        |   9|          2|    1|          2|
+    |winners_1_blk_n                        |   9|          2|    1|          2|
+    |winners_2_blk_n                        |   9|          2|    1|          2|
+    |winners_3_blk_n                        |   9|          2|    1|          2|
+    |winners_4_blk_n                        |   9|          2|    1|          2|
+    |winners_5_blk_n                        |   9|          2|    1|          2|
+    |winners_6_blk_n                        |   9|          2|    1|          2|
+    |winners_7_blk_n                        |   9|          2|    1|          2|
+    +---------------------------------------+----+-----------+-----+-----------+
+    |Total                                  | 145|         33|   90|        628|
+    +---------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------+----+----+-----+-----------+
+    |                       Name                      | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                        |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp0_done_reg        |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp0_done_reg_iter0  |   1|   0|    1|          0|
+    |ap_done_reg                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                          |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2                          |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg                 |   1|   0|    1|          0|
+    |ap_phi_reg_pp0_iter1_phi_ln85_reg_141            |  64|   0|   64|          0|
+    |ap_phi_reg_pp0_iter2_phi_ln85_reg_141            |  64|   0|   64|          0|
+    |cell_5_reg_212                                   |   8|   0|    8|          0|
+    |cell_5_reg_212_pp0_iter1_reg                     |   8|   0|    8|          0|
+    |cell_fu_72                                       |   8|   0|    8|          0|
+    |icmp_ln100_reg_218                               |   1|   0|    1|          0|
+    |trunc_ln102_reg_222                              |   3|   0|    3|          0|
+    +-------------------------------------------------+----+----+-----+-----------+
+    |Total                                            | 163|   0|  163|          0|
+    +-------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+-------------------------------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |               Source Object               |    C Type    |
++--------------------------+-----+-----+------------+-------------------------------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_continue               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)collect_bank_winners|  return value|
+|winners_6_dout            |   in|   64|     ap_fifo|                                  winners_6|       pointer|
+|winners_6_empty_n         |   in|    1|     ap_fifo|                                  winners_6|       pointer|
+|winners_6_read            |  out|    1|     ap_fifo|                                  winners_6|       pointer|
+|winners_6_num_data_valid  |   in|    3|     ap_fifo|                                  winners_6|       pointer|
+|winners_6_fifo_cap        |   in|    3|     ap_fifo|                                  winners_6|       pointer|
+|winners_5_dout            |   in|   64|     ap_fifo|                                  winners_5|       pointer|
+|winners_5_empty_n         |   in|    1|     ap_fifo|                                  winners_5|       pointer|
+|winners_5_read            |  out|    1|     ap_fifo|                                  winners_5|       pointer|
+|winners_5_num_data_valid  |   in|    3|     ap_fifo|                                  winners_5|       pointer|
+|winners_5_fifo_cap        |   in|    3|     ap_fifo|                                  winners_5|       pointer|
+|winners_4_dout            |   in|   64|     ap_fifo|                                  winners_4|       pointer|
+|winners_4_empty_n         |   in|    1|     ap_fifo|                                  winners_4|       pointer|
+|winners_4_read            |  out|    1|     ap_fifo|                                  winners_4|       pointer|
+|winners_4_num_data_valid  |   in|    3|     ap_fifo|                                  winners_4|       pointer|
+|winners_4_fifo_cap        |   in|    3|     ap_fifo|                                  winners_4|       pointer|
+|winners_3_dout            |   in|   64|     ap_fifo|                                  winners_3|       pointer|
+|winners_3_empty_n         |   in|    1|     ap_fifo|                                  winners_3|       pointer|
+|winners_3_read            |  out|    1|     ap_fifo|                                  winners_3|       pointer|
+|winners_3_num_data_valid  |   in|    3|     ap_fifo|                                  winners_3|       pointer|
+|winners_3_fifo_cap        |   in|    3|     ap_fifo|                                  winners_3|       pointer|
+|winners_2_dout            |   in|   64|     ap_fifo|                                  winners_2|       pointer|
+|winners_2_empty_n         |   in|    1|     ap_fifo|                                  winners_2|       pointer|
+|winners_2_read            |  out|    1|     ap_fifo|                                  winners_2|       pointer|
+|winners_2_num_data_valid  |   in|    3|     ap_fifo|                                  winners_2|       pointer|
+|winners_2_fifo_cap        |   in|    3|     ap_fifo|                                  winners_2|       pointer|
+|winners_1_dout            |   in|   64|     ap_fifo|                                  winners_1|       pointer|
+|winners_1_empty_n         |   in|    1|     ap_fifo|                                  winners_1|       pointer|
+|winners_1_read            |  out|    1|     ap_fifo|                                  winners_1|       pointer|
+|winners_1_num_data_valid  |   in|    3|     ap_fifo|                                  winners_1|       pointer|
+|winners_1_fifo_cap        |   in|    3|     ap_fifo|                                  winners_1|       pointer|
+|winners_0_dout            |   in|   64|     ap_fifo|                                  winners_0|       pointer|
+|winners_0_empty_n         |   in|    1|     ap_fifo|                                  winners_0|       pointer|
+|winners_0_read            |  out|    1|     ap_fifo|                                  winners_0|       pointer|
+|winners_0_num_data_valid  |   in|    3|     ap_fifo|                                  winners_0|       pointer|
+|winners_0_fifo_cap        |   in|    3|     ap_fifo|                                  winners_0|       pointer|
+|winners_7_dout            |   in|   64|     ap_fifo|                                  winners_7|       pointer|
+|winners_7_empty_n         |   in|    1|     ap_fifo|                                  winners_7|       pointer|
+|winners_7_read            |  out|    1|     ap_fifo|                                  winners_7|       pointer|
+|winners_7_num_data_valid  |   in|    3|     ap_fifo|                                  winners_7|       pointer|
+|winners_7_fifo_cap        |   in|    3|     ap_fifo|                                  winners_7|       pointer|
+|points_address1           |  out|    8|   ap_memory|                                     points|         array|
+|points_ce1                |  out|    1|   ap_memory|                                     points|         array|
+|points_we1                |  out|    1|   ap_memory|                                     points|         array|
+|points_d1                 |  out|   41|   ap_memory|                                     points|         array|
++--------------------------+-----+-----+------------+-------------------------------------------+--------------+
+

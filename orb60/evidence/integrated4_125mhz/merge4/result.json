@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "cases": 17,
+  "legal_masks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "mixed": true,
+  "reset": {
+    "reset_live": true,
+    "cycles": 97
+  },
+  "scope": "Same production serializer source; isolated AXIS protocol/reset, no routed/DDR/frame claim",
+  "results": [
+    {
+      "mode": 0,
+      "groups": 128,
+      "outputs": 0,
+      "cycles": 181,
+      "input_stalls": 3,
+      "output_stalls": 13
+    },
+    {
+      "mode": 1,
+      "groups": 128,
+      "outputs": 128,
+      "cycles": 383,
+      "input_stalls": 218,
+      "output_stalls": 236
+    },
+    {
+      "mode": 2,
+      "groups": 128,
+      "outputs": 128,
+      "cycles": 357,
+      "input_stalls": 202,
+      "output_stalls": 211
+    },
+    {
+      "mode": 3,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 687,
+      "input_stalls": 525,
+      "output_stalls": 422
+    },
+    {
+      "mode": 4,
+      "groups": 128,
+      "outputs": 128,
+      "cycles": 374,
+      "input_stalls": 203,
+      "output_stalls": 225
+    },
+    {
+      "mode": 5,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 676,
+      "input_stalls": 516,
+      "output_stalls": 413
+    },
+    {
+      "mode": 6,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 673,
+      "input_stalls": 491,
+      "output_stalls": 409
+    },
+    {
+      "mode": 7,
+      "groups": 128,
+      "outputs": 384,
+      "cycles": 902,
+      "input_stalls": 734,
+      "output_stalls": 509
+    },
+    {
+      "mode": 8,
+      "groups": 128,
+      "outputs": 128,
+      "cycles": 364,
+      "input_stalls": 198,
+      "output_stalls": 221
+    },
+    {
+      "mode": 9,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 689,
+      "input_stalls": 522,
+      "output_stalls": 424
+    },
+    {
+      "mode": 10,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 701,
+      "input_stalls": 530,
+      "output_stalls": 437
+    },
+    {
+      "mode": 11,
+      "groups": 128,
+      "outputs": 384,
+      "cycles": 849,
+      "input_stalls": 669,
+      "output_stalls": 456
+    },
+    {
+      "mode": 12,
+      "groups": 128,
+      "outputs": 256,
+      "cycles": 697,
+      "input_stalls": 528,
+      "output_stalls": 432
+    },
+    {
+      "mode": 13,
+      "groups": 128,
+      "outputs": 384,
+      "cycles": 880,
+      "input_stalls": 724,
+      "output_stalls": 487
+    },
+    {
+      "mode": 14,
+      "groups": 128,
+      "outputs": 384,
+      "cycles": 891,
+      "input_stalls": 722,
+      "output_stalls": 498
+    },
+    {
+      "mode": 15,
+      "groups": 128,
+      "outputs": 512,
+      "cycles": 1048,
+      "input_stalls": 882,
+      "output_stalls": 529
+    },
+    {
+      "mode": 16,
+      "groups": 128,
+      "outputs": 237,
+      "cycles": 662,
+      "input_stalls": 495,
+      "output_stalls": 413
+    }
+  ]
+}

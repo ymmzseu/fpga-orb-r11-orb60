@@ -1,0 +1,32 @@
+{
+  "kernel": "layer2",
+  "vectors": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_c9702f6b\\oracle_vectors",
+  "offsets": {
+    "AP_CTRL": 0,
+    "GIE": 4,
+    "IER": 8,
+    "ISR": 12,
+    "AP_RETURN": 16,
+    "IMAGE_R": 24,
+    "BLURRED": 32,
+    "RESIZED": 40,
+    "SELECTED": 48,
+    "RESULT": 56,
+    "STATS": 64,
+    "LEVEL": 72,
+    "BUDGET": 80,
+    "HIGH_THRESHOLD": 88,
+    "LOW_THRESHOLD": 96,
+    "DUAL_THRESHOLD": 104,
+    "SELECTED_CAPACITY": 112
+  },
+  "cases": [
+    7,
+    1,
+    14
+  ],
+  "result": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_032618_datapath_axi_43b1d9fc\\layer2\\result.json",
+  "reset_case": 14,
+  "clock_period_ps": 8000,
+  "layer_ppc": 2
+}

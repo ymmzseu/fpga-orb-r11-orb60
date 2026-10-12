@@ -1,0 +1,13 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_032618_datapath_axi_43b1d9fc",
+  "LayerHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_c9702f6b",
+  "DescriptorHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_descriptor_2730a8cf",
+  "StartedUtc": "2026-10-12T18:26:18.2417448Z",
+  "ProcessId": 14080,
+  "Scope": "Isolated 4-master cores with random AXI/reset/completion barrier; shared address space, full/native/system/board gates pending",
+  "LayerProtocolReuse": "",
+  "DescriptorProtocolReuse": "",
+  "FinishedUtc": "2026-10-12T18:31:27.4950679Z"
+}

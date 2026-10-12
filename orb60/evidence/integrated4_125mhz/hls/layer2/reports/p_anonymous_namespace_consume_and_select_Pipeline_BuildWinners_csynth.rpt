@@ -1,0 +1,174 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_consume_and_select_Pipeline_BuildWinners'
+================================================================
+* Date:           Tue Oct 13 03:06:12 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.667 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |      207|      207|  1.656 us|  1.656 us|  205|  205|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- BuildWinners  |      205|      205|         3|          1|          1|   204|       yes|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    295|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     63|    -|
+|Register         |        -|    -|    114|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    114|    358|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln465_fu_157_p2               |         +|   0|  0|   8|           8|           1|
+    |add_ln470_fu_223_p2               |         +|   0|  0|  32|          32|           1|
+    |add_ln473_fu_213_p2               |         +|   0|  0|  32|          32|           1|
+    |winner_count_1_fu_237_p2          |         +|   0|  0|  32|          32|           1|
+    |and_ln469_1_fu_261_p2             |       and|   0|  0|   1|           1|           1|
+    |and_ln469_fu_248_p2               |       and|   0|  0|   1|           1|           1|
+    |and_ln470_fu_219_p2               |       and|   0|  0|   1|           1|           1|
+    |icmp_ln465_fu_151_p2              |      icmp|   0|  0|   8|           8|           7|
+    |icmp_ln467_fu_163_p2              |      icmp|   0|  0|   8|           8|           8|
+    |icmp_ln469_fu_193_p2              |      icmp|   0|  0|   8|           8|           1|
+    |icmp_ln470_fu_199_p2              |      icmp|   0|  0|  32|          32|          32|
+    |select_ln470_fu_229_p3            |    select|   0|  0|  32|           1|          32|
+    |summary_empty_cells_fu_265_p3     |    select|   0|  0|  32|           1|          32|
+    |summary_fallback_cells_fu_253_p3  |    select|   0|  0|  32|           1|          32|
+    |winner_count_2_fu_273_p3          |    select|   0|  0|  32|           1|          32|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln469_fu_243_p2               |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0| 295|         169|         187|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_cell_6  |   9|          2|    8|         16|
+    |cell_fu_72               |   9|          2|    8|         16|
+    |empty_542_fu_68          |   9|          2|   32|         64|
+    |empty_fu_64              |   9|          2|   32|         64|
+    |winner_count_fu_60       |   9|          2|   32|         64|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  63|         14|  114|        228|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |cell_fu_72                        |   8|   0|    8|          0|
+    |empty_542_fu_68                   |  32|   0|   32|          0|
+    |empty_fu_64                       |  32|   0|   32|          0|
+    |icmp_ln465_reg_349                |   1|   0|    1|          0|
+    |icmp_ln467_reg_353                |   1|   0|    1|          0|
+    |icmp_ln467_reg_353_pp0_iter1_reg  |   1|   0|    1|          0|
+    |icmp_ln469_reg_364                |   1|   0|    1|          0|
+    |icmp_ln470_reg_370                |   1|   0|    1|          0|
+    |winner_count_fu_60                |  32|   0|   32|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 114|   0|  114|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+---------------------------------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |                         Source Object                         |    C Type    |
++-------------------------+-----+-----+------------+---------------------------------------------------------------+--------------+
+|ap_clk                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|ap_rst                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|ap_start                 |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|ap_done                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|ap_idle                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|ap_ready                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildWinners|  return value|
+|cell_count               |   in|    8|     ap_none|                                                     cell_count|        scalar|
+|best_low_address0        |  out|    8|   ap_memory|                                                       best_low|         array|
+|best_low_ce0             |  out|    1|   ap_memory|                                                       best_low|         array|
+|best_low_q0              |   in|   41|   ap_memory|                                                       best_low|         array|
+|high_threshold_1         |   in|   32|     ap_none|                                               high_threshold_1|        scalar|
+|dual_threshold_1         |   in|    1|     ap_none|                                               dual_threshold_1|        scalar|
+|p_out                    |  out|   32|      ap_vld|                                                          p_out|       pointer|
+|p_out_ap_vld             |  out|    1|      ap_vld|                                                          p_out|       pointer|
+|p_out1                   |  out|   32|      ap_vld|                                                         p_out1|       pointer|
+|p_out1_ap_vld            |  out|    1|      ap_vld|                                                         p_out1|       pointer|
+|winner_count_out         |  out|   32|      ap_vld|                                               winner_count_out|       pointer|
+|winner_count_out_ap_vld  |  out|    1|      ap_vld|                                               winner_count_out|       pointer|
++-------------------------+-----+-----+------------+---------------------------------------------------------------+--------------+
+

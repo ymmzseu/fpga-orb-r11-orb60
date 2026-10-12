@@ -1,0 +1,143 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads'
+================================================================
+* Date:           Tue Oct 13 03:06:29 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.159 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+--------+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval    |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   |  min  |   max  |                      Type                      |
+    +---------+---------+----------+----------+-------+--------+------------------------------------------------+
+    |    13469|   172802|  0.108 ms|  1.382 ms|  13468|  172801|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-------+--------+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+        |                                        |  Latency (cycles) | Iteration|  Initiation Interval  |      Trip      |          |
+        |                Loop Name               |   min   |   max   |  Latency |  achieved |   target  |      Count     | Pipelined|
+        +----------------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+        |- VITIS_LOOP_125_1_DrainLastLevelQuads  |    13467|   172800|         2|          1|          1|  13467 ~ 172800|       yes|
+        +----------------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     39|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|     21|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     21|     84|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |add_ln125_fu_76_p2         |         +|   0|  0|  18|          18|           1|
+    |ap_block_pp0_stage0_11001  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln125_fu_70_p2        |      icmp|   0|  0|  18|          18|          18|
+    |ap_enable_pp0              |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0|  39|          38|          22|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |ap_sig_allocacmp_indvar_flatten_load  |   9|          2|   18|         36|
+    |indvar_flatten_fu_46                  |   9|          2|   18|         36|
+    |resize_raw_blk_n                      |   9|          2|    1|          2|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 |  45|         10|   39|         78|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |indvar_flatten_fu_46     |  18|   0|   18|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  21|   0|   21|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                                   Source Object                                  |    C Type    |
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)resize4_quads_Pipeline_VITIS_LOOP_125_1_DrainLastLevelQuads|  return value|
+|resize_raw_dout            |   in|   32|     ap_fifo|                                                                        resize_raw|       pointer|
+|resize_raw_empty_n         |   in|    1|     ap_fifo|                                                                        resize_raw|       pointer|
+|resize_raw_read            |  out|    1|     ap_fifo|                                                                        resize_raw|       pointer|
+|resize_raw_num_data_valid  |   in|    7|     ap_fifo|                                                                        resize_raw|       pointer|
+|resize_raw_fifo_cap        |   in|    7|     ap_fifo|                                                                        resize_raw|       pointer|
+|bound                      |   in|   18|     ap_none|                                                                             bound|        scalar|
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+

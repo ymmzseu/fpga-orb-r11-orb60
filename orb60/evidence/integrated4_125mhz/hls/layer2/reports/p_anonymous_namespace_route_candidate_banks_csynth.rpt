@@ -1,0 +1,217 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_route_candidate_banks'
+================================================================
+* Date:           Tue Oct 13 03:05:58 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.218 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |                                                                                     |                                                                          |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+        |                                       Instance                                      |                                  Module                                  |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+        +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |grp_p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks_fu_115  |p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks  |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      2|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|     78|    118|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    292|    -|
+|Register         |        -|    -|     70|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    148|    412|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |                                       Instance                                      |                                  Module                                  | BRAM_18K| DSP| FF | LUT | URAM|
+    +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |grp_p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks_fu_115  |p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks  |        0|   0|  78|  118|    0|
+    +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+----+----+-----+-----+
+    |Total                                                                                |                                                                          |        0|   0|  78|  118|    0|
+    +-------------------------------------------------------------------------------------+--------------------------------------------------------------------------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   1|           1|           1|
+    |ap_block_state3  |        or|   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           2|           2|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------+----+-----------+-----+-----------+
+    |          Name         | LUT| Input Size| Bits| Total Bits|
+    +-----------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm              |  17|          4|    1|          4|
+    |ap_done                |   9|          2|    1|          2|
+    |banks_0_blk_n          |   9|          2|    1|          2|
+    |banks_0_din            |   9|          2|   64|        128|
+    |banks_0_write          |  13|          3|    1|          3|
+    |banks_1_blk_n          |   9|          2|    1|          2|
+    |banks_1_din            |   9|          2|   64|        128|
+    |banks_1_write          |  13|          3|    1|          3|
+    |banks_2_blk_n          |   9|          2|    1|          2|
+    |banks_2_din            |   9|          2|   64|        128|
+    |banks_2_write          |  13|          3|    1|          3|
+    |banks_3_blk_n          |   9|          2|    1|          2|
+    |banks_3_din            |   9|          2|   64|        128|
+    |banks_3_write          |  13|          3|    1|          3|
+    |banks_4_blk_n          |   9|          2|    1|          2|
+    |banks_4_din            |   9|          2|   64|        128|
+    |banks_4_write          |  13|          3|    1|          3|
+    |banks_5_blk_n          |   9|          2|    1|          2|
+    |banks_5_din            |   9|          2|   64|        128|
+    |banks_5_write          |  13|          3|    1|          3|
+    |banks_6_blk_n          |   9|          2|    1|          2|
+    |banks_6_din            |   9|          2|   64|        128|
+    |banks_6_write          |  13|          3|    1|          3|
+    |banks_7_blk_n          |   9|          2|    1|          2|
+    |banks_7_din            |   9|          2|   64|        128|
+    |banks_7_write          |  13|          3|    1|          3|
+    |candidate_count_blk_n  |   9|          2|    1|          2|
+    |real_start             |   9|          2|    1|          2|
+    +-----------------------+----+-----------+-----+-----------+
+    |Total                  | 292|         66|  532|       1074|
+    +-----------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                               Name                                               | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                         |   3|   0|    3|          0|
+    |ap_done_reg                                                                                       |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_route_candidate_banks_Pipeline_RouteCandidateBanks_fu_115_ap_start_reg  |   1|   0|    1|          0|
+    |start_once_reg                                                                                    |   1|   0|    1|          0|
+    |token_loc_fu_48                                                                                   |  64|   0|   64|          0|
+    +--------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                             |  70|   0|   70|          0|
+    +--------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+--------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                Source Object               |    C Type    |
++---------------------------+-----+-----+------------+--------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|start_full_n               |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_continue                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|start_out                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|start_write                |  out|    1|  ap_ctrl_hs|  (anonymous namespace)route_candidate_banks|  return value|
+|candidates_dout            |   in|   64|     ap_fifo|                                  candidates|       pointer|
+|candidates_empty_n         |   in|    1|     ap_fifo|                                  candidates|       pointer|
+|candidates_read            |  out|    1|     ap_fifo|                                  candidates|       pointer|
+|candidates_num_data_valid  |   in|    8|     ap_fifo|                                  candidates|       pointer|
+|candidates_fifo_cap        |   in|    8|     ap_fifo|                                  candidates|       pointer|
+|banks_0_din                |  out|   64|     ap_fifo|                                     banks_0|       pointer|
+|banks_0_full_n             |   in|    1|     ap_fifo|                                     banks_0|       pointer|
+|banks_0_write              |  out|    1|     ap_fifo|                                     banks_0|       pointer|
+|banks_0_num_data_valid     |   in|   32|     ap_fifo|                                     banks_0|       pointer|
+|banks_0_fifo_cap           |   in|   32|     ap_fifo|                                     banks_0|       pointer|
+|banks_1_din                |  out|   64|     ap_fifo|                                     banks_1|       pointer|
+|banks_1_full_n             |   in|    1|     ap_fifo|                                     banks_1|       pointer|
+|banks_1_write              |  out|    1|     ap_fifo|                                     banks_1|       pointer|
+|banks_1_num_data_valid     |   in|   32|     ap_fifo|                                     banks_1|       pointer|
+|banks_1_fifo_cap           |   in|   32|     ap_fifo|                                     banks_1|       pointer|
+|banks_2_din                |  out|   64|     ap_fifo|                                     banks_2|       pointer|
+|banks_2_full_n             |   in|    1|     ap_fifo|                                     banks_2|       pointer|
+|banks_2_write              |  out|    1|     ap_fifo|                                     banks_2|       pointer|
+|banks_2_num_data_valid     |   in|   32|     ap_fifo|                                     banks_2|       pointer|
+|banks_2_fifo_cap           |   in|   32|     ap_fifo|                                     banks_2|       pointer|
+|banks_3_din                |  out|   64|     ap_fifo|                                     banks_3|       pointer|
+|banks_3_full_n             |   in|    1|     ap_fifo|                                     banks_3|       pointer|
+|banks_3_write              |  out|    1|     ap_fifo|                                     banks_3|       pointer|
+|banks_3_num_data_valid     |   in|   32|     ap_fifo|                                     banks_3|       pointer|
+|banks_3_fifo_cap           |   in|   32|     ap_fifo|                                     banks_3|       pointer|
+|banks_4_din                |  out|   64|     ap_fifo|                                     banks_4|       pointer|
+|banks_4_full_n             |   in|    1|     ap_fifo|                                     banks_4|       pointer|
+|banks_4_write              |  out|    1|     ap_fifo|                                     banks_4|       pointer|
+|banks_4_num_data_valid     |   in|   32|     ap_fifo|                                     banks_4|       pointer|
+|banks_4_fifo_cap           |   in|   32|     ap_fifo|                                     banks_4|       pointer|
+|banks_5_din                |  out|   64|     ap_fifo|                                     banks_5|       pointer|
+|banks_5_full_n             |   in|    1|     ap_fifo|                                     banks_5|       pointer|
+|banks_5_write              |  out|    1|     ap_fifo|                                     banks_5|       pointer|
+|banks_5_num_data_valid     |   in|   32|     ap_fifo|                                     banks_5|       pointer|
+|banks_5_fifo_cap           |   in|   32|     ap_fifo|                                     banks_5|       pointer|
+|banks_6_din                |  out|   64|     ap_fifo|                                     banks_6|       pointer|
+|banks_6_full_n             |   in|    1|     ap_fifo|                                     banks_6|       pointer|
+|banks_6_write              |  out|    1|     ap_fifo|                                     banks_6|       pointer|
+|banks_6_num_data_valid     |   in|   32|     ap_fifo|                                     banks_6|       pointer|
+|banks_6_fifo_cap           |   in|   32|     ap_fifo|                                     banks_6|       pointer|
+|banks_7_din                |  out|   64|     ap_fifo|                                     banks_7|       pointer|
+|banks_7_full_n             |   in|    1|     ap_fifo|                                     banks_7|       pointer|
+|banks_7_write              |  out|    1|     ap_fifo|                                     banks_7|       pointer|
+|banks_7_num_data_valid     |   in|   32|     ap_fifo|                                     banks_7|       pointer|
+|banks_7_fifo_cap           |   in|   32|     ap_fifo|                                     banks_7|       pointer|
+|candidate_count_din        |  out|   32|     ap_fifo|                             candidate_count|       pointer|
+|candidate_count_full_n     |   in|    1|     ap_fifo|                             candidate_count|       pointer|
+|candidate_count_write      |  out|    1|     ap_fifo|                             candidate_count|       pointer|
++---------------------------+-----+-----+------------+--------------------------------------------+--------------+
+

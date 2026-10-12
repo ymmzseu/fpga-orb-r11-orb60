@@ -1,0 +1,13 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_033218_datapath_axi_38362f6d",
+  "LayerHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_layer2_f2546027",
+  "DescriptorHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_030343_descriptor_2730a8cf",
+  "StartedUtc": "2026-10-12T18:32:18.6609550Z",
+  "ProcessId": 10272,
+  "Scope": "Fresh layer random AXI/reset/barrier plus verified identical retained descriptor protocol; joint DDR/native/system/board pending",
+  "LayerProtocolReuse": "",
+  "DescriptorProtocolReuse": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_032618_datapath_axi_43b1d9fc",
+  "FinishedUtc": "2026-10-12T18:34:45.0070364Z"
+}
