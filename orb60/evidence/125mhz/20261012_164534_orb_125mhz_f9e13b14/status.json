@@ -1,0 +1,32 @@
+﻿{
+    "State":  "FAILED",
+    "Stage":  "VIVADO_ROUTE",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\timing\\20261012_164534_orb_125mhz_f9e13b14",
+    "ScratchRoot":  "D:\\pld\\.work\\vivado\\orb60\\if9e13b14",
+    "AcceptedLayer":  "D:\\pld\\orb60\\build\\optimized\\comparison\\20261012_161953_frequency125_4a92a648\\accepted_layer2",
+    "AcceptedDescriptor":  "D:\\pld\\orb60\\build\\optimized\\comparison\\20261012_161953_frequency125_4a92a648\\accepted_descriptor",
+    "LayerHlsJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a",
+    "DescriptorHlsJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_164140_descriptor_febd5ecb",
+    "MaximumPredictedIpPathBytes":  194,
+    "Part":  "xc7z015clg485-2",
+    "FrequencyMHz":  125,
+    "Scope":  "Complete 2PPC layer + exact A32 descriptor routed timing/resource; candidate joint DDR/protocol/PS/board gates pending",
+    "PostRoutePhysOptApplied":  false,
+    "StartedUtc":  "2026-10-12T07:45:40.3941481Z",
+    "ProcessId":  25724,
+    "Error":  "Integrated routed gate failed (exit 1); measured results retained",
+    "Timing":  {
+                   "scope":  "2PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending",
+                   "part":  "xc7z015clg485-2",
+                   "frequency_mhz":  "125",
+                   "front_top":  "fastv2_layer2_hls",
+                   "wns_ns":  "-0.341",
+                   "whs_ns":  "0.050",
+                   "setup_DATAPATH_DELAY":  "7.772",
+                   "setup_LOGIC_LEVELS":  "11",
+                   "setup_STARTPOINT_PIN":  "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/token_reg_10747_reg[42]_rep__0/C",
+                   "setup_ENDPOINT_PIN":  "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_165_fu_1942_reg[0]/CE",
+                   "setup_REQUIREMENT":  "8.000"
+               },
+    "FinishedUtc":  "2026-10-12T08:01:11.2678103Z"
+}

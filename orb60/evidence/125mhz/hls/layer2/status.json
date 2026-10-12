@@ -1,0 +1,13 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Variant":  "optimized",
+    "Kernel":  "layer2",
+    "PeriodNs":  8,
+    "Cosim":  true,
+    "StartedUtc":  "2026-10-12T07:19:55.5529952Z",
+    "Part":  "xc7z015clg485-2",
+    "Tool":  "D:\\Xilinx\\Vitis_HLS\\2024.2\\bin\\vitis_hls.bat",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a",
+    "SourceJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_112318_layer2_7d592c6c",
+    "FinishedUtc":  "2026-10-12T07:41:37.9245322Z"
+}

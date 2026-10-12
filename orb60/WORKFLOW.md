@@ -511,6 +511,90 @@ source hashes and reports actual clocks/setup/hold/coverage/DRC/congestion/
 hierarchical resources. It does not reuse10 ns IP to claim125 MHz, project
 125 MHz FPS from old cycles, replace100 MHz, modify PS or program the board.
 
+100 MHz bit/source publication 20261012_171954_bit_publication_d17fcf25
+SUCCEEDED using the immutable accepted routed checkpoint. Fresh setup/hold/
+coverage/routing/DRC checks passed; bit header identifies s_wrapper/2024.2 and
+7z015clg485, payload3510668 bytes. Generation/checkpoint-open time116018 ms.
+Bit SHA256 a80fe3fdff930a3266b2d8701a9dfbc36319010e56744ba0d20245eda7c1303d.
+The complete ZIP is6819188 bytes/689 files, CRC and all payload hashes verified,
+including the original frozen fixtures. Its SHA256 is
+310427dc143b05d8957f450d520663d1dfb669a9c0d338e90b59db3900a1158a.
+Local branch codex/orb60-100mhz-2ppc-pl-descriptor committed as
+9f3ffdc3dd7081dbea143c00c8d3406de3c0b4ba; GitHub push still returned403 for
+ymmzseu. User-authorized ZIP fallback is ready with source/docs/reports/bit.
+Publication integrity recheck passed475 files and the ZIP SHA. No paired new
+PS ELF, XSA or physical-board test is claimed; the historical three-core ELF
+does not configure this two-core bitstream.
+
+125 MHz experiment 20261012_161953_frequency125_4a92a648 FAILED in the strict
+full-top timing gate. Both actual8 ns HLS jobs passed CSim/synthesis/co-sim and
+II/64-bit checks (21 layer and38 descriptor transactions). Child route
+20261012_164534_orb_125mhz_f9e13b14 completed51274/51274 nets with zero routing
+errors, actual clock8.000 ns and zero uncovered checks, but WNS-0.341 ns,
+TNS-6.608 ns/56 failing endpoints, WHS+0.050 ns/THS0. Complete routed resources:
+27817 LUT(60.21%),29048 FF(31.44%),68 BRAM(71.58%),40 DSP(25%),
+10090 slices(87.36%). Worst reducer token_reg[42] -> best_score_165 CE path
+has11 levels/7.772 ns: logic2.321 ns, routing5.451 ns(70.14%), initial net
+fanout185 and clock skew-0.308 ns. This is an actual timing violation, not a
+tool startup or report parser failure. The original FAILED state is retained.
+
+Next bounded implementation choice: retain custom HLS algorithms and AMD
+infrastructure; use Vivado post-route AggressiveExplore on a separate copy of
+that completed125 MHz top. It targets the measured routing/fanout hotspot and
+does not change HLS/RTL sources, clock requirements or timing exceptions.
+The new runner freezes parent report/check helpers, verifies parent DCP SHA,
+checks actual8 ns clock before/after, and requires fresh complete-top setup/
+hold/coverage/DRC/routing/resources/congestion reports. This is a physical
+timing experiment; new125 MHz protocol/frame/release/board gates stay pending.
+
+First post-route physical experiment
+20261012_173058_physopt_125mhz_6aecd654 completed AggressiveExplore in244159 ms
+but FAILED the real setup gate: WNS-0.341 ->-0.039 ns, TNS-6.608 ->-0.467 ns,
+failing endpoints56 ->17. WHS+0.050 ns/THS0,51282/51282 nets fully routed,
+zero route errors and all check_timing categories zero; DRC contains warnings
+without Error/Critical Warning rows. Complete resources27825 LUT(60.23%),
+29048 FF(31.44%),68 BRAM(71.58%),40 DSP(25%),10091 slices(87.37%). The new
+worst path is best_score_17[2] ->best_score_203[1] CE,12 levels/7.633 ns,
+logic2.438/routing5.195 ns. The negative39 ps is not relabelled as PASS.
+
+The second and final bounded physical pass uses Explore on a separate copy of
+that completed improved checkpoint. Runner validates agreement with the frozen
+archive, preserves its SHA and8 ns requirement, records pass lineage/directive,
+and repeats the same full-top strict acceptance. Neither PS nor HLS sources
+are changed. If it still fails, further closure requires a separately validated
+datapath/implementation change rather than an unbounded physical retry loop.
+
+Second and final post-route physical experiment
+20261012_174304_physopt_125mhz_17bedb6f completed Explore in97139 ms but
+FAILED actual setup: WNS-0.039 ->-0.034 ns, TNS-0.467 ->-0.187 ns,
+failing endpoints17 ->10, WHS+0.050 ns/THS0. All51283 routable nets are
+fully routed without errors; actual clock8.000 ns, all12 check_timing
+categories zero, no Error/Critical Warning DRC rows. Complete resources:
+27826 LUT(60.23%),29048 FF(31.44%),68 BRAM(71.58%),40 DSP(25%),
+10091 slices(87.37%). The reducer best_score_17[2] ->best_score_203[1]
+CE remains the worst path,11 logic levels/7.628 ns data delay. Only5 ps
+was recovered in this pass. The bounded physical comparison is concluded;
+125 MHz remains rejected and no125 MHz bitstream is offered as accepted.
+Retained100 MHz bitstream/source/kernel inputs are unchanged. Further125 MHz
+closure would require a separate measured HLS selection/update restructuring
+and its functional/protocol/complete-route gates. PS integration is deferred.
+
+Comparison ZIP refresh 20261012_180418_100mhz_with_125comparison_b851dd23
+FAILED the publication verifier before ZIP creation or Git staging: the child
+Windows PowerShell5.1 could not resolve Get-FileHash in the inherited module
+environment. The original100 MHz ZIP/bit are unchanged. Recovery discovers
+pwsh via PATH, retains the same unmodified hash gate, and permits only the
+declared uncommitted publication overlay into a new output job. No HLS/RTL,
+clock, resource/timing post-check or frozen input is changed by this repair.
+
+PS firmware integration remains deferred by the user's latest instruction.
+The installed Vitis2024.2 tree contains the HLS-only marker and no discovered
+Cortex-A9 GCC toolchain; Vivado2024.2 has xsct-trim and standalone BSP sources,
+but those alone are not an accepted embedded application build. No PS source
+was changed, no BSP/ELF build was launched, and no historical ELF was relabelled
+as paired with the new bitstream. The existing100 MHz source/bit ZIP remains
+the delivered artifact; the separate125 MHz physical experiment is unaffected.
+
 After equivalent baseline acceptance: balanced/pipelined FAST extrema,
 II=1 reduction with real dependency handling, explicit 64-bit output, generated
 21-bit resize ROM, a 100 MHz implementation, and an 8 ns/125 MHz comparison.

@@ -1,0 +1,320 @@
+{
+  "evidence_scope": "HLS estimates and accepted co-simulation, no routed/board claim",
+  "standalone_front2": {
+    "job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_100430_front2_4334e6e9",
+    "resources_hls_estimate": {
+      "BRAM_18K": 63,
+      "DSP": 0,
+      "FF": 14504,
+      "LUT": 27339,
+      "URAM": 0
+    },
+    "timing_hls_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "8.763"
+    },
+    "cosim_latency_cycles": {
+      "min": 102,
+      "avg": 85460,
+      "max": 355392
+    },
+    "pipelined_loops": {
+      "Loop 1": {
+        "II": 1,
+        "depth": 3
+      },
+      "VITIS_LOOP_12_2": {
+        "II": 1,
+        "depth": 2
+      },
+      "VITIS_LOOP_25_1_UnpackPairs": {
+        "II": 1,
+        "depth": 4
+      },
+      "RasterPairs": {
+        "II": 1,
+        "depth": 10
+      },
+      "MergePairs": {
+        "II": 1,
+        "depth": 3
+      },
+      "InitializeCells": {
+        "II": 1,
+        "depth": 1
+      },
+      "ReduceCandidateTokens": {
+        "II": 1,
+        "depth": 3
+      },
+      "BuildWinners": {
+        "II": 1,
+        "depth": 2
+      },
+      "EmitCellOrder": {
+        "II": 1,
+        "depth": 2
+      },
+      "FindStrongestCell": {
+        "II": 1,
+        "depth": 3
+      }
+    },
+    "axi_data_widths": {
+      "GMEM0": 64,
+      "GMEM1": 64
+    }
+  },
+  "shared_layer2": {
+    "job": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a",
+    "resources_hls_estimate": {
+      "BRAM_18K": 108,
+      "DSP": 20,
+      "FF": 24792,
+      "LUT": 39812,
+      "URAM": 0
+    },
+    "timing_hls_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "9.620"
+    },
+    "cosim_latency_cycles": {
+      "min": 105,
+      "avg": 108274,
+      "max": 357417
+    },
+    "pipelined_loops": {
+      "Loop 1": {
+        "II": 1,
+        "depth": 3
+      },
+      "VITIS_LOOP_12_2": {
+        "II": 1,
+        "depth": 2
+      },
+      "VITIS_LOOP_25_1_UnpackPairs": {
+        "II": 1,
+        "depth": 6
+      },
+      "VITIS_LOOP_13_1_ForkLayerPairs": {
+        "II": 1,
+        "depth": 2
+      },
+      "RasterPairs": {
+        "II": 1,
+        "depth": 11
+      },
+      "MergePairs": {
+        "II": 1,
+        "depth": 2
+      },
+      "InitializeCells": {
+        "II": 1,
+        "depth": 1
+      },
+      "ReduceCandidateTokens": {
+        "II": 1,
+        "depth": 3
+      },
+      "BuildWinners": {
+        "II": 1,
+        "depth": 2
+      },
+      "EmitCellOrder": {
+        "II": 1,
+        "depth": 3
+      },
+      "FindStrongestCell": {
+        "II": 1,
+        "depth": 3
+      },
+      "VITIS_LOOP_25_2": {
+        "II": 1,
+        "depth": 2
+      },
+      "HorizontalGaussianPairs": {
+        "II": 1,
+        "depth": 5
+      },
+      "VerticalGaussianPairs": {
+        "II": 1,
+        "depth": 5
+      },
+      "VITIS_LOOP_223_1_PackLayerPairs": {
+        "II": 1,
+        "depth": 4
+      },
+      "CollectLayerWords": {
+        "II": 1,
+        "depth": 2
+      },
+      "ResizeSourcePairs": {
+        "II": 1,
+        "depth": 9
+      },
+      "VITIS_LOOP_157_1_DrainLastLevelPairs": {
+        "II": 1,
+        "depth": 2
+      },
+      "CountLayerCycles": {
+        "II": 1,
+        "depth": 2
+      }
+    },
+    "axi_data_widths": {
+      "GMEM0": 64,
+      "GMEM1": 64,
+      "GMEM2": 64,
+      "GMEM3": 64
+    }
+  },
+  "transactions": 21,
+  "loops": {
+    "UnpackPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_unpack_front2_words_Pipeline_VITIS_LOOP_25_1_UnpackPairs",
+          "label": "VITIS_LOOP_25_1_UnpackPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_unpack_front2_words_Pipeline_VITIS_LOOP_25_1_UnpackPairs_csynth.xml"
+        }
+      ]
+    },
+    "ForkLayerPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_fork_layer2_pairs_Pipeline_VITIS_LOOP_13_1_ForkLayerPairs",
+          "label": "VITIS_LOOP_13_1_ForkLayerPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_fork_layer2_pairs_Pipeline_VITIS_LOOP_13_1_ForkLayerPairs_csynth.xml"
+        }
+      ]
+    },
+    "RasterPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_scan_front2_pairs_Pipeline_RasterPairs",
+          "label": "RasterPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_scan_front2_pairs_Pipeline_RasterPairs_csynth.xml"
+        }
+      ]
+    },
+    "MergePairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_serialize_front2_pairs_Pipeline_MergePairs",
+          "label": "MergePairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_serialize_front2_pairs_Pipeline_MergePairs_csynth.xml"
+        }
+      ]
+    },
+    "ReduceCandidateTokens": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens",
+          "label": "ReduceCandidateTokens",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_csynth.xml"
+        }
+      ]
+    },
+    "HorizontalGaussianPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs",
+          "label": "HorizontalGaussianPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_gaussian2_horizontal_Pipeline_HorizontalGaussianPairs_csynth.xml"
+        }
+      ]
+    },
+    "VerticalGaussianPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_gaussian2_vertical_Pipeline_VerticalGaussianPairs",
+          "label": "VerticalGaussianPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_gaussian2_vertical_Pipeline_VerticalGaussianPairs_csynth.xml"
+        }
+      ]
+    },
+    "ResizeSourcePairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_resize2_pairs_Pipeline_ResizeSourcePairs",
+          "label": "ResizeSourcePairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_resize2_pairs_Pipeline_ResizeSourcePairs_csynth.xml"
+        }
+      ]
+    },
+    "DrainLastLevelPairs": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_resize2_pairs_Pipeline_VITIS_LOOP_157_1_DrainLastLevelPairs",
+          "label": "VITIS_LOOP_157_1_DrainLastLevelPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_resize2_pairs_Pipeline_VITIS_LOOP_157_1_DrainLastLevelPairs_csynth.xml"
+        }
+      ]
+    },
+    "PackLayerPairs": {
+      "expected_instances": 2,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_layer_pack_pairs_Pipeline_VITIS_LOOP_223_1_PackLayerPairs_1",
+          "label": "VITIS_LOOP_223_1_PackLayerPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_pack_pairs_Pipeline_VITIS_LOOP_223_1_PackLayerPairs_1_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_layer_pack_pairs_Pipeline_VITIS_LOOP_223_1_PackLayerPairs",
+          "label": "VITIS_LOOP_223_1_PackLayerPairs",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_pack_pairs_Pipeline_VITIS_LOOP_223_1_PackLayerPairs_csynth.xml"
+        }
+      ]
+    },
+    "CollectLayerWords": {
+      "expected_instances": 2,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_layer_write_words_0_Pipeline_CollectLayerWords",
+          "label": "CollectLayerWords",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_write_words_0_Pipeline_CollectLayerWords_csynth.xml"
+        },
+        {
+          "module": "p_anonymous_namespace_layer_write_words_1_Pipeline_CollectLayerWords",
+          "label": "CollectLayerWords",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_layer_write_words_1_Pipeline_CollectLayerWords_csynth.xml"
+        }
+      ]
+    },
+    "CountLayerCycles": {
+      "expected_instances": 1,
+      "actual": [
+        {
+          "module": "p_anonymous_namespace_count_layer2_cycles_Pipeline_CountLayerCycles",
+          "label": "CountLayerCycles",
+          "II": 1,
+          "xml": "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a\\projects\\layer2\\solution1\\syn\\report\\p_anonymous_namespace_count_layer2_cycles_Pipeline_CountLayerCycles_csynth.xml"
+        }
+      ]
+    }
+  },
+  "throughput_gate_pass": true,
+  "axi_all_64": true
+}

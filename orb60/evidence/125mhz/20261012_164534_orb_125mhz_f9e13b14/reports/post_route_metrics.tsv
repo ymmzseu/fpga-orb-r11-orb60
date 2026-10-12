@@ -1,0 +1,11 @@
+scope	2PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending
+part	xc7z015clg485-2
+frequency_mhz	125
+front_top	fastv2_layer2_hls
+wns_ns	-0.341
+whs_ns	0.050
+setup_DATAPATH_DELAY	7.772
+setup_LOGIC_LEVELS	11
+setup_STARTPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/token_reg_10747_reg[42]_rep__0/C
+setup_ENDPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_165_fu_1942_reg[0]/CE
+setup_REQUIREMENT	8.000

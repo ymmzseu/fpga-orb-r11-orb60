@@ -1,0 +1,5 @@
+directive	Explore
+before_wns_ns	-0.039
+before_endpoint	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_203_fu_2094_reg[1]/CE
+optimization_elapsed_ms	97139
+after_wns_ns	-0.034

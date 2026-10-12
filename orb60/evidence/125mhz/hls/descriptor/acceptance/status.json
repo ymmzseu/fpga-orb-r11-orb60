@@ -1,0 +1,7 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "PeriodNs":  8,
+    "FrequencyMHz":  125,
+    "Scope":  "C/RTL exact + actual II/interface only; random AXI/native/route pending",
+    "DescriptorHlsJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_164140_descriptor_febd5ecb"
+}

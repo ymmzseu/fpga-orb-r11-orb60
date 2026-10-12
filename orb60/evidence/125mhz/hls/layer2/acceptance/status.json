@@ -1,0 +1,7 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "PeriodNs":  8,
+    "FrequencyMHz":  125,
+    "Scope":  "C/RTL exact + actual II/interface only; random AXI/native/route pending",
+    "layer2Job":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_161953_layer2_10b7666a"
+}

@@ -1,0 +1,90 @@
+{
+  "scope": "Failed 125 MHz bounded timing comparison; retained bit is accepted 100 MHz",
+  "physical_pass_limit": 2,
+  "results": [
+    {
+      "job": "20261012_164534_orb_125mhz_f9e13b14",
+      "status": "FAILED_SETUP",
+      "wns_ns": -0.341,
+      "tns_ns": -6.608,
+      "failing_endpoints": 56,
+      "whs_ns": 0.05,
+      "ths_ns": 0.0,
+      "lut": 27817,
+      "ff": 29048,
+      "bram": 68,
+      "dsp": 40,
+      "routed_nets": 51274,
+      "worst_path": {
+        "scope": "2PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending",
+        "part": "xc7z015clg485-2",
+        "frequency_mhz": "125",
+        "front_top": "fastv2_layer2_hls",
+        "wns_ns": "-0.341",
+        "whs_ns": "0.050",
+        "setup_DATAPATH_DELAY": "7.772",
+        "setup_LOGIC_LEVELS": "11",
+        "setup_STARTPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/token_reg_10747_reg[42]_rep__0/C",
+        "setup_ENDPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_165_fu_1942_reg[0]/CE",
+        "setup_REQUIREMENT": "8.000"
+      }
+    },
+    {
+      "job": "20261012_173058_physopt_125mhz_6aecd654",
+      "status": "FAILED_SETUP",
+      "wns_ns": -0.039,
+      "tns_ns": -0.467,
+      "failing_endpoints": 17,
+      "whs_ns": 0.05,
+      "ths_ns": 0.0,
+      "lut": 27825,
+      "ff": 29048,
+      "bram": 68,
+      "dsp": 40,
+      "routed_nets": 51282,
+      "worst_path": {
+        "scope": "Complete 8 ns HLS layer + A32 descriptor top after AggressiveExplore; candidate protocol/frame/board gates pending",
+        "part": "xc7z015clg485-2",
+        "frequency_mhz": "125",
+        "front_top": "fastv2_layer2_hls",
+        "wns_ns": "-0.039",
+        "whs_ns": "0.050",
+        "setup_DATAPATH_DELAY": "7.633",
+        "setup_LOGIC_LEVELS": "12",
+        "setup_STARTPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_17_fu_1350_reg[2]/C",
+        "setup_ENDPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_203_fu_2094_reg[1]/CE",
+        "setup_REQUIREMENT": "8.000"
+      }
+    },
+    {
+      "job": "20261012_174304_physopt_125mhz_17bedb6f",
+      "status": "FAILED_SETUP",
+      "wns_ns": -0.034,
+      "tns_ns": -0.187,
+      "failing_endpoints": 10,
+      "whs_ns": 0.05,
+      "ths_ns": 0.0,
+      "lut": 27826,
+      "ff": 29048,
+      "bram": 68,
+      "dsp": 40,
+      "routed_nets": 51283,
+      "worst_path": {
+        "scope": "Complete 8 ns HLS layer + A32 descriptor top after Explore; candidate protocol/frame/board gates pending",
+        "part": "xc7z015clg485-2",
+        "frequency_mhz": "125",
+        "front_top": "fastv2_layer2_hls",
+        "wns_ns": "-0.034",
+        "whs_ns": "0.050",
+        "setup_DATAPATH_DELAY": "7.628",
+        "setup_LOGIC_LEVELS": "11",
+        "setup_STARTPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_17_fu_1350_reg[2]/C",
+        "setup_ENDPOINT_PIN": "s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_203_fu_2094_reg[1]/CE",
+        "setup_REQUIREMENT": "8.000"
+      }
+    }
+  ],
+  "ps_firmware_modified": false,
+  "physical_board_verified": false,
+  "accepted_125mhz": false
+}

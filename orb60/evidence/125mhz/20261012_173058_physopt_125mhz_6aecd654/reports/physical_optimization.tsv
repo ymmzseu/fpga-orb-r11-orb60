@@ -1,0 +1,5 @@
+directive	AggressiveExplore
+before_wns_ns	-0.341
+before_endpoint	s_i/layer/inst/grp_p_anonymous_namespace_layer2_dataflow_fu_721/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_consume_and_select_Pipeline_ReduceCandidateTokens_fu_3560/best_score_165_fu_1942_reg[0]/CE
+optimization_elapsed_ms	244159
+after_wns_ns	-0.039

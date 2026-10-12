@@ -127,3 +127,7 @@ py -3.12 -m venv .venv
 原参考的 GPL-3.0-or-later 和各文件 GPL/BSD 来源声明保留；见
 `optimized/FPGA_ORB_SHARED_v1.0/LICENSE`、`NOTICE.md`、`constants.hpp`。
 此分发不为所有原始/派生文件统一重新授予其他许可。
+
+## 125 MHz 对照结果
+
+实际 8 ns HLS 重建和两轮物理优化后，最终 WNS −0.034 ns、WHS +0.050 ns，仍未通过 setup。100 MHz bit 与配对源码保持不变，PS 工作暂缓。完整记录见 [125 MHz 对照说明](docs/125MHZ_COMPARISON_ZH.md)。
