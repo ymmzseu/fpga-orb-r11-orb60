@@ -12,3 +12,10 @@ FPGA_ORB_SHARED_v1.0/vectors/
 *.bit
 *.hdf
 *.elf
+
+# ORB60 branch source/build separation
+.venv/
+.work/
+scripts/local_env.ps1
+!orb60/artifacts/100mhz/*.bit
+!orb60/artifacts/100mhz/*.xsa

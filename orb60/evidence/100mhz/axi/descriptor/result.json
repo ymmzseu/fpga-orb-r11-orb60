@@ -1,0 +1,497 @@
+{
+  "status": "PASS",
+  "kernel": "descriptor",
+  "transactions": 6,
+  "direct_completion_barrier": true,
+  "reset_interruption": true,
+  "cases": [
+    {
+      "case": 35,
+      "cycles_ps_upper_bound": 240,
+      "poll_wait_cycles": 200,
+      "stats": [
+        6291458,
+        0,
+        0,
+        0,
+        0,
+        1000,
+        0,
+        0,
+        0,
+        0,
+        11,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 64,
+          "ar": 0,
+          "aw": 1,
+          "r": 0,
+          "w": 8,
+          "b": 1,
+          "stalls": 5,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        }
+      ]
+    },
+    {
+      "case": 30,
+      "cycles_ps_upper_bound": 240,
+      "poll_wait_cycles": 200,
+      "stats": [
+        6291458,
+        4294967295,
+        0,
+        1,
+        0,
+        1000,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "ar": 0,
+          "aw": 0,
+          "r": 0,
+          "w": 0,
+          "b": 0,
+          "stalls": 0,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 64,
+          "ar": 0,
+          "aw": 1,
+          "r": 0,
+          "w": 8,
+          "b": 1,
+          "stalls": 6,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        }
+      ]
+    },
+    {
+      "case": 24,
+      "cycles_ps_upper_bound": 6098,
+      "poll_wait_cycles": 6000,
+      "stats": [
+        6291458,
+        0,
+        0,
+        4,
+        4,
+        995,
+        3968,
+        5600,
+        64,
+        256,
+        5801,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 3968,
+          "write_bytes": 0,
+          "ar": 125,
+          "aw": 0,
+          "r": 496,
+          "w": 0,
+          "b": 0,
+          "stalls": 50,
+          "boundary_bursts": 2,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 5600,
+          "write_bytes": 0,
+          "ar": 142,
+          "aw": 0,
+          "r": 700,
+          "w": 0,
+          "b": 0,
+          "stalls": 48,
+          "boundary_bursts": 3,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 64,
+          "write_bytes": 0,
+          "ar": 2,
+          "aw": 0,
+          "r": 8,
+          "w": 0,
+          "b": 0,
+          "stalls": 1,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 320,
+          "ar": 0,
+          "aw": 5,
+          "r": 0,
+          "w": 40,
+          "b": 5,
+          "stalls": 31,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        }
+      ]
+    },
+    {
+      "case": 25,
+      "cycles_ps_upper_bound": 3472,
+      "poll_wait_cycles": 3400,
+      "stats": [
+        6291458,
+        4294967294,
+        0,
+        3,
+        1,
+        7,
+        2232,
+        2840,
+        48,
+        64,
+        3354,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 2232,
+          "write_bytes": 0,
+          "ar": 62,
+          "aw": 0,
+          "r": 279,
+          "w": 0,
+          "b": 0,
+          "stalls": 21,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 2840,
+          "write_bytes": 0,
+          "ar": 73,
+          "aw": 0,
+          "r": 355,
+          "w": 0,
+          "b": 0,
+          "stalls": 34,
+          "boundary_bursts": 2,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 48,
+          "write_bytes": 0,
+          "ar": 2,
+          "aw": 0,
+          "r": 6,
+          "w": 0,
+          "b": 0,
+          "stalls": 1,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 128,
+          "ar": 0,
+          "aw": 2,
+          "r": 0,
+          "w": 16,
+          "b": 2,
+          "stalls": 10,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        }
+      ]
+    },
+    {
+      "case": 36,
+      "cycles_ps_upper_bound": 2260,
+      "poll_wait_cycles": 2200,
+      "stats": [
+        6291458,
+        4294967294,
+        0,
+        1,
+        0,
+        0,
+        992,
+        1400,
+        16,
+        0,
+        2144,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 992,
+          "write_bytes": 0,
+          "ar": 31,
+          "aw": 0,
+          "r": 124,
+          "w": 0,
+          "b": 0,
+          "stalls": 12,
+          "boundary_bursts": 0,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 1400,
+          "write_bytes": 0,
+          "ar": 36,
+          "aw": 0,
+          "r": 175,
+          "w": 0,
+          "b": 0,
+          "stalls": 9,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 16,
+          "write_bytes": 0,
+          "ar": 2,
+          "aw": 0,
+          "r": 2,
+          "w": 0,
+          "b": 0,
+          "stalls": 5,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 64,
+          "ar": 0,
+          "aw": 1,
+          "r": 0,
+          "w": 8,
+          "b": 1,
+          "stalls": 7,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        }
+      ]
+    },
+    {
+      "case": 37,
+      "cycles_ps_upper_bound": 343034,
+      "poll_wait_cycles": 339600,
+      "stats": [
+        6291458,
+        0,
+        4,
+        256,
+        256,
+        744,
+        301584,
+        416776,
+        4096,
+        16384,
+        342832,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi": [
+        {
+          "read_bytes": 301584,
+          "write_bytes": 0,
+          "ar": 7997,
+          "aw": 0,
+          "r": 37698,
+          "w": 0,
+          "b": 0,
+          "stalls": 3414,
+          "boundary_bursts": 112,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 416776,
+          "write_bytes": 0,
+          "ar": 9553,
+          "aw": 0,
+          "r": 52097,
+          "w": 0,
+          "b": 0,
+          "stalls": 4178,
+          "boundary_bursts": 134,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 4096,
+          "write_bytes": 0,
+          "ar": 33,
+          "aw": 0,
+          "r": 512,
+          "w": 0,
+          "b": 0,
+          "stalls": 62,
+          "boundary_bursts": 1,
+          "narrow_bursts": 0
+        },
+        {
+          "read_bytes": 0,
+          "write_bytes": 16448,
+          "ar": 0,
+          "aw": 261,
+          "r": 0,
+          "w": 2056,
+          "b": 261,
+          "stalls": 1358,
+          "boundary_bursts": 5,
+          "narrow_bursts": 0
+        }
+      ]
+    }
+  ],
+  "counts": [
+    {
+      "read_bytes": 309568,
+      "write_bytes": 0,
+      "ar": 8238,
+      "aw": 0,
+      "r": 38696,
+      "w": 0,
+      "b": 0,
+      "stalls": 3501,
+      "boundary_bursts": 114,
+      "narrow_bursts": 0
+    },
+    {
+      "read_bytes": 427456,
+      "write_bytes": 0,
+      "ar": 9823,
+      "aw": 0,
+      "r": 53432,
+      "w": 0,
+      "b": 0,
+      "stalls": 4272,
+      "boundary_bursts": 140,
+      "narrow_bursts": 0
+    },
+    {
+      "read_bytes": 4488,
+      "write_bytes": 0,
+      "ar": 42,
+      "aw": 0,
+      "r": 561,
+      "w": 0,
+      "b": 0,
+      "stalls": 137,
+      "boundary_bursts": 5,
+      "narrow_bursts": 0
+    },
+    {
+      "read_bytes": 0,
+      "write_bytes": 17088,
+      "ar": 0,
+      "aw": 271,
+      "r": 0,
+      "w": 2136,
+      "b": 271,
+      "stalls": 1417,
+      "boundary_bursts": 10,
+      "narrow_bursts": 0
+    }
+  ]
+}

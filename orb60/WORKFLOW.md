@@ -1,0 +1,520 @@
+# ORB60 evidence and remaining gates
+
+## Scope and implementation choices
+
+Independent development lives here; the R11 archive remains unchanged. Target:
+xc7z015clg485-2, 960x720, eight layers, 100 MHz primary clock, exact A32 ORB.
+Custom HLS is retained for FAST/Gaussian/Resize and the future descriptor. AMD
+IP owns PS7, AXI protocol/width conversion, clock and reset. PS software owns
+scheduling, buffer ownership and cache visibility. No new DMA is required.
+
+The baseline uses the paired R8 image/frontend sources and the frozen default
+R11 PS release. Profile uses a separate host-test entry/library. The 94-file
+origin hashes are in provenance.json; CMake and the board-host include selector
+are migration harness changes. Algorithms and frozen_ps files are unchanged.
+
+## Verified 2024.2 baseline
+
+- Host: 17/17 exact tests passed; GNU 13.2.0, CPython 3.12.12.
+- HLS job: build/baseline/hls/20261012_010831_all_5ef88504, SUCCEEDED.
+- CSim, synthesis, Verilog co-simulation and IP export passed for all three
+  cores. FAST 11, Resize 13, Gaussian 14 transactions. FAST includes 70,398
+  candidates, fallback, capacity rejection and restart cases.
+- 32-bit address registers and original offsets are retained. FAST output
+  remains a 512-bit AXI interface. Deprecated DATA_PACK is ignored by 2024.2;
+  co-simulation confirms exact record layout for these transactions.
+- Independent NumPy oracle reproduces all 11 frozen C++ FAST summary/point
+  vectors exactly and produces all 38 AXI vectors. Resize and Gaussian use
+  rational integer arithmetic/direct reflected convolution, without DUT ROMs.
+- New synthesis estimates are not routed resource evidence. The 2024.2 compiler
+  automatically pipelines the candidate reducer at II=3; the pixel loop is II=1.
+
+## Current gate and execution policy
+
+The user subsequently prioritized modification effects. The extended baseline
+gate 20261012_013221_5df2bed0 was cancelled during resize smoke; only FAST's two
+randomized AXI smoke/recovery transactions completed (PASS). Do not treat the
+cancelled chain as a full protocol or routed baseline pass. Proceed with bounded
+optimization comparisons using the accepted 17-host/three-core co-sim baseline.
+
+First optimized candidate: four explicitly pipelined signed 9-bit maxima
+stages (16->8->4->2->1), a versioned front64 HLS entry with contiguous 64-bit
+point/summary writes, and generator-owned 21-bit resize coordinates. The direct
+front64 bench checks all 16,000 output bytes, including unwritten slots; the
+legacy host interface is a compatibility adapter. Resize tests independently
+derive indices/weights from rational arithmetic after the representation change.
+Candidate reducer II=1, shared-read 2PPC and PL descriptors remain later work.
+
+Optimization comparison 20261012_014321_982b7277 FAILED in FAST co-simulation
+wrapper compilation. All 17 optimized host tests and FAST CSim/synthesis passed.
+The host-only legacy adapter caused the design translation unit to be compiled
+as a co-simulation auxiliary, where HLS rewrote the top declaration's C linkage.
+Exclude that adapter from FASTV2_HLS_CSIM as well as synthesis; the direct front64
+bench never uses it. No generated RTL or frozen failed-job inputs are edited.
+Provisional FAST HLS estimates: LUT 26687->13341, FF 14485->7878,
+BRAM18 74->53, AXI output 512->64 bits; EmitCellOrder II 2->1.
+RasterColumns remains II=1; ReduceCandidateTokens remains II=3. These estimates
+are not a route/timing pass or a functional RTL acceptance for the failed job.
+
+scripts/baseline_gate.ps1 first runs randomized AXI smoke/recovery cases, then
+all 38 exact transactions, then the complete three-core PS7 top implementation.
+Each step requires its own post-check before the next begins. It reuses the
+existing cocotb/ModelSim environment and shared AXI-Lite driver. The scoped DDR
+model adds correct narrow-transfer bus lanes for the 512-bit output port.
+Monitors check stable requests under stalls, legal strobes/addresses, 4 KB burst
+boundaries, response errors and all write responses completed before ap_done.
+Every IP is interrupted during a live transaction and restarted after reset.
+
+The user's latest execution preference supersedes the root polling default:
+after starting a long job, finish the conversation turn and wait for the user
+to report completion. Keep status JSON/logs and inspect them on resumption.
+
+## Still required
+
+Comparison 20261012_090905_358bc3ea SUCCEEDED: 17 host tests, FAST 11 and
+Resize 13 co-simulation transactions passed. FAST HLS LUT/FF/BRAM18 estimates
+26687/14485/74 -> 13341/7878/53; EmitCellOrder II 2->1; output AXI 512->64.
+FAST max co-simulation cycles 796630->796665: this stage saves resources but
+does not yet improve the full scan latency. Resize BRAM18 46->42, DSP 14->13,
+max cycles 697732->697130. Estimated periods remain 7.902/7.300 ns, not routed
+timing evidence. Retain both immutable accepted child jobs for comparison.
+
+The next HLS candidate uses fully partitioned 8-bit per-cell score registers
+and one write-only payload BRAM during reduction. No false dependency directive
+is used. Raster-ordered tokens make the first equal-score point the exact tie
+winner; CSim asserts that order. A low-threshold maximum is the high-threshold
+maximum whenever any high candidate exists, so one payload store suffices and
+fallback follows from winner.score<high. Independent sorted-grid host cases
+cover same-cell runs, score ties, cell revisits, all profiles, empty/capacity
+cases and guards. Only changed FAST is rebuilt; unchanged Resize reuse requires
+consumed-source hashes and its prior co-simulation acceptance. The new comparison
+explicitly fails its throughput post-check unless ReduceCandidateTokens II=1.
+
+Comparison 20261012_093609_7f0ade4f SUCCEEDED: 18 host tests and all 11 FAST
+C/RTL transactions passed. ReduceCandidateTokens achieved II=1, depth=3.
+Compared with the accepted stage-one front64, HLS estimates increased from
+13341/7878 to 21209/11111 LUT/FF and decreased BRAM18 53->51. Max transaction
+latency remained 796665 cycles; the scan is still 1PPC. This register-score
+implementation is retained as a throughput reference, with resource cost
+explicitly pending complete-top measurement.
+
+The current 2PPC FAST block uses custom HLS: a streamed 64-bit DDR reader,
+odd-row-aware unpacker, packed 16-bit pixel/score line banks, two score lanes,
+and a lossless ordered pair serializer feeding the accepted reducer. Generator
+owned paired geometry avoids two accesses to a single-port coordinate ROM.
+The independent golden exports 16 exact transactions covering all eight levels;
+host merge stress also covers 4096 consecutive double-valid pairs. The bounded
+front2_gate.ps1 runs host/C simulation/synthesis/co-simulation, then requires
+measured II=1 for unpack, pair scan, pair merge and reduction. It records any
+failure without weakening the check. Shared-reader Gaussian/Resize integration,
+finite-FIFO protocol stress, PL descriptors and retained top routing are still
+required after this standalone unit gate.
+
+Front2 comparison 20261012_100352_front2_a93d1812 failed only its report-name
+post-check: HLS flattened UnpackPairs to VITIS_LOOP_25_1_UnpackPairs. All 20
+host tests and 16 RTL transactions passed; no design change is needed. The
+original failed record is retained. Recovery comparison
+20261012_101511_front2_2b7af5e6 reuses the immutable accepted HLS child and passes
+all four II=1 checks with independent XML/log agreement. The parser rejects
+missing or ambiguous labels and retains actual II violations; three script
+regressions pass. The 960x720 high-density transaction decreased from 796665 to
+355392 cycles, HLS LUT/FF/BRAM18 increased 21209/11111/51 -> 27339/14504/63.
+These remain estimates/co-simulation results, without routed or board claims.
+
+The next front2_axi_gate.ps1 uses the existing randomized cocotb/ModelSim DDR
+workflow. It independently rechecks all 16 frozen C++ outputs with Python, then
+checks AXI stalls, 4 KB boundaries, byte guards, write-response completion and
+live-reset recovery. Generated front2 RTL is staged byte-identically; no RTL
+or prior result is edited. Complete-top timing and resources are still pending.
+
+AXI gate 20261012_101714_front2_27c2a9b0 FAILED during full-regression Python
+startup at simulation time zero (sys.stdout=None in cocotb logging). Independent
+Python/C++ vectors and both smoke/reset transactions passed. This is not full
+protocol acceptance, and its failed state is retained. Runtime startup repair
+is pending; do not infer a DUT protocol failure from this log.
+
+The user explicitly prioritized 2PPC routed WNS over protocol testing at this
+stage. timing.ps1 therefore runs a bounded 100 MHz complete three-core timing
+experiment using the accepted front2, compressed-ROM Resize and baseline
+Gaussian 2024.2 IPs. Custom HLS remains the algorithm implementation; AMD IP
+provides PS7, AXI protocol/width conversion, clocks and resets. The experiment
+has fixed source/IP hashes and reports setup/hold paths, coverage, DRC,
+congestion and hierarchical mapped resources. It records measured slack even
+when negative before strict post-checks. No bitstream/XSA is exported in this
+timing-only run. Complete protocol and release gates remain pending.
+
+Timing job 20261012_102428_front2_100mhz_5723af21 FAILED during IP generation:
+Vivado hit the legacy Windows 260-byte path limit on generated HLS filenames.
+Synthesis/place/route never started; there is no measured WNS from that job.
+The timing runner now stages all live inputs/IPs/projects under the configured
+VivadoBuildRoot with an eight-character unique directory and project/BD names
+p/s. It rejects predicted IP paths >=240 bytes before Vivado and archives
+compact reports/status separately. Authored HLS, clock/device and failed-job
+snapshots are unchanged; no drive mapping or generated-RTL edit is used.
+
+Timing job 20261012_102919_front2_100mhz_c3c05ce4 completed actual route_design
+but FAILED the wrapper's exact STATUS-string check: Vivado 2024.2 returned
+"Not started phys_opt_design (Post-Route)" for the next enabled step. Its routed
+report proves 100 MHz WNS +0.180 ns, TNS 0, WHS +0.050 ns, THS 0, and all 34344
+routable nets fully routed without errors. The worst path is in front2 lane0
+FAST score, d_16 register to select_ln161_14 register: 12 logic levels,
+9.516 ns data delay (3.696 logic, 5.820 route). Coverage counts are zero. DRC
+lists warnings, no error/critical-warning rows. These are real complete-top
+route measurements despite the retained failed wrapper status; they do not
+prove full protocol/release/board acceptance or include post-route phys_opt.
+
+The build wrapper now requires the unique run's route completion marker,
+absence of an error marker and its routed checkpoint; shared strict reports
+also require every routable net fully routed and setup/hold/coverage/DRC gates.
+The 2024.2 coverage parser handles the added heading counts and rejects missing,
+inconsistent or nonzero evidence. timing_recover.ps1 opens the immutable routed
+checkpoint, checks actual part/clock, and exports fresh timing, resources,
+hierarchy/congestion/DRC reports in a separate recovery job, without resynthesis,
+rerouting or changing the failed job's state. Post-route optimization is not
+applied during recovery so the measured checkpoint remains comparable.
+
+Recovery 20261012_104923_front2_recovery_b41601c9 SUCCEEDED. The actual routed
+complete top uses 19364 LUT (41.91%), 17823 FF (19.29%), 56/95 BRAM tiles
+(42 RAMB36 + 28 RAMB18, 58.95%), and 20/160 DSP (12.50%). Slice occupancy is
+6916/11550 (59.88%). R11's historical routed release used 20452 LUT, 23621 FF,
+61 BRAM tiles and 16 DSP: net changes -1088 LUT (-5.32%), -5798 FF (-24.55%),
+-5 BRAM tiles (-8.20%) and +4 DSP. Both reports target xc7z015clg485-2/100 MHz,
+but the historical release used Vivado 2018.3 and the new candidate 2024.2;
+the net change includes tool migration and design changes, not isolated causes.
+New routed hierarchy: FAST 10750 LUT/9350 FF/29.5 BRAM tiles/2 DSP,
+Gaussian 3479/3357/7.5/1, Resize 3395/3179/19/17. No historical hierarchical
+report is available for a precise routed per-module delta. Earlier "FAST LUT
+halved" was an intermediate 1PPC HLS estimate, not this final-top resource delta.
+
+Known structural changes: explicit signed 9-bit balanced registered FAST maximum
+tree; contiguous 64-bit point/summary writes replacing the 512-bit write master;
+one low-threshold winner payload store with per-cell score registers replacing
+two high/low payload tables; 21-bit Resize coordinates replacing the inferred
+33-bit entry and deriving source_b=source_a+1; streamed 2PPC FAST reader, packed
+16-bit line banks and two score lanes. II=1 score registers and two lanes add
+resources, while narrower interfaces and deduplicated stores remove resources.
+Per-change routed causality is not proven without same-tool controlled builds.
+Worst path comparisons are between each design's own worst path: 16->12 logic
+levels and 9.644->9.516 ns data delay, with WNS +0.177->+0.180 ns. The new
+FAST arc-extrema/selection path has 61.16% routing delay and remains the hotspot.
+Shared-read 2PPC Gaussian/Resize and exact PL descriptors are not included yet.
+
+Next candidate: custom HLS fastv2_layer2_hls, a versioned shared-reader layer
+engine. One DDR input master feeds 2PPC FAST, Gaussian and Resize through private
+FIFOs/line banks; outputs use three independent 64-bit masters (point/summary/
+stats, blur, next-level raw). AMD IP remains responsible for DDR/interconnect,
+protocol conversion, clocks/reset. Gaussian has exact two-lane horizontal and
+packed vertical filters. Resize retains only the preceding raw row and two
+six-pixel windows; a generator-proven source-pair schedule emits each output
+pair as soon as its samples exist. At destination widths 667/463 the final
+three pixels need an explicit tail cycle, not an assumed single emission.
+All output images remain flat across odd row widths and final padding is zero.
+
+Native functional gates passed: 21 shared-layer transactions, all 14 Gaussian
+and 13 Resize cases, including all profiles, zero/255/random/structured input,
+capacity errors, invalid levels and untouched output guards. Point/summary
+records remain unchanged. New 64-byte LayerStats identifies interface version,
+issued image payload bytes/tokens and dataflow clock-loop cycles; native C
+execution has no timing model and returns cycle count 1. Statistics write time,
+PS delay and final AXI-response behavior remain separate checks.
+
+layer2_gate.ps1 runs all 23 host tests, freezes sources, independently checks
+19 C++ FAST vectors with NumPy/Python and records full expected image binaries,
+then runs CSim/synthesis/21-transaction RTL co-simulation. The post-check reads
+each pipeline XML instance separately (including both packers/writers), requires
+actual II=1 and four 64-bit AXI masters. Routed resource/timing, random-AXI repair
+and exact PL descriptors remain pending. No new throughput/60 FPS claim is made.
+
+Shared-layer comparison 20261012_112245_layer2_6c71b587 SUCCEEDED. All 23 host
+tests, 19 independent Python/C++ FAST crosschecks and 21 C/RTL transactions
+passed. Every required pipeline instance is II=1, including both packers and
+writers. Four AXI masters are actually 64 bits. HLS estimates are 39740 LUT,
+23746 FF, 108 BRAM18 and 20 DSP, not mapped top utilization. The largest
+transaction including FAST/Gaussian/Resize finishes in 356045 co-simulation
+cycles (3.56045 ms at assumed 100 MHz), versus front-only 355392 cycles.
+Recorded dataflow cycles across the eight dense-input profiles sum to 1158783
+(11.58783 ms at assumed 100 MHz), excluding per-call statistics write/PS delay
+and real DDR contention. This is not a complete feature-frame/board FPS result.
+
+HLS estimates the shared-layer DATAFLOW/top control timing at 10.461 ns despite
+II=1; child compute modules are <=7.3 ns estimates. Therefore first run the new
+shared-reader complete top at 100 MHz via layer2_timing.ps1 rather than reusing
+the prior three-core +0.180 ns claim. One layer IP replaces three independent
+image masters, with AMD AXI protocol conversion on the four PS7 HP ports. The
+short scratch and route completion/coverage checks reuse the corrected workflow.
+Actual shared-top WNS/resources precede descriptor integration; exact custom
+HLS orientation/BRIEF remains the next block after this timing check.
+
+Shared-layer timing 20261012_115142_layer2_100mhz_bcdf4f7c completed routing
+but FAILED report startup: open_run impl_1 reported the stopped run as not
+launched, despite .route_design.end.rst and s_wrapper_routed.dcp being present.
+Its complete-top routed report shows 100 MHz WNS +0.233 ns, TNS 0, WHS +0.053
+ns, THS 0; all 30179 routable nets are fully routed with no routing errors.
+The worst path moved to ReduceCandidateTokens' completely partitioned score
+register select/update enable: best_score_99 -> best_score_28 CE, 11 logic
+levels, 9.237 ns data delay (2.516 ns logic, 6.721 ns routing). HLS's 10.461 ns
+estimate did not become a routed violation in this build. Placed utilization
+is 17360 LUT/14998 FF/50.5 BRAM tiles/29 DSP, pending fresh routed report export.
+The original failed state remains unchanged. Timing templates now close the
+project and open the verified completed routed checkpoint instead of relying
+on open_run state; recovery derives the correct shared-layer core and scope
+from the parent HLS acceptance. No HLS/RTL algorithm change or reroute is needed.
+
+Baseline randomized AXI/OOC/top route and regenerated BSP/ELF/XSA pairing are
+not yet accepted. No board has been programmed or tested in this development
+run. No 60 FPS result is claimed.
+
+Shared-reader routed report recovery 20261012_120600_layer2_recovery_17c2d654
+SUCCEEDED. Fresh reports from the immutable routed checkpoint confirm 17360 LUT
+(37.58%), 14998 FF (16.23%), 50.5/95 BRAM tiles (53.16%) and 29/160 DSP
+(18.13%). Setup WNS +0.233 ns, hold WHS +0.053 ns, TNS/THS zero; 30179/30179
+routable nets fully routed, zero routing errors and zero uncovered timing checks.
+The worst path is the candidate score select/update enable recorded above.
+
+The user deferred PS changes and asked for ordinary/stress input FPS at this
+stage. Existing eight-level cosim transaction latencies sum to 1159697 cycles,
+or 11.59697 ms / 86.23 FPS at 100 MHz, for image preprocessing/selection only.
+Using historical per-layer ARM times and unchanged cache/control costs gives
+an explicitly conditional 280-point estimate near 15.6 ms/64 FPS and a linearly
+scaled 942-point estimate near 30.6 ms/33 FPS with PS(n)/PL(n+1) overlap. These
+are neither integrated-system nor physical-board results. Descriptor ARM time
+is still exposed at high feature counts; exact PL descriptor work remains pending.
+
+layer2_benchmark.ps1 reuses a copy of the accepted HLS solution, performs no
+synthesis/route, requires before/after synthesis-RTL hashes to match and runs
+24 exact transactions: the historical image, a resized noise pyramid and a
+zero pyramid. Actual Resize output feeds the next layer; independent Python
+checks full blur/resize/point/summary bytes and native C precedes RTL co-sim.
+report_layer2_benchmark.py separates measured eight-layer latency from the
+historical ARM/caching projection. PS firmware remains unmodified. No P99/max
+or complete-frame FPS acceptance can be inferred from three input samples.
+
+Exact PL descriptor candidate uses custom HLS, two separate raw/blur DDR loaders
+and depth-two stream_of_blocks patch channels with explicit ownership/dual-port
+BRAM binding. Raw disk storage is 31 rows x5 aligned 64-bit words; blurred patch
+is 37 rows x6 words, with clipped fetches and exact sample-bound rejection.
+Original int32 moments, signed-floor CORDIC, nearest-even angle rounding and A32
+quantization are retained. A generator verifies all 16384 full-table coordinates
+before packing 2048 24-bit pairs for eight basic directions and exact quarter
+rotation reconstruction. BRIEF requests two patch reads per comparison; no false
+dependency directive is used. Feature output appends complete ordered 64-byte
+records to a capacity-1000 frame. A later bad point preserves prior records and
+drains ownership channels; controls/status/counters use interface version 00600002.
+
+All 26 host tests passed after adding descriptor arithmetic/changing/append
+regressions: 117266 full-int32 angle pairs, all A32 bins, existing 56 changing
+transactions, quarter tables and 942-feature frame append/error guards. The
+independent Python full-table model also passed 37 direct packed-interface native
+transactions using real eight-level 280-point and noise 942-point pyramids, empty
+points, signed errors, legal corners and rotated out-of-bounds samples. A 256-point
+odd-width call ending exactly at capacity 1000 is added before vendor gates.
+Descriptor HLS synthesis/co-sim actual II, cycles, resources and integrated routed
+timing remain pending. PS source and the ongoing frozen image benchmark are
+unchanged. Optimized compiler flags are scoped to descriptor Csim/co-sim to avoid
+the earlier long unoptimized full-image Csim runtime.
+
+Image benchmark 20261012_122652_layer2_benchmark_56a61151 SUCCEEDED with all
+24 exact native/Csim/RTL transactions and identical synthesis-RTL hashes before
+and after testing. Actual eight-call RTL latencies: historical 280-point image
+11.20 ms / 89.28 FPS, true resized noise pyramid (188762 candidates, 942 points)
+11.60 ms / 86.24 FPS, zero pyramid 11.20 ms / 89.29 FPS, at assumed 100 MHz.
+These are frontend reciprocals, not complete ORB/board results. Retaining the
+historical per-layer ARM/cache/control model gives ordinary 15.44 ms / 64.75 FPS
+and pressure 30.58 ms / 32.70 FPS. The pressure ARM extrapolation assumes linear
+per-point cost; no board cache/DDR-contention claim is made. No PS code changed.
+
+Descriptor independent Python/native stream test now has 38 passing transactions;
+the added 256-point call uses odd width 463 and ends exactly at record 1000.
+HLS descriptor gate uses the frozen 38-case input hashes, optimized C simulation,
+synthesis and co-simulation, then records actual loop II and 64-bit AXI widths.
+The finite double-buffer ownership, actual resource and cycles are still vendor
+gates. Integrated routing and random-AXI repair remain required later.
+
+Descriptor HLS 20261012_132126_descriptor_9cae63b8 SUCCEEDED: all 38 C/RTL
+transactions exact, including 32 bins, 280/942/empty frame append, clipped edge
+sampling, errors and 256-point odd-width call ending at capacity. Moment center,
+symmetric pairs, BRIEF and clock counter are actually II=1; point record loader
+II=2 and 64-byte feature writer II=8 match their record sizes and are overlapped
+with much longer per-point compute. Four AXI masters are 64 bits. Ordinary
+eight-layer descriptor latency sums to 261171 cycles (2.61171 ms at 100 MHz);
+942-point noise descriptor latency sums to 859459 (8.59459 ms). These are separate
+core co-simulation figures, not shared-DDR/frame/board latency. HLS estimates
+17093 LUT, 12440 FF, 35 BRAM18 and 8 DSP. Estimated period is 12.077 ns, exceeding
+the target; routed WNS is required before accepting hardware timing.
+
+The outer descriptor gate retained a stale RUNNING marker despite terminal exit
+0 and completed post-check outputs. The original record is preserved. Fresh
+source/vector hash + II/interface/co-simulation audit
+20261012_134054_descriptor_recovery_cfb915fc SUCCEEDED, with no HLS rerun or
+weakened checks. Future gate child HLS runners use a separate PowerShell process
+to isolate state. The exact cause of the stale outer marker is not yet established.
+
+orb_timing.ps1 builds the complete two-core PL top using accepted frozen IPs,
+one control interconnect and four AMD AXI interconnects with two upstream masters
+each and PS7 HP protocol conversion. Layer raw/blur/next-image/points ports pair
+with descriptor raw/blur/features/points respectively. No DMA or PL layer sequencer
+is added. This is a 100 MHz timing/resource experiment before joint randomized
+DDR/ownership and PS integration; no bit/XSA/ELF release or board programming.
+All nets/constraints/setup/hold/DRC/hierarchy/congestion are checked from the
+completed routed checkpoint using the corrected report workflow.
+
+Integrated layer + exact descriptor route 20261012_134429_orb_100mhz_d4174613
+SUCCEEDED at 100 MHz on xc7z015clg485-2. Actual complete routed top: 27033 LUT
+(58.51%), 27169 FF (29.40%), 59 RAMB36 +18 RAMB18 =68/95 BRAM tiles (71.58%),
+40/160 DSP (25%), 9633 slices (83.40%). Setup WNS +0.238 ns, hold WHS +0.035 ns,
+TNS/THS zero; 50347/50347 routable nets fully routed, zero routing errors, zero
+uncovered timing checks, no Error/Critical Warning DRC rows. Vendor warnings
+remain in the retained DRC/methodology reports. No post-route physopt was applied.
+Worst setup path is FAST score lane1 f_14 -> select_ln161_10: 13 logic levels,
+9.522 ns delay (3.990 logic,5.532 routing), clock period10 ns. Descriptor HLS
+12.077 ns estimate did not cause a routed violation in this build.
+
+Actual retained hierarchy: layer 16390 LUT/13795 FF/50.5 BRAM/29 DSP; descriptor
+8209 LUT/10530 FF/17.5 BRAM/11 DSP. AMD control/arbitration/reset consumes the
+remaining logic/registers. Whole-top resources are authoritative; this newly
+PL-owned backend increases total resources versus old ARM-descriptor R11.
+
+Next protocol gate repairs the previously deferred ModelSim embedded-Python
+stdio failure through task-local PYGPI_USERS bootstrap, before cocotb logging.
+No installed library or global environment is patched. Child LIBPYTHON_LOC and
+PYTHONHOME derive from the CPython DLL actually loaded by the project venv;
+bootstrap records and checks actual DLL/version3.12.12. The new frozen gate
+exercises 4-master descriptor and layer independently in one DDR address space,
+27% randomized stalls, delayed write responses, 4 KB edges, invalid controls,
+odd width/tail, capacity1000, partial errors and in-flight reset/restart.
+It observes the actual internal ap_done pulse and requires every AXI response
+already complete, rather than relying only on delayed PS polling. Targeted
+protocol subsets precede native-Verilator bulk/frame/shared-contention tests;
+they do not replace full regression or prove physical DDR/PS/board timing.
+
+Datapath AXI 20261012_141855_datapath_axi_c7c63f51 FAILED in the final descriptor
+256-point case at the test's counter bound, after five protocol transactions
+passed (empty/capacity/error/corners/partial prefix). Direct done barrier, return
+status and metadata fields reached the check; the final whole-DDR/count checks
+did not run and this is not a descriptor protocol PASS. Layer testing did not
+start. Actual embedded runtime provenance proves the project CPython 3.12.12
+DLL is loaded. There was no logging initialization failure in this job.
+
+The failed bound summed only ClockCycles(200) polling waits and omitted all
+AXI-Lite control-read handshake clocks; the undercount grows with long jobs.
+The test now measures actual simulator picoseconds /10000 per 100 MHz clock,
+including configuration/poll/status overhead, uses the same real elapsed clock
+for its timeout and requires internal cycles <= measured elapsed with no +1000
+allowance. It records current stats and both timing counts before assertions.
+All byte, transfer-count, 4 KB, reset and direct-response checks remain intact;
+HLS source/RTL/IP and the +0.238 ns routed result are unchanged. The failed
+record is retained and a fresh gate must pass before integration proceeds.
+
+Datapath AXI 20261012_143039_datapath_axi_e0eb08c4 SUCCEEDED: six descriptor
+and three layer directed transactions exact under 27% stalls, delayed responses,
+4 KB edges, in-flight reset/restart, capacity/error/odd-width cases. Both actual
+ap_done barriers required zero outstanding responses. Actual byte counts, all
+DDR bytes/guards and real simulator elapsed-cycle bounds passed; project Python
+3.12.12 loaded-DLL provenance passed. This is a targeted protocol subset, not a
+full multi-frame/two-core/physical-DDR proof. A ModelSim teardown logger emitted
+Bad file descriptor after passing tests; XML and task-specific results confirm
+PASS. Future task-local stdio handling may be hardened separately.
+
+Next design choice: computer/native C++ host scheduling and randomized byte DDR
+model, two unmodified generated HLS datapaths, AMD-IP hardware interconnect kept
+as routed. Native integration reuses established Verilator workflow. Testbench
+enforces three raw/two blur owned slots, exact full frame append and actual AXI
+write completion. Descriptor(n) overlaps image(n+1), with real AXI-Lite setup.
+Only layer0 is injected; descriptors read actual upstream raw/blur/points.
+DDR model shares one byte array with four paired HP arbitration groups, at most
+one serviced memory beat per group/clock, and a configurable aggregate beat
+budget. The planned 2-beat and 1-beat/27%-stall cases are bounded bandwidth
+assumptions, not measurements of AMD interconnect/DDR PHY or board FPS. PS
+firmware remains unchanged. Integration is not accepted until new gate passes.
+
+Native harness preflight_native_20261012_145819 passed source/vector provenance,
+generated-register/wrapper checks, C++ compilation and independent pin-stub DDR
+tests: paired-HP shared reads, stalled response stability, narrow strobed writes,
+delayed final B, byte counters, illegal 4 KB crossing and ownership rejection.
+This validates the authored memory test model, not either HLS RTL or frame FPS.
+
+Native frame 20261012_150028_native_frame_ea07bffa FAILED before HDL compilation:
+Windows .cmd rejected the long source-list command. All preflight checks passed,
+no RTL simulation ran. New runner uses a native Verilator sources.f argument
+file and retains compact failure/log locations. HLS/PS/retained timing unchanged.
+
+Native frame 20261012_150123_native_frame_417920d6 FAILED in Verilator parsing,
+not simulation: NEEDTIMINGOPT for vendor #0 initialization. The new runner uses
+--no-timing for the explicit C++ clocked harness, after auditing all staged RTL
+for numeric nonzero/expression delays. Generated RTL remains byte-identical;
+transactions follow explicit reset. Preflight_native_20261012_150646 passed the
+1023-zero-delay audit, DDR-model unit tests and actual two-core Verilator lint
+(exit0). Vendor width/delay warnings are retained. Frame correctness/FPS still
+requires the new full native build and run; no old failure is relabelled PASS.
+
+Native frame 20261012_150835_native_frame_668febb2 FAILED at final executable
+link: the Windows runtime referenced undefined sc_time_stamp(). Both HLS
+generated models, runtime objects and model archive compiled; no full frame
+ran. The authored C++ harness now provides the callback and advances real model
+time by 5000 ps per half-clock. Generated RTL/IP and PS firmware are unchanged.
+Preflight_native_link_20261012_151826 linked the new harness to the existing
+actual two-core model/runtime archive and passed 20-clock reset/idle startup;
+source/archive hashes and logs are retained. Future fresh gates require this
+actual link/reset smoke before full simulations. This is neither frame byte
+acceptance nor a physical/FPS result; the original FAILED record is retained.
+
+Native frame 20261012_152016_native_frame_4d511b31 FAILED in the first image
+comparison after successful compile/link/reset. Diagnostic
+diagnose_native_20261012_153241 proved the test controller passed budget=-1;
+the fixed-profile layer requires the actual layer budget. Core correctly wrote
+status=1, zero image bytes and 128 summary/stat bytes, leaving blur untouched.
+The early AXI-Lite AP_RETURN read also sampled the old zero before the return
+latch updated. The test controller now sends 217/181/151/126/105/87/73/60 and
+crosses one clock after direct ap_done before reading the return register.
+The direct all-responses completion barrier and exact byte gates remain intact.
+Budget metadata is checked against the frozen benchmark controls. HLS/PS/RTL
+and the retained +0.238 ns route are unchanged; the failed result is preserved.
+
+Diagnostic diagnose_native_20261012_153604 SUCCEEDED for real-image layer0 only:
+356024 cycles, all blur/resize/points/summary/guards exact, 64 selected points;
+691200 raw read bytes, 691200 blur write bytes, 480000 resize write bytes,
+1152 points+summary+stats write bytes. Actual dataflow counter355956 bounded by
+observed elapsed cycles. This is a single-layer diagnostic using the original
+compiled two-core model; descriptor/whole-frame acceptance and FPS are pending.
+
+Native frame 20261012_155803_native_frame_d49eeb08 SUCCEEDED: six complete
+960x720/eight-level frames across two DDR service profiles, 48 layer calls and
+48 descriptor calls, 2444 exact 64-byte records. Actual upstream blur/resize/
+points fed descriptors in common DDR; only layer0 input was injected. All
+per-layer outputs, full appended features/guards, ownership, 4 KB bursts,
+stable handshakes, AXI counts and direct final-response barriers passed.
+Fresh independent result/log/offset/traffic arithmetic and frozen test/RTL
+hash audit passed. Neither HLS/RTL nor PS firmware changed.
+
+At assumed 100 MHz, 2 shared 64-bit DDR beats/clock (one/group maximum), no
+added random grant stalls, with read initial0..5/write B2..31 clocks: ordinary
+280-point frame1137272 cycles=11.37272 ms/87.92971 FPS; 942-point noise1328620
+=13.28620 ms/75.26607 FPS; zero1120667=11.20667 ms/89.23257 FPS. At 1 shared
+beat/clock plus27% randomized channel/service stalls: ordinary1271175
+=12.71175 ms/78.66737 FPS; noise1581607=15.81607 ms/63.22683 FPS; zero1204355
+=12.04355 ms/83.03200 FPS. Total R+W traffic respectively6544712,8462552,
+5731128 bytes/frame, identical across profiles. Stall counters sum per-port
+eligible waits; they are not unique elapsed-cycle counts.
+
+The constrained pressure case leaves0.85393 ms to16.67 ms and misses the14 ms
+engineering target. These are equivalent-interconnect computer timings with
+actual RTL and control setup, not Zynq DDR-PHY/cache/board measurements. Three
+inputs/two seeds do not establish representative-video P99/max or sustained
+board throughput. Changed-image bulk/FIFO/protocol integration and final PS
+visibility/release/board gates remain. Primary routed100 MHz stays retained.
+
+Next bounded design experiment retains custom HLS datapaths and AMD PS7/AXI/
+clock/reset, replays byte-identical accepted kernel input snapshots at8 ns,
+checks exact CSim/co-sim and real II/64-bit interfaces, then builds the complete
+125 MHz routed top. The runner records explicit child job identities, verifies
+source hashes and reports actual clocks/setup/hold/coverage/DRC/congestion/
+hierarchical resources. It does not reuse10 ns IP to claim125 MHz, project
+125 MHz FPS from old cycles, replace100 MHz, modify PS or program the board.
+
+After equivalent baseline acceptance: balanced/pipelined FAST extrema,
+II=1 reduction with real dependency handling, explicit 64-bit output, generated
+21-bit resize ROM, a 100 MHz implementation, and an 8 ns/125 MHz comparison.
+Then the shared-read 2PPC layer engine, exact PL orientation/BRIEF, buffer
+ownership/frame aggregation, integrated DDR contention/native-Verilator gates,
+and final routed release. Physical P99/max <=16.67 ms and sustained 60 FPS remain
+separate board acceptance gates.

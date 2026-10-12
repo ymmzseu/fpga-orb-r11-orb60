@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "part": "xc7z015clg485-2",
+  "frequency_mhz": 100,
+  "bit_header": {
+    "design": "s_wrapper;UserID=0XFFFFFFFF;Version=2024.2",
+    "part": "7z015clg485",
+    "date": "2026/10/12",
+    "time": "17:22:04",
+    "payload_bytes": 3510668
+  },
+  "bit_sha256": "a80fe3fdff930a3266b2d8701a9dfbc36319010e56744ba0d20245eda7c1303d",
+  "checkpoint_sha256": "3e1105783c48a2e584e76c071a8dde762e2ffd88a219bdd791bd24228d3ed3cd",
+  "checkpoint_bytes": 22105544,
+  "metrics": {
+    "part": "xc7z015clg485-2",
+    "wns_ns": "0.238",
+    "whs_ns": "0.035",
+    "elapsed_ms": "116018"
+  },
+  "ps_firmware_modified": false,
+  "physical_board_verified": false,
+  "scope": "Bit generated from accepted 100 MHz routed checkpoint; no paired new ELF or board programming"
+}

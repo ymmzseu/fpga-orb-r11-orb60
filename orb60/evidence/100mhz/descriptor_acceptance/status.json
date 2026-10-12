@@ -1,0 +1,11 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Stage":  "COMPLETE",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\comparison\\20261012_134054_descriptor_recovery_cfb915fc",
+    "DescriptorHlsJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_132126_descriptor_9cae63b8",
+    "OriginalGate":  "D:/pld/orb60/build/optimized/comparison/20261012_132125_descriptor_ee2b1f11",
+    "StartedUtc":  "2026-10-12T04:40:54.8880986Z",
+    "ProcessId":  30244,
+    "Scope":  "Fresh exact-II/AXI post-check only; no rerun or routed timing claim",
+    "FinishedUtc":  "2026-10-12T04:40:55.9152549Z"
+}

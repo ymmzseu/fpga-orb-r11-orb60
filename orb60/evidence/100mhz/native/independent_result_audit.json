@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "source_and_rtl_hashes": true,
+  "frame_count": 6,
+  "layer_calls": 48,
+  "descriptor_calls": 48,
+  "records": 2444,
+  "scope": "Independent result/log/count/traffic arithmetic audit; native assertions prove bytes, not physical DDR"
+}

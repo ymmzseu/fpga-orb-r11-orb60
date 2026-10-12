@@ -1,0 +1,9 @@
+# Preserve published source/evidence bytes and their SHA256 across platforms.
+.gitattributes -text
+.gitignore -text
+AGENTS.md -text
+README.md -text
+orb60/** -text
+scripts/** -text
+tb/common/** -text
+tools/verify_orb60.ps1 -text

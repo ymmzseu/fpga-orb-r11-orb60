@@ -1,0 +1,44 @@
+[
+  {
+    "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/ps/reference_pyramid.bin",
+    "bytes": 2140237,
+    "sha256": "ec8bb6cef1b68e83c51b6d6463c61ad11f49c22cdcb39bd6792f1e30cf3240d4"
+  },
+  {
+    "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/vectors/flight_20261004T184929_998838_6bb93c56_f0000/input.pgm",
+    "bytes": 691215,
+    "sha256": "0870697e015539ad768b583e5f53d9102f79146fad2bea4e3679d5568414ab23"
+  },
+  {
+    "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/ps/reference_pyramid.bin",
+    "bytes": 2140237,
+    "sha256": "ec8bb6cef1b68e83c51b6d6463c61ad11f49c22cdcb39bd6792f1e30cf3240d4"
+  },
+  {
+    "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/scripts/__pycache__/generate_profile_rom.cpython-312.pyc",
+    "bytes": 15136,
+    "sha256": "b004dc7606013f8ca45475afe9a28b49ebca851fe244e0922b5cd9ab0a6c1c64",
+    "kind": "frozen archival cache"
+  },
+  {
+    "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/vectors/flight_20261004T184929_998838_6bb93c56_f0000/input.pgm",
+    "bytes": 691215,
+    "sha256": "0870697e015539ad768b583e5f53d9102f79146fad2bea4e3679d5568414ab23"
+  },
+  {
+    "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/ps/reference_pyramid.bin",
+    "bytes": 2140237,
+    "sha256": "ec8bb6cef1b68e83c51b6d6463c61ad11f49c22cdcb39bd6792f1e30cf3240d4"
+  },
+  {
+    "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/scripts/__pycache__/generate_profile_rom.cpython-312.pyc",
+    "bytes": 15136,
+    "sha256": "b004dc7606013f8ca45475afe9a28b49ebca851fe244e0922b5cd9ab0a6c1c64",
+    "kind": "frozen archival cache"
+  },
+  {
+    "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/vectors/flight_20261004T184929_998838_6bb93c56_f0000/input.pgm",
+    "bytes": 691215,
+    "sha256": "0870697e015539ad768b583e5f53d9102f79146fad2bea4e3679d5568414ab23"
+  }
+]

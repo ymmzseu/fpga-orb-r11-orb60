@@ -1,0 +1,12 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Variant":  "optimized",
+    "Kernel":  "descriptor",
+    "PeriodNs":  10,
+    "Cosim":  true,
+    "StartedUtc":  "2026-10-12T04:21:27.6476327Z",
+    "Part":  "xc7z015clg485-2",
+    "Tool":  "D:\\Xilinx\\Vitis_HLS\\2024.2\\bin\\vitis_hls.bat",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_132126_descriptor_9cae63b8",
+    "FinishedUtc":  "2026-10-12T04:24:36.0664640Z"
+}

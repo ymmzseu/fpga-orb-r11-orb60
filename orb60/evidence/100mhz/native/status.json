@@ -1,0 +1,9 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "ProcessId": 23236,
+  "StartedUtc": "2026-10-12T06:58:04.731436+00:00",
+  "Scope": "Actual two-core RTL, one randomized arbitrated DDR model; host scheduling only, no PS firmware/AMD DDR PHY/board claim",
+  "Scratch": "D:\\pld\\.work\\vivado\\orb60\\nd49eeb08",
+  "FinishedUtc": "2026-10-12T07:00:11.905159+00:00"
+}

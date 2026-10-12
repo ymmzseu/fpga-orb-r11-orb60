@@ -46,3 +46,7 @@ CPU 参考保留 `FPGA_ORB_SHARED_v1.0/LICENSE`（GPL-3.0-or-later）及
 `NOTICE.md`；`constants.hpp` 中保留原 GPL/BSD 来源声明。此整理不为全部
 内容重新授予 MIT 等统一许可；使用和再分发须遵守各文件原许可。
 第三方 SDK、手册和完整素材不在本源码仓库中。
+
+## 本分支新增：ORB60 100 MHz 开发版本
+
+新增共享读入的 2PPC 图像引擎和精确 A32 PL 描述子，使用 Vivado/Vitis HLS 2024.2。源码、冻结编译输入、完整路由和双核整帧仿真证据见 [ORB60 说明](orb60/README_ZH.md)。生成的 100 MHz bitstream 在 `orb60/artifacts/100mhz/`。当前 PS 固件未适配新控制接口；该开发 bitstream 不与历史 R11 ELF 配对。原有 R11 源码、默认固件说明及历史验收内容保留。

@@ -1,0 +1,10 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Stage":  "COMPLETE",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\comparison\\20261012_112245_layer2_6c71b587",
+    "PreviousFront2Job":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_100430_front2_4334e6e9",
+    "StartedUtc":  "2026-10-12T02:22:45.1456891Z",
+    "ProcessId":  8060,
+    "layer2Job":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_112318_layer2_7d592c6c",
+    "FinishedUtc":  "2026-10-12T02:41:32.5379975Z"
+}

@@ -1,0 +1,22 @@
+﻿[
+    {
+        "Path":  "inputs\\tests\\check_native_harness.py",
+        "SHA256":  "727FAEF74919DB6DF595ECCDABAA63B628656ED6160A40FC2B7DA24B8412E47D"
+    },
+    {
+        "Path":  "inputs\\tests\\native_ddr_model_test.cpp",
+        "SHA256":  "9F208E2E3A6852FAF2EC06902B2CDAABAECD471906C84030D684B29DA11CE2DE"
+    },
+    {
+        "Path":  "inputs\\tests\\native_frame.cpp",
+        "SHA256":  "E9A42644DB198DD6F9BE1D9CCBC01BEDD26CD7A79D537836846E64FD7A8EBE8F"
+    },
+    {
+        "Path":  "inputs\\tests\\prepare_native_frame.py",
+        "SHA256":  "1858DB2314540A0DA7EC922605AF3B9C8BB8EC07DA2E1AAB3735ED6B373167AE"
+    },
+    {
+        "Path":  "inputs\\tests\\run_native_frame.py",
+        "SHA256":  "5C129660A3B5A485C1C6449448D3458D580137F2EE1B9FC993C362BBE12B2E30"
+    }
+]
