@@ -28,10 +28,13 @@ def main():
     new=extract(a.job,'layer2','fastv2_layer2_hls')
     old=extract(a.front2,'front2','fastv2_front2_hls')
     loops=measured_loops(a.job)
+    banked=(a.job/'inputs/FPGA_ORB_HLS/fastv2/next/src/banked_grid.hpp').exists()
     counts={'UnpackPairs':1,'ForkLayerPairs':1,'RasterPairs':1,'MergePairs':1,
-            'ReduceCandidateTokens':1,'HorizontalGaussianPairs':1,'VerticalGaussianPairs':1,
+            'ReduceCandidateTokens':8 if banked else 1,'HorizontalGaussianPairs':1,'VerticalGaussianPairs':1,
             'ResizeSourcePairs':1,'DrainLastLevelPairs':1,'PackLayerPairs':2,
             'CollectLayerWords':2,'CountLayerCycles':1}
+    if banked:
+        counts.update(RouteCandidateBanks=1,CollectBankWinners=1,EmitBankWinners=8)
     proof={}; passed=True
     for name,expected in counts.items():
         pattern=re.compile(r'(?:VITIS_LOOP_\d+_\d+_)*'+re.escape(name))

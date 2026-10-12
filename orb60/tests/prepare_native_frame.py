@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import shutil
 import struct
+from native_profile import bind_profile
 
 
 def sha(path):
@@ -42,7 +43,8 @@ def prepare(args, scratch):
         assert (frame,level,budget,high,low,dual) == (case//8,case%8,budgets[case%8],20,7,1)
     desc_info = checked_vectors(args.descriptor / 'descriptor_vectors')
     assert Path(desc_info['source_vectors']).resolve() == images.resolve()
-    declarations = ['input wire clk', 'input wire rst_n', 'output wire done [0:1]']
+    declarations = ['input wire clk', 'input wire rst_n', 'output wire done [0:1]',
+                    'output wire profile_bits [0:255]']
     memory = {
         'AWVALID': ('output', 1), 'AWREADY': ('input', 1), 'AWADDR': ('output', 32),
         'AWID': ('output', 1), 'AWLEN': ('output', 8), 'AWSIZE': ('output', 3), 'AWBURST': ('output', 2),
@@ -130,7 +132,12 @@ def prepare(args, scratch):
         for name, value in offsets(job, kernel).items():
             header += f'constexpr unsigned {name}={value};\n'
         header += '}\n'
-    wrapper += 'endmodule\n'
+    profile_rtl, profile_header, profile_manifest = bind_profile([
+        (getattr(args, field)/f'projects/{kernel}/solution1/syn/verilog', f'fastv2_{kernel}_hls')
+        for field,kernel in (('layer','layer2'),('descriptor','descriptor'))])
+    wrapper += profile_rtl+'endmodule\n'
+    header += profile_header
+    (args.output/'profile_manifest.json').write_text(json.dumps(profile_manifest,indent=2)+'\n')
     (scratch / 'orb60_frame_top.sv').write_text(wrapper)
     selected = [case['selected'] for case in image_info['cases']]
     reads = [(case['raw_read_bytes'], case['blur_read_bytes']) for case in desc_info['cases'][:24]]

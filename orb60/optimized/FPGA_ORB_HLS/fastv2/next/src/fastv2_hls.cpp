@@ -2,7 +2,7 @@
 #include "fastv2_profile_rom.hpp"
 #include "next_stream.hpp"
 #ifdef ORB60_FRONT2_TOP
-#include "front2_axis_rom.hpp"
+#include "geometry_runs.hpp"
 #endif
 
 #include <cstdint>
@@ -415,15 +415,15 @@ void write_summary(uint64_t* result, const Result& s) {
     std::memcpy(result, words, sizeof(words));
 }
 
+#include "banked_grid.hpp"
+
 void consume_and_select(hls::stream<uint64_t>& input, uint64_t* selected, uint64_t* result,
                         const fastv2_profile::Profile& profile, int high_threshold,
                         int dual_threshold, int selected_capacity,
                         hls::stream<uint8_t>& completion) {
 #pragma HLS INLINE off
     PackedPoint best_low[kGridCells];
-    uint8_t best_score[kGridCells];
 #pragma HLS BIND_STORAGE variable=best_low type=ram_s2p impl=bram
-#pragma HLS ARRAY_PARTITION variable=best_score complete dim=1
     Result summary;
     clear_result(summary);
     summary.cell_side = profile.cell_side;
@@ -435,42 +435,10 @@ void consume_and_select(hls::stream<uint64_t>& input, uint64_t* selected, uint64
     summary.tile_height = profile.tile_height;
     const int cell_count = profile.cell_cols * profile.cell_rows;
     const int budget = profile.budget;
-InitializeCells:
-    for (int cell = 0; cell < kGridCells; ++cell) {
-#pragma HLS PIPELINE II=1
-        best_low[cell] = 0;
-        best_score[cell] = 0;
-    }
-#ifndef __SYNTHESIS__
-    Point previous = {0, 0, 0, 0};
-    bool have_previous = false;
-#endif
-ReduceCandidateTokens:
-    for (;;) {
-#pragma HLS PIPELINE II=1
-        const uint64_t token = input.read();
-        if ((token >> 63) != 0) {
-            summary.candidate_count = int(uint32_t(token));
-            break;
-        }
-        const uint64_t packed = token & ((UINT64_C(1) << 41) - 1);
-        const int cell = int((token >> 41) & 0xffu);
-        const uint8_t score = uint8_t((packed >> 22) & 0xffu);
-#ifndef __SYNTHESIS__
-        const Point point = unpack_point(packed);
-        assert(cell < cell_count && score > 0);
-        assert(!have_previous || !raster_before(point, previous));
-        previous = point;
-        have_previous = true;
-#endif
-        // Scanner tokens are in raster order. Equal scores must retain the
-        // earlier point, so x/y comparisons do not belong in this recurrence.
-        // Every legal candidate has a positive score: zero means an empty cell.
-        if (score > best_score[cell]) {
-            best_low[cell] = packed;
-            best_score[cell] = score;
-        }
-    }
+    hls::stream<uint32_t> candidate_count;
+#pragma HLS STREAM variable=candidate_count depth=2
+    reduce_banked_grid(input,best_low,candidate_count,cell_count);
+    summary.candidate_count=int(candidate_count.read());
     // The maximum over all low-threshold candidates is also the high winner
     // whenever any high candidate exists. Keep one payload store, and derive
     // fallback from its winning score without duplicating per-cell BRAM.
@@ -479,8 +447,9 @@ BuildWinners:
     for (int cell = 0; cell < kGridCells; ++cell) {
 #pragma HLS PIPELINE II=1
         if (cell < cell_count) {
-            if (best_score[cell] != 0) {
-                if (dual_threshold && int(best_score[cell]) < high_threshold) ++summary.fallback_cells;
+            const int score=int((uint64_t(best_low[cell])>>22)&255u);
+            if (score != 0) {
+                if (dual_threshold && score < high_threshold) ++summary.fallback_cells;
                 ++winner_count;
             } else {
                 ++summary.empty_cells;
@@ -504,7 +473,7 @@ BuildWinners:
     EmitCellOrder:
         for (int cell = 0; cell < kGridCells; ++cell) {
 #pragma HLS PIPELINE II=1
-            if (cell < cell_count && best_score[cell] != 0) {
+            if (cell < cell_count && ((uint64_t(best_low[cell])>>22)&255u) != 0) {
                 const Point point = unpack_point(best_low[cell]);
                 point_words[2 * output_index] = field_pair(uint32_t(point.x), uint32_t(point.y));
                 point_words[2 * output_index + 1] = field_pair(uint32_t(point.score), uint32_t(point.tile));
@@ -512,26 +481,33 @@ BuildWinners:
             }
         }
     } else {
-    EmitStrengthOrder:
-        for (int output_index = 0; output_index < fastv2::kMaxSelected; ++output_index) {
-            if (output_index >= budget) break;
-            int best_cell = -1;
-            Point best_point = {0, 0, 0, 0};
-        FindStrongestCell:
-            for (int cell = 0; cell < kGridCells; ++cell) {
+        TournamentPoint tree[512];
+#pragma HLS BIND_STORAGE variable=tree type=ram_t2p impl=bram
+    InitializeTournamentLeaves:
+        for (int cell=0;cell<256;++cell) {
 #pragma HLS PIPELINE II=1
-                if (cell < cell_count && best_score[cell] != 0) {
-                    const Point point = unpack_point(best_low[cell]);
-                    if (best_cell < 0 || stronger(point, best_point)) {
-                        best_cell = cell;
-                        best_point = point;
-                    }
-                }
-            }
-            if (best_cell >= 0) {
-                point_words[2 * output_index] = field_pair(uint32_t(best_point.x), uint32_t(best_point.y));
-                point_words[2 * output_index + 1] = field_pair(uint32_t(best_point.score), uint32_t(best_point.tile));
-                best_score[best_cell] = 0;
+            tree[256+cell]=cell<cell_count ? TournamentPoint(uint64_t(best_low[cell]) | (uint64_t(cell)<<41)) : TournamentPoint(0);
+        }
+    BuildTournament:
+        for (int node=255;node>0;--node) {
+            // Two reads and one write on a true dual-port store require two
+            // memory cycles. No false dependency or port-count assumption.
+#pragma HLS PIPELINE II=2
+            tree[node]=tournament_winner(tree[2*node],tree[2*node+1]);
+        }
+    EmitStrengthOrder:
+        for (int output_index=0;output_index<budget;++output_index) {
+            const TournamentPoint winner=tree[1];
+            const int cell=int((uint64_t(winner)>>41)&255u);
+            const Point point=unpack_point(uint64_t(winner)&((UINT64_C(1)<<41)-1));
+            point_words[2*output_index]=field_pair(uint32_t(point.x),uint32_t(point.y));
+            point_words[2*output_index+1]=field_pair(uint32_t(point.score),uint32_t(point.tile));
+            tree[256+cell]=0;
+            int node=(256+cell)>>1;
+        UpdateTournamentPath:
+            for (int depth=0;depth<8;++depth) {
+                tree[node]=tournament_winner(tree[2*node],tree[2*node+1]);
+                node>>=1;
             }
         }
     }
@@ -673,7 +649,7 @@ extern "C" int fastv2_front64_hls(
     static hls::stream<uint8_t> completion;
 #pragma HLS STREAM variable=completion depth=2
 #ifdef ORB60_FRONT2_TOP
-    front2_dataflow(image, selected, result, profile, fastv2_profile2::kPairOffsets[profile_index],
+    front2_dataflow(image, selected, result, profile, fastv2_segment::kPairRunOffsets[profile_index],
                    high_threshold, low_threshold, dual_threshold, selected_capacity, completion);
 #else
     front_dataflow(image, selected, result, profile, high_threshold, low_threshold,

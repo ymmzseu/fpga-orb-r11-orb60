@@ -276,6 +276,70 @@ static const ResizeEmit kResizeEmit[{len(entries)}] = {{
 '''
 
 
+def consecutive_runs(values: list[int]) -> tuple[list[int], list[int]]:
+    """Exclusive run ends; append a bounded lookahead sentinel per profile."""
+    ends, records = [], []
+    for index, value in enumerate(values):
+        if not records or value != records[-1]:
+            if records:
+                ends.append(index)
+            records.append(value)
+    ends.append(len(values))
+    # The final run is never advanced during a valid raster. One sentinel
+    # makes the prefetched next record legal without a last-run branch.
+    ends.append(1023)
+    records.append(0)
+    return ends, records
+
+
+def generate_segment_header() -> str:
+    """Lossless run tables for the exact paired X and single Y geometry."""
+    x_offsets, y_offsets, x_ends, y_ends, x_info, y_info = [], [], [], [], [], []
+    for width, height, budget in zip(WIDTHS, HEIGHTS, BUDGETS):
+        g = profile_geometry(width, height, budget)
+        xs = axis_info(width, g[0], g[2], g[4], g[6], g[7])
+        ys = axis_info(height, g[1], g[3], g[5], g[6], g[8])
+        pairs = [xs[x] | ((xs[x + 1] if x + 1 < width else 0) << 30)
+                 for x in range(0, width, 2)]
+        xe, xv = consecutive_runs(pairs)
+        ye, yv = consecutive_runs(ys)
+        x_offsets.append(len(x_info)); y_offsets.append(len(y_info))
+        x_ends.extend(xe); x_info.extend(xv)
+        y_ends.extend(ye); y_info.extend(yv)
+    return f'''#pragma once
+// Generated lossless geometry runs; ends are exclusive raster positions.
+#include <cstdint>
+#if defined(__SYNTHESIS__) || defined(FASTV2_HLS_CSIM)
+#include <ap_int.h>
+#endif
+namespace fastv2_segment {{
+#if defined(__SYNTHESIS__) || defined(FASTV2_HLS_CSIM)
+typedef ap_uint<10> RunEnd;
+typedef ap_uint<60> PairInfo;
+typedef ap_uint<30> AxisInfo;
+#else
+typedef uint16_t RunEnd;
+typedef uint64_t PairInfo;
+typedef uint32_t AxisInfo;
+#endif
+static const int kPairRunOffsets[8] = {{{', '.join(map(str, x_offsets))}}};
+static const int kYRunOffsets[8] = {{{', '.join(map(str, y_offsets))}}};
+static const RunEnd kPairRunEnds[{len(x_ends)}] = {{
+{format_array(x_ends, str, 16)}
+}};
+static const PairInfo kPairRunInfo[{len(x_info)}] = {{
+{format_array(x_info, lambda v: f'UINT64_C(0x{v:015x})', 4)}
+}};
+static const RunEnd kYRunEnds[{len(y_ends)}] = {{
+{format_array(y_ends, str, 16)}
+}};
+static const AxisInfo kYRunInfo[{len(y_info)}] = {{
+{format_array(y_info, lambda v: f'UINT32_C(0x{v:08x})', 6)}
+}};
+}}
+'''
+
+
 def main() -> None:
     """Write the generated header next to the public fastv2 interface."""
     script_path = Path(__file__).resolve()
@@ -285,6 +349,8 @@ def main() -> None:
     pair_path.write_text(generate_pair_header(), encoding='utf-8', newline='\n')
     emit_path = script_path.parent.parent / 'next/include/layer2_axis_rom.hpp'
     emit_path.write_text(generate_resize_emit_header(), encoding='utf-8', newline='\n')
+    segment_path = script_path.parent.parent / 'next/include/geometry_runs.hpp'
+    segment_path.write_text(generate_segment_header(), encoding='utf-8', newline='\n')
     print(f"generated {output_path}")
 
 

@@ -1,5 +1,5 @@
 {
-  "scope": "Independent ORB60 overview, immutable accepted 100 MHz source/bit/evidence, concluded failed 125 MHz comparison",
+  "scope": "Development stage1 authored source with host checks only; frozen100MHz bit/reports remain the accepted baseline",
   "files": [
     {
       "path": ".gitattributes",
@@ -17,6 +17,16 @@
       "sha256": "1318897efb66ef33ae4bfc3d772a0e874bc5d9b1d17ca52e5771b7965739f0d2"
     },
     {
+      "path": "README.md",
+      "bytes": 5543,
+      "sha256": "e63337ba621130e3e4815c7fd4c7371c7dc3fea77ad683bab8e9044f2994c323"
+    },
+    {
+      "path": "docs/R11_ARCHIVE_README.md",
+      "bytes": 3342,
+      "sha256": "ef8b328c3a23e01ad9ee5364b1eba923567947f47a7df42db0799618218e5c5f"
+    },
+    {
       "path": "orb60/.gitignore",
       "bytes": 35,
       "sha256": "0dc56249e652062b8ee7aae25ba8c4649245563808b8ad9fcca25d73b3c66b3d"
@@ -25,6 +35,21 @@
       "path": "orb60/AGENTS.md",
       "bytes": 1065,
       "sha256": "88b117c9919ad92a6cde54f74943ab8c66412e3c0006e0aaee648afe4d62afc4"
+    },
+    {
+      "path": "orb60/README_ZH.md",
+      "bytes": 7908,
+      "sha256": "4668a76aa32b1a887c8f707189cef286e119c2c788109acf3e4852fb7e89c173"
+    },
+    {
+      "path": "orb60/WORKFLOW.md",
+      "bytes": 40933,
+      "sha256": "860c8120a289c3ae5e078bc08455e333167d31ecfdc39d1a9a67c16443351fde"
+    },
+    {
+      "path": "orb60/artifacts/100mhz/README.md",
+      "bytes": 388,
+      "sha256": "b87ed2d07ec4820970ca581fbb558c9d03a32008e8424211dab17c7bdad54472"
     },
     {
       "path": "orb60/artifacts/100mhz/artifact_manifest.json",
@@ -57,14 +82,14 @@
       "sha256": "a80fe3fdff930a3266b2d8701a9dfbc36319010e56744ba0d20245eda7c1303d"
     },
     {
-      "path": "orb60/artifacts/100mhz/README.md",
-      "bytes": 388,
-      "sha256": "b87ed2d07ec4820970ca581fbb558c9d03a32008e8424211dab17c7bdad54472"
-    },
-    {
       "path": "orb60/docs/125MHZ_COMPARISON_ZH.md",
       "bytes": 1454,
       "sha256": "0f966442d5d19c19ef26ef907e6ed582f47070e8de14aa4b362b163b49a4b9ec"
+    },
+    {
+      "path": "orb60/docs/ARCHITECTURE_STAGE1_ZH.md",
+      "bytes": 2993,
+      "sha256": "2ef936b4a881b9ecda611245f58ef6c0ede16947342cb70a8821327baa4e861c"
     },
     {
       "path": "orb60/docs/EXTERNAL_FIXTURES.json",
@@ -737,6 +762,11 @@
       "sha256": "72f3ebe738172f18203e668d344e28b9aa7e1b5518a81bc7bce4a9b6a2204d3f"
     },
     {
+      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
+      "bytes": 13347,
+      "sha256": "073ea21ebd72f3eb5330fbd1600ffb2836650d484bfd3e4fd6f4cd3c3ee6710c"
+    },
+    {
       "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2.hpp",
       "bytes": 4575,
       "sha256": "d0e2dc615819a8735d375854c41b33e05a3378ad48ee2c84bed3029d9db9a1b0"
@@ -745,11 +775,6 @@
       "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2_profile_rom.hpp",
       "bytes": 321011,
       "sha256": "7c121439b2915d01bba1dbf75e379d485db19494927c39c7556588cf9beec165"
-    },
-    {
-      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
-      "bytes": 13347,
-      "sha256": "073ea21ebd72f3eb5330fbd1600ffb2836650d484bfd3e4fd6f4cd3c3ee6710c"
     },
     {
       "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_HLS/fastv2/next/frozen_ps/backend_tables.h",
@@ -1252,6 +1277,16 @@
       "sha256": "31f57b1cd83b91f5d44e6e5e1904a17dfe6d45e3b069d5621f3f65e20e5f19dd"
     },
     {
+      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/LICENSE",
+      "bytes": 35815,
+      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
+    },
+    {
+      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/NOTICE.md",
+      "bytes": 700,
+      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
+    },
+    {
       "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/constants.hpp",
       "bytes": 7085,
       "sha256": "d4db66adbbd3ac46fd253efb0b5d7c468e1712a77f21c1d764f91040da4ceeb9"
@@ -1265,16 +1300,6 @@
       "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/golden.hpp",
       "bytes": 2796,
       "sha256": "47b21bb1c33614e44d5115f09a8151254dc185a7ea1b052a236b82bc27278c1f"
-    },
-    {
-      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/LICENSE",
-      "bytes": 35815,
-      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
-    },
-    {
-      "path": "orb60/frozen/100mhz/descriptor/inputs/FPGA_ORB_SHARED_v1.0/NOTICE.md",
-      "bytes": 700,
-      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
     },
     {
       "path": "orb60/frozen/100mhz/descriptor/inputs/front_vectors.inc",
@@ -1352,6 +1377,11 @@
       "sha256": "72f3ebe738172f18203e668d344e28b9aa7e1b5518a81bc7bce4a9b6a2204d3f"
     },
     {
+      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
+      "bytes": 11999,
+      "sha256": "2f45e3fa2ff479ffe8ab0d8d034a222f826070cfaae15f6ffe54322323f5a38c"
+    },
+    {
       "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2.hpp",
       "bytes": 4575,
       "sha256": "d0e2dc615819a8735d375854c41b33e05a3378ad48ee2c84bed3029d9db9a1b0"
@@ -1360,11 +1390,6 @@
       "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2_profile_rom.hpp",
       "bytes": 321011,
       "sha256": "7c121439b2915d01bba1dbf75e379d485db19494927c39c7556588cf9beec165"
-    },
-    {
-      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
-      "bytes": 11999,
-      "sha256": "2f45e3fa2ff479ffe8ab0d8d034a222f826070cfaae15f6ffe54322323f5a38c"
     },
     {
       "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_HLS/fastv2/next/frozen_ps/backend_tables.h",
@@ -1827,6 +1852,16 @@
       "sha256": "31f57b1cd83b91f5d44e6e5e1904a17dfe6d45e3b069d5621f3f65e20e5f19dd"
     },
     {
+      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/LICENSE",
+      "bytes": 35815,
+      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
+    },
+    {
+      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/NOTICE.md",
+      "bytes": 700,
+      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
+    },
+    {
       "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/constants.hpp",
       "bytes": 7085,
       "sha256": "d4db66adbbd3ac46fd253efb0b5d7c468e1712a77f21c1d764f91040da4ceeb9"
@@ -1840,16 +1875,6 @@
       "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/golden.hpp",
       "bytes": 2796,
       "sha256": "47b21bb1c33614e44d5115f09a8151254dc185a7ea1b052a236b82bc27278c1f"
-    },
-    {
-      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/LICENSE",
-      "bytes": 35815,
-      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
-    },
-    {
-      "path": "orb60/frozen/100mhz/layer2/inputs/FPGA_ORB_SHARED_v1.0/NOTICE.md",
-      "bytes": 700,
-      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
     },
     {
       "path": "orb60/frozen/100mhz/layer2/inputs/front_vectors.inc",
@@ -1927,6 +1952,11 @@
       "sha256": "72f3ebe738172f18203e668d344e28b9aa7e1b5518a81bc7bce4a9b6a2204d3f"
     },
     {
+      "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
+      "bytes": 13562,
+      "sha256": "248279d8806cb1352388c14ded561bcfdb6aaafd654b132447a7a550709b2e71"
+    },
+    {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2.hpp",
       "bytes": 4575,
       "sha256": "d0e2dc615819a8735d375854c41b33e05a3378ad48ee2c84bed3029d9db9a1b0"
@@ -1935,11 +1965,6 @@
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/baseline_include/fastv2_profile_rom.hpp",
       "bytes": 321011,
       "sha256": "7c121439b2915d01bba1dbf75e379d485db19494927c39c7556588cf9beec165"
-    },
-    {
-      "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/CMakeLists.txt",
-      "bytes": 13347,
-      "sha256": "073ea21ebd72f3eb5330fbd1600ffb2836650d484bfd3e4fd6f4cd3c3ee6710c"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/frozen_ps/backend_tables.h",
@@ -2137,6 +2162,11 @@
       "sha256": "1e2a4900f9d93e7568c3a564b99b65762ce1f9f92935f3ea0207853955ea26dd"
     },
     {
+      "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/host/test_geometry_runs.cpp",
+      "bytes": 1422,
+      "sha256": "6d78dc5bd78c45795402b130fa9d425a7b78f424ead7c2b42f9bdaf63acfe0c8"
+    },
+    {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/host/test_image_reference.cpp",
       "bytes": 2475,
       "sha256": "25a188a0c63b0e82094661fcc6884d0d2ef0006c4e596fb7d47f3f0f669cea66"
@@ -2175,6 +2205,11 @@
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/include/front2_axis_rom.hpp",
       "bytes": 66846,
       "sha256": "9a02f535bcb998db0d19be520d05c4df12f3e27639fccf9987655717af7e66fb"
+    },
+    {
+      "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/include/geometry_runs.hpp",
+      "bytes": 16350,
+      "sha256": "0372ddb77301fd5befa23e984c77dfa83e358aa928ae37e63b47a0d41a0ce9b6"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/include/layer2.hpp",
@@ -2357,14 +2392,19 @@
       "sha256": "2f059dea5392f92a381572e6cdc838e50067e82a67ce8f81028c2825fe8b8753"
     },
     {
+      "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/banked_grid.hpp",
+      "bytes": 5335,
+      "sha256": "675827c8113636ab938ecc60397c7d138e21e8e7472968c8071cbfa2584d5230"
+    },
+    {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/descriptor_hls.cpp",
-      "bytes": 15350,
-      "sha256": "11f46debda82ad04f6b14b1e5fb76e48f95a16f41360c68c3a8e18072f6973cd"
+      "bytes": 17169,
+      "sha256": "926fff2f4894cfacc08ec28416680b9bf6e0185cfdda16960ab1f1fc2e6cd2d9"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/fastv2_hls.cpp",
-      "bytes": 30347,
-      "sha256": "c54191b154218ee4c25176acd61670cb3df165f24c4e569c64d9febf901dcd82"
+      "bytes": 29654,
+      "sha256": "3e8638d470f24f06ed5f995c6c22b01d08b7b8b1b77eee9561efeb420d49f57f"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/front2_hls.cpp",
@@ -2373,8 +2413,8 @@
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/front2_stream.hpp",
-      "bytes": 9675,
-      "sha256": "412ee3f7878c6648d10433b96ca1b96d9e554c94d6b4ba8673694a6ad0ad2c97"
+      "bytes": 10673,
+      "sha256": "e0cdd9ee7f04406ca5f7904c229c964233927a25d2c5f96b554c269e93b4bdbb"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/gaussian_hls.cpp",
@@ -2383,8 +2423,8 @@
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/layer2_hls.cpp",
-      "bytes": 10100,
-      "sha256": "a9dddccbe266ab45538374374dcf8a5f7ecb11620c876a5754430cbe351156c0"
+      "bytes": 10102,
+      "sha256": "8bbe57f32f13f3322a816a7ee693cfe5566a2fc7ba5ed355a44257625bd3d6f0"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/next/src/layer2_images.hpp",
@@ -2433,13 +2473,23 @@
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/scripts/generate_profile_rom.py",
-      "bytes": 10787,
-      "sha256": "96c7e99b535ed5fe170b67b35255143a01eeef7290b5c4a4ebb447a32bbcad27"
+      "bytes": 13383,
+      "sha256": "7e11f46935d773698e57a03a1280793aadeb578748aec2fa9ee90a947085b392"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_HLS/fastv2/src/fastv2_hls.cpp",
       "bytes": 26110,
       "sha256": "31f57b1cd83b91f5d44e6e5e1904a17dfe6d45e3b069d5621f3f65e20e5f19dd"
+    },
+    {
+      "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/LICENSE",
+      "bytes": 35815,
+      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
+    },
+    {
+      "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/NOTICE.md",
+      "bytes": 700,
+      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
     },
     {
       "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/constants.hpp",
@@ -2457,29 +2507,19 @@
       "sha256": "47b21bb1c33614e44d5115f09a8151254dc185a7ea1b052a236b82bc27278c1f"
     },
     {
-      "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/LICENSE",
-      "bytes": 35815,
-      "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
-    },
-    {
-      "path": "orb60/optimized/FPGA_ORB_SHARED_v1.0/NOTICE.md",
-      "bytes": 700,
-      "sha256": "db5de64fef75606fed272220bb77ecb1ff0a1c506a3be3f094dac4ba90f0c513"
-    },
-    {
       "path": "orb60/provenance.json",
       "bytes": 23212,
       "sha256": "228fc7d43b3d46423b2e2730052fcb5f1aee349b568e25786a944d2fd0e3dd1c"
     },
     {
-      "path": "orb60/README_ZH.md",
-      "bytes": 7908,
-      "sha256": "4668a76aa32b1a887c8f707189cef286e119c2c788109acf3e4852fb7e89c173"
-    },
-    {
       "path": "orb60/requirements.txt",
       "bytes": 54,
       "sha256": "cd1e0ee57cb5b48de3f80c8bcc4824daab00b53245b3be39c5253bff8d706d4e"
+    },
+    {
+      "path": "orb60/scripts/architecture_stage1.ps1",
+      "bytes": 5685,
+      "sha256": "b1242fe9f637a6414ab6097d02d9a775caf66ee838ac55eeef5ca11b9015302f"
     },
     {
       "path": "orb60/scripts/baseline_gate.ps1",
@@ -2495,6 +2535,11 @@
       "path": "orb60/scripts/board.ps1",
       "bytes": 2646,
       "sha256": "ba1991be54dc11df5d8c01554af769eea77315a1b2120d6f8b5bc5db8d18b40d"
+    },
+    {
+      "path": "orb60/scripts/compare_architecture.py",
+      "bytes": 2687,
+      "sha256": "ade368b4fc3fbf916ab9c53a95cac491d073a95c14537e1b26582e399590f496"
     },
     {
       "path": "orb60/scripts/compare_descriptor.py",
@@ -2513,8 +2558,8 @@
     },
     {
       "path": "orb60/scripts/compare_layer2.py",
-      "bytes": 2679,
-      "sha256": "6d08459038abef783191d49eaca3ebd42ff1552167db553b52c242c92583f5b2"
+      "bytes": 2877,
+      "sha256": "1d65deef3945402b0495b4d986c20bf942601602e1c18a238a1da06fd686ecb0"
     },
     {
       "path": "orb60/scripts/comparison_publication.py",
@@ -2588,8 +2633,8 @@
     },
     {
       "path": "orb60/scripts/host.ps1",
-      "bytes": 1035,
-      "sha256": "db2636791bd326b96f3676a8c525465bb5d4321fa440feff1b1fdcad0cd94ff1"
+      "bytes": 1183,
+      "sha256": "21e3594cf90aef911e53e842248f9a3fccc9794e93444c869b20e6b350293ae2"
     },
     {
       "path": "orb60/scripts/layer2_benchmark.ps1",
@@ -2613,8 +2658,8 @@
     },
     {
       "path": "orb60/scripts/native_frame.ps1",
-      "bytes": 1758,
-      "sha256": "ee438fce8bd2edb78f356ce2d4a89929973153a39e35505916862ed6675ad9a9"
+      "bytes": 1778,
+      "sha256": "3a8f72e45b94a0ebf1b27d4b6aaedd112a378853d52deb39b519a8813e6514d5"
     },
     {
       "path": "orb60/scripts/optimization_gate.ps1",
@@ -2678,8 +2723,13 @@
     },
     {
       "path": "orb60/tests/native_frame.cpp",
-      "bytes": 27330,
-      "sha256": "e9a42644db198dd6f9be1d9ccbc01bedd26cd7a79d537836846e64fd7a8ebe8f"
+      "bytes": 29534,
+      "sha256": "e28b60b58cec6e293e79a2ec934efa6051b289f0f44604d328772f7a4e0dcd2e"
+    },
+    {
+      "path": "orb60/tests/native_profile.py",
+      "bytes": 4297,
+      "sha256": "1a91b35eed42501d93b363f11b69c7f4337ebd33e9f6b39eaec16ff2d34787c9"
     },
     {
       "path": "orb60/tests/oracle.py",
@@ -2708,8 +2758,8 @@
     },
     {
       "path": "orb60/tests/prepare_native_frame.py",
-      "bytes": 8081,
-      "sha256": "1858db2314540a0da7ec922605af3b9c8bb8ec07da2e1aab3735ed6b373167ae"
+      "bytes": 8559,
+      "sha256": "2f2cd532bd9019e8239b7b20df8af9d80ec70165dd476c4b930cc8da5ee3816a"
     },
     {
       "path": "orb60/tests/run_axi.py",
@@ -2787,16 +2837,6 @@
       "sha256": "73d33a13e86580e7dea0b6c02e66d803945e7f7644b61c1e5c416cc0da3cef5c"
     },
     {
-      "path": "orb60/WORKFLOW.md",
-      "bytes": 40933,
-      "sha256": "860c8120a289c3ae5e078bc08455e333167d31ecfdc39d1a9a67c16443351fde"
-    },
-    {
-      "path": "README.md",
-      "bytes": 5104,
-      "sha256": "190b5e5a806e777b82ca381e83d7ead3be34b04f56123395c137d7297269c843"
-    },
-    {
       "path": "scripts/local_env.example.ps1",
       "bytes": 247,
       "sha256": "20f6ee6c05ec2839640312945a1e132f8349c8df05b855083c307e6ecf261a86"
@@ -2820,11 +2860,6 @@
       "path": "tools/verify_orb60.ps1",
       "bytes": 952,
       "sha256": "06e3d6f6f158385ba4f6f322abcdbb4a7630d9db4f731463ee34e99ab9a3fbc0"
-    },
-    {
-      "path": "docs/R11_ARCHIVE_README.md",
-      "bytes": 3342,
-      "sha256": "ef8b328c3a23e01ad9ee5364b1eba923567947f47a7df42db0799618218e5c5f"
     }
   ]
 }

@@ -76,8 +76,23 @@ void scan_front2_pairs(hls::stream<uint16_t>& input, hls::stream<CandidatePair2>
 #pragma HLS BIND_STORAGE variable=pixel_lines type=ram_s2p impl=bram
 #pragma HLS BIND_STORAGE variable=score_lines type=ram_s2p impl=bram
     int count = 0;
+    const int level=find_profile(p.width,p.height,p.budget);
+    int y_cursor=fastv2_segment::kYRunOffsets[level];
+    uint32_t yi=uint32_t(fastv2_segment::kYRunInfo[y_cursor]);
+    int y_end=int(fastv2_segment::kYRunEnds[y_cursor]);
+    uint32_t y_next=uint32_t(fastv2_segment::kYRunInfo[y_cursor+1]);
+    int y_next_end=int(fastv2_segment::kYRunEnds[y_cursor+1]);
     for (int y = 0; y < p.height; ++y) {
-        const uint32_t yi = fastv2_profile::kAxisYInfo[p.y_info_offset + y];
+        if (y>=y_end) {
+            yi=y_next; y_end=y_next_end; ++y_cursor;
+            y_next=uint32_t(fastv2_segment::kYRunInfo[y_cursor+1]);
+            y_next_end=int(fastv2_segment::kYRunEnds[y_cursor+1]);
+        }
+        int x_cursor=pair_offset;
+        uint64_t geometry=uint64_t(fastv2_segment::kPairRunInfo[x_cursor]);
+        int x_end=int(fastv2_segment::kPairRunEnds[x_cursor]);
+        uint64_t x_next=uint64_t(fastv2_segment::kPairRunInfo[x_cursor+1]);
+        int x_next_end=int(fastv2_segment::kPairRunEnds[x_cursor+1]);
         const int ys = int(yi & 1023u), ye = int((yi >> 10) & 1023u);
         uint8_t window[7][8], nms[3][4];
 #pragma HLS ARRAY_PARTITION variable=window complete dim=1
@@ -103,6 +118,11 @@ void scan_front2_pairs(hls::stream<uint16_t>& input, hls::stream<CandidatePair2>
 #pragma HLS PIPELINE II=1
 #pragma HLS LOOP_FLATTEN off
             const uint16_t raw = input.read();
+            if (x/2>=x_end) {
+                geometry=x_next; x_end=x_next_end; ++x_cursor;
+                x_next=uint64_t(fastv2_segment::kPairRunInfo[x_cursor+1]);
+                x_next_end=int(fastv2_segment::kPairRunEnds[x_cursor+1]);
+            }
             uint16_t column[7];
 #pragma HLS ARRAY_PARTITION variable=column complete dim=1
             for (int r = 0; r < 6; ++r) {
@@ -136,7 +156,6 @@ void scan_front2_pairs(hls::stream<uint16_t>& input, hls::stream<CandidatePair2>
                 nms[r][2] = uint8_t(values[r]); nms[r][3] = uint8_t(values[r] >> 8);
             }
             if (x < 8 || sy < 2) continue;
-            const uint64_t geometry = fastv2_profile2::kAxisXPairInfo[pair_offset+x/2];
             CandidatePair2 pair = {0, 0, 0};
             uint64_t tokens[2] = {0, 0};
             bool valid[2] = {false, false};

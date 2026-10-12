@@ -76,6 +76,11 @@ public:
     std::array<bool,2> active{},done{};
     std::array<uint64_t,2> started{},finished{};
     uint64_t cycles=0,overlap=0;
+#ifdef ORB60_NATIVE_PROFILE
+    std::array<uint64_t,PROFILE_COUNT> profile_cycles{};
+    std::array<int,PROFILE_FIFO_COUNT> fifo_level{};
+    std::array<unsigned,PROFILE_FIFO_COUNT> fifo_highwater{};
+#endif
     unsigned beat_budget,stall_percent,state,round_robin=0;
     static constexpr unsigned hp[8]={0,3,1,2,0,1,3,2};
 
@@ -178,6 +183,18 @@ public:
         for(unsigned c=0;c<2;++c) lite[c]={bool(dut.c_AWVALID[c]&&dut.c_AWREADY[c]),bool(dut.c_WVALID[c]&&dut.c_WREADY[c]),
             bool(dut.c_BVALID[c]&&dut.c_BREADY[c]),bool(dut.c_ARVALID[c]&&dut.c_ARREADY[c]),
             bool(dut.c_RVALID[c]&&dut.c_RREADY[c]),dut.c_RDATA[c]};
+#ifdef ORB60_NATIVE_PROFILE
+        // Sample real pre-edge handshakes. Busy includes blocked execution;
+        // individual FIFO probes distinguish read/write backpressure.
+        for(unsigned p=0;p<PROFILE_COUNT;++p)
+            if(active[PROFILE_CORE[p]] && !done[PROFILE_CORE[p]] && dut.profile_bits[p]) ++profile_cycles[p];
+        for(unsigned f=0;f<PROFILE_FIFO_COUNT;++f) {
+            const auto& spec=PROFILE_FIFOS[f];
+            fifo_level[f]+=int(dut.profile_bits[spec.push])-int(dut.profile_bits[spec.pop]);
+            require(fifo_level[f]>=0 && unsigned(fifo_level[f])<=spec.depth,"Profile FIFO occupancy violation");
+            fifo_highwater[f]=std::max(fifo_highwater[f],unsigned(fifo_level[f]));
+        }
+#endif
         native_time_ps+=5000;dut.clk=1;dut.eval();++cycles;
         if(active[0] && !done[0] && active[1] && !done[1]) ++overlap;
         for(unsigned i=0;i<8;++i) {
@@ -299,6 +316,10 @@ struct LayerResult { uint64_t image_cycles=0,descriptor_cycles=0; unsigned count
 struct FrameResult {
     unsigned frame=0,selected=0;uint64_t cycles=0,overlap_cycles=0,read_bytes=0,write_bytes=0,contention=0;
     std::array<LayerResult,8> layers{};
+#ifdef ORB60_NATIVE_PROFILE
+    std::array<uint64_t,PROFILE_COUNT> profile_cycles{};
+    std::array<unsigned,PROFILE_FIFO_COUNT> fifo_highwater{};
+#endif
 };
 
 FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const fs::path& descriptors,bool first_layer_only=false) {
@@ -309,6 +330,10 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
     sim.put(FEATURES,Bytes(FRAME_BYTES,0xc3));
     sim.put(RAW[0],load(images/("f"+std::to_string(number)+"_l0_input.bin")));
     auto old=sim.counts();uint64_t old_overlap=sim.overlap,begin=sim.cycles;
+#ifdef ORB60_NATIVE_PROFILE
+    const auto old_profile=sim.profile_cycles;
+    sim.fifo_highwater.fill(0);
+#endif
     FrameResult result;result.frame=number;
     std::array<uint64_t,8> image_counts{},descriptor_counts{};
     auto prefix=[&](unsigned l) { return images/("f"+std::to_string(number)+"_l"+std::to_string(l)); };
@@ -416,6 +441,11 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
     }
     require(sim.idle(0)&&sim.idle(1),"Frame completion has outstanding responses");
     result.cycles=sim.cycles-begin;result.overlap_cycles=sim.overlap-old_overlap;
+#ifdef ORB60_NATIVE_PROFILE
+    for(unsigned p=0;p<PROFILE_COUNT;++p) result.profile_cycles[p]=sim.profile_cycles[p]-old_profile[p];
+    result.fifo_highwater=sim.fifo_highwater;
+    for(unsigned f=0;f<PROFILE_FIFO_COUNT;++f) require(sim.fifo_level[f]==0,"Frame ended with pending profile FIFO tokens");
+#endif
     for(unsigned i=0;i<8;++i) {
         result.read_bytes+=sim.ports[i].read_bytes;result.write_bytes+=sim.ports[i].write_bytes;
         result.contention+=sim.ports[i].contention;
@@ -467,7 +497,23 @@ int main(int argc,char** argv) {
                 out<<"{\"level\":"<<l<<",\"count\":"<<r.count<<",\"offset\":"<<r.offset<<",\"image_cycles\":"<<r.image_cycles
                    <<",\"descriptor_cycles\":"<<r.descriptor_cycles<<'}';
             }
-            out<<"]}";
+            out<<"]";
+#ifdef ORB60_NATIVE_PROFILE
+            out<<",\"profile\":[";
+            for(unsigned p=0;p<PROFILE_COUNT;++p) {
+                if(p) out<<',';
+                out<<"{\"name\":\""<<PROFILE_NAMES[p]<<"\",\"core\":"<<PROFILE_CORE[p]
+                   <<",\"cycles\":"<<f.profile_cycles[p]<<'}';
+            }
+            out<<"],\"fifo_watermarks\":[";
+            for(unsigned q=0;q<PROFILE_FIFO_COUNT;++q) {
+                if(q) out<<',';
+                out<<"{\"push_probe\":"<<PROFILE_FIFOS[q].push<<",\"depth\":"<<PROFILE_FIFOS[q].depth
+                   <<",\"max_occupancy\":"<<f.fifo_highwater[q]<<'}';
+            }
+            out<<"]";
+#endif
+            out<<"}";
         }
         out<<"]}\n";sim.dut.final();std::cout<<"NATIVE_FRAME_PASS"<<std::endl;return 0;
     } catch(const std::exception& e) { std::cerr<<"NATIVE_FRAME_FAIL "<<e.what()<<std::endl;return 1; }

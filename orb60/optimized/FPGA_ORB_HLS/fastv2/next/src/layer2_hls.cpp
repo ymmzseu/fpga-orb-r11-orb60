@@ -71,7 +71,7 @@ void layer2_dataflow(const uint64_t* image, uint64_t* blurred, uint64_t* resized
     read_front2_words(image, words, p.width*p.height);
     unpack_front2_words(words, pairs, p.width, p.height);
     fork_layer2_pairs(pairs, fast_raw, gaussian_raw, resize_raw, p.width, p.height);
-    scan_front2_pairs(fast_raw, candidate_pairs, p, fastv2_profile2::kPairOffsets[level], high, low, dual);
+    scan_front2_pairs(fast_raw, candidate_pairs, p, fastv2_segment::kPairRunOffsets[level], high, low, dual);
     serialize_front2_pairs(candidate_pairs, candidates);
     consume_and_select(candidates, selected, result, p, high, dual, capacity, fast_done);
     gaussian2_horizontal(gaussian_raw, horizontal, p.width, p.height);

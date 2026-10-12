@@ -5,6 +5,8 @@ $source = Join-Path $Orb60Root "$Variant/FPGA_ORB_HLS/fastv2/next"
 $build = Join-Path $Orb60Root "build/$Variant/host"
 New-Item -ItemType Directory -Force -Path $build | Out-Null
 if($Variant -eq 'optimized') {
+    & $ProjectPython (Join-Path $source '../scripts/generate_profile_rom.py')
+    if($LASTEXITCODE) {throw 'Profile/segment ROM generation failed'}
     & $ProjectPython (Join-Path $PSScriptRoot 'generate_descriptor_rom.py') --source (Join-Path $source 'include/backend_tables.h') --output (Join-Path $source 'include/descriptor_rom.hpp')
     if($LASTEXITCODE) {throw 'Descriptor ROM generation failed'}
 }

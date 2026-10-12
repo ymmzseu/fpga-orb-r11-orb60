@@ -1,3 +1,5 @@
+> 开发分支 `codex/orb60-4ppc`：第一阶段八 bank 筛选、分段几何表、锦标赛选点、跨点描述子流水已实现，27 项主机测试及 38 个独立向量事务通过。新 HLS、随机 AXI、整帧周期和 routed 时序尚待验收；以下表格与 bitstream 均属于冻结的旧 100 MHz 基线。具体见 [第一阶段状态](orb60/docs/ARCHITECTURE_STAGE1_ZH.md)。默认分支 `main` 保存已通过版本。
+
 # FPGA ORB R11 / ORB60：源码、100 MHz bitstream 与路由报告
 
 本仓库保存 R11 的独立 ORB60 开发版本：**960×720、8 层金字塔、2PPC 图像引擎、精确 A32 PL 描述子**，器件 `xc7z015clg485-2`，工具链 Vivado / Vitis HLS 2024.2。像素、选点顺序、方向和 256-bit BRIEF 保持原算法逐字节一致。

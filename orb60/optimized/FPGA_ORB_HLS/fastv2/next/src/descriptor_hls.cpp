@@ -11,6 +11,8 @@ typedef uint64_t RawBlock[158]; // 31 rows x5 words + point(2) + status(1).
 typedef uint64_t BlurBlock[222]; // 37 rows x6 words; clipped rows never sampled.
 struct PointToken {uint64_t xy,score_tile;};
 struct FeaturePacket {uint64_t words[8];bool valid;};
+struct MomentPacket {PointToken point;int32_t m10,m01;int status;};
+struct AnglePacket {MomentPacket moment;int bin;};
 struct Completion {uint32_t raw_bytes,blur_bytes,completed,cycles;int status;};
 
 uint64_t fields(uint32_t a,uint32_t b) {
@@ -147,25 +149,15 @@ void rotate(int& x,int& y,int quarter) {
     else if(quarter==3) {x=y;y=-old;}
 }
 
-bool describe_patch(const RawBlock& raw,const BlurBlock& blur,int width,int height,
-    int level,FeaturePacket& packet) {
+void compute_patch_moments(const RawBlock& raw,int width,MomentPacket& packet) {
 #pragma HLS INLINE off
-    const int cx=signed32(uint32_t(raw[155]))+16,cy=signed32(uint32_t(raw[155]>>32))+16;
-    const uint32_t score=uint32_t(raw[156]);
-    uint8_t raw_align[31],blur_align[37];
+    const int cx=signed32(uint32_t(packet.point.xy))+16,cy=signed32(uint32_t(packet.point.xy>>32))+16;
+    uint8_t raw_align[31];
 #pragma HLS ARRAY_PARTITION variable=raw_align complete
-#pragma HLS ARRAY_PARTITION variable=blur_align complete
 RawRowAlignment:
     for(int row=0;row<31;++row) {
 #pragma HLS PIPELINE II=1
         raw_align[row]=uint8_t(((cy-15+row)*width+cx-15)&7);
-    }
-    const int bx=cx<18 ? 0 : cx-18;
-BlurRowAlignment:
-    for(int row=0;row<37;++row) {
-#pragma HLS PIPELINE II=1
-        const int y=cy-18+row;
-        blur_align[row]=y>=0 && y<height ? uint8_t((y*width+bx)&7) : 0;
     }
     int32_t m10=0,m01=0;
 MomentCenterRow:
@@ -184,7 +176,48 @@ MomentSymmetricPairs:
         }
         m01+=v*vertical;
     }
-    const int bin=quantize_angle(precise_angle(m10,m01));
+    packet.m10=m10;packet.m01=m01;
+}
+
+void compute_moments(hls::stream_of_blocks<RawBlock>& raw,int count,int width,
+    hls::stream<MomentPacket>& output) {
+#pragma HLS INLINE off
+    for (int i=0;i<count;++i) {
+        hls::read_lock<RawBlock> lock(raw);RawBlock& patch=lock;
+        MomentPacket packet={};packet.point.xy=patch[155];packet.point.score_tile=patch[156];
+        packet.status=patch[157] ? -2 : 0;
+        if (!packet.status) compute_patch_moments(patch,width,packet);
+        output.write(packet);
+        // Only this actor owns the raw patch; BRIEF never holds its lock.
+    }
+}
+
+void compute_angles(hls::stream<MomentPacket>& input,int count,hls::stream<AnglePacket>& output) {
+#pragma HLS INLINE off
+    for (int i=0;i<count;++i) {
+        AnglePacket packet={};packet.moment=input.read();
+        if (!packet.moment.status)
+            packet.bin=quantize_angle(precise_angle(packet.moment.m10,packet.moment.m01));
+        output.write(packet);
+    }
+}
+
+bool brief_patch(const BlurBlock& blur,const AnglePacket& angle,int width,int height,
+    int level,FeaturePacket& packet) {
+#pragma HLS INLINE off
+    const int cx=signed32(uint32_t(angle.moment.point.xy))+16,cy=signed32(uint32_t(angle.moment.point.xy>>32))+16;
+    const uint32_t score=uint32_t(angle.moment.point.score_tile);
+    const int32_t m10=angle.moment.m10,m01=angle.moment.m01;
+    const int bin=angle.bin;
+    uint8_t blur_align[37];
+#pragma HLS ARRAY_PARTITION variable=blur_align complete
+    const int bx=cx<18 ? 0 : cx-18;
+BlurRowAlignment:
+    for(int row=0;row<37;++row) {
+#pragma HLS PIPELINE II=1
+        const int y=cy-18+row;
+        blur_align[row]=y>=0 && y<height ? uint8_t((y*width+bx)&7) : 0;
+    }
     uint32_t bits=0,descriptor[8];
 #pragma HLS ARRAY_PARTITION variable=descriptor complete
     bool valid=true;
@@ -210,20 +243,21 @@ BriefBits:
     }
     return valid;
 }
-void compute_descriptors(hls::stream_of_blocks<RawBlock>& raw,
-    hls::stream_of_blocks<BlurBlock>& blur,int count,int width,int height,int level,
-    hls::stream<FeaturePacket>& records,hls::stream<int>& done) {
+void compute_brief(hls::stream_of_blocks<BlurBlock>& blur,hls::stream<AnglePacket>& angles,
+    int count,int width,int height,int level,hls::stream<FeaturePacket>& records,hls::stream<int>& done) {
 #pragma HLS INLINE off
     int status=0;
     for(int i=0;i<count;++i) {
-        hls::read_lock<RawBlock> raw_lock(raw);RawBlock& raw_patch=raw_lock;
-        hls::read_lock<BlurBlock> blur_lock(blur);BlurBlock& blur_patch=blur_lock;
+        const AnglePacket angle=angles.read();
+        hls::read_lock<BlurBlock> lock(blur);BlurBlock& patch=lock;
         FeaturePacket packet={};
         if(!status) {
-            if(raw_patch[157] || !describe_patch(raw_patch,blur_patch,width,height,level,packet)) status=-2;
+            if(angle.moment.status || !brief_patch(patch,angle,width,height,level,packet)) status=-2;
             else packet.valid=true;
         }
-        records.write(packet); // Invalid points still drain every ownership token.
+        // Every token/patch is drained after the first failure. Preserve the
+        // exact completed prefix; later valid points must not resume writes.
+        records.write(packet);
     }
     done.write(status);
 }
@@ -264,11 +298,15 @@ void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t
     hls::stream_of_blocks<RawBlock> raw_blocks;
     hls::stream_of_blocks<BlurBlock> blur_blocks;
     hls::stream<FeaturePacket> records;
+    hls::stream<MomentPacket> moments;
+    hls::stream<AnglePacket> angles;
     hls::stream<uint32_t> raw_done,blur_done,write_done;
     hls::stream<int> compute_done;
 #pragma HLS STREAM variable=raw_points depth=4
 #pragma HLS STREAM variable=blur_points depth=4
 #pragma HLS STREAM variable=records depth=2
+#pragma HLS STREAM variable=moments depth=2
+#pragma HLS STREAM variable=angles depth=2
 #pragma HLS STREAM variable=raw_done depth=2
 #pragma HLS STREAM variable=blur_done depth=2
 #pragma HLS STREAM variable=write_done depth=2
@@ -276,17 +314,21 @@ void descriptor_dataflow(const uint64_t* raw,const uint64_t* blur,const uint64_t
 #pragma HLS AGGREGATE variable=raw_points compact=bit
 #pragma HLS AGGREGATE variable=blur_points compact=bit
 #pragma HLS AGGREGATE variable=records compact=bit
+#pragma HLS AGGREGATE variable=moments compact=bit
+#pragma HLS AGGREGATE variable=angles compact=bit
 #pragma HLS BIND_STORAGE variable=raw_blocks type=ram_t2p impl=bram
 #pragma HLS BIND_STORAGE variable=blur_blocks type=ram_t2p impl=bram
 #pragma HLS DATAFLOW
     load_points(points,count,raw_points,blur_points);
     load_raw(raw,raw_points,raw_blocks,count,width,height,raw_done);
     load_blur(blur,blur_points,blur_blocks,count,width,height,blur_done);
-    compute_descriptors(raw_blocks,blur_blocks,count,width,height,level,records,compute_done);
+    compute_moments(raw_blocks,count,width,moments);
+    compute_angles(moments,count,angles);
+    compute_brief(blur_blocks,angles,count,width,height,level,records,compute_done);
     write_features(records,features,count,offset,write_done);
     count_cycles(raw_done,blur_done,write_done,compute_done,result);
 #ifndef __SYNTHESIS__
-    assert(raw_points.empty() && blur_points.empty() && raw_blocks.empty() && blur_blocks.empty() && records.empty());
+    assert(raw_points.empty() && blur_points.empty() && raw_blocks.empty() && blur_blocks.empty() && records.empty() && moments.empty() && angles.empty());
     assert(raw_done.empty() && blur_done.empty() && write_done.empty() && compute_done.empty());
 #endif
 }

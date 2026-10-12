@@ -9,7 +9,7 @@ $frameName='{0}_native_frame_{1}' -f (Get-Date -Format 'yyyyMMdd_HHmmss'),([guid
 $frameJob=Join-Path $Orb60Root "build/optimized/gates/$frameName"
 $frameTests=Join-Path $frameJob 'inputs/tests'
 New-Item -ItemType Directory -Path $frameTests -Force | Out-Null
-foreach($frameFile in @('prepare_native_frame.py','run_native_frame.py','native_frame.cpp','check_native_harness.py','native_ddr_model_test.cpp')) {
+foreach($frameFile in @('prepare_native_frame.py','native_profile.py','run_native_frame.py','native_frame.cpp','check_native_harness.py','native_ddr_model_test.cpp')) {
     Copy-Item -LiteralPath (Join-Path $Orb60Root "tests/$frameFile") -Destination $frameTests
 }
 $frameHashes=Get-ChildItem -LiteralPath (Join-Path $frameJob 'inputs') -Recurse -File | ForEach-Object {
