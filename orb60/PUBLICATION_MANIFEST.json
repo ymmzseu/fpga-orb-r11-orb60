@@ -1,10 +1,10 @@
 {
-  "scope": "Source/docs/evidence and accepted 100 MHz bit; failed 125 MHz comparison",
+  "scope": "Independent ORB60 overview, immutable accepted 100 MHz source/bit/evidence, concluded failed 125 MHz comparison",
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 228,
-      "sha256": "c9d4837b862ad5412f16c51533604843621e8402af1ea9e92bbe1a871e94178e"
+      "bytes": 271,
+      "sha256": "d891446976bbdd0455f4ab3622a1a28a1fa68018240e540fa41b54b5e55ff4a0"
     },
     {
       "path": ".gitignore",
@@ -2793,8 +2793,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 3342,
-      "sha256": "ef8b328c3a23e01ad9ee5364b1eba923567947f47a7df42db0799618218e5c5f"
+      "bytes": 5104,
+      "sha256": "190b5e5a806e777b82ca381e83d7ead3be34b04f56123395c137d7297269c843"
     },
     {
       "path": "scripts/local_env.example.ps1",
@@ -2820,6 +2820,11 @@
       "path": "tools/verify_orb60.ps1",
       "bytes": 952,
       "sha256": "06e3d6f6f158385ba4f6f322abcdbb4a7630d9db4f731463ee34e99ab9a3fbc0"
+    },
+    {
+      "path": "docs/R11_ARCHIVE_README.md",
+      "bytes": 3342,
+      "sha256": "ef8b328c3a23e01ad9ee5364b1eba923567947f47a7df42db0799618218e5c5f"
     }
   ]
 }
