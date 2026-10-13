@@ -1,0 +1,151 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_emit_layer_blocks_Pipeline_EmitLayerReadWords'
+================================================================
+* Date:           Tue Oct 13 19:48:44 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.159 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max   | min | max |                      Type                      |
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+    |        2|       67|  13.334 ns|  0.447 us|    1|   65|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                      |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |       Loop Name      |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- EmitLayerReadWords  |        0|       65|         3|          1|          1|  0 ~ 64|       yes|
+        +----------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     28|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|     76|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     76|     73|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |add_ln20_fu_104_p2              |         +|   0|  0|   7|           7|           1|
+    |ap_block_pp0_stage0_01001_grp1  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln20_fu_98_p2              |      icmp|   0|  0|  18|          18|          18|
+    |ap_enable_pp0                   |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |Total                           |          |   0|  0|  28|          27|          22|
+    +--------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_9     |   9|          2|    7|         14|
+    |i_fu_56                  |   9|          2|    7|         14|
+    |words_blk_n              |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|   17|         34|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |blocks_i_load_reg_140             |  64|   0|   64|          0|
+    |i_fu_56                           |   7|   0|    7|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  76|   0|   76|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++----------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|blocks_i_empty_n      |   in|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|blocks_i_read         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)emit_layer_blocks_Pipeline_EmitLayerReadWords|  return value|
+|words_din             |  out|   64|     ap_fifo|                                                               words|       pointer|
+|words_full_n          |   in|    1|     ap_fifo|                                                               words|       pointer|
+|words_write           |  out|    1|     ap_fifo|                                                               words|       pointer|
+|words_num_data_valid  |   in|   32|     ap_fifo|                                                               words|       pointer|
+|words_fifo_cap        |   in|   32|     ap_fifo|                                                               words|       pointer|
+|n                     |   in|   18|     ap_none|                                                                   n|        scalar|
+|blocks_i_address0     |  out|    6|    mem_fifo|                                                            blocks_i|         array|
+|blocks_i_ce0          |  out|    1|    mem_fifo|                                                            blocks_i|         array|
+|blocks_i_q0           |   in|   64|    mem_fifo|                                                            blocks_i|         array|
++----------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+

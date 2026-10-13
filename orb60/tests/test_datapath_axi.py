@@ -75,7 +75,7 @@ async def exact_datapath_random_axi_and_reset(dut):
         controls=[struct.unpack_from('<12i',data,16+48*i) for i in range(len(vector_info['cases']))]
     dut.ap_rst_n.value=0
     period_ps=config.get('clock_period_ps',10000)
-    cocotb.start_soon(Clock(dut.ap_clk,period_ps,unit='ps').start())
+    cocotb.start_soon(Clock(dut.ap_clk,period_ps,unit='ps',period_high=period_ps-period_ps//2).start())
     memory=bytearray(b'\xa5'*MEMORY_BYTES)
     rams=[];monitors=[]
     for i in range(4):

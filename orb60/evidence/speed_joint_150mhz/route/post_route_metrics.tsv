@@ -1,0 +1,23 @@
+scope	4PPC layer + exact A32 descriptor complete routed top; candidate joint DDR/protocol/PS/board gates pending
+part	xc7z015clg485-2
+frequency_mhz	150
+front_top	fastv2_layer2_hls
+wns_ns	0.093
+whs_ns	0.036
+summary_wns_ns	0.093
+tns_ns	0.000
+setup_failed_endpoints	0
+setup_total_endpoints	98601
+summary_whs_ns	0.036
+ths_ns	0.000
+hold_failed_endpoints	0
+hold_total_endpoints	98601
+wpws_ns	2.203
+tpws_ns	0.000
+pulse_failed_endpoints	0
+pulse_total_endpoints	39813
+setup_DATAPATH_DELAY	6.248
+setup_LOGIC_LEVELS	8
+setup_STARTPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_574/grp_p_anonymous_namespace_front4_score_1_s_fu_925/grp_p_anonymous_namespace_fast_score_fu_148/grp_p_anonymous_namespace_maximum_stage_2_s_fu_362/select_ln119_reg_52_reg[1]/C
+setup_ENDPOINT_PIN	s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_scan_front4_quads_U0/grp_p_anonymous_namespace_scan_front4_quads_Pipeline_RasterQuads_fu_574/icmp_ln163_reg_5166_reg[0]/D
+setup_REQUIREMENT	6.667

@@ -76,8 +76,8 @@ def prepare(args, scratch):
         job = getattr(args, 'layer' if index == 0 else 'descriptor')
         state = json.loads((job / 'status.json').read_text(encoding='utf-8-sig'))
         assert state['State'] == 'SUCCEEDED' and state['Cosim'] and state['Kernel'] == kernel
-        current_period=int(state['PeriodNs']*1000)
-        assert current_period in (8000,10000) and state['Part']=='xc7z015clg485-2', 'Native harness clock/part mismatch'
+        current_period=round(state['PeriodNs']*1000)
+        assert 5000<=current_period<=10000 and abs(current_period-state['PeriodNs']*1000)<=0.5 and state['Part']=='xc7z015clg485-2', 'Native harness clock/part mismatch'
         if period_ps is None:
             period_ps=current_period
             header+=f'constexpr unsigned CLOCK_PERIOD_PS={period_ps};\n'

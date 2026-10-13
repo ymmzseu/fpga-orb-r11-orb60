@@ -1,0 +1,152 @@
+<profile>
+
+<ReportVersion>
+<Version>2024.2</Version>
+</ReportVersion>
+
+<UserAssignments>
+<unit>ns</unit>
+<ProductFamily>zynq</ProductFamily>
+<Part>xc7z015-clg485-2</Part>
+<TopModelName>p_anonymous_namespace_quantize_angle</TopModelName>
+<TargetClockPeriod>6.67</TargetClockPeriod>
+<ClockUncertainty>1.80</ClockUncertainty>
+<TargetInitiationInterval>1</TargetInitiationInterval>
+<FlowTarget>vivado</FlowTarget>
+</UserAssignments>
+
+<PerformanceEstimates>
+<PipelineType>yes</PipelineType>
+<SummaryOfTimingAnalysis>
+<unit>ns</unit>
+<EstimatedClockPeriod>4.656</EstimatedClockPeriod>
+</SummaryOfTimingAnalysis>
+<SummaryOfOverallLatency>
+<unit>clock cycles</unit>
+<Best-caseLatency>2</Best-caseLatency>
+<Average-caseLatency>2</Average-caseLatency>
+<Worst-caseLatency>2</Worst-caseLatency>
+<Best-caseRealTimeLatency>13.334 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>13.334 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>13.334 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>1</PipelineInitiationInterval>
+<PipelineDepth>3</PipelineDepth>
+<Interval-min>1</Interval-min>
+<Interval-max>1</Interval-max>
+</SummaryOfOverallLatency>
+<SummaryOfViolations>
+<IssueType>-</IssueType>
+<ViolationType>-</ViolationType>
+<SourceLocation>../inputs/FPGA_ORB_HLS/fastv2/next/src/descriptor_hls.cpp:102</SourceLocation>
+</SummaryOfViolations>
+</PerformanceEstimates>
+
+<AreaEstimates>
+<Resources>
+<DSP>1</DSP>
+<FF>21</FF>
+<LUT>69</LUT>
+<BRAM_18K>0</BRAM_18K>
+<URAM>0</URAM>
+</Resources>
+<AvailableResources>
+<BRAM_18K>190</BRAM_18K>
+<DSP>160</DSP>
+<FF>92400</FF>
+<LUT>46200</LUT>
+<URAM>0</URAM>
+</AvailableResources>
+</AreaEstimates>
+
+<InterfaceSummary>
+<RtlPorts>
+<name>ap_clk</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_rst</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_start</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_done</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_idle</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_ready</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_return</name>
+<Object>(anonymous namespace)quantize_angle</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>5</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>angle</name>
+<Object>angle</Object>
+<Type>scalar</Type>
+<Scope></Scope>
+<IOProtocol>ap_none</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>27</Bits>
+<Attribute>data</Attribute>
+</RtlPorts>
+</InterfaceSummary>
+
+</profile>

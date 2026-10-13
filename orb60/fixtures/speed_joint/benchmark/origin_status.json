@@ -1,0 +1,10 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Stage":  "COMPLETE",
+    "Job":  "D:\\pld\\orb60\\build\\optimized\\benchmark\\20261012_122652_layer2_benchmark_56a61151",
+    "ParentHlsJob":  "D:\\pld\\orb60\\build\\optimized\\hls\\20261012_112318_layer2_7d592c6c",
+    "StartedUtc":  "2026-10-12T03:26:52.9306937Z",
+    "ProcessId":  31732,
+    "Scope":  "Shared layer only; no descriptors/PS/physical DDR; no synthesis or route",
+    "FinishedUtc":  "2026-10-12T04:16:14.7394611Z"
+}

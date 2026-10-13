@@ -1,0 +1,287 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens'
+================================================================
+* Date:           Tue Oct 13 19:48:56 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  5.255 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                         |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |        Loop Name        |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- ReduceCandidateTokens  |        ?|        ?|         3|          1|          1|     ?|       yes|
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     38|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      0|    129|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    261|    -|
+|Register         |        -|    -|    349|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    349|    428|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |          Instance         |        Module        | BRAM_18K| DSP| FF| LUT | URAM|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |sparsemux_53_5_8_1_1_U398  |sparsemux_53_5_8_1_1  |        0|   0|  0|  129|    0|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |Total                      |                      |        0|   0|  0|  129|    0|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |ap_block_pp0_stage0_11001  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_140           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_621           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_626           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_629           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_632           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_635           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_638           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_641           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_644           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_647           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_650           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_653           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_656           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_659           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_662           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_665           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_668           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_671           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_674           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_677           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_680           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_683           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_686           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_689           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_692           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_695           |       and|   0|  0|   1|           1|           1|
+    |ap_condition_698           |       and|   0|  0|   1|           1|           1|
+    |icmp_ln81_fu_815_p2        |      icmp|   0|  0|   8|           8|           8|
+    |ap_enable_pp0              |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0|  38|          37|          38|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |banks_0_blk_n            |   9|          2|    1|          2|
+    |scores_184_fu_164        |   9|          2|    8|         16|
+    |scores_185_fu_168        |   9|          2|    8|         16|
+    |scores_186_fu_172        |   9|          2|    8|         16|
+    |scores_187_fu_176        |   9|          2|    8|         16|
+    |scores_188_fu_180        |   9|          2|    8|         16|
+    |scores_189_fu_184        |   9|          2|    8|         16|
+    |scores_190_fu_188        |   9|          2|    8|         16|
+    |scores_191_fu_192        |   9|          2|    8|         16|
+    |scores_192_fu_196        |   9|          2|    8|         16|
+    |scores_193_fu_200        |   9|          2|    8|         16|
+    |scores_194_fu_204        |   9|          2|    8|         16|
+    |scores_195_fu_208        |   9|          2|    8|         16|
+    |scores_196_fu_212        |   9|          2|    8|         16|
+    |scores_197_fu_216        |   9|          2|    8|         16|
+    |scores_198_fu_220        |   9|          2|    8|         16|
+    |scores_199_fu_224        |   9|          2|    8|         16|
+    |scores_200_fu_228        |   9|          2|    8|         16|
+    |scores_201_fu_232        |   9|          2|    8|         16|
+    |scores_202_fu_236        |   9|          2|    8|         16|
+    |scores_203_fu_240        |   9|          2|    8|         16|
+    |scores_204_fu_244        |   9|          2|    8|         16|
+    |scores_205_fu_248        |   9|          2|    8|         16|
+    |scores_206_fu_252        |   9|          2|    8|         16|
+    |scores_207_fu_256        |   9|          2|    8|         16|
+    |scores_208_fu_260        |   9|          2|    8|         16|
+    |scores_fu_160            |   9|          2|    8|         16|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 261|         58|  211|        422|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------+----+----+-----+-----------+
+    |                    Name                   | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp0_done_reg  |   1|   0|    1|          0|
+    |ap_done_reg                                |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                    |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2                    |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg           |   1|   0|    1|          0|
+    |icmp_ln81_reg_1287                         |   1|   0|    1|          0|
+    |index_reg_1282                             |   5|   0|    5|          0|
+    |scores_184_fu_164                          |   8|   0|    8|          0|
+    |scores_185_fu_168                          |   8|   0|    8|          0|
+    |scores_186_fu_172                          |   8|   0|    8|          0|
+    |scores_187_fu_176                          |   8|   0|    8|          0|
+    |scores_188_fu_180                          |   8|   0|    8|          0|
+    |scores_189_fu_184                          |   8|   0|    8|          0|
+    |scores_190_fu_188                          |   8|   0|    8|          0|
+    |scores_191_fu_192                          |   8|   0|    8|          0|
+    |scores_192_fu_196                          |   8|   0|    8|          0|
+    |scores_193_fu_200                          |   8|   0|    8|          0|
+    |scores_194_fu_204                          |   8|   0|    8|          0|
+    |scores_195_fu_208                          |   8|   0|    8|          0|
+    |scores_196_fu_212                          |   8|   0|    8|          0|
+    |scores_197_fu_216                          |   8|   0|    8|          0|
+    |scores_198_fu_220                          |   8|   0|    8|          0|
+    |scores_199_fu_224                          |   8|   0|    8|          0|
+    |scores_200_fu_228                          |   8|   0|    8|          0|
+    |scores_201_fu_232                          |   8|   0|    8|          0|
+    |scores_202_fu_236                          |   8|   0|    8|          0|
+    |scores_203_fu_240                          |   8|   0|    8|          0|
+    |scores_204_fu_244                          |   8|   0|    8|          0|
+    |scores_205_fu_248                          |   8|   0|    8|          0|
+    |scores_206_fu_252                          |   8|   0|    8|          0|
+    |scores_207_fu_256                          |   8|   0|    8|          0|
+    |scores_208_fu_260                          |   8|   0|    8|          0|
+    |scores_fu_160                              |   8|   0|    8|          0|
+    |tmp_27_reg_1278                            |   1|   0|    1|          0|
+    |token_reg_1271                             |  64|   0|   64|          0|
+    |token_reg_1271_pp0_iter1_reg               |  64|   0|   64|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+    |Total                                      | 349|   0|  349|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |                               Source Object                              |    C Type    |
++------------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+|ap_clk                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|ap_rst                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|ap_start                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|ap_done                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|ap_idle                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|ap_ready                |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<0>_Pipeline_ReduceCandidateTokens|  return value|
+|banks_0_dout            |   in|   64|     ap_fifo|                                                                   banks_0|       pointer|
+|banks_0_empty_n         |   in|    1|     ap_fifo|                                                                   banks_0|       pointer|
+|banks_0_read            |  out|    1|     ap_fifo|                                                                   banks_0|       pointer|
+|banks_0_num_data_valid  |   in|    4|     ap_fifo|                                                                   banks_0|       pointer|
+|banks_0_fifo_cap        |   in|    4|     ap_fifo|                                                                   banks_0|       pointer|
+|points_address1         |  out|    5|   ap_memory|                                                                    points|         array|
+|points_ce1              |  out|    1|   ap_memory|                                                                    points|         array|
+|points_we1              |  out|    1|   ap_memory|                                                                    points|         array|
+|points_d1               |  out|   41|   ap_memory|                                                                    points|         array|
+|scores_572_out          |  out|    8|      ap_vld|                                                            scores_572_out|       pointer|
+|scores_572_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_572_out|       pointer|
+|scores_571_out          |  out|    8|      ap_vld|                                                            scores_571_out|       pointer|
+|scores_571_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_571_out|       pointer|
+|scores_570_out          |  out|    8|      ap_vld|                                                            scores_570_out|       pointer|
+|scores_570_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_570_out|       pointer|
+|scores_569_out          |  out|    8|      ap_vld|                                                            scores_569_out|       pointer|
+|scores_569_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_569_out|       pointer|
+|scores_568_out          |  out|    8|      ap_vld|                                                            scores_568_out|       pointer|
+|scores_568_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_568_out|       pointer|
+|scores_567_out          |  out|    8|      ap_vld|                                                            scores_567_out|       pointer|
+|scores_567_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_567_out|       pointer|
+|scores_566_out          |  out|    8|      ap_vld|                                                            scores_566_out|       pointer|
+|scores_566_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_566_out|       pointer|
+|scores_565_out          |  out|    8|      ap_vld|                                                            scores_565_out|       pointer|
+|scores_565_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_565_out|       pointer|
+|scores_564_out          |  out|    8|      ap_vld|                                                            scores_564_out|       pointer|
+|scores_564_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_564_out|       pointer|
+|scores_563_out          |  out|    8|      ap_vld|                                                            scores_563_out|       pointer|
+|scores_563_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_563_out|       pointer|
+|scores_562_out          |  out|    8|      ap_vld|                                                            scores_562_out|       pointer|
+|scores_562_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_562_out|       pointer|
+|scores_561_out          |  out|    8|      ap_vld|                                                            scores_561_out|       pointer|
+|scores_561_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_561_out|       pointer|
+|scores_560_out          |  out|    8|      ap_vld|                                                            scores_560_out|       pointer|
+|scores_560_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_560_out|       pointer|
+|scores_559_out          |  out|    8|      ap_vld|                                                            scores_559_out|       pointer|
+|scores_559_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_559_out|       pointer|
+|scores_558_out          |  out|    8|      ap_vld|                                                            scores_558_out|       pointer|
+|scores_558_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_558_out|       pointer|
+|scores_557_out          |  out|    8|      ap_vld|                                                            scores_557_out|       pointer|
+|scores_557_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_557_out|       pointer|
+|scores_556_out          |  out|    8|      ap_vld|                                                            scores_556_out|       pointer|
+|scores_556_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_556_out|       pointer|
+|scores_555_out          |  out|    8|      ap_vld|                                                            scores_555_out|       pointer|
+|scores_555_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_555_out|       pointer|
+|scores_554_out          |  out|    8|      ap_vld|                                                            scores_554_out|       pointer|
+|scores_554_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_554_out|       pointer|
+|scores_553_out          |  out|    8|      ap_vld|                                                            scores_553_out|       pointer|
+|scores_553_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_553_out|       pointer|
+|scores_552_out          |  out|    8|      ap_vld|                                                            scores_552_out|       pointer|
+|scores_552_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_552_out|       pointer|
+|scores_551_out          |  out|    8|      ap_vld|                                                            scores_551_out|       pointer|
+|scores_551_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_551_out|       pointer|
+|scores_550_out          |  out|    8|      ap_vld|                                                            scores_550_out|       pointer|
+|scores_550_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_550_out|       pointer|
+|scores_549_out          |  out|    8|      ap_vld|                                                            scores_549_out|       pointer|
+|scores_549_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_549_out|       pointer|
+|scores_548_out          |  out|    8|      ap_vld|                                                            scores_548_out|       pointer|
+|scores_548_out_ap_vld   |  out|    1|      ap_vld|                                                            scores_548_out|       pointer|
+|scores_out              |  out|    8|      ap_vld|                                                                scores_out|       pointer|
+|scores_out_ap_vld       |  out|    1|      ap_vld|                                                                scores_out|       pointer|
++------------------------+-----+-----+------------+--------------------------------------------------------------------------+--------------+
+

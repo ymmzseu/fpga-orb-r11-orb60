@@ -1,0 +1,162 @@
+<design_size title="Design Size Report">
+    <item name="Total Instructions per Compilation Phase">
+        <table>
+            <keys size="4">Phase, Step, Instructions, Description</keys>
+            <column name="Compile/Link">,  9732, After all functions are compiled and linked into a single design</column>
+            <column name="">, , </column>
+            <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
+            <column name="">(1) unroll, 20000, user unroll pragmas are applied</column>
+            <column name="">(2) simplification, 13618, simplification of applied user unroll pragmas</column>
+            <column name="">(3) inline, 13484, user inline pragmas are applied</column>
+            <column name="">(4) simplification, 13381, simplification of applied user inline pragmas</column>
+            <column name="">, , </column>
+            <column name="Array/Struct">, , After user array partition and struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(1) array partition, 17569, user array partition pragmas are applied</column>
+            <column name="">(2) simplification,  9535, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
+            <column name="">(3) aggregate/disaggregate ,  9539, user struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(4) array reshape,  9618, apply array reshape pragmas</column>
+            <column name="">(5) access patterns,  9184, array access pattern optmizations</column>
+            <column name="">, , </column>
+            <column name="Performance">, , After transformations are applied to meet performance pragma targets</column>
+            <column name="">(1) loop simplification,  8670, loop and instruction simplification</column>
+            <column name="">(2) parallelization,  8479, loops are unrolled or pipelined to meet performance targets</column>
+            <column name="">(3) array partition,  7957, arrays are partitioned to meet performance targets</column>
+            <column name="">(4) simplification,  7955, simplification of design after performance transformations</column>
+            <column name="">, , </column>
+            <column name="HW Transforms">, , After hardware transfomations</column>
+            <column name="">(1) lowering,  8030, initial conversion to HW specific instructions</column>
+            <column name="">(2) optimizations,  8430, high level synthesis optimizations</column>
+        </table>
+    </item>
+    <item name="Instructions per Function for each Compilation Phase">
+        <hiertable>
+            <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
+            <rows>
+                <row id="0" col0="fastv2_layer2_hls" col1="layer2_hls.cpp:109" col2="9732" col3="13381" col4="9184" col5="7955" col6="8430">
+                    <row id="1" col0="clear_result" col1="fastv2_hls.cpp:199" col2="33" col3="" col4="" col5="" col6=""/>
+                    <row id="43" col0="write_summary" col1="fastv2_hls.cpp:422" col2="106" col3="" col4="" col5="" col6="">
+                        <row id="23" col0="field_pair" col1="fastv2_hls.cpp:417" col2="40" col2_disp="  40 (8 calls)" col3="" col4="" col5="" col6=""/>
+                    </row>
+                    <row id="19" col0="write_layer2_stats" col1="layer2_hls.cpp:98" col2="218" col2_disp=" 218 (2 calls)" col3="" col4="" col5="" col6="">
+                        <row id="23" col0="field_pair" col1="fastv2_hls.cpp:417" col2="80" col2_disp="  80 (16 calls)" col3="" col4="" col5="" col6=""/>
+                    </row>
+                    <row id="47" col0="layer4_dataflow" col1="layer4_dataflow.hpp:20" col2="9178" col3="13111" col4="8918" col5="7751" col6="8206">
+                        <row id="13" col0="layer4_read_dataflow" col1="layer4_io.hpp:26" col2="151" col3="68" col4="70" col5="67" col6="82">
+                            <row id="49" col0="load_layer_blocks" col1="layer4_io.hpp:4" col2="64" col3="33" col4="35" col5="34" col6="40"/>
+                            <row id="46" col0="emit_layer_blocks" col1="layer4_io.hpp:13" col2="71" col3="28" col4="28" col5="26" col6="32"/>
+                        </row>
+                        <row id="5" col0="unpack_front4_words" col1="front4_stream.hpp:6" col2="104" col3="77" col4="79" col5="75" col6="79"/>
+                        <row id="61" col0="fork_layer4_quads" col1="layer4_dataflow.hpp:8" col2="53" col3="21" col4="21" col5="19" col6="29"/>
+                        <row id="9" col0="scan_front4_quads" col1="front4_stream.hpp:48" col2="4863" col3="10314" col4="5230" col5="4188" col6="4326">
+                            <row id="32" col0="find_profile" col1="fastv2_hls.cpp:40" col2="31" col3="" col4="" col5="" col6=""/>
+                            <row id="7" col0="front4_score&lt;0&gt;" col1="front4_stream.hpp:31" col2="1000" col3="2269" col4="1011" col5="822" col6="856">
+                                <row id="18" col0="fast_score" col1="fastv2_hls.cpp:126" col2="907" col3="2197" col4="960" col5="820" col6="852">
+                                    <row id="48" col0="fast_differences" col1="fast_stages.hpp:2" col2="79" col3="175" col4="130" col5="114" col6="117"/>
+                                    <row id="51" col0="fast_arc_minimum&lt;1&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="790" col3_disp="  790 (2 calls)" col4="194" col4_disp=" 194 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="40" col0="fast_arc_minimum&lt;3&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="792" col3_disp="  792 (2 calls)" col4="226" col4_disp=" 226 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="11" col0="fast_arc_response" col1="fast_stages.hpp:27" col2="42" col3="191" col4="129" col5="49" col6="52"/>
+                                    <row id="65" col0="maximum_stage&lt;16&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="96" col4="73" col5="33" col6="36"/>
+                                    <row id="37" col0="maximum_stage&lt;8&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="48" col4="37" col5="17" col6="20"/>
+                                    <row id="62" col0="maximum_stage&lt;4&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="24" col4="19" col5="9" col6="12"/>
+                                    <row id="44" col0="maximum_stage&lt;2&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="11" col4="9" col5="5" col6="8"/>
+                                </row>
+                            </row>
+                            <row id="12" col0="front4_score&lt;1&gt;" col1="front4_stream.hpp:31" col2="1000" col3="2269" col4="1011" col5="822" col6="856">
+                                <row id="18" col0="fast_score" col1="fastv2_hls.cpp:126" col2="907" col3="2197" col4="960" col5="820" col6="852">
+                                    <row id="48" col0="fast_differences" col1="fast_stages.hpp:2" col2="79" col3="175" col4="130" col5="114" col6="117"/>
+                                    <row id="51" col0="fast_arc_minimum&lt;1&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="790" col3_disp="  790 (2 calls)" col4="194" col4_disp=" 194 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="40" col0="fast_arc_minimum&lt;3&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="792" col3_disp="  792 (2 calls)" col4="226" col4_disp=" 226 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="11" col0="fast_arc_response" col1="fast_stages.hpp:27" col2="42" col3="191" col4="129" col5="49" col6="52"/>
+                                    <row id="65" col0="maximum_stage&lt;16&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="96" col4="73" col5="33" col6="36"/>
+                                    <row id="37" col0="maximum_stage&lt;8&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="48" col4="37" col5="17" col6="20"/>
+                                    <row id="62" col0="maximum_stage&lt;4&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="24" col4="19" col5="9" col6="12"/>
+                                    <row id="44" col0="maximum_stage&lt;2&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="11" col4="9" col5="5" col6="8"/>
+                                </row>
+                            </row>
+                            <row id="38" col0="front4_score&lt;2&gt;" col1="front4_stream.hpp:31" col2="1000" col3="2269" col4="1011" col5="822" col6="856">
+                                <row id="18" col0="fast_score" col1="fastv2_hls.cpp:126" col2="907" col3="2197" col4="960" col5="820" col6="852">
+                                    <row id="48" col0="fast_differences" col1="fast_stages.hpp:2" col2="79" col3="175" col4="130" col5="114" col6="117"/>
+                                    <row id="51" col0="fast_arc_minimum&lt;1&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="790" col3_disp="  790 (2 calls)" col4="194" col4_disp=" 194 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="40" col0="fast_arc_minimum&lt;3&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="792" col3_disp="  792 (2 calls)" col4="226" col4_disp=" 226 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="11" col0="fast_arc_response" col1="fast_stages.hpp:27" col2="42" col3="191" col4="129" col5="49" col6="52"/>
+                                    <row id="65" col0="maximum_stage&lt;16&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="96" col4="73" col5="33" col6="36"/>
+                                    <row id="37" col0="maximum_stage&lt;8&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="48" col4="37" col5="17" col6="20"/>
+                                    <row id="62" col0="maximum_stage&lt;4&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="24" col4="19" col5="9" col6="12"/>
+                                    <row id="44" col0="maximum_stage&lt;2&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="11" col4="9" col5="5" col6="8"/>
+                                </row>
+                            </row>
+                            <row id="33" col0="front4_score&lt;3&gt;" col1="front4_stream.hpp:31" col2="1000" col3="2269" col4="1011" col5="822" col6="856">
+                                <row id="18" col0="fast_score" col1="fastv2_hls.cpp:126" col2="907" col3="2197" col4="960" col5="820" col6="852">
+                                    <row id="48" col0="fast_differences" col1="fast_stages.hpp:2" col2="79" col3="175" col4="130" col5="114" col6="117"/>
+                                    <row id="51" col0="fast_arc_minimum&lt;1&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="790" col3_disp="  790 (2 calls)" col4="194" col4_disp=" 194 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="40" col0="fast_arc_minimum&lt;3&gt;" col1="fast_stages.hpp:15" col2="176" col2_disp=" 176 (2 calls)" col3="792" col3_disp="  792 (2 calls)" col4="226" col4_disp=" 226 (2 calls)" col5="162" col5_disp=" 162 (2 calls)" col6="168" col6_disp=" 168 (2 calls)"/>
+                                    <row id="11" col0="fast_arc_response" col1="fast_stages.hpp:27" col2="42" col3="191" col4="129" col5="49" col6="52"/>
+                                    <row id="65" col0="maximum_stage&lt;16&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="96" col4="73" col5="33" col6="36"/>
+                                    <row id="37" col0="maximum_stage&lt;8&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="48" col4="37" col5="17" col6="20"/>
+                                    <row id="62" col0="maximum_stage&lt;4&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="24" col4="19" col5="9" col6="12"/>
+                                    <row id="44" col0="maximum_stage&lt;2&gt;" col1="fastv2_hls.cpp:111" col2="47" col3="11" col4="9" col5="5" col6="8"/>
+                                </row>
+                            </row>
+                            <row id="21" col0="pack_point" col1="fastv2_hls.cpp:81" col2="23" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="52" col0="serialize_front4_quads" col1="front4_stream.hpp:169" col2="101" col3="56" col4="66" col5="65" col6="78"/>
+                        <row id="3" col0="consume_and_select" col1="fastv2_hls.cpp:438" col2="2284" col3="906" col4="2031" col5="1956" col6="2124">
+                            <row id="1" col0="clear_result" col1="fastv2_hls.cpp:199" col2="33" col3="" col4="" col5="" col6=""/>
+                            <row id="8" col0="reduce_banked_grid" col1="banked_grid.hpp:119" col2="1395" col3="502" col4="1584" col5="1375" col6="1533">
+                                <row id="16" col0="route_candidate_banks" col1="banked_grid.hpp:15" col2="121" col3="43" col4="37" col5="36" col6="75"/>
+                                <row id="24" col0="reduce_score_bank&lt;0&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="20" col0="reduce_score_bank&lt;1&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="55" col0="reduce_score_bank&lt;2&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="39" col0="reduce_score_bank&lt;3&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="64" col0="reduce_score_bank&lt;4&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="45" col0="reduce_score_bank&lt;5&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="36" col0="reduce_score_bank&lt;6&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="56" col0="reduce_score_bank&lt;7&gt;" col1="banked_grid.hpp:53" col2="131" col3="48" col4="179" col5="153" col6="168"/>
+                                <row id="35" col0="collect_bank_winners" col1="banked_grid.hpp:107" col2="165" col3="39" col4="32" col5="32" col6="53">
+                                    <row id="34" col0="read_bank_winner" col1="banked_grid.hpp:93" col2="123" col3="" col4="" col5="" col6=""/>
+                                </row>
+                            </row>
+                            <row id="43" col0="write_summary" col1="fastv2_hls.cpp:422" col2="212" col2_disp=" 212 (2 calls)" col3="" col4="" col5="" col6="">
+                                <row id="23" col0="field_pair" col1="fastv2_hls.cpp:417" col2="80" col2_disp="  80 (16 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="4" col0="unpack_point" col1="fastv2_hls.cpp:94" col2="40" col2_disp="  40 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            <row id="23" col0="field_pair" col1="fastv2_hls.cpp:417" col2="20" col2_disp="  20 (4 calls)" col3="" col4="" col5="" col6=""/>
+                            <row id="28" col0="compact_tournament_key" col1="banked_grid.hpp:150" col2="62" col3="" col4="" col5="" col6=""/>
+                            <row id="57" col0="tournament_winner" col1="banked_grid.hpp:165" col2="54" col2_disp="  54 (3 calls)" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="26" col0="gaussian4_horizontal" col1="layer4_images.hpp:4" col2="325" col3="441" col4="341" col5="321" col6="337">
+                            <row id="53" col0="layer_reflect" col1="layer2_images.hpp:11" col2="15" col3="" col4="" col5="" col6=""/>
+                            <row id="14" col0="layer_gaussian_sum&lt;unsigned char&gt;" col1="layer2_images.hpp:3" col2="33" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="2" col0="gaussian4_vertical" col1="layer4_images.hpp:67" col2="259" col3="535" col4="431" col5="429" col6="435">
+                            <row id="53" col0="layer_reflect" col1="layer2_images.hpp:11" col2="15" col3="" col4="" col5="" col6=""/>
+                            <row id="25" col0="layer_gaussian_sum&lt;unsigned short&gt;" col1="layer2_images.hpp:3" col2="33" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="58" col0="layer_pack_quads&lt;0&gt;" col1="layer4_images.hpp:177" col2="76" col3="44" col4="52" col5="50" col6="58"/>
+                        <row id="42" col0="layer4_write_dataflow&lt;0&gt;" col1="layer4_io.hpp:56" col2="169" col3="69" col4="71" col5="68" col6="86">
+                            <row id="17" col0="collect_layer_blocks&lt;0&gt;" col1="layer4_io.hpp:33" col2="80" col3="28" col4="28" col5="26" col6="32"/>
+                            <row id="59" col0="flush_layer_blocks&lt;0&gt;" col1="layer4_io.hpp:46" col2="73" col3="34" col4="36" col5="35" col6="44"/>
+                        </row>
+                        <row id="22" col0="resize4_quads" col1="layer4_images.hpp:121" col2="281" col3="346" col4="283" col5="279" col6="290">
+                            <row id="63" col0="layer4_resize_pixel" col1="layer4_images.hpp:110" col2="43" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="30" col0="layer_pack_quads&lt;1&gt;" col1="layer4_images.hpp:177" col2="76" col3="44" col4="52" col5="50" col6="58"/>
+                        <row id="27" col0="layer4_write_dataflow&lt;1&gt;" col1="layer4_io.hpp:56" col2="169" col3="69" col4="71" col5="68" col6="86">
+                            <row id="15" col0="collect_layer_blocks&lt;1&gt;" col1="layer4_io.hpp:33" col2="80" col3="28" col4="28" col5="26" col6="32"/>
+                            <row id="41" col0="flush_layer_blocks&lt;1&gt;" col1="layer4_io.hpp:46" col2="73" col3="34" col4="36" col5="35" col6="44"/>
+                        </row>
+                        <row id="6" col0="count_layer2_cycles" col1="layer2_hls.cpp:25" col2="82" col3="42" col4="44" col5="42" col6="53"/>
+                    </row>
+                </row>
+            </rows>
+            <notes/>
+        </hiertable>
+    </item>
+    <item name="Design Size Message Settings">
+        <table>
+            <keys size="3">Message Setting, Value, Description</keys>
+            <column name="config_compile -design_size_maximum_warning">100000, Show a warning when total design instructions exceeds this value</column>
+        </table>
+    </item>
+</design_size>
+

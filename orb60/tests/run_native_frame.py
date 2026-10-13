@@ -31,7 +31,7 @@ def run(args):
         scratch.mkdir(parents=True, exist_ok=False)
         state['Scratch'] = str(scratch);save()
         images = prepare(args, scratch)
-        period_ps=int(json.loads((args.layer/'status.json').read_text(encoding='utf-8-sig'))['PeriodNs']*1000)
+        period_ps=round(json.loads((args.layer/'status.json').read_text(encoding='utf-8-sig'))['PeriodNs']*1000)
         frequency_mhz=1000000/period_ps
         check(scratch,Path(__file__).resolve().parent,args.output)
         shutil.copyfile(Path(__file__).with_name('native_frame.cpp'), scratch/'native_frame.cpp')
@@ -132,12 +132,15 @@ def run(args):
             assert hashlib.sha256(source.read_bytes()).hexdigest()==entry['sha256']
         layer_config=json.loads((args.layer/'status.json').read_text(encoding='utf-8-sig'))
         descriptor_config=json.loads((args.descriptor/'status.json').read_text(encoding='utf-8-sig'))
-        result=dict(status='PASS', frequency_mhz=frequency_mhz, runs=runs, physical_board_fps_verified=False,
+        result=dict(status='PASS', frequency_mhz=frequency_mhz, clock_period_ps=period_ps, runs=runs, physical_board_fps_verified=False,
                     ps_modified=False, rtl_unchanged=True,
                     layer_ppc=layer_config.get('LayerPpc',2),fast_staged=layer_config.get('FastStaged',False),
                     descriptor_width_mode=descriptor_config.get('DescriptorWidthMode',0),
                     descriptor_prefetch=descriptor_config.get('DescriptorPrefetch',0),
                     descriptor_patch32=descriptor_config.get('DescriptorPatch32',False),
+                    descriptor_moment_fusion=descriptor_config.get('DescriptorMomentFusion',0),
+                    descriptor_fast_quantize=descriptor_config.get('DescriptorFastQuantize',0),
+                    slice_compact_mode=layer_config.get('SliceCompactMode',0),
                     limits=['DDR service budgets are hypotheses, not measured Zynq DDR/AMD-interconnect models',
                             'Strict descriptor(n)/image(n+1) overlap includes simulated AXI-Lite scheduling',
                             'Three inputs and four service configurations do not establish representative-video P99/max',

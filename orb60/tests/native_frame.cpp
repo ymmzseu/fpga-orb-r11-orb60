@@ -96,11 +96,14 @@ public:
     // handshakes are separately counted and may lag payload preparation.
     std::array<uint64_t,4> ddr_activity{}; // used cycles, idle cycles, R beats, W beats
     std::array<uint64_t,4> hp_service_beats{};
+    std::array<uint64_t,4> hp_read_service_beats{},hp_write_service_beats{};
     static constexpr unsigned hp[8]={0,3,1,2,0,1,3,2};
 
-    Simulation(unsigned beats,unsigned stalls,unsigned seed,unsigned read_min=0,unsigned read_max=5):
-        beat_budget(beats),stall_percent(stalls),state(seed),read_delay_min(read_min),read_delay_max(read_max),service_time(CLOCK_PERIOD_PS,beats) {
+    Simulation(unsigned beats,unsigned stalls,unsigned seed,unsigned read_min=0,unsigned read_max=5,uint64_t board_rate=0):
+        beat_budget(beats),stall_percent(stalls),state(seed),read_delay_min(read_min),read_delay_max(read_max),service_time(CLOCK_PERIOD_PS,beats,board_rate) {
         require(beats>=1 && beats<=4 && stalls<=90,"Invalid memory model configuration");
+        require(board_rate<=UINT64_C(8000000000),"DDR board capacity exceeds supported model range");
+        beat_budget=service_time.max_beats_per_cycle();
         require(read_min<=read_max && read_max<=10000,"Invalid initial read delay");
         dut.clk=0;dut.rst_n=0;
         for(unsigned c=0;c<2;++c) {
@@ -115,7 +118,7 @@ public:
         }
         for(unsigned i=0;i<10;++i) {
             native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=0;dut.eval();
-            native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();
+            native_time_ps+=CLOCK_PERIOD_PS-CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();
         }
         dut.clk=0;dut.rst_n=1;dut.eval();
         for(unsigned i=0;i<10;++i) tick();
@@ -159,6 +162,7 @@ public:
         }
         dut.eval();
         std::array<bool,4> used_hp{};
+        std::array<bool,4> used_hp_write{};
         std::array<bool,16> eligible{},granted{};
         for(unsigned i=0;i<8;++i) {
             auto& p=ports[i];
@@ -167,13 +171,16 @@ public:
         }
         unsigned used=0,last=round_robin;
         // Preserve the original100MHz arbitration and PRNG sequence exactly.
-        if(CLOCK_PERIOD_PS!=10000) service_time.advance();
+        const bool timed=service_time.board_spec() || CLOCK_PERIOD_PS!=10000;
+        if(timed) service_time.advance();
         for(unsigned n=0;n<16 && used<beat_budget;++n) {
             unsigned k=(round_robin+n)%16,i=k/2;
-            if(CLOCK_PERIOD_PS!=10000 && !service_time.available(hp[i])) continue;
-            if(!eligible[k] || used_hp[hp[i]] || !allow()) continue;
-            if(CLOCK_PERIOD_PS!=10000) service_time.consume(hp[i]);
-            used_hp[hp[i]]=true;granted[k]=true;++used;last=(k+1)%16;
+            const bool writing=k&1;
+            if(timed && !service_time.available(hp[i],writing)) continue;
+            auto& hp_used=service_time.board_spec() && writing?used_hp_write:used_hp;
+            if(!eligible[k] || hp_used[hp[i]] || !allow()) continue;
+            if(timed) service_time.consume(hp[i],writing);
+            hp_used[hp[i]]=true;granted[k]=true;++used;last=(k+1)%16;
             auto& p=ports[i];
             if(k&1) dut.m_WREADY[i]=1;
             else {
@@ -188,6 +195,7 @@ public:
         ++ddr_activity[used?0:1];
         for(unsigned k=0;k<16;++k) if(granted[k]) {
             ++ddr_activity[(k&1)?3:2];++hp_service_beats[hp[k/2]];
+            ++((k&1)?hp_write_service_beats:hp_read_service_beats)[hp[k/2]];
         }
         for(unsigned k=0;k<16;++k) if(eligible[k] && !granted[k]) ++ports[k/2].contention;
         dut.eval();
@@ -229,7 +237,7 @@ public:
             fifo_highwater[f]=std::max(fifo_highwater[f],unsigned(fifo_level[f]));
         }
 #endif
-        native_time_ps+=CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();++cycles;
+        native_time_ps+=CLOCK_PERIOD_PS-CLOCK_PERIOD_PS/2;dut.clk=1;dut.eval();++cycles;
         if(active[0] && !done[0] && active[1] && !done[1]) ++overlap;
         for(unsigned i=0;i<8;++i) {
             auto& p=ports[i];const auto& s=edge[i];
@@ -361,6 +369,7 @@ struct FrameResult {
     std::array<LayerResult,8> layers{};
     std::array<PortResult,8> axi{};
     std::array<uint64_t,4> ddr_activity{},hp_service_beats{};
+    std::array<uint64_t,4> hp_read_service_beats{},hp_write_service_beats{};
 #ifdef ORB60_NATIVE_PROFILE
     std::array<uint64_t,PROFILE_COUNT> profile_cycles{};
     std::array<unsigned,PROFILE_FIFO_COUNT> fifo_highwater{};
@@ -382,6 +391,7 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
         sim.ports[p].read_highwater=sim.ports[p].write_highwater=0;
     }
     const auto old_ddr=sim.ddr_activity,old_hp=sim.hp_service_beats;
+    const auto old_hp_read=sim.hp_read_service_beats,old_hp_write=sim.hp_write_service_beats;
 #ifdef ORB60_NATIVE_PROFILE
     const auto old_profile=sim.profile_cycles;
     sim.fifo_highwater.fill(0);
@@ -508,6 +518,8 @@ FrameResult frame(Simulation& sim,unsigned number,const fs::path& images,const f
     for(unsigned q=0;q<4;++q) {
         result.ddr_activity[q]=sim.ddr_activity[q]-old_ddr[q];
         result.hp_service_beats[q]=sim.hp_service_beats[q]-old_hp[q];
+        result.hp_read_service_beats[q]=sim.hp_read_service_beats[q]-old_hp_read[q];
+        result.hp_write_service_beats[q]=sim.hp_write_service_beats[q]-old_hp_write[q];
     }
 #ifdef ORB60_NATIVE_PROFILE
     for(unsigned p=0;p<PROFILE_COUNT;++p) result.profile_cycles[p]=sim.profile_cycles[p]-old_profile[p];
@@ -535,18 +547,20 @@ int main(int argc,char** argv) {
             require(native_time_ps==20*CLOCK_PERIOD_PS && sim.idle(0) && sim.idle(1),"Native clock/reset startup");
             sim.dut.final();std::cout<<"NATIVE_LINK_RESET_PASS"<<std::endl;return 0;
         }
-        bool first_layer=false;unsigned read_min=0,read_max=5;
+        bool first_layer=false;unsigned read_min=0,read_max=5;uint64_t board_rate=0;
         for(int a=7;a<argc;++a) {
             const std::string option=argv[a];
             if(option=="--first-layer") first_layer=true;
             else if(option=="--read-delay" && a+2<argc) {
                 read_min=unsigned(std::stoul(argv[++a]));read_max=unsigned(std::stoul(argv[++a]));
+            } else if(option=="--board-ddr-bytes-per-second" && a+1<argc) {
+                board_rate=std::stoull(argv[++a]);require(board_rate>0,"Board DDR rate must be positive");
             } else throw std::runtime_error("Unknown or incomplete option: "+option);
         }
         require(argc>=7,"Usage: native images descriptors result budget stall_percent seed [--first-layer] [--read-delay min max]");
         diagnostic_directory=fs::path(argv[3]).parent_path();
         unsigned budget=unsigned(std::stoul(argv[4])),stalls=unsigned(std::stoul(argv[5])),seed=unsigned(std::stoul(argv[6]));
-        Simulation sim(budget,stalls,seed,read_min,read_max);
+        Simulation sim(budget,stalls,seed,read_min,read_max,board_rate);
         if(first_layer) {
             frame(sim,0,argv[1],argv[2],true);sim.dut.final();
             std::cout<<"NATIVE_LAYER0_DIAGNOSTIC_PASS"<<std::endl;return 0;
@@ -560,11 +574,15 @@ int main(int argc,char** argv) {
             old_read=cumulative_read;old_write=cumulative_write;old_stall=cumulative_stall;
         }
         std::ofstream out(argv[3]);require(bool(out),"Cannot create result");
-        out<<"{\"status\":\"PASS\",\"ddr_beats_per_cycle\":"<<budget<<",\"random_stall_percent\":"<<stalls
-           <<",\"seed\":"<<seed<<",\"hp_shared_service_limit\":1,\"hp_mapping\":[0,3,1,2,0,1,3,2],\"read_initial_delay_cycles\":["<<read_min<<','<<read_max
+        out<<"{\"status\":\"PASS\",\"ddr_beats_per_cycle\":"<<sim.beat_budget<<",\"random_stall_percent\":"<<stalls
+           <<",\"seed\":"<<seed<<",\"hp_shared_service_limit\":"<<(board_rate?0:1)
+           <<",\"hp_mapping\":[0,3,1,2,0,1,3,2],\"read_initial_delay_cycles\":["<<read_min<<','<<read_max
            <<"],\"write_response_delay_cycles\":[2,31],\"clock_period_ps\":"<<CLOCK_PERIOD_PS
-           <<",\"ddr_capacity_bytes_per_second\":"<<uint64_t(budget)*800000000
-           <<",\"hp_capacity_bytes_per_second\":800000000,\"axi_metric_version\":2"
+           <<",\"ddr_capacity_bytes_per_second\":"<<sim.service_time.capacity_bytes_per_second()
+           <<",\"hp_capacity_bytes_per_second\":"<<sim.service_time.hp_capacity_bytes_per_second()
+           <<",\"ddr_model\":\""<<(board_rate?"board_spec_capacity":"legacy_reference")<<"\""
+           <<",\"hp_independent_read_write\":"<<(board_rate?"true":"false")
+           <<",\"hp_ddri_port_mapping\":[3,3,2,2],\"axi_metric_version\":2"
            <<",\"read_initial_delay_ns\":["<<read_min*10<<','<<read_max*10
            <<"],\"write_response_delay_ns\":[20,310],\"frames\":[";
         for(unsigned i=0;i<3;++i) {
@@ -581,6 +599,10 @@ int main(int argc,char** argv) {
             out<<"],\"ddr_service\":{\"used_cycles\":"<<f.ddr_activity[0]<<",\"idle_cycles\":"<<f.ddr_activity[1]
                <<",\"read_beats\":"<<f.ddr_activity[2]<<",\"write_beats\":"<<f.ddr_activity[3]<<",\"hp_service_beats\":[";
             for(unsigned q=0;q<4;++q) {if(q) out<<',';out<<f.hp_service_beats[q];}
+            out<<"],\"hp_read_service_beats\":[";
+            for(unsigned q=0;q<4;++q) {if(q) out<<',';out<<f.hp_read_service_beats[q];}
+            out<<"],\"hp_write_service_beats\":[";
+            for(unsigned q=0;q<4;++q) {if(q) out<<',';out<<f.hp_write_service_beats[q];}
             out<<"]},\"axi_ports\":[";
             for(unsigned p=0;p<8;++p) {
                 const auto& r=f.axi[p];if(p) out<<',';

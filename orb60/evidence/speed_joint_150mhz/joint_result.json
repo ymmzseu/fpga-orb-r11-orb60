@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "scope": "Fresh exact core RTL/protocol/shared-DDR simulation and complete routed top; physical board and PS pending",
+  "nominal_frequency_mhz": 150.0,
+  "hls_period_ns": 6.666666666666667,
+  "simulation_period_ps": 6667,
+  "simulation_frequency_mhz": 149.99250037498126,
+  "wns_ns": 0.093,
+  "whs_ns": 0.036,
+  "routed_resources": {
+    "lut": {
+      "used": 34990,
+      "total": 46200,
+      "percent": 75.74
+    },
+    "ff": {
+      "used": 37001,
+      "total": 92400,
+      "percent": 40.04
+    },
+    "slice": {
+      "used": 11452,
+      "total": 11550,
+      "percent": 99.15
+    },
+    "bram_tile": {
+      "used": 70.5,
+      "total": 95,
+      "percent": 74.21
+    },
+    "dsp": {
+      "used": 44,
+      "total": 160,
+      "percent": 27.5
+    }
+  },
+  "frames": [
+    {
+      "points": 280,
+      "milliseconds": 6.207950382,
+      "equivalent_fps": 161.0837617033003,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 6544712
+    },
+    {
+      "points": 942,
+      "milliseconds": 7.112228927,
+      "equivalent_fps": 140.60289822839107,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 8462552
+    },
+    {
+      "points": 0,
+      "milliseconds": 5.856446141,
+      "equivalent_fps": 170.7520185320526,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 5731128
+    },
+    {
+      "points": 280,
+      "milliseconds": 9.679137266,
+      "equivalent_fps": 103.3149931154205,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 6544712
+    },
+    {
+      "points": 942,
+      "milliseconds": 11.688331054,
+      "equivalent_fps": 85.55541380373363,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 8462552
+    },
+    {
+      "points": 0,
+      "milliseconds": 8.817420849,
+      "equivalent_fps": 113.41184878494394,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        0,
+        50
+      ],
+      "bytes": 5731128
+    },
+    {
+      "points": 280,
+      "milliseconds": 6.198229896,
+      "equivalent_fps": 161.33638422242865,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 6544712
+    },
+    {
+      "points": 942,
+      "milliseconds": 7.172318598,
+      "equivalent_fps": 139.4249274256793,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 8462552
+    },
+    {
+      "points": 0,
+      "milliseconds": 5.840031987,
+      "equivalent_fps": 171.23193883629665,
+      "ddr_bytes_per_second": 1600000000,
+      "stall_percent": 0,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 5731128
+    },
+    {
+      "points": 280,
+      "milliseconds": 9.1577912,
+      "equivalent_fps": 109.19663684841385,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 6544712
+    },
+    {
+      "points": 942,
+      "milliseconds": 11.299438277,
+      "equivalent_fps": 88.49997455497406,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 8462552
+    },
+    {
+      "points": 0,
+      "milliseconds": 8.299468286,
+      "equivalent_fps": 120.489646509868,
+      "ddr_bytes_per_second": 800000000,
+      "stall_percent": 27,
+      "initial_read_delay_ns": [
+        400,
+        600
+      ],
+      "bytes": 5731128
+    }
+  ],
+  "maximum_modeled_frame_ms": 11.688331054,
+  "pair": "D:\\pld\\orb60\\build\\optimized\\comparison\\20261013_194658_frequency_pair_3b981caa",
+  "route": "D:\\pld\\orb60\\build\\optimized\\timing\\20261013_202519_orb_150mhz_abbeb794",
+  "frame": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_202520_native_frame_7f9a739a",
+  "protocol": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_202052_datapath_axi_e4160f80",
+  "bitstream_generated": false,
+  "physical_board_verified": false,
+  "ps_modified": false
+}

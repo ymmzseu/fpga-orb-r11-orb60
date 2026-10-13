@@ -1,0 +1,35 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "COMPLETE",
+  "ProcessId": 33680,
+  "StartedUtc": "2026-10-13T11:33:36.410835+00:00",
+  "SourceFrameJob": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_202520_native_frame_7f9a739a",
+  "Scope": "Simulation-capacity change only; accepted HLS RTL and FPGA/PS source unchanged",
+  "Scratch": "D:\\pld\\.work\\vivado\\orb60\\bb48a4164",
+  "ClockPeriodPs": 6667,
+  "BoardDdrConfig": {
+    "board": "ACZ7015",
+    "ddr_bus_bits": 32,
+    "ddr_clock_mhz": "533.333333",
+    "physical_peak_bytes_per_second": 4266666664,
+    "capacity_bytes_per_second": 4000000000,
+    "capacity_basis": "user_capacity_budget",
+    "effective_bandwidth_measured": false,
+    "ps_config_sha256": "f4ef126a6408ecb55a49ef00907b43129828e09163a7e2be757387a3ee718396",
+    "hp_bus_bits": 64,
+    "hp_ddri_port_mapping": [
+      3,
+      3,
+      2,
+      2
+    ],
+    "hp_ddri_pair_cycle_timing_modeled": false,
+    "ddr_bank_refresh_timing_modeled": false,
+    "sources": [
+      "https://fpga.cn/forum.php?mod=viewthread&tid=29414",
+      "https://docs.amd.com/r/en-US/ug585-zynq-7000-SoC-TRM/Interconnect"
+    ]
+  },
+  "LegacyReplayExact": true,
+  "FinishedUtc": "2026-10-13T11:36:48.474803+00:00"
+}

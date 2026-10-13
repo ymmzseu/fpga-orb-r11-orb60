@@ -1,0 +1,33 @@
+{
+  "kernel": "descriptor",
+  "vectors": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_190011_descriptor_66d8e6ce\\descriptor_vectors",
+  "offsets": {
+    "AP_CTRL": 0,
+    "GIE": 4,
+    "IER": 8,
+    "ISR": 12,
+    "AP_RETURN": 16,
+    "RAW": 24,
+    "BLURRED": 32,
+    "POINTS": 40,
+    "FEATURES": 48,
+    "STATS": 56,
+    "WIDTH": 64,
+    "HEIGHT": 72,
+    "COUNT": 80,
+    "LEVEL": 88,
+    "FRAME_OFFSET": 96,
+    "CAPACITY": 104
+  },
+  "cases": [
+    35,
+    30,
+    24,
+    25,
+    36,
+    37
+  ],
+  "result": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_190402_datapath_axi_10e45748\\descriptor\\result.json",
+  "reset_case": 7,
+  "clock_period_ps": 6667
+}

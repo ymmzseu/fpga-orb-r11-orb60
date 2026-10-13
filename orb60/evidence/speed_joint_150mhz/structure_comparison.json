@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scope": "Fresh C/RTL + real II/structure/clock/register evidence; protocol/frame/fullroute/board separate",
+  "nominal_frequency_mhz": 149.99999999999994,
+  "period_ns": 6.66666666666667,
+  "simulation_period_ps": 6667,
+  "quantizer_latency_cycles": 2,
+  "quantizer_ii": 1,
+  "tournament_bits": 36,
+  "tournament_build_ii": 2,
+  "score_banks": 8,
+  "mmio_numerically_unchanged": true,
+  "distributed_score_comparisons": false,
+  "actual_local_comparators": [],
+  "descriptor_reused_from": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_190011_descriptor_66d8e6ce",
+  "parallel_row_initialization": true,
+  "layer_reused_from": null,
+  "serial_72cycle_row_helper_removed": true,
+  "registered_tournament_reads": true,
+  "flattened_raw_receive": true,
+  "balanced_tournament_chunks": false,
+  "actual_tournament_chunk_comparisons": []
+}

@@ -1,0 +1,162 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads'
+================================================================
+* Date:           Tue Oct 13 19:48:46 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.867 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-------+--------+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute)  |    Interval    |                    Pipeline                    |
+    |   min   |   max   |    min    |    max   |  min  |   max  |                      Type                      |
+    +---------+---------+-----------+----------+-------+--------+------------------------------------------------+
+    |    13469|   172802|  89.798 us|  1.152 ms|  13468|  172801|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+----------+-------+--------+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+        |                                  |  Latency (cycles) | Iteration|  Initiation Interval  |      Trip      |          |
+        |             Loop Name            |   min   |   max   |  Latency |  achieved |   target  |      Count     | Pipelined|
+        +----------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+        |- VITIS_LOOP_11_1_ForkLayerQuads  |    13467|   172800|         2|          1|          1|  13467 ~ 172800|       yes|
+        +----------------------------------+---------+---------+----------+-----------+-----------+----------------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     40|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     72|    -|
+|Register         |        -|    -|     21|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     21|    112|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |             Variable Name             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln11_fu_108_p2                     |         +|   0|  0|  18|          18|           1|
+    |ap_block_pp0_stage0_01001_grp1         |       and|   0|  0|   1|           1|           1|
+    |icmp_ln11_fu_102_p2                    |      icmp|   0|  0|  18|          18|          18|
+    |ap_block_state2_pp0_stage0_iter1_grp1  |        or|   0|  0|   1|           1|           1|
+    |ap_enable_pp0                          |       xor|   0|  0|   2|           1|           2|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                  |          |   0|  0|  40|          39|          23|
+    +---------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |ap_sig_allocacmp_indvar_flatten_load  |   9|          2|   18|         36|
+    |fast_raw_blk_n                        |   9|          2|    1|          2|
+    |gaussian_raw_blk_n                    |   9|          2|    1|          2|
+    |indvar_flatten_fu_54                  |   9|          2|   18|         36|
+    |quads_blk_n                           |   9|          2|    1|          2|
+    |resize_raw_blk_n                      |   9|          2|    1|          2|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 |  72|         16|   42|         84|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |indvar_flatten_fu_54     |  18|   0|   18|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  21|   0|   21|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |                                  Source Object                                 |    C Type    |
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  (anonymous namespace)fork_layer4_quads_Pipeline_VITIS_LOOP_11_1_ForkLayerQuads|  return value|
+|quads_dout                   |   in|   32|     ap_fifo|                                                                           quads|       pointer|
+|quads_empty_n                |   in|    1|     ap_fifo|                                                                           quads|       pointer|
+|quads_read                   |  out|    1|     ap_fifo|                                                                           quads|       pointer|
+|quads_num_data_valid         |   in|    7|     ap_fifo|                                                                           quads|       pointer|
+|quads_fifo_cap               |   in|    7|     ap_fifo|                                                                           quads|       pointer|
+|fast_raw_din                 |  out|   32|     ap_fifo|                                                                        fast_raw|       pointer|
+|fast_raw_full_n              |   in|    1|     ap_fifo|                                                                        fast_raw|       pointer|
+|fast_raw_write               |  out|    1|     ap_fifo|                                                                        fast_raw|       pointer|
+|fast_raw_num_data_valid      |   in|   32|     ap_fifo|                                                                        fast_raw|       pointer|
+|fast_raw_fifo_cap            |   in|   32|     ap_fifo|                                                                        fast_raw|       pointer|
+|gaussian_raw_din             |  out|   32|     ap_fifo|                                                                    gaussian_raw|       pointer|
+|gaussian_raw_full_n          |   in|    1|     ap_fifo|                                                                    gaussian_raw|       pointer|
+|gaussian_raw_write           |  out|    1|     ap_fifo|                                                                    gaussian_raw|       pointer|
+|gaussian_raw_num_data_valid  |   in|   32|     ap_fifo|                                                                    gaussian_raw|       pointer|
+|gaussian_raw_fifo_cap        |   in|   32|     ap_fifo|                                                                    gaussian_raw|       pointer|
+|resize_raw_din               |  out|   32|     ap_fifo|                                                                      resize_raw|       pointer|
+|resize_raw_full_n            |   in|    1|     ap_fifo|                                                                      resize_raw|       pointer|
+|resize_raw_write             |  out|    1|     ap_fifo|                                                                      resize_raw|       pointer|
+|resize_raw_num_data_valid    |   in|   32|     ap_fifo|                                                                      resize_raw|       pointer|
+|resize_raw_fifo_cap          |   in|   32|     ap_fifo|                                                                      resize_raw|       pointer|
+|bound                        |   in|   18|     ap_none|                                                                           bound|        scalar|
++-----------------------------+-----+-----+------------+--------------------------------------------------------------------------------+--------------+
+

@@ -1,0 +1,210 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_count_cycles_Pipeline_CountDescriptorCycles'
+================================================================
+* Date:           Tue Oct 13 19:00:55 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        descriptor
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.531 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                         |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |        Loop Name        |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- CountDescriptorCycles  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +-------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    170|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    248|    -|
+|Register         |        -|    -|    173|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    173|    418|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |            Variable Name            | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln449_fu_365_p2                  |         +|   0|  0|  32|          32|           1|
+    |and_ln456_1_fu_350_p2                |       and|   0|  0|   1|           1|           1|
+    |and_ln456_2_fu_356_p2                |       and|   0|  0|   1|           1|           1|
+    |and_ln456_fu_344_p2                  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_130                     |       and|   0|  0|   1|           1|           1|
+    |blur_done_read_nbread_fu_70_p2_0     |       and|   0|  0|   1|           1|           0|
+    |compute_done_read_nbread_fu_82_p2_0  |       and|   0|  0|   1|           1|           0|
+    |raw_done_read_nbread_fu_64_p2_0      |       and|   0|  0|   1|           1|           0|
+    |write_done_read_nbread_fu_76_p2_0    |       and|   0|  0|   1|           1|           0|
+    |c_blur_bytes_2_fu_281_p3             |    select|   0|  0|  32|           1|          32|
+    |c_completed_2_fu_306_p3              |    select|   0|  0|  32|           1|          32|
+    |c_raw_bytes_2_fu_256_p3              |    select|   0|  0|  32|           1|          32|
+    |c_status_2_fu_331_p3                 |    select|   0|  0|  32|           1|          32|
+    |ap_enable_pp0                        |       xor|   0|  0|   2|           1|           2|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                |          |   0|  0| 170|          45|         135|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------+----+-----------+-----+-----------+
+    |                Name                | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                         |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1             |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter2             |   9|          2|    1|          2|
+    |ap_phi_mux_blur_1_phi_fu_187_p4     |  13|          3|    1|          3|
+    |ap_phi_mux_blur_phi_fu_139_p4       |   9|          2|    1|          2|
+    |ap_phi_mux_compute_1_phi_fu_211_p4  |  13|          3|    1|          3|
+    |ap_phi_mux_compute_phi_fu_163_p4    |   9|          2|    1|          2|
+    |ap_phi_mux_raw_1_phi_fu_175_p4      |  13|          3|    1|          3|
+    |ap_phi_mux_raw_phi_fu_127_p4        |   9|          2|    1|          2|
+    |ap_phi_mux_write_1_phi_fu_199_p4    |  13|          3|    1|          3|
+    |ap_phi_mux_write_phi_fu_151_p4      |   9|          2|    1|          2|
+    |blur_1_reg_183                      |  13|          3|    1|          3|
+    |blur_reg_135                        |   9|          2|    1|          2|
+    |c_blur_bytes_fu_52                  |   9|          2|   32|         64|
+    |c_completed_fu_56                   |   9|          2|   32|         64|
+    |c_cycles_fu_44                      |   9|          2|   32|         64|
+    |c_raw_bytes_fu_48                   |   9|          2|   32|         64|
+    |c_status_fu_60                      |   9|          2|   32|         64|
+    |compute_1_reg_207                   |  13|          3|    1|          3|
+    |compute_reg_159                     |   9|          2|    1|          2|
+    |raw_1_reg_171                       |  13|          3|    1|          3|
+    |raw_reg_123                         |   9|          2|    1|          2|
+    |write_1_reg_195                     |  13|          3|    1|          3|
+    |write_reg_147                       |   9|          2|    1|          2|
+    +------------------------------------+----+-----------+-----+-----------+
+    |Total                               | 248|         56|  179|        366|
+    +------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |and_ln456_2_reg_436      |   1|   0|    1|          0|
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2  |   1|   0|    1|          0|
+    |blur_1_reg_183           |   1|   0|    1|          0|
+    |blur_reg_135             |   1|   0|    1|          0|
+    |c_blur_bytes_fu_52       |  32|   0|   32|          0|
+    |c_completed_fu_56        |  32|   0|   32|          0|
+    |c_cycles_fu_44           |  32|   0|   32|          0|
+    |c_raw_bytes_fu_48        |  32|   0|   32|          0|
+    |c_status_fu_60           |  32|   0|   32|          0|
+    |compute_1_reg_207        |   1|   0|    1|          0|
+    |compute_reg_159          |   1|   0|    1|          0|
+    |raw_1_reg_171            |   1|   0|    1|          0|
+    |raw_reg_123              |   1|   0|    1|          0|
+    |write_1_reg_195          |   1|   0|    1|          0|
+    |write_reg_147            |   1|   0|    1|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    | 173|   0|  173|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |                           Source Object                          |    C Type    |
++-----------------------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  (anonymous namespace)count_cycles_Pipeline_CountDescriptorCycles|  return value|
+|raw_done_dout                |   in|   32|     ap_fifo|                                                          raw_done|       pointer|
+|raw_done_empty_n             |   in|    1|     ap_fifo|                                                          raw_done|       pointer|
+|raw_done_read                |  out|    1|     ap_fifo|                                                          raw_done|       pointer|
+|raw_done_num_data_valid      |   in|    3|     ap_fifo|                                                          raw_done|       pointer|
+|raw_done_fifo_cap            |   in|    3|     ap_fifo|                                                          raw_done|       pointer|
+|blur_done_dout               |   in|   32|     ap_fifo|                                                         blur_done|       pointer|
+|blur_done_empty_n            |   in|    1|     ap_fifo|                                                         blur_done|       pointer|
+|blur_done_read               |  out|    1|     ap_fifo|                                                         blur_done|       pointer|
+|blur_done_num_data_valid     |   in|    3|     ap_fifo|                                                         blur_done|       pointer|
+|blur_done_fifo_cap           |   in|    3|     ap_fifo|                                                         blur_done|       pointer|
+|write_done_dout              |   in|   32|     ap_fifo|                                                        write_done|       pointer|
+|write_done_empty_n           |   in|    1|     ap_fifo|                                                        write_done|       pointer|
+|write_done_read              |  out|    1|     ap_fifo|                                                        write_done|       pointer|
+|write_done_num_data_valid    |   in|    3|     ap_fifo|                                                        write_done|       pointer|
+|write_done_fifo_cap          |   in|    3|     ap_fifo|                                                        write_done|       pointer|
+|compute_done_dout            |   in|   32|     ap_fifo|                                                      compute_done|       pointer|
+|compute_done_empty_n         |   in|    1|     ap_fifo|                                                      compute_done|       pointer|
+|compute_done_read            |  out|    1|     ap_fifo|                                                      compute_done|       pointer|
+|compute_done_num_data_valid  |   in|    3|     ap_fifo|                                                      compute_done|       pointer|
+|compute_done_fifo_cap        |   in|    3|     ap_fifo|                                                      compute_done|       pointer|
+|c_cycles_out                 |  out|   32|      ap_vld|                                                      c_cycles_out|       pointer|
+|c_cycles_out_ap_vld          |  out|    1|      ap_vld|                                                      c_cycles_out|       pointer|
+|c_status_3_out               |  out|   32|      ap_vld|                                                    c_status_3_out|       pointer|
+|c_status_3_out_ap_vld        |  out|    1|      ap_vld|                                                    c_status_3_out|       pointer|
+|c_completed_3_out            |  out|   32|      ap_vld|                                                 c_completed_3_out|       pointer|
+|c_completed_3_out_ap_vld     |  out|    1|      ap_vld|                                                 c_completed_3_out|       pointer|
+|c_blur_bytes_3_out           |  out|   32|      ap_vld|                                                c_blur_bytes_3_out|       pointer|
+|c_blur_bytes_3_out_ap_vld    |  out|    1|      ap_vld|                                                c_blur_bytes_3_out|       pointer|
+|c_raw_bytes_3_out            |  out|   32|      ap_vld|                                                 c_raw_bytes_3_out|       pointer|
+|c_raw_bytes_3_out_ap_vld     |  out|    1|      ap_vld|                                                 c_raw_bytes_3_out|       pointer|
++-----------------------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+

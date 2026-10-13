@@ -1,0 +1,577 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Tue Oct 13 20:45:09 2026
+| Host         : ymmz666 running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 10 -nworst 2 -file D:/pld/.work/vivado/orb60/iabbeb794/vivado/post_route_hold_paths.rpt
+| Design       : s_wrapper
+| Device       : 7z015-clg485
+| Speed File   : -2  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.189ns
+    Source Clock Delay      (SCD):    0.888ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.559     0.888    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X73Y98         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X73Y98         FDRE (Prop_fdre_C_Q)         0.141     1.029 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/Q
+                         net (fo=1, routed)           0.055     1.084    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/DIA0
+    SLICE_X72Y98         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.829     1.189    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/WCLK
+    SLICE_X72Y98         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/CLK
+                         clock pessimism             -0.288     0.901    
+    SLICE_X72Y98         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.048    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.048    
+                         arrival time                           1.084    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.189ns
+    Source Clock Delay      (SCD):    0.888ns
+    Clock Pessimism Removal (CPR):    0.288ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.559     0.888    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X73Y98         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X73Y98         FDRE (Prop_fdre_C_Q)         0.141     1.029 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/grp_p_anonymous_namespace_reduce_score_bank_0_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[12]/Q
+                         net (fo=1, routed)           0.055     1.084    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/DIA0
+    SLICE_X72Y98         RAMD32                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.829     1.189    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/WCLK
+    SLICE_X72Y98         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA/CLK
+                         clock pessimism             -0.288     0.901    
+    SLICE_X72Y98         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.048    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_0_U0/points_U/ram_reg_0_31_12_17/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.048    
+                         arrival time                           1.084    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.883ns
+    Clock Pessimism Removal (CPR):    0.289ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.554     0.883    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X67Y89         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X67Y89         FDRE (Prop_fdre_C_Q)         0.141     1.024 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/Q
+                         net (fo=1, routed)           0.055     1.079    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/DIA0
+    SLICE_X66Y89         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.825     1.185    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/WCLK
+    SLICE_X66Y89         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/CLK
+                         clock pessimism             -0.289     0.896    
+    SLICE_X66Y89         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.043    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.043    
+                         arrival time                           1.079    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.883ns
+    Clock Pessimism Removal (CPR):    0.289ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.554     0.883    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X67Y89         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X67Y89         FDRE (Prop_fdre_C_Q)         0.141     1.024 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/Q
+                         net (fo=1, routed)           0.055     1.079    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/DIA0
+    SLICE_X66Y89         RAMD32                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.825     1.185    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/WCLK
+    SLICE_X66Y89         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA/CLK
+                         clock pessimism             -0.289     0.896    
+    SLICE_X66Y89         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.043    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_0_5/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.043    
+                         arrival time                           1.079    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.883ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.554     0.883    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y90         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y90         FDRE (Prop_fdre_C_Q)         0.141     1.024 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/Q
+                         net (fo=1, routed)           0.055     1.079    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/DIA0
+    SLICE_X62Y90         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.826     1.186    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/WCLK
+    SLICE_X62Y90         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/CLK
+                         clock pessimism             -0.290     0.896    
+    SLICE_X62Y90         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.043    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.043    
+                         arrival time                           1.079    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.883ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.554     0.883    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y90         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y90         FDRE (Prop_fdre_C_Q)         0.141     1.024 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/grp_p_anonymous_namespace_reduce_score_bank_1_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/Q
+                         net (fo=1, routed)           0.055     1.079    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/DIA0
+    SLICE_X62Y90         RAMD32                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.826     1.186    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/WCLK
+    SLICE_X62Y90         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA/CLK
+                         clock pessimism             -0.290     0.896    
+    SLICE_X62Y90         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.043    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_1_U0/points_U/ram_reg_0_31_18_23/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.043    
+                         arrival time                           1.079    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.187ns
+    Source Clock Delay      (SCD):    0.884ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.555     0.884    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y95         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y95         FDRE (Prop_fdre_C_Q)         0.141     1.025 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/Q
+                         net (fo=1, routed)           0.055     1.080    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/DIA0
+    SLICE_X62Y95         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.827     1.187    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/WCLK
+    SLICE_X62Y95         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/CLK
+                         clock pessimism             -0.290     0.897    
+    SLICE_X62Y95         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.044    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.044    
+                         arrival time                           1.080    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.187ns
+    Source Clock Delay      (SCD):    0.884ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.555     0.884    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y95         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y95         FDRE (Prop_fdre_C_Q)         0.141     1.025 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[0]/Q
+                         net (fo=1, routed)           0.055     1.080    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/DIA0
+    SLICE_X62Y95         RAMD32                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.827     1.187    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/WCLK
+    SLICE_X62Y95         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA/CLK
+                         clock pessimism             -0.290     0.897    
+    SLICE_X62Y95         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.044    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_0_5/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.044    
+                         arrival time                           1.080    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.188ns
+    Source Clock Delay      (SCD):    0.885ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.556     0.885    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y99         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y99         FDRE (Prop_fdre_C_Q)         0.141     1.026 r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/Q
+                         net (fo=1, routed)           0.055     1.081    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/DIA0
+    SLICE_X62Y99         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.828     1.188    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/WCLK
+    SLICE_X62Y99         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/CLK
+                         clock pessimism             -0.290     0.898    
+    SLICE_X62Y99         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.045    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.045    
+                         arrival time                           1.081    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+Slack (MET) :             0.036ns  (arrival time - required time)
+  Source:                 s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+                            (rising edge-triggered cell RAMD32 clocked by clk_out1_s_clockgen_0  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             clk_out1_s_clockgen_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_s_clockgen_0 rise@0.000ns - clk_out1_s_clockgen_0 rise@0.000ns)
+  Data Path Delay:        0.196ns  (logic 0.141ns (71.838%)  route 0.055ns (28.162%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.188ns
+    Source Clock Delay      (SCD):    0.885ns
+    Clock Pessimism Removal (CPR):    0.290ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.303     0.303    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.651     0.980    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.352    -0.372 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.674     0.303    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.026     0.329 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.556     0.885    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/ap_clk
+    SLICE_X63Y99         FDRE                                         r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y99         FDRE (Prop_fdre_C_Q)         0.141     1.026 f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/grp_p_anonymous_namespace_reduce_score_bank_5_Pipeline_ReduceCandidateTokens_fu_138/token_reg_1271_pp0_iter1_reg_reg[18]/Q
+                         net (fo=1, routed)           0.055     1.081    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/DIA0
+    SLICE_X62Y99         RAMD32                                       f  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_s_clockgen_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  s_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.331     0.331    s_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y18       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1, routed)           0.924     1.284    s_i/clockgen/inst/clk_in1
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -1.685    -0.401 r  s_i/clockgen/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.732     0.331    s_i/clockgen/inst/clk_out1_s_clockgen_0
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029     0.360 r  s_i/clockgen/inst/clkout1_buf/O
+                         net (fo=39813, routed)       0.828     1.188    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/WCLK
+    SLICE_X62Y99         RAMD32                                       r  s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA/CLK
+                         clock pessimism             -0.290     0.898    
+    SLICE_X62Y99         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.147     1.045    s_i/layer/inst/grp_p_anonymous_namespace_layer4_dataflow_fu_715/p_anonymous_namespace_consume_and_select_U0/grp_p_anonymous_namespace_reduce_banked_grid_fu_495/p_anonymous_namespace_reduce_score_bank_5_U0/points_U/ram_reg_0_31_18_23/RAMA
+  -------------------------------------------------------------------
+                         required time                         -1.045    
+                         arrival time                           1.081    
+  -------------------------------------------------------------------
+                         slack                                  0.036    
+
+
+
+

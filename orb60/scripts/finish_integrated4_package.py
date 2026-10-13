@@ -13,7 +13,7 @@ def run(a):
     repo=a.repo.resolve();output=a.output.resolve();output.mkdir(parents=True,exist_ok=True)
     excluded={'.git','.venv','.work','build','__pycache__'}
     manifests={'orb60/PUBLICATION_MANIFEST.json','orb60/INTEGRATED4_MANIFEST.json'}
-    frozen_jobs=[p.parent for name in ('integrated4_100mhz','integrated4_125mhz','2ppc_125mhz')
+    frozen_jobs=[p.parent for name in ('integrated4_100mhz','integrated4_125mhz','2ppc_125mhz','speed_joint_150mhz')
                  for p in (repo/'orb60/frozen'/name).glob('*/source_manifest.json')]
     for frozen in frozen_jobs:
         for entry in json.loads((frozen/'source_manifest.json').read_text(encoding='utf-8-sig')):
@@ -31,6 +31,10 @@ def run(a):
     verify=subprocess.run(['pwsh','-NoProfile','-ExecutionPolicy','Bypass','-File',str(repo/'tools/verify_integrated4.ps1')],capture_output=True,text=True)
     (output/'verify_integrated4.log').write_text(verify.stdout+verify.stderr,encoding='utf-8')
     assert verify.returncode==0,verify.stderr
+    if (repo/'orb60/artifacts/speed_joint_150mhz').is_dir():
+        speed=subprocess.run(['pwsh','-NoProfile','-ExecutionPolicy','Bypass','-File',str(repo/'orb60/scripts/verify_speed150.ps1')],capture_output=True,text=True)
+        (output/'verify_speed150.log').write_text(speed.stdout+speed.stderr,encoding='utf-8')
+        assert speed.returncode==0,speed.stderr
     archive=output/a.archive_name
     assert not archive.exists(),'Preserve previous package snapshots'
     with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
@@ -43,7 +47,7 @@ def run(a):
     env.update(GIT_AUTHOR_DATE=stamp,GIT_COMMITTER_DATE=stamp,GIT_TERMINAL_PROMPT='0',GCM_INTERACTIVE='Never')
     subprocess.run(['git','-C',str(repo),'add','.'],check=True,env=env)
     subprocess.run(['git','-C',str(repo),'add','-f','orb60/frozen/integrated4_100mhz'],check=True,env=env)
-    for name in ('integrated4_125mhz','2ppc_125mhz'):
+    for name in ('integrated4_125mhz','2ppc_125mhz','speed_joint_150mhz'):
         if (repo/'orb60/frozen'/name).is_dir():subprocess.run(['git','-C',str(repo),'add','-f','orb60/frozen/'+name],check=True,env=env)
     subprocess.run(['git','-C',str(repo),'commit','-m',a.message],check=True,env=env)
     commit=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip()

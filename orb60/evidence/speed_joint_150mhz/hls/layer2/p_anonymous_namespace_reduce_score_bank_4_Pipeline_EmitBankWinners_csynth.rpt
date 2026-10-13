@@ -1,0 +1,183 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_reduce_score_bank_4_Pipeline_EmitBankWinners'
+================================================================
+* Date:           Tue Oct 13 19:49:02 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  3.949 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |       29|       29|  0.193 us|  0.193 us|   27|   27|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- EmitBankWinners  |       27|       27|         3|          1|          1|    26|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     66|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      0|    129|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     45|    -|
+|Register         |        -|    -|     59|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     59|    240|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |          Instance         |        Module        | BRAM_18K| DSP| FF| LUT | URAM|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |sparsemux_53_5_8_1_1_U669  |sparsemux_53_5_8_1_1  |        0|   0|  0|  129|    0|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+    |Total                      |                      |        0|   0|  0|  129|    0|
+    +---------------------------+----------------------+---------+----+---+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |add_ln87_fu_346_p2              |         +|   0|  0|   7|           5|           1|
+    |ap_block_pp0_stage0_01001_grp1  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln87_fu_340_p2             |      icmp|   0|  0|   7|           5|           4|
+    |icmp_ln89_fu_474_p2             |      icmp|   0|  0|   8|           8|           1|
+    |cond_fu_479_p3                  |    select|   0|  0|  41|           1|           1|
+    |ap_enable_pp0                   |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |Total                           |          |   0|  0|  66|          21|          10|
+    +--------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_4     |   9|          2|    5|         10|
+    |i_fu_152                 |   9|          2|    5|         10|
+    |winners_4_blk_n          |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|   13|         26|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |cond_reg_512                      |  41|   0|   41|          0|
+    |i_fu_152                          |   5|   0|    5|          0|
+    |tmp_s_reg_502                     |   8|   0|    8|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  59|   0|   59|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++--------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|  (anonymous namespace)reduce_score_bank<4>_Pipeline_EmitBankWinners|  return value|
+|winners_4_din             |  out|   64|     ap_fifo|                                                           winners_4|       pointer|
+|winners_4_full_n          |   in|    1|     ap_fifo|                                                           winners_4|       pointer|
+|winners_4_write           |  out|    1|     ap_fifo|                                                           winners_4|       pointer|
+|winners_4_num_data_valid  |   in|   32|     ap_fifo|                                                           winners_4|       pointer|
+|winners_4_fifo_cap        |   in|   32|     ap_fifo|                                                           winners_4|       pointer|
+|scores_reload             |   in|    8|     ap_none|                                                       scores_reload|        scalar|
+|scores_236_reload         |   in|    8|     ap_none|                                                   scores_236_reload|        scalar|
+|scores_237_reload         |   in|    8|     ap_none|                                                   scores_237_reload|        scalar|
+|scores_238_reload         |   in|    8|     ap_none|                                                   scores_238_reload|        scalar|
+|scores_239_reload         |   in|    8|     ap_none|                                                   scores_239_reload|        scalar|
+|scores_240_reload         |   in|    8|     ap_none|                                                   scores_240_reload|        scalar|
+|scores_241_reload         |   in|    8|     ap_none|                                                   scores_241_reload|        scalar|
+|scores_242_reload         |   in|    8|     ap_none|                                                   scores_242_reload|        scalar|
+|scores_243_reload         |   in|    8|     ap_none|                                                   scores_243_reload|        scalar|
+|scores_244_reload         |   in|    8|     ap_none|                                                   scores_244_reload|        scalar|
+|scores_245_reload         |   in|    8|     ap_none|                                                   scores_245_reload|        scalar|
+|scores_246_reload         |   in|    8|     ap_none|                                                   scores_246_reload|        scalar|
+|scores_247_reload         |   in|    8|     ap_none|                                                   scores_247_reload|        scalar|
+|scores_248_reload         |   in|    8|     ap_none|                                                   scores_248_reload|        scalar|
+|scores_249_reload         |   in|    8|     ap_none|                                                   scores_249_reload|        scalar|
+|scores_250_reload         |   in|    8|     ap_none|                                                   scores_250_reload|        scalar|
+|scores_251_reload         |   in|    8|     ap_none|                                                   scores_251_reload|        scalar|
+|scores_252_reload         |   in|    8|     ap_none|                                                   scores_252_reload|        scalar|
+|scores_253_reload         |   in|    8|     ap_none|                                                   scores_253_reload|        scalar|
+|scores_254_reload         |   in|    8|     ap_none|                                                   scores_254_reload|        scalar|
+|scores_255_reload         |   in|    8|     ap_none|                                                   scores_255_reload|        scalar|
+|scores_256_reload         |   in|    8|     ap_none|                                                   scores_256_reload|        scalar|
+|scores_257_reload         |   in|    8|     ap_none|                                                   scores_257_reload|        scalar|
+|scores_258_reload         |   in|    8|     ap_none|                                                   scores_258_reload|        scalar|
+|scores_259_reload         |   in|    8|     ap_none|                                                   scores_259_reload|        scalar|
+|scores_260_reload         |   in|    8|     ap_none|                                                   scores_260_reload|        scalar|
+|points_address0           |  out|    5|   ap_memory|                                                              points|         array|
+|points_ce0                |  out|    1|   ap_memory|                                                              points|         array|
+|points_q0                 |   in|   41|   ap_memory|                                                              points|         array|
++--------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+

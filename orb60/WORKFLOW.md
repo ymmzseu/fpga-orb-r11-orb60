@@ -802,3 +802,209 @@ oneblobHTTP502. TreeSHA/commitSHA exact; one missingblob recovered, oldbranch
 parentlease checked, mainunchanged. Preserve originalfailed upload evidence.
 100MHz ZIP23.7MB/1759files SHA c77b85c0ecbbef24c753565eba7d2f48ed9c9cc5641361c4bb79689309364245.
 Final125comparison/bit append andcombinedpackage publication pending.
+
+Final delivery2026-10-13: both100/125MHz pairedbits and allcomputer evidence
+published to codex/orb60-4ppc, exactremotecommit e2aa82627af93ccff34c3b6b1d8c004458853bd8.
+Main/historicalbaseline unchanged. GitAPI400 on125bit transport retained as
+failed evidence; eventual tree/blob availability and exactcommitSHA verified,
+noforce/no weakenedcheck. Complete32.4MB/2877file ZIP verifiedbyte-by-byte,
+SHA161052655e22a584193c066caba852cdbaa0ea7320c720fa7a2d561da0ab66a1.
+See build/optimized/publication/integrated4_final_20261013/delivery.json and
+orb60_4ppc_100_125mhz_source_reports_bit.zip. No longcompute jobs remain.
+This integrated4PPC+125comparison milestone is complete. Raw-load moment
+fusion,2comparisonBRIEF,ResizeDDA,7ns andphysicalPS/board remain future scope;
+no claim of board60FPS/P99 or newpairedELF/XSA.
+
+2026-10-13 next-plan continuation: custom-HLS raw receive/moment fusion
+probe0f99e715 passed independent9048points/1191553beats and38record/error-prefix
+host cases. Automatic365e603e CSim/synthesis/realII1/64bit-data/32bit-address/
+8request/generated-no-raw-block checks pass; HLS delta versus2730a8cf is
+-1026LUT/-736FF/-4BRAM18/-1DSP. Not a routed resource/FPS claim.
+ExplicitDSP82cb160c passedCSim but clang frontend crashed atHLS reflow;
+matrix remainsFAILED and originalevidence retained. Only automatic candidate
+continues, via freshSourceProbe C/RTL/IP plus protocol/native/fullroute.
+See docs/RAW_MOMENT_FUSION_RESULTS_ZH.md and scripts/finish_moment_fusion.ps1.
+User preference now: announce long-joblaunch and endturn; do not auto-poll.
+Accepted release e2aa826 and bothpublishedbits remain unchanged; PS/board deferred.
+
+Fusion accept4180a258 verified COMPLETE after user reports PID29676 ended.
+Fresh8ns fba5c20d passed38exactC/RTL/IP, realII1, architecture/eightcredits/MMIO;
+freshdescriptor randomizedAXI98322610 passes with unchanged-layer hash reuse.
+Native03c665ef12frames exact and matching baseline bytes/counts/profiles.
+Full125MHzroute a69fb5e4 hardgates/extended200paths50nets PASS:
+35145LUT/35556FF/72BRAM/43DSP/11353Slice98.29%,1108controlsets,
+WNS+.288/WHS+.042,TNS/THS0. Actual versus release -406LUT/-566FF/
+-2BRAM/-1DSP/-84Slice/-19controlsets; HLS savings not substituted for top.
+Worstmodeled942point frame11.998792ms83.34FPS versus12.063064ms(-.533%).
+Normal frames essentially flat with small mixed changes. Traffic remains8.46MB;
+this is mainly a resource/timing win, not a large whole-frame speedup.
+Retain fusedbackend as candidate for later Slice-combination gates; no newbit/PS/board.
+Independent Slice job57e7d94f/PID32312 launched separately with frozen
+38/36bit tournament keys and mode3 BRAM-point-store alternatives; no polling
+without user completion notice. Its route comparisons keep oldbackend2730a8cf
+fixed to isolate frontend Slice/timing changes, then combined frame/route must
+run with fba5c20d before any joint release. See docs/SLICE_COMPACT_STAGE2_ZH.md.
+
+Slice57e7d94f partial inspection after user notice: mode2fresh03e05c30
+exactC/RTL/IP + complete125route829043c3 passes allhard/extendedgates.
+Fixed oldbackend2730a8cf top34919LUT/35972FF/73BRAM/44DSP/
+11380Slice98.53%,1113controlsets,WNS+.248/WHS+.027,TNS/THS0.
+Only57Slicesaved versus published11437; this is not fusion-combination proof.
+All3probes passmillion-key/67sorted-grid/21CSim/II/storage gates;
+mode3fresh69f26095 C/RTL accepted, routebbfaee64 stillRUNNING atsinglecheck,
+main32312 androutewrapper29076 confirmedlive. Wholeexperiment notcomplete;
+no newpoll orduplicate launch. Await user completion notice, then compare
+mode3 actualSlice/BRAM/timing before newprotocol/frame/joint-route selection.
+
+2026-10-13 ACZ7015 simulation-capacity update completed (separate from HLS optimization).
+New entry scripts/board_ddr_frame.ps1 derives aggregate DDR capacity from the
+frozen PS config:32bit/533.333333MHz ->4266666664bytes/s. Each64bit HP read/write
+channel is independently limited to one beat per fabric clock (800/1000MB/s
+at100/125MHz). Existing legacy800/1600MB/s command behavior remains unchanged.
+100MHz board_ddr_efcdae87 and125MHz board_ddr_ced10303 both SUCCEEDED/COMPLETE:
+24 new capacity-model frames exact,6 legacy replay frames preserve cycles,
+traffic/layers/AXI/FIFO statistics; pin-model rate/duplex/backpressure/drain and
+configuration guards pass. Cached Verilator RTL/wrapper/registers were byte
+paired before relinking the new harness in isolated scratch directories.
+No HLS/RTL/PS/bitstream/route change or physical-board effective-bandwidth claim.
+DDRI pairing is recorded, not cycle-accurate; bank/refresh/turnaround and CPU
+contention remain unmodeled. See docs/BOARD_DDR_CAPACITY_MODEL_ZH.md.
+
+2026-10-13 Slice57e7d94f finished SUCCEEDED/DIRECTIONAL_ROUTES_COMPLETE.
+Mode3 routebbfaee64 also hard-gate PASS:34748LUT/35708FF/81BRAM/44DSP,
+11465Slice99.26%,1142controlsets,WNS+.260/WHS+.037,TNS/THS0.
+Reject mode3 for resource headroom despite passing route; keep mode2 with
+11380Slice98.53%. Neither frontend result yet substitutes for a joint fused
+backend acceptance. Latest user steering supersedes launch/end/no-poll:
+autonomously advance the plan to maximize real routed frequency, no PID report.
+New frequency_headroom authored snapshot combines mode2 and moment fusion,
+plus exact A32 reciprocal quantization and measured-control-path AMD slices;
+AMD Clocking Wizard derives PL clocks from100MHz PS FCLK. No generated RTL
+edits or timing exceptions. First target150MHz, with bounded adjacent tiers.
+Fast-A32 host golden passed all23592960 valid angles plus1000000 full32 and
+20 wrap/boundary cases. HLS/protocol/frame/route evidence still pending.
+
+2026-10-13 frequency_pair_db4fcbb9 completed150MHz joint computer gates:
+descriptor3c1f808b + layerd0f9b7ad, structure/MMIO/II, freshprotocol3251229c,
+native14009231 exact12frames, fullrouteea031cb2 hardgates and200paths/50nets PASS.
+34894LUT/36886FF/70.5BRAMtile/44DSP/11420Slice98.87%,1133controlsets,
+WNS0.000/WHS+.041,TNS/THS0. Zero setup margin is not the+.2ns engineering goal.
+Modeled frame maximum11.680690672ms with same800/1600MB/s as fused125 reference;
+normal wide6.354137691ms, pressurewide7.154584378ms. Separate1GB/s capacity
+jobdff2015e passes12new frames and3legacy replay frames; no board FPS claim.
+joint_result.json validates exact pair/source/clock/route/frame; no newbit/PS.
+Protocolbeb68d22 failed at0ps because cocotb's default clock rejected odd6667ps;
+explicit floor/ceil halfperiod fixed the harness, then fresh3251229c passed.
+Initial pin model6000ps test used40cycles instead of400ns; retained failure,
+corrected reference-time observation, full10000/8000/7000/6667/6000/5000ps pass.
+
+New measured150MHz critical path is bank2 token[45]→score CE,7levels6.105ns.
+frequency_local_scores unrolls independent per-cell comparisons, leaves only
+payload any-update reduction; same-cell and tie semantics preserved, no false
+dependency pragma.67host sorted-grid/golden pass. New6ns layerc70afb11 C/RTL
+running under pairedrooted118677, uses immutable6ns descriptoreeb1fc19 checked
+against matching author headers/reference/vector hashes. Original-bank6ns
+pair3dff35b6 C/RTL/II/MMIO PASS; freshprotocol pending, keep as timing control.
+
+Latest steering: optimize whole-frame speed primarily, use4GB/s DDR capacity,
+clock frequency is only a means. Explicitly do not rerun125MHz; retain its old
+4266666664bytes/s history without pretending exact4000000000bytes/s comparison.
+150MHz4GB/s model passes12new frames +3legacy replay: normal5.54077–5.86739ms,
+pressure5.72213–6.09335ms. Only descriptorlevel6 slightly exceeds next-image
+duration; image pipeline dominates, earlier restricted-DDR bottleneck moved.
+Original-bank166MHz routed0bdc0bac FAILED WNS-.398/TNS-91.721/825setup endpoints,
+worst8levels6.083ns tournamentBRAM read→write. Keep failure, not release/board claim.
+Local-bank166 sourcec70afb11 II1/21C-RTL/26comparators×8 verified, freshlayerprotocol
+11e3a029 with immutable6ns backend protocol reused after strict period/hash checks;
+native9eea217a12frames PASS, fullroute70987753 RUNNING,4GB/s evaluation pending.
+
+Measured throughput hotspot: scan_front4_quads_Pipeline_1 row initializer is
+70-iteration memset,72cycles per row. Newfrequency_row_init unrolls explicit
+7x10 and3x6 zero writes, same algorithm/state values. HLS150MHz paira3d021cf
+RUNNING, accepted150 backend3c1f808b reused by exact dependency/vector hashes.
+This isolates same-clock throughput change; no baseline125 repeat. Structural,
+AXI/frame/4GB/s/fullroute must pass before retention. See SPEED_ROW_INIT_STAGE_ZH.md.
+
+Local-bank166MHz route70987753 finished FAILED: WNS-.398/TNS-23.125/
+197setup endpoints,hold+.036/THS0;36068LUT/37956FF/71BRAM/44DSP/
+11404Slice98.74%. Score CE bottleneck improved, tournament read/write now
+8levels6.085ns. Both166MHz shapes fail timing; their frame models are references,
+not releasable clocks. No further frequency tier launch under speed-first steering.
+150MHz row-init HLS removes actual72cycle helper; C/RTL still running.
+
+Row-init150 paira3d021cf HLS finished21C/RTL transactions and IP export PASS;
+fresh structure gate confirms serial72cycle helper gone, realbankII1/buildII2,
+same register definitions/AXI64. Freshfrontend randomAXI/reset/B-response
+protocolce88cf8c PASS, unchanged150backend source/test/RTL hashes reused.
+Nativeframee1e9c565 PASS12exact frames. Complete150routee192c8da and exact
+4GB/s capacity evaluation run in parallel; no retained timing/speed claim yet.
+
+Row-init150 nativee1e9c565 and4GB/s capacity pass12exact frames each; matching
+same-clock old150 DDR profiles show normal4.87011–5.60231ms and pressure
+5.27982–5.98019ms. Whole-frame improvement is4.5–12.1%normal,1.9–7.7%pressure.
+Routee192c8da FAILED WNS-.103/TNS-.103/1setup endpoint;hold+.025/THS0.
+35040LUT/36872FF/70.5BRAM/44DSP/11420Slice98.87%. Worst tournamentBRAM
+read->write8levels6.438ns; no releasebit or passing-clock claim for this candidate.
+
+New frequency_speed_joint author combines registered tournament reads(latency2)
+and continuous raw-moment receive(no31row drains), retaining row zero semantics.
+Descriptor dac5ff1a independent9048points/1191553beats +38records and fresh38
+C/RTL pass; actual ReceiveRawMomentWordsII1. Firstfrontend61c59e5f buildII3
+does not satisfy retainedII2 gate. Secondsource separates true distance1 root
+update after node255..2 build; new bounded synth probe pending. No dependency
+exceptions or generatedRTL edits. See docs/SPEED_JOINT_STAGE_ZH.md.
+
+Root-separated tree probe also actualII3; reject this schedule, originalII2
+gate stays unchanged. Thirdsource restores original RAM read latency/build
+order and splits36bit winner comparison into4parallel9bit chunks plus balanced
+lexicographic combination.67sorted-grid cases +1000300 independent keys pass.
+New bounded synth probe3 runs on frozen new inputs; descriptor dac5ff1a is
+unchanged. Do not reuse initialfrontend61c59e5f as the retained source.
+
+Probe833cf4d4 PASS new-source21Csim+synthesis actual BuildII2/bankII1 and
+4x9bit comparison nets. Fresh frontend C/RTL/export replay of that frozen
+probe runs, no dependency exceptions. New descriptor C/RTL38transactions
+total697063->599189cycles(-14.04%) vs same150old descriptor; this is isolated
+core evidence, not an end-to-end or physical-board improvement claim.
+New bit guard supports only accepted150MHz joint/source/IP/4GB/s pairing;
+old100/125 release scripts unchanged. Static old150 validation passes without
+any baseline rerun or bit generation. AMD exact translate_off deadlock-monitor
+export delta alone is allowed/recorded; any synthesizable HDL difference fails.
+
+Speedjoint pair e7c3b8e6 fresh21/38C-RTL +protocol10e45748 +native and4GB/s
+12frames each PASS, but route9e06a605 FAILED WNS-.351/TNS-9.852/85setup
+endpoints;hold+.036/THS0.34914LUT/36818FF/70.5BRAM/44DSP/11455Slice99.18%.
+Chunk comparator reduces worst logic8->5levels but routing rises(total6.690ns).
+
+Latest explicit steering: DDR bandwidth is sufficient; synthetic worst-DDR
+performance no longer selects candidates. Use sufficient4GB/s speed primarily;
+retain randomAXI/reset/Bresponse functional checks. Continuous receive66d8e6ce
+candidate therefore retained: pressure5.14646ms andnormal4.87438ms in0stall/
+0–50ns model, not physical-board or passing-route results.
+Newfrequency_tree_read frontend uses registered treeRAM read2, root outside
+node255..2 loop, trueRAWdistance2 declaration. Exhaustive physicalbank/address
+proof validates distance>=2(noWAR/WAW); HLSprobe confirms BuildII2/bankII1/
+actualsecondreadregister. Fresh frontend C/RTL/export runs paired with same
+accepted66d8e6ce backend; no new125test or timing exceptions.
+### 2026-10-13 4GB/s与速度选择口径
+
+本轮最终150MHz完整路由abbeb794通过：WNS+.093ns、WHS+.036ns、
+TNS/THS与setup/hold失败端点均零，覆盖/路由/严格DRC通过。
+34990LUT、37001FF、70.5BRAM tile、44DSP、11452Slice(99.15%)、
+1131控制集。最差转到FAST maximum_stage_2→NMS判断，6.248ns/8级，
+布线68.116%；树RAM反馈不再最差。
+同一routed DCP的150MHz bit已生成并通过重新配对/检查点SHA校验，
+SHA256 b7fc66eef0895469506e04f7b8e26f0ef6232bc3f055db5bce9609a153d42c60。
+MMCM输入PS FCLK100MHz，PS/BSP/ELF/XSA与板测仍暂停。
+
+用户明确实际DDR带宽足够：不再用合成27%随机停顿/400–600ns首读下的
+最差耗时决定优化方向。随机AXI、复位、最终写响应仍是功能门禁。
+选择按相同4GB/s预算、无合成停顿、0–50ns首读的普通/942点压力帧。
+
+注册树读pair `20261013_194658_frequency_pair_3b981caa`的新前端
+c57267c5已通过21个C/RTL及随机协议，后端66d8e6ce按严格SHA复用；
+12原生帧、12个4GB/s帧与3帧旧模型重放全部精确。
+普通4.87438ms/205.15FPS、压力5.14584ms/194.33FPS、空点4.80405ms；
+较原150MHz同带宽普通/压力耗时减少12.03%/10.07%。
+这些是RTL仿真值；完整150route abbeb794在运行，bit/PS/板测尚未完成。
+

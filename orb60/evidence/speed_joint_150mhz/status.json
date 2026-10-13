@@ -1,0 +1,14 @@
+{
+  "State": "SUCCEEDED",
+  "Stage": "C_RTL_PAIR_COMPLETE",
+  "Job": "D:\\pld\\orb60\\build\\optimized\\comparison\\20261013_194658_frequency_pair_3b981caa",
+  "PeriodNs": 6.666666666666667,
+  "NominalFrequencyMHz": 150.0,
+  "AuthorRoot": "D:\\pld\\orb60\\experiments\\frequency_tree_read",
+  "StartedUtc": "2026-10-13T10:46:58.6273537Z",
+  "Scope": "Same-clock immutable backend reused by source/header/vector hashes; fresh frontend C/RTL; joint protocol/frame/route pending",
+  "DescriptorReusedFrom": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_190011_descriptor_66d8e6ce",
+  "DescriptorHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_190011_descriptor_66d8e6ce",
+  "LayerHlsJob": "D:\\pld\\orb60\\build\\optimized\\hls\\20261013_194659_layer2_c57267c5",
+  "FinishedUtc": "2026-10-13T11:12:45.6972820Z"
+}

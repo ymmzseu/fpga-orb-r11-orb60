@@ -1,0 +1,98 @@
+<design_size title="Design Size Report">
+    <item name="Total Instructions per Compilation Phase">
+        <table>
+            <keys size="4">Phase, Step, Instructions, Description</keys>
+            <column name="Compile/Link">, 3947, After all functions are compiled and linked into a single design</column>
+            <column name="">, , </column>
+            <column name="Unroll/Inline">, , After user unroll and inline pragmas are applied</column>
+            <column name="">(1) unroll, 1660, user unroll pragmas are applied</column>
+            <column name="">(2) simplification, 1243, simplification of applied user unroll pragmas</column>
+            <column name="">(3) inline, 1251, user inline pragmas are applied</column>
+            <column name="">(4) simplification, 1241, simplification of applied user inline pragmas</column>
+            <column name="">, , </column>
+            <column name="Array/Struct">, , After user array partition and struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(1) array partition, 1438, user array partition pragmas are applied</column>
+            <column name="">(2) simplification, 1317, simplification of applied user array partition &amp; struct aggregate/disaggregate pragmas</column>
+            <column name="">(3) aggregate/disaggregate , 1327, user struct aggregate/disaggregate pragmas are applied</column>
+            <column name="">(4) array reshape, 1565, apply array reshape pragmas</column>
+            <column name="">(5) access patterns, 1665, array access pattern optmizations</column>
+            <column name="">, , </column>
+            <column name="Performance">, , After transformations are applied to meet performance pragma targets</column>
+            <column name="">(1) loop simplification, 1634, loop and instruction simplification</column>
+            <column name="">(2) parallelization, 1560, loops are unrolled or pipelined to meet performance targets</column>
+            <column name="">(3) array partition, 1582, arrays are partitioned to meet performance targets</column>
+            <column name="">(4) simplification, 1534, simplification of design after performance transformations</column>
+            <column name="">, , </column>
+            <column name="HW Transforms">, , After hardware transfomations</column>
+            <column name="">(1) lowering, 1584, initial conversion to HW specific instructions</column>
+            <column name="">(2) optimizations, 1661, high level synthesis optimizations</column>
+        </table>
+    </item>
+    <item name="Instructions per Function for each Compilation Phase">
+        <hiertable>
+            <header size="7" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Array/Struct" col5="Performance" col6="HW Transforms"/>
+            <rows>
+                <row id="0" col0="fastv2_descriptor_hls" col1="descriptor_hls.cpp:541" col2="3947" col3="1241" col4="1665" col5="1534" col6="1661">
+                    <row id="23" col0="write_stats" col1="descriptor_hls.cpp:531" col2="172" col2_disp=" 172 (2 calls)" col3="" col4="" col5="" col6="">
+                        <row id="2" col0="fields" col1="descriptor_hls.cpp:52" col2="60" col2_disp="  60 (12 calls)" col3="" col4="" col5="" col6=""/>
+                    </row>
+                    <row id="24" col0="descriptor_dataflow" col1="descriptor_hls.cpp:460" col2="3633" col3="1100" col4="1501" col5="1371" col6="1474">
+                        <row id="16" col0="load_points" col1="descriptor_hls.cpp:118" col2="45" col3="35" col4="50" col5="34" col6="33"/>
+                        <row id="4" col0="issue_raw_requests" col1="descriptor_hls.cpp:132" col2="122" col3="45" col4="61" col5="59" col6="67">
+                            <row id="22" col0="valid_point" col1="descriptor_hls.cpp:60" col2="39" col3="" col4="" col5="" col6="">
+                                <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="8" col0="issue_blur_requests" col1="descriptor_hls.cpp:149" col2="144" col3="60" col4="76" col5="73" col6="81">
+                            <row id="22" col0="valid_point" col1="descriptor_hls.cpp:60" col2="39" col3="" col4="" col5="" col6="">
+                                <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="13" col0="receive_raw_moments" col1="descriptor_hls.cpp:175" col2="1215" col3="222" col4="249" col5="243" col6="252">
+                            <row id="22" col0="valid_point" col1="descriptor_hls.cpp:60" col2="39" col3="" col4="" col5="" col6="">
+                                <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            <row id="3" col0="raw_word_moments" col1="raw_moments.hpp:25" col2="532" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="12" col0="load_blur" col1="descriptor_hls.cpp:256" col2="212" col3="88" col4="96" col5="91" col6="95">
+                            <row id="22" col0="valid_point" col1="descriptor_hls.cpp:60" col2="39" col3="" col4="" col5="" col6="">
+                                <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                        </row>
+                        <row id="14" col0="compute_angles" col1="descriptor_hls.cpp:361" col2="1086" col3="127" col4="188" col5="185" col6="198">
+                            <row id="7" col0="precise_angle" col1="descriptor_hls.cpp:74" col2="1006" col3="87" col4="89" col5="87" col6="90">
+                                <row id="9" col0="shift_floor" col1="descriptor_hls.cpp:65" col2="180" col2_disp=" 180 (4 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                            <row id="1" col0="quantize_angle" col1="descriptor_hls.cpp:99" col2="13" col3="8" col4="8" col5="8" col6="10">
+                                <row id="19" col0="orb60_quantize_a32_exact" col1="a32_quantize_exact.hpp:9" col2="11" col3="" col4="" col5="" col6=""/>
+                            </row>
+                        </row>
+                        <row id="17" col0="compute_brief" col1="descriptor_hls.cpp:412" col2="520" col3="344" col4="551" col5="485" col6="491">
+                            <row id="15" col0="brief_patch" col1="descriptor_hls.cpp:371" col2="423" col3="237" col4="389" col5="330" col6="339">
+                                <row id="21" col0="signed32" col1="descriptor_hls.cpp:56" col2="18" col2_disp="  18 (2 calls)" col3="" col4="" col5="" col6=""/>
+                                <row id="6" col0="signed6" col1="descriptor_hls.cpp:304" col2="36" col2_disp="  36 (4 calls)" col3="" col4="" col5="" col6=""/>
+                                <row id="10" col0="rotate" col1="descriptor_hls.cpp:308" col2="54" col2_disp="  54 (2 calls)" col3="" col4="" col5="" col6=""/>
+                                <row id="20" col0="blur_pixel" col1="descriptor_hls.cpp:299" col2="32" col2_disp="  32 (2 calls)" col3="" col4="" col5="" col6=""/>
+                                <row id="2" col0="fields" col1="descriptor_hls.cpp:52" col2="25" col2_disp="  25 (5 calls)" col3="" col4="" col5="" col6=""/>
+                            </row>
+                        </row>
+                        <row id="5" col0="write_features" col1="descriptor_hls.cpp:430" col2="50" col3="60" col4="94" col5="70" col6="90"/>
+                        <row id="11" col0="count_cycles" col1="descriptor_hls.cpp:443" col2="93" col3="65" col4="89" col5="84" col6="117"/>
+                    </row>
+                </row>
+            </rows>
+            <notes/>
+        </hiertable>
+    </item>
+    <item name="Design Size Message Settings">
+        <table>
+            <keys size="3">Message Setting, Value, Description</keys>
+            <column name="config_compile -design_size_maximum_warning">100000, Show a warning when total design instructions exceeds this value</column>
+        </table>
+    </item>
+</design_size>
+

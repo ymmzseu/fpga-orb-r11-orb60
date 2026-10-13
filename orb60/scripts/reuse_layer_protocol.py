@@ -24,7 +24,7 @@ def reuse(previous,current,layer,kernel='layer2'):
     origin_key='LayerHlsJob' if kernel=='layer2' else 'DescriptorHlsJob'
     assert Path(state[origin_key]).resolve()==layer.resolve(),'Different frozen IP'
     assert hls['State']=='SUCCEEDED' and hls['Cosim'] and hls['Kernel']==kernel
-    assert hls['Part']=='xc7z015clg485-2' and hls['PeriodNs'] in (8,10)
+    assert hls['Part']=='xc7z015clg485-2' and 5<=hls['PeriodNs']<=10
     # HLS manifest paths are relative to inputs, unlike the protocol test manifest.
     for entry in data(layer/'source_manifest.json'):
         assert hashlib.sha256((layer/'inputs'/entry['Path']).read_bytes()).hexdigest().upper()==entry['SHA256']
@@ -38,6 +38,7 @@ def reuse(previous,current,layer,kernel='layer2'):
     assert result['status']=='PASS' and result['transactions']==len(cases)
     assert result['reset_interruption'] and result['direct_completion_barrier']
     assert config['cases']==cases and config['reset_case']==reset_case
+    assert config.get('clock_period_ps',10000)==round(hls['PeriodNs']*1000),'Protocol clock differs from immutable source IP'
     assert [r['case'] for r in result['cases']]==config['cases']
     vectors=layer/('oracle_vectors' if kernel=='layer2' else 'descriptor_vectors');assert Path(config['vectors']).resolve()==vectors.resolve()
     for name,digest in data(vectors/'vectors.json')['sha256'].items():

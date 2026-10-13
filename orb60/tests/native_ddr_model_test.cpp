@@ -44,7 +44,9 @@ int main() {
             require(t<100,"Model W timeout");sim.tick();if(sim.dut.m_WREADY[7]) sim.dut.m_WVALID[7]=0;
         }
         require(sim.word(0x3004)==0xdeadbeef && sim.word(0x3000)==0,"Narrow write lane mask");
-        for(unsigned t=0;t<40;++t) sim.tick();
+        // Keep the original400ns observation window at every fabric clock.
+        // Forty clocks at166.667MHz would end before the maximum310ns B delay.
+        for(unsigned t=0;t<sim.service_time.reference_cycles(40);++t) sim.tick();
         require(!sim.idle(1) && sim.dut.m_BVALID[7] && sim.dut.m_BID[7]==1,"Delayed B outstanding barrier");
         sim.dut.m_BREADY[7]=1;sim.tick();require(sim.idle(1),"Final B response");
         bool rejected=false;
@@ -80,7 +82,7 @@ int main() {
             slow.dut.m_RREADY[0]=1;slow.tick();require(slow.idle(0),"Fixed delay response completion");
         }
         // Saturated contenders prove identical bytes/s at both accelerator clocks.
-        for(unsigned period: {10000u,8000u}) for(unsigned beats: {1u,2u}) {
+        for(unsigned period: {10000u,8000u,7000u,6667u,6000u,5000u}) for(unsigned beats: {1u,2u}) {
             DdrTimeBudget time(period,beats);unsigned served=0;
             std::array<unsigned,4> hp_count{};
             for(unsigned tick=0;tick<10000;++tick) {
@@ -97,6 +99,53 @@ int main() {
                 require(actual>=delay*10000 && actual<delay*10000+period,"Response-ns clock quantization");
             }
         }
-        std::cout<<"NATIVE_DDR_MODEL_PASS"<<std::endl;return 0;
+        // Board-spec budgets: mixed reads/writes share the physical DDR limit,
+        // but each HP direction can transfer independently at its own clock.
+        for(unsigned period: {10000u,8000u,7000u,6667u,6000u,5000u}) for(uint64_t rate: {UINT64_C(4266666664),UINT64_C(1000000000)}) {
+            DdrTimeBudget time(period,4,rate);uint64_t served=0;
+            std::array<uint64_t,8> channel_count{};
+            for(unsigned tick=0;tick<30000;++tick) {
+                time.advance();unsigned used=0;
+                for(unsigned n=0;n<8;++n) {
+                    const unsigned channel=(tick+n)%8,port=channel/2;const bool write=channel&1;
+                    if(time.available(port,write)) {
+                        time.consume(port,write);++served;++channel_count[channel];++used;
+                        require(!time.available(port,write),"HP direction granted twice in a cycle");
+                    }
+                }
+                require(used<=time.max_beats_per_cycle(),"Board DDR per-cycle budget exceeded");
+                require(served<=rate*uint64_t(tick+1)*period/DdrTimeBudget::byte_beat_ps,
+                        "Board shared read/write bytes/s exceeds physical capacity");
+            }
+            require(served==rate*UINT64_C(30000)*period/DdrTimeBudget::byte_beat_ps,"Board DDR saturation rate");
+            for(auto count:channel_count) require(count<=30000,"HP direction exceeds clock-rate capacity");
+            for(unsigned t=0;t<10000;++t) time.advance();
+            require(time.aggregate<=time.max_beats_per_cycle(),"Idle service credit accumulated");
+        }
+        Simulation board(4,0,6001,0,0,UINT64_C(4266666664));
+        board.put(0x6000,pattern);board.ports[0].read_ranges={{0x6000,0x6080}};
+        board.ports[4].read_ranges={{0x6000,0x6080}};board.ports[4].write_ranges={{0x7000,0x7008}};
+        board.ports[0].reads.push_back({0x6000,1,3,0,board.cycles});
+        board.ports[4].reads.push_back({0x6000,1,3,0,board.cycles});
+        board.ports[4].writes.push_back({0x7000,1,3,0,board.cycles});
+        board.dut.m_WDATA[4]=UINT64_C(0x123456789abcdef0);board.dut.m_WSTRB[4]=255;
+        board.dut.m_WLAST[4]=1;board.dut.m_WVALID[4]=1;
+        board.tick();
+        require(board.hp_read_service_beats[0]==1 && board.hp_write_service_beats[0]==1,
+                "Board HP read and write did not coexist; or readers escaped shared HP limit");
+        require(board.ports[0].rvalid!=board.ports[4].rvalid,"Two readers granted on one HP in one cycle");
+        require(board.dut.m_WREADY[4] && board.word(0x7000)==0x9abcdef0,"Board parallel write payload");
+        board.dut.m_WVALID[4]=0;board.tick();
+        require(board.ports[0].rvalid && board.ports[4].rvalid,"Second HP reader did not progress");
+        const auto board_r0=board.ports[0].rdata,board_r4=board.ports[4].rdata;
+        for(unsigned t=0;t<17;++t) {
+            board.tick();require(board.ports[0].rdata==board_r0 && board.ports[4].rdata==board_r4,
+                                 "Board R payload changed under backpressure");
+        }
+        board.dut.m_RREADY[0]=board.dut.m_RREADY[4]=board.dut.m_BREADY[4]=1;
+        for(unsigned t=0;!board.idle(0) || !board.idle(1);++t) {
+            require(t<100,"Board final-response drain timeout");board.tick();
+        }
+        std::cout<<"NATIVE_DDR_MODEL_PASS LEGACY_AND_BOARD_SPEC"<<std::endl;return 0;
     } catch(const std::exception& error) { std::cerr<<error.what()<<std::endl;return 1; }
 }

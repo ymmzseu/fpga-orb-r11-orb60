@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "part": "xc7z015clg485-2",
+  "frequency_mhz": 150,
+  "layer_ppc": 4,
+  "ps_fclk_input_mhz": 100,
+  "bit_sha256": "b7fc66eef0895469506e04f7b8e26f0ef6232bc3f055db5bce9609a153d42c60",
+  "checkpoint_sha256": "72fe3d166dcc8ac3529df7082120287493beac91a35d632720c72d72b6c63c1b",
+  "physical_board_verified": false,
+  "ps_modified": false,
+  "release_validation": {
+    "status": "PASS",
+    "part": "xc7z015clg485-2",
+    "frequency_mhz": 150,
+    "ps_fclk_input_mhz": 100,
+    "checkpoint": "D:\\pld\\.work\\vivado\\orb60\\iabbeb794\\vivado\\next_system_routed.dcp",
+    "checkpoint_sha256": "72fe3d166dcc8ac3529df7082120287493beac91a35d632720c72d72b6c63c1b",
+    "pair": "D:\\pld\\orb60\\build\\optimized\\comparison\\20261013_194658_frequency_pair_3b981caa",
+    "route": "D:\\pld\\orb60\\build\\optimized\\timing\\20261013_202519_orb_150mhz_abbeb794",
+    "frame": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_202520_native_frame_7f9a739a",
+    "protocol": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_202052_datapath_axi_e4160f80",
+    "board_4gb": "D:\\pld\\orb60\\build\\optimized\\gates\\20261013_203335_board_ddr_b48a4164",
+    "maximum_4gb_frame_ms": 6.00203342,
+    "performance_selection": "4GB/s, no synthetic random stalls, initial read delay0..50ns; other profiles diagnostic only",
+    "sufficient_bandwidth_frames": [
+      {
+        "points": 280,
+        "milliseconds": 4.87437704,
+        "equivalent_fps": 205.154421127833
+      },
+      {
+        "points": 942,
+        "milliseconds": 5.145837279,
+        "equivalent_fps": 194.33183479799652
+      },
+      {
+        "points": 0,
+        "milliseconds": 4.804053524,
+        "equivalent_fps": 208.15754758022968
+      }
+    ],
+    "sufficient_bandwidth_engineering14ms_pass": true,
+    "export_monitor_differences": [
+      {
+        "name": "fastv2_layer2_hls.v",
+        "kind": "exact_AMD_simulation_monitor_only",
+        "simulated_sha256": "199e599efdda2019238f0eb85205456017a9747b2b4097d8b1b98f67db54afed",
+        "exported_sha256": "4c2879191862ce769542f0650d620df17d0a23f9ea7b6279d79572fc3325f285"
+      },
+      {
+        "name": "fastv2_descriptor_hls.v",
+        "kind": "exact_AMD_simulation_monitor_only",
+        "simulated_sha256": "a0bd28f6230ad2174cbaa25a701b7126b5b832bd5602b29e33aa921e15e3ad8f",
+        "exported_sha256": "bb38112ade7538a9f8497aede1670dc68edb2ba5a412c20f1854c8f36427919a"
+      }
+    ],
+    "scope": "Computer-gated paired checkpoint only; no PS/board programming or physical-board FPS proof"
+  },
+  "backend_source_closure": [
+    "include/a32_quantize_exact.hpp",
+    "include/descriptor.hpp",
+    "include/descriptor_memory.hpp",
+    "include/descriptor_rom.hpp",
+    "include/descriptor_widths.hpp",
+    "include/next_block_stream.hpp",
+    "include/next_stream.hpp",
+    "include/raw_moments.hpp",
+    "src/descriptor_hls.cpp"
+  ],
+  "build_flags": {
+    "layer": {
+      "LayerPpc": 4,
+      "FastStaged": true,
+      "LayerIoOverlap": true,
+      "LayerBramFifos": true,
+      "SliceCompactMode": 2
+    },
+    "descriptor": {
+      "DescriptorWidthMode": 2,
+      "DescriptorPrefetch": 8,
+      "DescriptorPatch32": true,
+      "DescriptorMomentFusion": 1,
+      "DescriptorFastQuantize": 1
+    }
+  }
+}

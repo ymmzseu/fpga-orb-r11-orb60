@@ -1,0 +1,170 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_consume_and_select_Pipeline_InitializeTournamentLeaves'
+================================================================
+* Date:           Tue Oct 13 19:49:08 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.252 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |      259|      259|  1.727 us|  1.727 us|  257|  257|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                              |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |           Loop Name          |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- InitializeTournamentLeaves  |      257|      257|         3|          1|          1|   256|       yes|
+        +------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|    170|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     36|    -|
+|Register         |        -|    -|     79|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|     79|    206|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |add_ln509_fu_149_p2    |         +|   0|  0|   9|           9|           1|
+    |sub_ln163_1_fu_213_p2  |         -|   0|  0|  11|          10|          11|
+    |sub_ln163_fu_219_p2    |         -|   0|  0|  11|          10|          11|
+    |and_ln153_fu_279_p2    |       and|   0|  0|   1|           1|           1|
+    |icmp_ln153_fu_225_p2   |      icmp|   0|  0|   8|           8|           1|
+    |icmp_ln509_fu_143_p2   |      icmp|   0|  0|  10|           9|          10|
+    |icmp_ln512_fu_163_p2   |      icmp|   0|  0|   9|           9|           9|
+    |or_ln161_1_fu_263_p2   |        or|   0|  0|  29|          29|          29|
+    |or_ln161_fu_273_p2     |        or|   0|  0|  36|          36|          36|
+    |ref_tmp67_1_fu_283_p3  |    select|   0|  0|  36|           1|          36|
+    |ap_enable_pp0          |       xor|   0|  0|   2|           1|           2|
+    |xor_ln163_fu_249_p2    |       xor|   0|  0|   8|           8|           2|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0| 170|         131|         149|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_cell    |   9|          2|    9|         18|
+    |cell_4_fu_82             |   9|          2|    9|         18|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   20|         40|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------+----+----+-----+-----------+
+    |                 Name                | FF | LUT| Bits| Const Bits|
+    +-------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                            |   1|   0|    1|          0|
+    |ap_done_reg                          |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2              |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg     |   1|   0|    1|          0|
+    |cell_4_fu_82                         |   9|   0|    9|          0|
+    |icmp_ln153_reg_356                   |   1|   0|    1|          0|
+    |icmp_ln512_reg_326                   |   1|   0|    1|          0|
+    |icmp_ln512_reg_326_pp0_iter1_reg     |   1|   0|    1|          0|
+    |score_reg_341                        |   8|   0|    8|          0|
+    |sub_ln163_1_reg_346                  |  11|   0|   11|          0|
+    |sub_ln163_reg_351                    |  11|   0|   11|          0|
+    |tmp_70_reg_336                       |   7|   0|    7|          0|
+    |tmp_70_reg_336_pp0_iter1_reg         |   7|   0|    7|          0|
+    |trunc_ln509_1_reg_321                |   8|   0|    8|          0|
+    |trunc_ln509_1_reg_321_pp0_iter1_reg  |   8|   0|    8|          0|
+    |trunc_ln509_reg_317                  |   1|   0|    1|          0|
+    |trunc_ln509_reg_317_pp0_iter1_reg    |   1|   0|    1|          0|
+    +-------------------------------------+----+----+-----+-----------+
+    |Total                                |  79|   0|   79|          0|
+    +-------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+|     RTL Ports     | Dir | Bits|  Protocol  |                                Source Object                                |    C Type    |
++-------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|ap_rst             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|ap_start           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|ap_done            |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|ap_idle            |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|ap_ready           |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_InitializeTournamentLeaves|  return value|
+|tree_1_address0    |  out|    8|   ap_memory|                                                                       tree_1|         array|
+|tree_1_ce0         |  out|    1|   ap_memory|                                                                       tree_1|         array|
+|tree_1_we0         |  out|    1|   ap_memory|                                                                       tree_1|         array|
+|tree_1_d0          |  out|   36|   ap_memory|                                                                       tree_1|         array|
+|tree_address0      |  out|    8|   ap_memory|                                                                         tree|         array|
+|tree_ce0           |  out|    1|   ap_memory|                                                                         tree|         array|
+|tree_we0           |  out|    1|   ap_memory|                                                                         tree|         array|
+|tree_d0            |  out|   36|   ap_memory|                                                                         tree|         array|
+|cell_count         |   in|    8|     ap_none|                                                                   cell_count|        scalar|
+|best_low_address0  |  out|    8|   ap_memory|                                                                     best_low|         array|
+|best_low_ce0       |  out|    1|   ap_memory|                                                                     best_low|         array|
+|best_low_q0        |   in|   41|   ap_memory|                                                                     best_low|         array|
++-------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+

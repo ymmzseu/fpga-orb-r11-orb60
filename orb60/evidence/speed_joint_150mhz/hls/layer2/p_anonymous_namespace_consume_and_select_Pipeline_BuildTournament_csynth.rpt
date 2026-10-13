@@ -1,0 +1,165 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_consume_and_select_Pipeline_BuildTournament'
+================================================================
+* Date:           Tue Oct 13 19:49:09 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.765 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+    |      511|      511|  3.407 us|  3.407 us|  510|  510|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- BuildTournament  |      509|      509|         4|          2|          2|   254|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     95|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     84|    -|
+|Register         |        -|    -|    103|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    103|    179|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln518_fu_120_p2                |         +|   0|  0|   8|           8|           2|
+    |ap_enable_state1_pp0_iter0_stage0  |       and|   0|  0|   1|           1|           1|
+    |ap_enable_state3_pp0_iter1_stage0  |       and|   0|  0|   1|           1|           1|
+    |ap_enable_state4_pp0_iter1_stage1  |       and|   0|  0|   1|           1|           1|
+    |icmp_ln167_fu_131_p2               |      icmp|   0|  0|  36|          36|          36|
+    |icmp_ln518_fu_104_p2               |      icmp|   0|  0|   7|           7|           1|
+    |ap_block_pp0                       |        or|   0|  0|   1|           1|           1|
+    |select_ln526_fu_142_p3             |    select|   0|  0|  36|           1|          36|
+    |ap_enable_pp0                      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln167_fu_137_p2                |       xor|   0|  0|   2|           1|           2|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |Total                              |          |   0|  0|  95|          58|          83|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                |  13|          3|    1|          3|
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_node_1  |   9|          2|    8|         16|
+    |node_fu_40               |   9|          2|    8|         16|
+    |tree_1_address0_local    |  13|          3|    8|         24|
+    |tree_address0_local      |  13|          3|    8|         24|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  84|         19|   36|         89|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+----+----+-----+-----------+
+    |                Name               | FF | LUT| Bits| Const Bits|
+    +-----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                          |   2|   0|    2|          0|
+    |ap_done_reg                        |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg        |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1            |   1|   0|    1|          0|
+    |icmp_ln167_reg_195                 |   1|   0|    1|          0|
+    |icmp_ln518_reg_167                 |   1|   0|    1|          0|
+    |node_fu_40                         |   8|   0|    8|          0|
+    |tmp_reg_162                        |   7|   0|    7|          0|
+    |tmp_reg_162_pp0_iter1_reg          |   7|   0|    7|          0|
+    |tree_1_load_reg_190                |  36|   0|   36|          0|
+    |tree_load_reg_185                  |  36|   0|   36|          0|
+    |trunc_ln518_reg_171                |   1|   0|    1|          0|
+    |trunc_ln518_reg_171_pp0_iter1_reg  |   1|   0|    1|          0|
+    +-----------------------------------+----+----+-----+-----------+
+    |Total                              | 103|   0|  103|          0|
+    +-----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+|    RTL Ports    | Dir | Bits|  Protocol  |                           Source Object                          |    C Type    |
++-----------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+|ap_clk           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|ap_rst           |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|ap_start         |   in|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|ap_done          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|ap_idle          |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|ap_ready         |  out|    1|  ap_ctrl_hs|  (anonymous namespace)consume_and_select_Pipeline_BuildTournament|  return value|
+|tree_1_address0  |  out|    8|   ap_memory|                                                            tree_1|         array|
+|tree_1_ce0       |  out|    1|   ap_memory|                                                            tree_1|         array|
+|tree_1_we0       |  out|    1|   ap_memory|                                                            tree_1|         array|
+|tree_1_d0        |  out|   36|   ap_memory|                                                            tree_1|         array|
+|tree_1_q0        |   in|   36|   ap_memory|                                                            tree_1|         array|
+|tree_address0    |  out|    8|   ap_memory|                                                              tree|         array|
+|tree_ce0         |  out|    1|   ap_memory|                                                              tree|         array|
+|tree_we0         |  out|    1|   ap_memory|                                                              tree|         array|
+|tree_d0          |  out|   36|   ap_memory|                                                              tree|         array|
+|tree_q0          |   in|   36|   ap_memory|                                                              tree|         array|
++-----------------+-----+-----+------------+------------------------------------------------------------------+--------------+
+

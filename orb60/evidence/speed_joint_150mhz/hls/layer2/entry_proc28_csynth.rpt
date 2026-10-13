@@ -1,0 +1,262 @@
+
+
+================================================================
+== Vitis HLS Report for 'entry_proc28'
+================================================================
+* Date:           Tue Oct 13 19:48:42 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  2.433 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      1|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    -|      -|      -|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|    189|    -|
+|Register         |        -|    -|      3|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|      3|    190|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|     ~0|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   1|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------+----+-----------+-----+-----------+
+    |               Name              | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------+----+-----------+-----+-----------+
+    |ap_done                          |   9|          2|    1|          2|
+    |blurred_c_blk_n                  |   9|          2|    1|          2|
+    |capacity_c_blk_n                 |   9|          2|    1|          2|
+    |dual_c22_blk_n                   |   9|          2|    1|          2|
+    |high_c21_blk_n                   |   9|          2|    1|          2|
+    |level_c_blk_n                    |   9|          2|    1|          2|
+    |low_c_blk_n                      |   9|          2|    1|          2|
+    |p_budget_val4_c18_blk_n          |   9|          2|    1|          2|
+    |p_cell_cols_val14_c20_blk_n      |   9|          2|    1|          2|
+    |p_cell_rows_val15_c_blk_n        |   9|          2|    1|          2|
+    |p_cell_side_val12_c_blk_n        |   9|          2|    1|          2|
+    |p_effective_height_val6_c_blk_n  |   9|          2|    1|          2|
+    |p_effective_width_val5_c_blk_n   |   9|          2|    1|          2|
+    |p_tile_cols_val8_c19_blk_n       |   9|          2|    1|          2|
+    |p_tile_height_val11_c_blk_n      |   9|          2|    1|          2|
+    |p_tile_rows_val9_c_blk_n         |   9|          2|    1|          2|
+    |p_tile_width_val10_c_blk_n       |   9|          2|    1|          2|
+    |real_start                       |   9|          2|    1|          2|
+    |resized_c_blk_n                  |   9|          2|    1|          2|
+    |result_c_blk_n                   |   9|          2|    1|          2|
+    |selected_c_blk_n                 |   9|          2|    1|          2|
+    +---------------------------------+----+-----------+-----+-----------+
+    |Total                            | 189|         42|   21|         42|
+    +---------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------+---+----+-----+-----------+
+    |      Name      | FF| LUT| Bits| Const Bits|
+    +----------------+---+----+-----+-----------+
+    |ap_CS_fsm       |  1|   0|    1|          0|
+    |ap_done_reg     |  1|   0|    1|          0|
+    |start_once_reg  |  1|   0|    1|          0|
+    +----------------+---+----+-----+-----------+
+    |Total           |  3|   0|    3|          0|
+    +----------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------------------+-----+-----+------------+---------------------------+--------------+
+|                 RTL Ports                | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++------------------------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                                    |   in|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_rst                                    |   in|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_start                                  |   in|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|start_full_n                              |   in|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_done                                   |  out|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_continue                               |   in|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_idle                                   |  out|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|ap_ready                                  |  out|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|start_out                                 |  out|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|start_write                               |  out|    1|  ap_ctrl_hs|               entry_proc28|  return value|
+|blurred                                   |   in|   32|     ap_none|                    blurred|        scalar|
+|blurred_c_din                             |  out|   32|     ap_fifo|                  blurred_c|       pointer|
+|blurred_c_full_n                          |   in|    1|     ap_fifo|                  blurred_c|       pointer|
+|blurred_c_write                           |  out|    1|     ap_fifo|                  blurred_c|       pointer|
+|blurred_c_num_data_valid                  |   in|    5|     ap_fifo|                  blurred_c|       pointer|
+|blurred_c_fifo_cap                        |   in|    5|     ap_fifo|                  blurred_c|       pointer|
+|resized                                   |   in|   32|     ap_none|                    resized|        scalar|
+|resized_c_din                             |  out|   32|     ap_fifo|                  resized_c|       pointer|
+|resized_c_full_n                          |   in|    1|     ap_fifo|                  resized_c|       pointer|
+|resized_c_write                           |  out|    1|     ap_fifo|                  resized_c|       pointer|
+|resized_c_num_data_valid                  |   in|    4|     ap_fifo|                  resized_c|       pointer|
+|resized_c_fifo_cap                        |   in|    4|     ap_fifo|                  resized_c|       pointer|
+|selected                                  |   in|   32|     ap_none|                   selected|        scalar|
+|selected_c_din                            |  out|   32|     ap_fifo|                 selected_c|       pointer|
+|selected_c_full_n                         |   in|    1|     ap_fifo|                 selected_c|       pointer|
+|selected_c_write                          |  out|    1|     ap_fifo|                 selected_c|       pointer|
+|selected_c_num_data_valid                 |   in|    4|     ap_fifo|                 selected_c|       pointer|
+|selected_c_fifo_cap                       |   in|    4|     ap_fifo|                 selected_c|       pointer|
+|result                                    |   in|   32|     ap_none|                     result|        scalar|
+|result_c_din                              |  out|   32|     ap_fifo|                   result_c|       pointer|
+|result_c_full_n                           |   in|    1|     ap_fifo|                   result_c|       pointer|
+|result_c_write                            |  out|    1|     ap_fifo|                   result_c|       pointer|
+|result_c_num_data_valid                   |   in|    4|     ap_fifo|                   result_c|       pointer|
+|result_c_fifo_cap                         |   in|    4|     ap_fifo|                   result_c|       pointer|
+|p_budget_val4                             |   in|    8|     ap_none|              p_budget_val4|        scalar|
+|p_budget_val4_c18_din                     |  out|    8|     ap_fifo|          p_budget_val4_c18|       pointer|
+|p_budget_val4_c18_full_n                  |   in|    1|     ap_fifo|          p_budget_val4_c18|       pointer|
+|p_budget_val4_c18_write                   |  out|    1|     ap_fifo|          p_budget_val4_c18|       pointer|
+|p_budget_val4_c18_num_data_valid          |   in|    4|     ap_fifo|          p_budget_val4_c18|       pointer|
+|p_budget_val4_c18_fifo_cap                |   in|    4|     ap_fifo|          p_budget_val4_c18|       pointer|
+|p_effective_width_val5                    |   in|   10|     ap_none|     p_effective_width_val5|        scalar|
+|p_effective_width_val5_c_din              |  out|   10|     ap_fifo|   p_effective_width_val5_c|       pointer|
+|p_effective_width_val5_c_full_n           |   in|    1|     ap_fifo|   p_effective_width_val5_c|       pointer|
+|p_effective_width_val5_c_write            |  out|    1|     ap_fifo|   p_effective_width_val5_c|       pointer|
+|p_effective_width_val5_c_num_data_valid   |   in|    4|     ap_fifo|   p_effective_width_val5_c|       pointer|
+|p_effective_width_val5_c_fifo_cap         |   in|    4|     ap_fifo|   p_effective_width_val5_c|       pointer|
+|p_effective_height_val6                   |   in|   10|     ap_none|    p_effective_height_val6|        scalar|
+|p_effective_height_val6_c_din             |  out|   10|     ap_fifo|  p_effective_height_val6_c|       pointer|
+|p_effective_height_val6_c_full_n          |   in|    1|     ap_fifo|  p_effective_height_val6_c|       pointer|
+|p_effective_height_val6_c_write           |  out|    1|     ap_fifo|  p_effective_height_val6_c|       pointer|
+|p_effective_height_val6_c_num_data_valid  |   in|    4|     ap_fifo|  p_effective_height_val6_c|       pointer|
+|p_effective_height_val6_c_fifo_cap        |   in|    4|     ap_fifo|  p_effective_height_val6_c|       pointer|
+|p_tile_cols_val8                          |   in|    5|     ap_none|           p_tile_cols_val8|        scalar|
+|p_tile_cols_val8_c19_din                  |  out|    5|     ap_fifo|       p_tile_cols_val8_c19|       pointer|
+|p_tile_cols_val8_c19_full_n               |   in|    1|     ap_fifo|       p_tile_cols_val8_c19|       pointer|
+|p_tile_cols_val8_c19_write                |  out|    1|     ap_fifo|       p_tile_cols_val8_c19|       pointer|
+|p_tile_cols_val8_c19_num_data_valid       |   in|    4|     ap_fifo|       p_tile_cols_val8_c19|       pointer|
+|p_tile_cols_val8_c19_fifo_cap             |   in|    4|     ap_fifo|       p_tile_cols_val8_c19|       pointer|
+|p_tile_rows_val9                          |   in|    5|     ap_none|           p_tile_rows_val9|        scalar|
+|p_tile_rows_val9_c_din                    |  out|    5|     ap_fifo|         p_tile_rows_val9_c|       pointer|
+|p_tile_rows_val9_c_full_n                 |   in|    1|     ap_fifo|         p_tile_rows_val9_c|       pointer|
+|p_tile_rows_val9_c_write                  |  out|    1|     ap_fifo|         p_tile_rows_val9_c|       pointer|
+|p_tile_rows_val9_c_num_data_valid         |   in|    4|     ap_fifo|         p_tile_rows_val9_c|       pointer|
+|p_tile_rows_val9_c_fifo_cap               |   in|    4|     ap_fifo|         p_tile_rows_val9_c|       pointer|
+|p_tile_width_val10                        |   in|    6|     ap_none|         p_tile_width_val10|        scalar|
+|p_tile_width_val10_c_din                  |  out|    6|     ap_fifo|       p_tile_width_val10_c|       pointer|
+|p_tile_width_val10_c_full_n               |   in|    1|     ap_fifo|       p_tile_width_val10_c|       pointer|
+|p_tile_width_val10_c_write                |  out|    1|     ap_fifo|       p_tile_width_val10_c|       pointer|
+|p_tile_width_val10_c_num_data_valid       |   in|    4|     ap_fifo|       p_tile_width_val10_c|       pointer|
+|p_tile_width_val10_c_fifo_cap             |   in|    4|     ap_fifo|       p_tile_width_val10_c|       pointer|
+|p_tile_height_val11                       |   in|    6|     ap_none|        p_tile_height_val11|        scalar|
+|p_tile_height_val11_c_din                 |  out|    6|     ap_fifo|      p_tile_height_val11_c|       pointer|
+|p_tile_height_val11_c_full_n              |   in|    1|     ap_fifo|      p_tile_height_val11_c|       pointer|
+|p_tile_height_val11_c_write               |  out|    1|     ap_fifo|      p_tile_height_val11_c|       pointer|
+|p_tile_height_val11_c_num_data_valid      |   in|    4|     ap_fifo|      p_tile_height_val11_c|       pointer|
+|p_tile_height_val11_c_fifo_cap            |   in|    4|     ap_fifo|      p_tile_height_val11_c|       pointer|
+|p_cell_side_val12                         |   in|    6|     ap_none|          p_cell_side_val12|        scalar|
+|p_cell_side_val12_c_din                   |  out|    6|     ap_fifo|        p_cell_side_val12_c|       pointer|
+|p_cell_side_val12_c_full_n                |   in|    1|     ap_fifo|        p_cell_side_val12_c|       pointer|
+|p_cell_side_val12_c_write                 |  out|    1|     ap_fifo|        p_cell_side_val12_c|       pointer|
+|p_cell_side_val12_c_num_data_valid        |   in|    4|     ap_fifo|        p_cell_side_val12_c|       pointer|
+|p_cell_side_val12_c_fifo_cap              |   in|    4|     ap_fifo|        p_cell_side_val12_c|       pointer|
+|p_cell_cols_val14                         |   in|    5|     ap_none|          p_cell_cols_val14|        scalar|
+|p_cell_cols_val14_c20_din                 |  out|    5|     ap_fifo|      p_cell_cols_val14_c20|       pointer|
+|p_cell_cols_val14_c20_full_n              |   in|    1|     ap_fifo|      p_cell_cols_val14_c20|       pointer|
+|p_cell_cols_val14_c20_write               |  out|    1|     ap_fifo|      p_cell_cols_val14_c20|       pointer|
+|p_cell_cols_val14_c20_num_data_valid      |   in|    4|     ap_fifo|      p_cell_cols_val14_c20|       pointer|
+|p_cell_cols_val14_c20_fifo_cap            |   in|    4|     ap_fifo|      p_cell_cols_val14_c20|       pointer|
+|p_cell_rows_val15                         |   in|    4|     ap_none|          p_cell_rows_val15|        scalar|
+|p_cell_rows_val15_c_din                   |  out|    4|     ap_fifo|        p_cell_rows_val15_c|       pointer|
+|p_cell_rows_val15_c_full_n                |   in|    1|     ap_fifo|        p_cell_rows_val15_c|       pointer|
+|p_cell_rows_val15_c_write                 |  out|    1|     ap_fifo|        p_cell_rows_val15_c|       pointer|
+|p_cell_rows_val15_c_num_data_valid        |   in|    4|     ap_fifo|        p_cell_rows_val15_c|       pointer|
+|p_cell_rows_val15_c_fifo_cap              |   in|    4|     ap_fifo|        p_cell_rows_val15_c|       pointer|
+|level                                     |   in|    3|     ap_none|                      level|        scalar|
+|level_c_din                               |  out|    3|     ap_fifo|                    level_c|       pointer|
+|level_c_full_n                            |   in|    1|     ap_fifo|                    level_c|       pointer|
+|level_c_write                             |  out|    1|     ap_fifo|                    level_c|       pointer|
+|level_c_num_data_valid                    |   in|    4|     ap_fifo|                    level_c|       pointer|
+|level_c_fifo_cap                          |   in|    4|     ap_fifo|                    level_c|       pointer|
+|high_r                                    |   in|   32|     ap_none|                     high_r|        scalar|
+|high_c21_din                              |  out|   32|     ap_fifo|                   high_c21|       pointer|
+|high_c21_full_n                           |   in|    1|     ap_fifo|                   high_c21|       pointer|
+|high_c21_write                            |  out|    1|     ap_fifo|                   high_c21|       pointer|
+|high_c21_num_data_valid                   |   in|    4|     ap_fifo|                   high_c21|       pointer|
+|high_c21_fifo_cap                         |   in|    4|     ap_fifo|                   high_c21|       pointer|
+|low_r                                     |   in|   31|     ap_none|                      low_r|        scalar|
+|low_c_din                                 |  out|   31|     ap_fifo|                      low_c|       pointer|
+|low_c_full_n                              |   in|    1|     ap_fifo|                      low_c|       pointer|
+|low_c_write                               |  out|    1|     ap_fifo|                      low_c|       pointer|
+|low_c_num_data_valid                      |   in|    4|     ap_fifo|                      low_c|       pointer|
+|low_c_fifo_cap                            |   in|    4|     ap_fifo|                      low_c|       pointer|
+|dual                                      |   in|    1|     ap_none|                       dual|        scalar|
+|dual_c22_din                              |  out|    1|     ap_fifo|                   dual_c22|       pointer|
+|dual_c22_full_n                           |   in|    1|     ap_fifo|                   dual_c22|       pointer|
+|dual_c22_write                            |  out|    1|     ap_fifo|                   dual_c22|       pointer|
+|dual_c22_num_data_valid                   |   in|    4|     ap_fifo|                   dual_c22|       pointer|
+|dual_c22_fifo_cap                         |   in|    4|     ap_fifo|                   dual_c22|       pointer|
+|capacity                                  |   in|   31|     ap_none|                   capacity|        scalar|
+|capacity_c_din                            |  out|   31|     ap_fifo|                 capacity_c|       pointer|
+|capacity_c_full_n                         |   in|    1|     ap_fifo|                 capacity_c|       pointer|
+|capacity_c_write                          |  out|    1|     ap_fifo|                 capacity_c|       pointer|
+|capacity_c_num_data_valid                 |   in|    4|     ap_fifo|                 capacity_c|       pointer|
+|capacity_c_fifo_cap                       |   in|    4|     ap_fifo|                 capacity_c|       pointer|
++------------------------------------------+-----+-----+------------+---------------------------+--------------+
+

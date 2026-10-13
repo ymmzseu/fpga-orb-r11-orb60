@@ -1,0 +1,9 @@
+﻿{
+    "State":  "SUCCEEDED",
+    "Stage":  "COMPLETE",
+    "FrequencyMHz":  150,
+    "StartedUtc":  "2026-10-13T11:47:41.1685838Z",
+    "Scope":  "Verified150MHz checkpoint bit only; PS FCLK input100MHz; no PS/board programming",
+    "BitSha256":  "B7FC66EEF0895469506E04F7B8E26F0EF6232BC3F055DB5BCE9609A153D42C60",
+    "FinishedUtc":  "2026-10-13T11:49:01.6431497Z"
+}

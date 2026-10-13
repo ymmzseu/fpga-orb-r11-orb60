@@ -41,8 +41,8 @@ def run(args):
         result=output/'result.json'
         config=dict(kernel=args.kernel,vectors=str(vectors),offsets=control_offsets(job,args.kernel,top),
                     cases=cases,result=str(result),reset_case=args.reset_case)
-        config['clock_period_ps']=int(state['PeriodNs']*1000)
-        assert config['clock_period_ps'] in (8000,10000)
+        config['clock_period_ps']=round(state['PeriodNs']*1000)
+        assert 5000<=config['clock_period_ps']<=10000 and abs(config['clock_period_ps']-state['PeriodNs']*1000)<=0.5
         if args.kernel=='layer2':config['layer_ppc']=state.get('LayerPpc',2)
         config_path=output/'config.json';config_path.write_text(json.dumps(config,indent=2))
         modelsim=Path(os.environ['FPGA_MODELSIM_BIN'])

@@ -40,7 +40,10 @@ def compare(candidate,baseline,output):
     new=json.loads((candidate/'performance.json').read_text())
     old=json.loads((baseline/'performance.json').read_text())
     assert new['status']==old['status']=='PASS'
-    assert new['frequency_mhz'] in (100,125) and old['frequency_mhz'] in (100,125)
+    for record in (new,old):
+        period=record['runs'][0]['clock_period_ps']
+        assert 5000<=period<=10000 and abs(record['frequency_mhz']-1000000/period)<1e-9
+        assert all(run['clock_period_ps']==period for run in record['runs'])
     assert new['rtl_unchanged'] and old['rtl_unchanged']
     assert len({key(r) for r in new['runs']})==len(new['runs'])
     assert len({key(r) for r in old['runs']})==len(old['runs'])
@@ -63,7 +66,10 @@ def compare(candidate,baseline,output):
                      read_delay=run['read_initial_delay_cycles'],frame=frame['frame'],points=frame['selected'],
                      milliseconds=frame['milliseconds'],equivalent_fps=frame['equivalent_fps'],
                      axi_bytes=frame['read_bytes']+frame['write_bytes'],
-                     service_utilization=frame['ddr_service']['service_slot_utilization'],
+                     service_utilization=frame['ddr_service'].get('capacity_utilization',
+                         frame['ddr_service'].get('service_slot_utilization')),
+                     service_utilization_basis=('bytes_per_second_capacity' if
+                         'capacity_utilization' in frame['ddr_service'] else 'legacy_beat_slots'),
                      patch_read_outstanding=patch_ports(frame))
             if prior:
                 ref=previous_frames[frame['frame']];matched_frames+=1
@@ -95,7 +101,7 @@ def compare(candidate,baseline,output):
     (output/'comparison.json').write_text(json.dumps(result,indent=2)+'\n')
     lines=['# 候选整帧 RTL 对照','',
            f"{new['frequency_mhz']:g} MHz 候选／{old['frequency_mhz']:g} MHz 参照、实际各频率 RTL、相同 DDR 字节/s 与首读 ns；{len(rows)} 帧 golden 输出精确通过，{matched_frames} 帧有匹配参照。数值不代表实体板 FPS。",'',
-           'DDR表中beat和延迟拍数以100MHz（10ns）为参照；125MHz按新时钟边沿量化，误差不足8ns。随机停顿是相同参数和种子，不保证跨频率事件序列完全相同。','',
+           'DDR表中beat和延迟拍数以100MHz（10ns）为参照；按各自新时钟边沿量化，误差不足一个新时钟周期。随机停顿是相同参数和种子，不保证跨频率事件序列完全相同。','',
            '| DDR beat/10ns | 随机停顿 | 首读资格延迟/10ns | 点数 | 新耗时/ms | 等效 FPS | 旧耗时/ms | 延迟减少 |',
            '|---:|---:|---|---:|---:|---:|---:|---:|']
     for r in rows:

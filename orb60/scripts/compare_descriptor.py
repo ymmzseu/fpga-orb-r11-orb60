@@ -22,7 +22,10 @@ def main():
         for loop in summary:
             ii=loop.findtext('PipelineII')
             if ii is not None:loops.append(dict(module=root.findtext('UserAssignments/TopModelName'),label=loop.tag,II=int(ii)))
-    required=('MomentCenterRow','MomentSymmetricPairs','BriefBits','CountDescriptorCycles')
+    state=json.loads((a.job/'status.json').read_text(encoding='utf-8-sig'))
+    fusion=int(state.get('DescriptorMomentFusion',0))
+    required=(('IssueRawPatchRows','ReceiveRawMomentWords','ReceiveBlurRowWords','BriefBits','CountDescriptorCycles')
+              if fusion else ('MomentCenterRow','MomentSymmetricPairs','BriefBits','CountDescriptorCycles'))
     evidence={}
     for name in required:
         pattern=re.compile(r'(?:VITIS_LOOP_\d+_\d+_)*'+name)
@@ -31,7 +34,7 @@ def main():
     interface_pass=len(result['axi_data_widths'])==4 and all(width==64 for width in result['axi_data_widths'].values())
     record=dict(scope='Exact independent golden/Csim/RTL and HLS estimates; no routed/board result',
                 descriptor=result,transactions=len(vectors['cases']),a32_bins=vectors['bins'],
-                frame_counts=vectors['frame_counts'],required_loops=evidence,all_loops=loops,
+                frame_counts=vectors['frame_counts'],moment_fusion=fusion,required_loops=evidence,all_loops=loops,
                 pipeline_gate_pass=pipeline_pass,axi_all_64=interface_pass)
     a.output.write_text(json.dumps(record,indent=2)+'\n')
     print('ORB60_DESCRIPTOR_HLS_RESOURCES '+str(result['resources_hls_estimate']))

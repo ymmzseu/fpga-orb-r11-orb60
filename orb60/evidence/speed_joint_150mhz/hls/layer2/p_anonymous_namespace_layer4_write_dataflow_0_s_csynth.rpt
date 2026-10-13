@@ -1,0 +1,216 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_layer4_write_dataflow_0_s'
+================================================================
+* Date:           Tue Oct 13 19:49:20 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  4.867 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+------------+-----------+------------+-----+------------+----------+
+    |   Latency (cycles)   |   Latency (absolute)   |     Interval     | Pipeline |
+    |   min   |     max    |    min    |     max    | min |     max    |   Type   |
+    +---------+------------+-----------+------------+-----+------------+----------+
+    |       13|  9395240969|  86.671 ns|  62.638 sec|    8|  9395240962|  dataflow|
+    +---------+------------+-----------+------------+-----+------------+----------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------+------------------------------------------------+---------+------------+-----------+------------+-----+------------+---------+
+        |                                                 |                                                |   Latency (cycles)   |   Latency (absolute)   |     Interval     | Pipeline|
+        |                     Instance                    |                     Module                     |   min   |     max    |    min    |     max    | min |     max    |   Type  |
+        +-------------------------------------------------+------------------------------------------------+---------+------------+-----------+------------+-----+------------+---------+
+        |p_anonymous_namespace_collect_layer_blocks_0_U0  |p_anonymous_namespace_collect_layer_blocks_0_s  |        7|  4764729345|  46.669 ns|  31.766 sec|    7|  4764729345|       no|
+        |entry_proc26_U0                                  |entry_proc26                                    |        0|           0|       0 ns|        0 ns|    0|           0|       no|
+        |p_anonymous_namespace_flush_layer_blocks_0_U0    |p_anonymous_namespace_flush_layer_blocks_0_s    |        5|  9395240961|  33.335 ns|  62.638 sec|    5|  9395240961|       no|
+        +-------------------------------------------------+------------------------------------------------+---------+------------+-----------+------------+-----+------------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|      6|    -|
+|FIFO             |        -|    -|    198|    136|    -|
+|Instance         |        -|    -|    416|    806|    -|
+|Memory           |        4|    -|      0|      0|    -|
+|Multiplexer      |        -|    -|      0|     18|    -|
+|Register         |        -|    -|      2|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        4|    0|    616|    966|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        2|    0|     ~0|      2|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |                     Instance                    |                     Module                     | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |entry_proc26_U0                                  |entry_proc26                                    |        0|   0|    3|   37|    0|
+    |p_anonymous_namespace_collect_layer_blocks_0_U0  |p_anonymous_namespace_collect_layer_blocks_0_s  |        0|   0|  168|  282|    0|
+    |p_anonymous_namespace_flush_layer_blocks_0_U0    |p_anonymous_namespace_flush_layer_blocks_0_s    |        0|   0|  245|  487|    0|
+    +-------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                            |                                                |        0|   0|  416|  806|    0|
+    +-------------------------------------------------+------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------+---------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |  Memory  |                                Module                               | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------+---------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |blocks_U  |p_anonymous_namespace_layer4_read_dataflow_blocks_RAM_S2P_BRAM_1R1W  |        4|  0|   0|    0|    64|   64|     2|         8192|
+    +----------+---------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total     |                                                                     |        4|  0|   0|    0|    64|   64|     2|         8192|
+    +----------+---------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    +-------------+---------+----+----+-----+------+-----+---------+
+    |     Name    | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +-------------+---------+----+----+-----+------+-----+---------+
+    |blurred_c_U  |        0|  99|   0|    -|     3|   32|       96|
+    |mul_loc_c_U  |        0|  99|   0|    -|     2|   20|       40|
+    +-------------+---------+----+----+-----+------+-----+---------+
+    |Total        |        0| 198|   0|    0|     5|   52|      136|
+    +-------------+---------+----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                           Variable Name                          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |ap_idle                                                           |       and|   0|  0|   1|           1|           1|
+    |ap_sync_ready                                                     |       and|   0|  0|   1|           1|           1|
+    |entry_proc26_U0_ap_start                                          |       and|   0|  0|   1|           1|           1|
+    |p_anonymous_namespace_collect_layer_blocks_0_U0_ap_start          |       and|   0|  0|   1|           1|           1|
+    |ap_sync_entry_proc26_U0_ap_ready                                  |        or|   0|  0|   1|           1|           1|
+    |ap_sync_p_anonymous_namespace_collect_layer_blocks_0_U0_ap_ready  |        or|   0|  0|   1|           1|           1|
+    +------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                             |          |   0|  0|   6|           6|           6|
+    +------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------------------------------------+----+-----------+-----+-----------+
+    |                                 Name                                 | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_entry_proc26_U0_ap_ready                                  |   9|          2|    1|          2|
+    |ap_sync_reg_p_anonymous_namespace_collect_layer_blocks_0_U0_ap_ready  |   9|          2|    1|          2|
+    +----------------------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                                 |  18|          4|    2|          4|
+    +----------------------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------------+---+----+-----+-----------+
+    |                                 Name                                 | FF| LUT| Bits| Const Bits|
+    +----------------------------------------------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_entry_proc26_U0_ap_ready                                  |  1|   0|    1|          0|
+    |ap_sync_reg_p_anonymous_namespace_collect_layer_blocks_0_U0_ap_ready  |  1|   0|    1|          0|
+    +----------------------------------------------------------------------+---+----+-----+-----------+
+    |Total                                                                 |  2|   0|    2|          0|
+    +----------------------------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+-----------------------------------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |                 Source Object                 |    C Type    |
++------------------------+-----+-----+------------+-----------------------------------------------+--------------+
+|ap_clk                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_rst                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_start                |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_done                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_ready                |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_idle                 |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|ap_continue             |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer4_write_dataflow<0>|  return value|
+|blur_words_dout         |   in|   64|     ap_fifo|                                     blur_words|       pointer|
+|blur_words_empty_n      |   in|    1|     ap_fifo|                                     blur_words|       pointer|
+|blur_words_read         |  out|    1|     ap_fifo|                                     blur_words|       pointer|
+|m_axi_gmem2_0_AWVALID   |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWREADY   |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWADDR    |  out|   32|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWID      |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWLEN     |  out|   32|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWSIZE    |  out|    3|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWBURST   |  out|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWLOCK    |  out|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWCACHE   |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWPROT    |  out|    3|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWQOS     |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWREGION  |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_AWUSER    |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WVALID    |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WREADY    |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WDATA     |  out|   64|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WSTRB     |  out|    8|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WLAST     |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WID       |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_WUSER     |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARVALID   |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARREADY   |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARADDR    |  out|   32|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARID      |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARLEN     |  out|   32|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARSIZE    |  out|    3|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARBURST   |  out|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARLOCK    |  out|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARCACHE   |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARPROT    |  out|    3|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARQOS     |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARREGION  |  out|    4|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_ARUSER    |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RVALID    |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RREADY    |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RDATA     |   in|   64|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RLAST     |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RID       |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RFIFONUM  |   in|    9|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RUSER     |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_RRESP     |   in|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_BVALID    |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_BREADY    |  out|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_BRESP     |   in|    2|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_BID       |   in|    1|       m_axi|                                          gmem2|       pointer|
+|m_axi_gmem2_0_BUSER     |   in|    1|       m_axi|                                          gmem2|       pointer|
+|blurred_dout            |   in|   32|     ap_fifo|                                        blurred|       pointer|
+|blurred_empty_n         |   in|    1|     ap_fifo|                                        blurred|       pointer|
+|blurred_read            |  out|    1|     ap_fifo|                                        blurred|       pointer|
+|mul_loc_dout            |   in|   20|     ap_fifo|                                        mul_loc|       pointer|
+|mul_loc_empty_n         |   in|    1|     ap_fifo|                                        mul_loc|       pointer|
+|mul_loc_read            |  out|    1|     ap_fifo|                                        mul_loc|       pointer|
+|blur_done_din           |  out|    8|     ap_fifo|                                      blur_done|       pointer|
+|blur_done_full_n        |   in|    1|     ap_fifo|                                      blur_done|       pointer|
+|blur_done_write         |  out|    1|     ap_fifo|                                      blur_done|       pointer|
++------------------------+-----+-----+------------+-----------------------------------------------+--------------+
+

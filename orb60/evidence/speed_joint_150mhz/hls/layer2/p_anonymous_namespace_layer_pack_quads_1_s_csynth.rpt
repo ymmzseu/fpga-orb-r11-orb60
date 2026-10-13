@@ -1,0 +1,168 @@
+
+
+================================================================
+== Vitis HLS Report for 'p_anonymous_namespace_layer_pack_quads_1_s'
+================================================================
+* Date:           Tue Oct 13 19:49:23 2026
+
+* Version:        2024.2 (Build 5238294 on Nov  8 2024)
+* Project:        layer2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z015-clg485-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.67 ns|  7.523 ns|     1.80 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |                                                                            |                                                                  |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                    |
+        |                                  Instance                                  |                              Module                              |   min   |   max   |    min   |    max   | min | max |                      Type                      |
+        +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+        |grp_p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads_fu_73  |p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads  |        ?|        ?|         ?|         ?|    0|    0|  loop auto-rewind stp (delay=0 clock cycles(s))|
+        +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+----------+----------+-----+-----+------------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF  |  LUT  | URAM|
++-----------------+---------+-----+-------+-------+-----+
+|DSP              |        -|    -|      -|      -|    -|
+|Expression       |        -|    -|      0|     34|    -|
+|FIFO             |        -|    -|      -|      -|    -|
+|Instance         |        -|    0|    404|    950|    -|
+|Memory           |        -|    -|      -|      -|    -|
+|Multiplexer      |        -|    -|      0|     83|    -|
+|Register         |        -|    -|     47|      -|    -|
++-----------------+---------+-----+-------+-------+-----+
+|Total            |        0|    0|    451|   1067|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Available        |      190|  160|  92400|  46200|    0|
++-----------------+---------+-----+-------+-------+-----+
+|Utilization (%)  |        0|    0|     ~0|      2|    0|
++-----------------+---------+-----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |                                  Instance                                  |                              Module                              | BRAM_18K| DSP|  FF | LUT | URAM|
+    +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |mul_10ns_10ns_20_1_1_U1203                                                  |mul_10ns_10ns_20_1_1                                              |        0|   0|    0|   63|    0|
+    |grp_p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads_fu_73  |p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads  |        0|   0|  404|  887|    0|
+    +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                                       |                                                                  |        0|   0|  404|  950|    0|
+    +----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |ap_block_state5       |       and|   0|  0|   1|           1|           1|
+    |icmp_ln194_fu_129_p2  |      icmp|   0|  0|  32|          32|           1|
+    |ap_block_state1       |        or|   0|  0|   1|           1|           1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  34|          34|           3|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm           |  25|          6|    1|          6|
+    |ap_done             |   9|          2|    1|          2|
+    |height_blk_n        |   9|          2|    1|          2|
+    |resize_words_blk_n  |   9|          2|    1|          2|
+    |resize_words_din    |   9|          2|   64|        128|
+    |resize_words_write  |  13|          3|    1|          3|
+    |width_blk_n         |   9|          2|    1|          2|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               |  83|         19|   70|        145|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                           Name                                          | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                |   5|   0|    5|          0|
+    |ap_done_reg                                                                              |   1|   0|    1|          0|
+    |grp_p_anonymous_namespace_layer_pack_quads_1_Pipeline_PackLayerQuads_fu_73_ap_start_reg  |   1|   0|    1|          0|
+    |height_3_reg_147                                                                         |  10|   0|   10|          0|
+    |mul_reg_157                                                                              |  20|   0|   20|          0|
+    |width_3_reg_152                                                                          |  10|   0|   10|          0|
+    +-----------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                    |  47|   0|   47|          0|
+    +-----------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+------------+------------------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|  Protocol  |               Source Object              |    C Type    |
++-----------------------------+-----+-----+------------+------------------------------------------+--------------+
+|ap_clk                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_rst                       |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_start                     |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_done                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_continue                  |   in|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_idle                      |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|ap_ready                     |  out|    1|  ap_ctrl_hs|  (anonymous namespace)layer_pack_quads<1>|  return value|
+|resize_quads_dout            |   in|   40|     ap_fifo|                              resize_quads|       pointer|
+|resize_quads_empty_n         |   in|    1|     ap_fifo|                              resize_quads|       pointer|
+|resize_quads_read            |  out|    1|     ap_fifo|                              resize_quads|       pointer|
+|resize_quads_num_data_valid  |   in|    7|     ap_fifo|                              resize_quads|       pointer|
+|resize_quads_fifo_cap        |   in|    7|     ap_fifo|                              resize_quads|       pointer|
+|resize_words_din             |  out|   64|     ap_fifo|                              resize_words|       pointer|
+|resize_words_full_n          |   in|    1|     ap_fifo|                              resize_words|       pointer|
+|resize_words_write           |  out|    1|     ap_fifo|                              resize_words|       pointer|
+|resize_words_num_data_valid  |   in|   32|     ap_fifo|                              resize_words|       pointer|
+|resize_words_fifo_cap        |   in|   32|     ap_fifo|                              resize_words|       pointer|
+|width_dout                   |   in|   10|     ap_fifo|                                     width|       pointer|
+|width_empty_n                |   in|    1|     ap_fifo|                                     width|       pointer|
+|width_read                   |  out|    1|     ap_fifo|                                     width|       pointer|
+|width_num_data_valid         |   in|    4|     ap_fifo|                                     width|       pointer|
+|width_fifo_cap               |   in|    4|     ap_fifo|                                     width|       pointer|
+|height_dout                  |   in|   10|     ap_fifo|                                    height|       pointer|
+|height_empty_n               |   in|    1|     ap_fifo|                                    height|       pointer|
+|height_read                  |  out|    1|     ap_fifo|                                    height|       pointer|
+|height_num_data_valid        |   in|    3|     ap_fifo|                                    height|       pointer|
+|height_fifo_cap              |   in|    3|     ap_fifo|                                    height|       pointer|
++-----------------------------+-----+-----+------------+------------------------------------------+--------------+
+

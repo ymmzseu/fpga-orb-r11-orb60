@@ -43,6 +43,26 @@ def run(a):
                     time.sleep(1+attempt*2);continue
                 # Status only: never print request headers containing auth.
                 detail=error.read().decode('utf-8',errors='replace')[:1800]
+                if error.code==400 and path=='/git/blobs' and body and len(body)>1000000:
+                    # Native curl handles this host's large-request transport.
+                    # Auth stays on stdin, never argv or disk; the body contains
+                    # only the already-authorized repository blob.
+                    payload_file=output/'large_blob_request.json'
+                    payload_file.write_bytes(body)
+                    config='\n'.join([
+                        'url = '+json.dumps(endpoint+path),'request = "POST"',
+                        'header = '+json.dumps('Authorization: Bearer '+secret),
+                        'header = "Accept: application/vnd.github+json"',
+                        'header = "Content-Type: application/json"',
+                        'header = "X-GitHub-Api-Version: 2022-11-28"',
+                        'user-agent = "ORB60-source-publication"',
+                        'data-binary = '+json.dumps('@'+payload_file.as_posix()),
+                        'connect-timeout = 15','max-time = 55','silent','show-error',
+                        'write-out = "\\n%{http_code}"'])+'\n'
+                    native=subprocess.run(['curl.exe','--config','-'],input=config,text=True,capture_output=True)
+                    content,code=native.stdout.rsplit('\n',1) if '\n' in native.stdout else ('','000')
+                    if native.returncode==0 and code=='201':return json.loads(content)
+                    raise RuntimeError(f'Native large-blob transport failed: exit{native.returncode} HTTP{code}; '+content[:400]) from None
                 raise RuntimeError(f'GitHub API {method} {path}: HTTP{error.code} {detail}') from None
     ref='/git/ref/heads/'+branch
     assert api('GET',ref)['object']['sha']==parent,'Remote branch changed; preserve its new work'
@@ -77,6 +97,8 @@ def run(a):
                     missing=re.search(r'tree\.sha ([0-9a-f]{40}) is not a valid blob',str(error))
                     if not missing or missing[1] not in blobs or missing[1] in repaired or attempt==64:raise
                     digest=missing[1];content=git('cat-file','blob',digest)
+                    state['CurrentRecovery']=dict(sha=digest,path=blobs[digest],bytes=len(content));save()
+                    print('GITHUB_API_RECOVERY_FILE '+json.dumps(state['CurrentRecovery']),flush=True)
                     assert api('POST','/git/blobs',dict(content=base64.b64encode(content).decode(),encoding='base64'))['sha']==digest
                     repaired.add(digest);state['RecoveredMissingBlobs']=len(repaired);save()
                     print(f'GITHUB_API_REPAIRED_MISSING {len(repaired)}',flush=True)
